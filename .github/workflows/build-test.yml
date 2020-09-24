@@ -12,6 +12,9 @@ on:
 
 jobs:
   build:
+    env:
+      NX_BRANCH: ${{ github.ref }}
+      NX_RUN_GROUP: ${{ github.action }}
     runs-on: ${{ matrix.operating-system }}
     strategy:
       matrix:
