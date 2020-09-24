@@ -7,16 +7,19 @@ export default function (options: AdminLibSchematicSchema): Rule {
   const directory = options.directory || 'admin'
   const name = options.name === options.type ? options.type : `${options.type}-${options.name}`
 
-  const normalizedOptions = normalizeOptions({ ...options, directory, name }, ProjectType.Library)
+  const normalizedOptions = normalizeOptions<AdminLibSchematicSchema>(
+    { ...options, directory, name },
+    ProjectType.Library,
+  )
   return chain([
     externalSchematic('@nrwl/angular', 'library', {
       name,
       directory,
+      tags: `scope:${directory},type:${options.type}`,
       style: 'scss',
       prefix: options.prefix || options.name,
       buildable: options.buildable || false,
       publishable: options.publishable || false,
-      tags: `scope:${directory},type:${options.type}`,
       routing: true,
       lazy: true,
     }),

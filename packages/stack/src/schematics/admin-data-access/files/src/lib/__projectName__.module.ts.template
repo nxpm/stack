@@ -6,4 +6,4 @@ import { <%= classify(projectName) %>Service  } from './<%= projectName %>.servi
   imports: [],
   providers: [ <%= classify(projectName) %>Service ],
 })
-export class <%= classify(projectName) %>Module {
+export class <%= classify(projectName) %>Module {}
