@@ -1,5 +1,5 @@
-import { chain, externalSchematic, schematic, Rule } from '@angular-devkit/schematics'
-import { addDepsToPackageJson, ProjectType } from '@nrwl/workspace'
+import { chain, externalSchematic, Rule, schematic } from '@angular-devkit/schematics'
+import { ProjectType } from '@nrwl/workspace'
 import { addFiles, addRunScript, createDotEnv, normalizeOptions, removeFiles } from '../../utils'
 import { ApiSchematicSchema } from './schema'
 
@@ -9,20 +9,6 @@ export default function (options: ApiSchematicSchema): Rule {
   const normalizedOptions = normalizeOptions<ApiSchematicSchema>({ ...options }, ProjectType.Application)
 
   return chain([
-    addDepsToPackageJson(
-      {
-        '@nestjs/config': '^0.5.0',
-        '@nestjs/graphql': '^7.7.0',
-        'apollo-server-express': '^2.18.0',
-        'class-transformer': '^0.3.1',
-        'class-validator': '^0.12.2',
-        joi: '^17.2.1',
-        graphql: '^15.3.0',
-        'graphql-tools': '^6.2.3',
-      },
-      {},
-      true,
-    ),
     externalSchematic('@nrwl/nest', 'application', {
       name,
     }),
@@ -31,7 +17,7 @@ export default function (options: ApiSchematicSchema): Rule {
       name: 'data-access',
       type: 'data-access',
     }),
-    schematic('api-lib', { directory, name: 'core', type: 'feature' }),
+    schematic('api-feature-core', { directory, name: 'core' }),
     schematic('api-lib', { directory, name: 'auth', type: 'feature' }),
     addFiles(normalizedOptions),
     addRunScript(`dev:${name}`, `nx serve ${name}`),

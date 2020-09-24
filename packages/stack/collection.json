@@ -23,6 +23,11 @@
       "schema": "./src/schematics/api/schema.json",
       "description": "api schematic"
     },
+    "api-feature-core": {
+      "factory": "./src/schematics/api-feature-core/schematic-api-feature-core",
+      "schema": "./src/schematics/api-feature-core/schema.json",
+      "description": "api-feature-core schematic"
+    },
     "api-lib": {
       "factory": "./src/schematics/api-lib/schematic-api-lib",
       "schema": "./src/schematics/api-lib/schema.json",
