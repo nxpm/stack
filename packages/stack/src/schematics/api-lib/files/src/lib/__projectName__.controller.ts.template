@@ -1,0 +1,8 @@
+import { Controller } from '@nestjs/common';
+
+import { <%= classify(projectName) %>Service } from './<%= projectName %>.service';
+
+@Controller()
+export class <%= classify(projectName) %>Controller {
+  constructor(private readonly auth: <%= classify(projectName) %>Service) {}
+}

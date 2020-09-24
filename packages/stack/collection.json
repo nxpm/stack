@@ -22,6 +22,11 @@
       "factory": "./src/schematics/admin/schematic-admin",
       "schema": "./src/schematics/admin/schema.json",
       "description": "admin schematic"
+    },
+    "api-lib": {
+      "factory": "./src/schematics/api-lib/schematic-api-lib",
+      "schema": "./src/schematics/api-lib/schema.json",
+      "description": "api-lib schematic"
     }
   }
 }

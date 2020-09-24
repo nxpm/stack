@@ -8,4 +8,4 @@ import { Module } from '@nestjs/common';
     ApiFeatureCoreModule,
   ],
 })
-export class AppModuleTs {}
+export class AppModule {}
