@@ -1,0 +1,30 @@
+import { GraphQLIntercomModule } from '@kikstart-playground/graphql-intercom'
+import { Module } from '@nestjs/common'
+import { ConfigModule } from '@nestjs/config'
+import { GraphQLModule } from '@nestjs/graphql'
+import { PubSub } from 'graphql-subscriptions'
+
+import { configuration } from './config/configuration'
+import { validationSchema } from './config/validation'
+import { <%= classify(projectName) %>Controller } from './<%= projectName %>.controller'
+import { <%= classify(projectName) %>Resolver } from './<%= projectName %>.resolver'
+import { <%= classify(projectName) %>Service } from './<%= projectName %>.service'
+
+@Module({
+  imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+      load: [configuration],
+      validationSchema,
+    }),
+    GraphQLModule.forRoot({
+      autoSchemaFile: true,
+      installSubscriptionHandlers: true,
+    }),
+    GraphQLIntercomModule.forRoot({ pubSub: new PubSub() }),
+  ],
+  controllers: [<%= classify(projectName) %>Controller],
+  providers: [<%= classify(projectName) %>Resolver, <%= classify(projectName) %>Service],
+  exports: [<%= classify(projectName) %>Service],
+})
+export class <%= classify(projectName) %>Module {}

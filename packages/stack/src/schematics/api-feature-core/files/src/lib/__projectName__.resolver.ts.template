@@ -1,0 +1,12 @@
+import { Float, Query, Resolver } from '@nestjs/graphql'
+import { <%= classify(projectName) %>Service } from './<%= projectName %>.service'
+
+@Resolver()
+export class <%= classify(projectName) %>Resolver {
+  constructor(private readonly service: <%= classify(projectName) %>Service) {}
+
+  @Query(() => Float)
+  uptime() {
+    return this.service.uptime()
+  }
+}
