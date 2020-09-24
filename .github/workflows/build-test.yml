@@ -1,0 +1,28 @@
+name: build-test
+
+on:
+  pull_request:
+    paths-ignore:
+      - '**.md'
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - '**.md'
+
+jobs:
+  build:
+    runs-on: ${{ matrix.operating-system }}
+    strategy:
+      matrix:
+        operating-system: [ubuntu-latest]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup node 12
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+      - run: yarn
+      - run: yarn build
+      - run: yarn format:check
+      - run: yarn test
