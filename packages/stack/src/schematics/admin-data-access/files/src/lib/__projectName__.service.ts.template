@@ -1,0 +1,13 @@
+import { Injectable } from '@angular/core'
+import { Observable } from 'rxjs'
+import { map } from 'rxjs/operators'
+import { ApolloAngularSDK } from '../generated/graphql'
+
+@Injectable()
+export class <%= classify(projectName) %>Service {
+  constructor(protected readonly sdk: ApolloAngularSDK) {}
+
+  public uptime(): Observable<number> {
+    return this.sdk.uptime().pipe(map((res) => res?.data?.uptime))
+  }
+}

@@ -28,10 +28,9 @@ export default function (options: AdminSchematicSchema): Rule {
       style: 'scss',
       routing: true,
     }),
-    schematic('admin-lib', {
+    schematic('admin-data-access', {
       directory,
       name: 'data-access',
-      type: 'data-access',
     }),
     schematic('admin-lib', { directory, name: 'shell', type: 'feature' }),
     schematic('admin-lib', { directory, name: 'auth', type: 'feature' }),
