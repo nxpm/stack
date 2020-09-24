@@ -1,5 +1,5 @@
-import { BaseSchema } from '../../utils';
+import { BaseSchema } from '../../utils'
 
 export interface ApiLibSchematicSchema extends BaseSchema {
-  type: 'data-access' | 'feature' | 'ui' | 'util';
+  type: 'data-access' | 'feature' | 'ui' | 'util'
 }

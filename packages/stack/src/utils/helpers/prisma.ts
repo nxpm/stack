@@ -1,5 +1,5 @@
-import { Rule } from '@angular-devkit/schematics';
-import { updateWorkspace } from '@nrwl/workspace';
+import { Rule } from '@angular-devkit/schematics'
+import { updateWorkspace } from '@nrwl/workspace'
 // import { NormalizedSchema } from '../schemas/normalized-schema'
 // import { addTargetsToProject, createRunCommand } from '../utils'
 //

@@ -1,25 +1,12 @@
-import {
-  chain,
-  externalSchematic,
-  Rule,
-  schematic,
-} from '@angular-devkit/schematics';
-import { addDepsToPackageJson, ProjectType } from '@nrwl/workspace';
-import {
-  addFiles,
-  addRunScript,
-  normalizeOptions,
-  removeFiles,
-} from '../../utils';
-import { AdminSchematicSchema } from './schema';
+import { chain, externalSchematic, Rule, schematic } from '@angular-devkit/schematics'
+import { addDepsToPackageJson, ProjectType } from '@nrwl/workspace'
+import { addFiles, addRunScript, normalizeOptions, removeFiles } from '../../utils'
+import { AdminSchematicSchema } from './schema'
 
 export default function (options: AdminSchematicSchema): Rule {
-  const name = options.name || 'admin';
-  const directory = options.directory || options.name;
-  const normalizedOptions = normalizeOptions<AdminSchematicSchema>(
-    options,
-    ProjectType.Application
-  );
+  const name = options.name || 'admin'
+  const directory = options.directory || options.name
+  const normalizedOptions = normalizeOptions<AdminSchematicSchema>(options, ProjectType.Application)
 
   return chain([
     addDepsToPackageJson(
@@ -34,7 +21,7 @@ export default function (options: AdminSchematicSchema): Rule {
         '@graphql-codegen/typescript-apollo-angular': '^2.0.1',
         '@graphql-codegen/typescript-operations': '1.17.8',
       },
-      true
+      true,
     ),
     externalSchematic('@nrwl/angular', 'application', {
       name,
@@ -57,5 +44,5 @@ export default function (options: AdminSchematicSchema): Rule {
       `${normalizedOptions.projectRoot}/src/app/app.component.html`,
       `${normalizedOptions.projectRoot}/src/app/app.component.spec.ts`,
     ]),
-  ]);
+  ])
 }
