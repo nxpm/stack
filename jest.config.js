@@ -1,5 +1,6 @@
 module.exports = {
   testMatch: ['**/+(*.)+(spec|test).+(ts|js)?(x)'],
+  testTimeout: 600000,
   transform: {
     '^.+\\.(ts|js|html)$': 'ts-jest',
   },
