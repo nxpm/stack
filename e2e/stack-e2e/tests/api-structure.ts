@@ -20,6 +20,9 @@ export function apiFilesExisting(project: string) {
     ...apiCrudFiles(project, 'feature-auth'),
     ...apiCrudFiles(project, 'feature-core'),
     ...apiCrudFiles(project, 'data-access'),
+    `libs/${project}/feature-core/src/lib/${project}-feature-core.module.ts`,
+    `libs/${project}/feature-core/src/lib/config/configuration.ts`,
+    `libs/${project}/feature-core/src/lib/config/validation.ts`,
   ]
 }
 
@@ -31,5 +34,9 @@ export function apiFindStrings(project: string) {
   return {
     [`.gitignore`]: [`.env`],
     [`apps/${project}/src/main.ts`]: [`Logger.log('Listening at http://localhost:' + port + '/graphql')`],
+    [`libs/${project}/feature-core/src/lib/${project}-feature-core.module.ts`]: [
+      `ConfigModule.forRoot`,
+      `GraphQLModule.forRoot`,
+    ],
   }
 }
