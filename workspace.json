@@ -43,11 +43,6 @@
                 "input": "./packages/stack",
                 "glob": "collection.json",
                 "output": "."
-              },
-              {
-                "input": "./packages/stack",
-                "glob": "builders.json",
-                "output": "."
               }
             ]
           }
