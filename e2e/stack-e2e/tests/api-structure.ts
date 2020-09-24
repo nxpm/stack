@@ -13,6 +13,9 @@ export function apiCrudFiles(project: string, name: string) {
 
 export function apiFilesExisting(project: string) {
   return [
+    `.env`,
+    `.env.example`,
+    `apps/${project}/src/main.ts`,
     `apps/${project}/src/app/app.module.ts`,
     ...apiCrudFiles(project, 'feature-auth'),
     ...apiCrudFiles(project, 'feature-core'),
@@ -21,5 +24,12 @@ export function apiFilesExisting(project: string) {
 }
 
 export function apiFilesRemoved(project: string) {
-  return [`apps/${project}/src/app/app.controller.ts`]
+  return [`apps/${project}/src/app/app.controller.ts`, `apps/.gitkeep`, `libs/.gitkeep`]
+}
+
+export function apiFindStrings(project: string) {
+  return {
+    [`.gitignore`]: [`.env`],
+    [`apps/${project}/src/main.ts`]: [`Logger.log('Listening at http://localhost:' + port + '/graphql')`],
+  }
 }
