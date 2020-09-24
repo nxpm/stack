@@ -1,7 +1,20 @@
-# stack
+# @nxpm/stack
 
-This library was generated with [Nx](https://nx.dev).
+Create a new Nx Workspace and make sure to use the `empty` preset!
 
-## Running unit tests
+```shell script
+yarn create nx-workspace sandbox --preset=empty --nx-cloud true --cli=angular
+cd sandbox
+```
 
-Run `nx test stack` to execute the unit tests via [Jest](https://jestjs.io).
+Install the dependencies:
+
+```shell script
+yarn add -D @nxpm/stack @nrwl/angular @nrwl/nest
+```
+
+Initialize a new project:
+
+```shell script
+nx g @nxpm/stack:init
+```

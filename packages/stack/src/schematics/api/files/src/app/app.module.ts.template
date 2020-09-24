@@ -1,0 +1,11 @@
+import { ApiFeatureAuthModule } from '@<%= npmScope %>/api/feature-auth'
+import { ApiFeatureCoreModule } from '@<%= npmScope %>/api/feature-core'
+import { Module } from '@nestjs/common';
+
+@Module({
+  imports: [
+    ApiFeatureAuthModule,
+    ApiFeatureCoreModule,
+  ],
+})
+export class AppModuleTs {}

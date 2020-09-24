@@ -17,6 +17,17 @@ describe('stack e2e', () => {
     done();
   });
 
+  it('should run init', async (done) => {
+    const plugin = uniq('init-stack');
+    ensureNxProject('@nxpm/stack', 'dist/packages/stack');
+    await runNxCommandAsync(`generate @nxpm/stack:init ${plugin}`);
+
+    const result = await runNxCommandAsync(`build ${plugin}`);
+    expect(result.stdout).toContain('Builder ran');
+
+    done();
+  });
+
   describe('--directory', () => {
     it('should create src in the specified directory', async (done) => {
       const plugin = uniq('stack');

@@ -1,7 +1,14 @@
 {
   "name": "@nxpm/stack",
-  "version": "0.0.1",
+  "version": "1.0.26",
   "main": "src/index.js",
   "schematics": "./collection.json",
-  "builders": "./builders.json"
+  "builders": "./builders.json",
+  "license": "MIT",
+  "dependencies": {
+    "@nrwl/angular": "^10.0.0",
+    "@nrwl/nest": "^10.0.0",
+    "rxjs": "^6.4.0",
+    "tslib": "^2.0.0"
+  }
 }
