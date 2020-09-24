@@ -3,35 +3,30 @@
   "name": "stack",
   "version": "0.0.1",
   "schematics": {
-    "stack": {
-      "factory": "./src/schematics/stack/schematic",
-      "schema": "./src/schematics/stack/schema.json",
-      "description": "stack schematic"
-    },
-    "init": {
-      "factory": "./src/schematics/init/schematic-init",
-      "schema": "./src/schematics/init/schema.json",
-      "description": "init schematic"
-    },
     "api": {
       "factory": "./src/schematics/api/schematic-api",
       "schema": "./src/schematics/api/schema.json",
       "description": "api schematic"
-    },
-    "admin": {
-      "factory": "./src/schematics/admin/schematic-admin",
-      "schema": "./src/schematics/admin/schema.json",
-      "description": "admin schematic"
     },
     "api-lib": {
       "factory": "./src/schematics/api-lib/schematic-api-lib",
       "schema": "./src/schematics/api-lib/schema.json",
       "description": "api-lib schematic"
     },
+    "admin": {
+      "factory": "./src/schematics/admin/schematic-admin",
+      "schema": "./src/schematics/admin/schema.json",
+      "description": "admin schematic"
+    },
     "admin-lib": {
       "factory": "./src/schematics/admin-lib/schematic-admin-lib",
       "schema": "./src/schematics/admin-lib/schema.json",
       "description": "admin-lib schematic"
+    },
+    "init": {
+      "factory": "./src/schematics/init/schematic-init",
+      "schema": "./src/schematics/init/schema.json",
+      "description": "init schematic"
     }
   }
 }
