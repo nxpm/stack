@@ -16,7 +16,7 @@ export function appendGitIgnore(lines: string | string[]): Rule {
 
     return appendToPath(
       GIT_IGNORE,
-      content.filter((line) => !gitIgnore.includes(line))
+      content.filter((line) => !gitIgnore?.includes(line))
     );
   };
 }

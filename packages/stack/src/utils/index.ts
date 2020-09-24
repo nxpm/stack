@@ -68,8 +68,13 @@ export function appendToPath(path, line: string | string[]): Rule {
   const lines = Array.isArray(line) ? line : [line];
   const content = lineEnd(lines.join('\n'));
   return (tree: Tree) => {
-    const source = tree.read(path).toString();
-    return insert(tree, path, [new InsertChange(path, source.length, content)]);
+    if (!tree.exists(path)) {
+      return tree;
+    }
+    const source = tree.read(path)?.toString();
+    return insert(tree, path, [
+      new InsertChange(path, source?.length, content),
+    ]);
   };
 }
 
