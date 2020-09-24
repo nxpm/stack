@@ -1,4 +1,9 @@
-import { chain, externalSchematic, Rule } from '@angular-devkit/schematics';
+import {
+  chain,
+  externalSchematic,
+  Rule,
+  schematic,
+} from '@angular-devkit/schematics';
 import { addDepsToPackageJson, ProjectType } from '@nrwl/workspace';
 import {
   addFiles,
@@ -9,6 +14,8 @@ import {
 import { AdminSchematicSchema } from './schema';
 
 export default function (options: AdminSchematicSchema): Rule {
+  const name = options.name || 'admin';
+  const directory = options.directory || options.name;
   const normalizedOptions = normalizeOptions<AdminSchematicSchema>(
     options,
     ProjectType.Application
@@ -30,37 +37,19 @@ export default function (options: AdminSchematicSchema): Rule {
       true
     ),
     externalSchematic('@nrwl/angular', 'application', {
-      name: options.name,
+      name,
       style: 'scss',
       routing: true,
     }),
-    externalSchematic('@nrwl/angular', 'library', {
+    schematic('admin-lib', {
+      directory,
       name: 'data-access',
-      directory: options.name,
-      style: 'scss',
-      prefix: 'admin',
-      tags: `scope:${options.name},type:data-access`,
+      type: 'data-access',
     }),
-    externalSchematic('@nrwl/angular', 'library', {
-      name: 'feature-auth',
-      directory: options.name,
-      style: 'scss',
-      prefix: 'admin-auth',
-      routing: true,
-      lazy: true,
-      tags: `scope:${options.name},type:feature`,
-    }),
-    externalSchematic('@nrwl/angular', 'library', {
-      name: 'feature-shell',
-      directory: options.name,
-      style: 'scss',
-      prefix: 'admin-shell',
-      routing: true,
-      lazy: true,
-      tags: `scope:${options.name},type:feature`,
-    }),
-    addRunScript(`dev:${options.name}`, `nx serve ${options.name}`),
-    addRunScript(`build:${options.name}`, `nx build ${options.name} --prod`),
+    schematic('admin-lib', { directory, name: 'shell', type: 'feature' }),
+    schematic('admin-lib', { directory, name: 'auth', type: 'feature' }),
+    addRunScript(`dev:${name}`, `nx serve ${name}`),
+    addRunScript(`build:${name}`, `nx build ${name} --prod`),
     addFiles(normalizedOptions),
     removeFiles([
       `${normalizedOptions.projectRoot}/src/app/app.component.css`,

@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema",
-  "id": "ApiLib",
+  "id": "AdminLib",
   "title": "",
   "type": "object",
   "properties": {
@@ -53,6 +53,22 @@
       "type": "string",
       "description": "A directory where the project is placed",
       "alias": "d"
+    },
+    "publishable": {
+      "type": "boolean",
+      "default": false,
+      "description": "Generate a publishable library."
+    },
+    "buildable": {
+      "type": "boolean",
+      "default": false,
+      "description": "Generate a buildable library."
+    },
+    "prefix": {
+      "type": "string",
+      "format": "html-selector",
+      "description": "The prefix to apply to generated selectors.",
+      "alias": "p"
     }
   },
   "required": ["name"]

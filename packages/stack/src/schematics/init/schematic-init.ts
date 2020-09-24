@@ -6,7 +6,11 @@ import {
   ProjectType,
   toFileName,
 } from '@nrwl/workspace';
-import { addRunScript, configureHuskyLintStaged } from '../../utils';
+import {
+  addRunScript,
+  configureHuskyLintStaged,
+  removeFiles,
+} from '../../utils';
 
 import { InitSchematicSchema } from './schema';
 
@@ -90,7 +94,8 @@ export default function (options: InitSchematicSchema): Rule {
     schematic('api', { name: 'api' }),
     schematic('admin', { name: options.name }),
     addRunScript('start', 'node dist/apps/api/main.js', true),
-    addRunScript('build', 'yarn build:admin && yarn build:api', true),
+    addRunScript('build', `yarn build:${options.name} && yarn build:api`, true),
+    removeFiles([`apps/.gitkeep`, `libs/.gitkeep`]),
     formatFiles(),
   ]);
 }

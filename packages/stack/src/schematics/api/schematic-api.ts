@@ -48,8 +48,8 @@ export default function (options: ApiSchematicSchema): Rule {
     schematic('api-lib', { directory, name: 'core', type: 'feature' }),
     schematic('api-lib', { directory, name: 'auth', type: 'feature' }),
     addFiles(normalizedOptions),
-    addRunScript('dev:api', 'nx serve api'),
-    addRunScript('build:api', 'nx build api --prod'),
+    addRunScript(`dev:${name}`, `nx serve ${name}`),
+    addRunScript(`build:${name}`, `nx build ${name} --prod`),
     createDotEnv([`NODE_ENV=development`, `PORT=3000`]),
 
     removeFiles([
