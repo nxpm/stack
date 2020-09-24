@@ -1,0 +1,12 @@
+{
+  "$schema": "../../node_modules/@angular-devkit/schematics/collection-schema.json",
+  "name": "stack",
+  "version": "0.0.1",
+  "schematics": {
+    "stack": {
+      "factory": "./src/schematics/stack/schematic",
+      "schema": "./src/schematics/stack/schema.json",
+      "description": "stack schematic"
+    }
+  }
+}
