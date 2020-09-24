@@ -11,54 +11,63 @@ describe('@nxpm/stack:init e2e', () => {
     await runNxCommandAsync(`generate @nxpm/stack:init ${projectNameAdmin}`)
   })
 
-  it('check if project names exist', (done) => {
-    const nxJson = readJson('nx.json')
-    const projectNames = Object.keys(nxJson.projects)
+  describe('workspace structure', () => {
+    it('check if project names exist', (done) => {
+      const nxJson = readJson('nx.json')
+      const projectNames = Object.keys(nxJson.projects)
 
-    expect(projectNames).toEqual([...apiProjects(projectNameApi), ...adminProjects(projectNameAdmin)])
-    done()
+      expect(projectNames).toEqual([...apiProjects(projectNameApi), ...adminProjects(projectNameAdmin)])
+      done()
+    })
   })
 
-  it('check if files exist', (done) => {
+  describe('check file existence', () => {
     const existingFiles = [...apiFilesExisting(projectNameApi), ...adminFilesExisting(projectNameAdmin)]
 
     for (let file of existingFiles) {
-      expect(() => checkFilesExist(file)).not.toThrow()
+      it(`file: ${file}`, (done) => {
+        expect(() => checkFilesExist(file)).not.toThrow()
+        done()
+      })
     }
-    done()
   })
 
-  it('check if files are removed', (done) => {
-    const removedFiles = [...apiFilesRemoved(projectNameApi), ...adminFilesRemoved(projectNameAdmin)]
-
-    for (let file of removedFiles) {
-      expect(() => checkFilesExist(file)).toThrow()
-    }
-    done()
-  })
-
-  it('check if files content exists', (done) => {
+  describe('check file contents', () => {
     const findStrings = { ...apiFindStrings(projectNameApi), ...adminFindStrings(projectNameAdmin) }
 
     for (let file of Object.keys(findStrings)) {
-      const lines = findStrings[file]
-      for (let line of lines) {
-        const content = readFile(file)
-        expect(content).toContain(line)
-      }
+      it(`file: ${file}`, (done) => {
+        const lines = findStrings[file]
+        for (let line of lines) {
+          const content = readFile(file)
+          expect(content).toContain(line)
+        }
+        done()
+      })
     }
-    done()
   })
 
-  it('should build the api', async (done) => {
-    await runNxCommandAsync(`build ${projectNameApi}`)
-    expect(() => checkFilesExist(`dist/apps/${projectNameApi}/main.js`)).not.toThrow()
-    done()
+  describe('check file removal', () => {
+    const removedFiles = [...apiFilesRemoved(projectNameApi), ...adminFilesRemoved(projectNameAdmin)]
+    for (let file of removedFiles) {
+      it(`file: ${file}`, (done) => {
+        expect(() => checkFilesExist(file)).toThrow()
+        done()
+      })
+    }
   })
 
-  it('should build the admin', async (done) => {
-    await runNxCommandAsync(`build ${projectNameAdmin}`)
-    expect(() => checkFilesExist(`dist/apps/${projectNameAdmin}/index.html`)).not.toThrow()
-    done()
+  describe('build the apps', () => {
+    it('should build the api', async (done) => {
+      await runNxCommandAsync(`build ${projectNameApi}`)
+      expect(() => checkFilesExist(`dist/apps/${projectNameApi}/main.js`)).not.toThrow()
+      done()
+    })
+
+    it('should build the admin', async (done) => {
+      await runNxCommandAsync(`build ${projectNameAdmin}`)
+      expect(() => checkFilesExist(`dist/apps/${projectNameAdmin}/index.html`)).not.toThrow()
+      done()
+    })
   })
 })
