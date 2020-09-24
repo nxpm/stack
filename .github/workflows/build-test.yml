@@ -21,6 +21,10 @@ jobs:
         operating-system: [ubuntu-latest]
     steps:
       - uses: actions/checkout@v2
+      - uses: actions/cache@v2
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
       - name: Setup node 12
         uses: actions/setup-node@v1
         with:
@@ -28,4 +32,4 @@ jobs:
       - run: yarn
       - run: yarn build
       - run: yarn format:check
-      - run: yarn test
+      - run: yarn test:ci
