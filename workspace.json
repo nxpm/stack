@@ -11,10 +11,7 @@
           "builder": "@nrwl/linter:lint",
           "options": {
             "linter": "eslint",
-            "tsConfig": [
-              "packages/stack/tsconfig.lib.json",
-              "packages/stack/tsconfig.spec.json"
-            ],
+            "tsConfig": ["packages/stack/tsconfig.lib.json", "packages/stack/tsconfig.spec.json"],
             "exclude": ["**/node_modules/**", "!packages/stack/**/*"]
           }
         },

@@ -1,9 +1,9 @@
-import { chain, Rule } from '@angular-devkit/schematics';
-import { appendGitIgnore } from './git-ignore';
-import { appendToPath, createOrOverwrite } from '../index';
+import { chain, Rule } from '@angular-devkit/schematics'
+import { appendGitIgnore } from './git-ignore'
+import { appendToPath, createOrOverwrite } from '../index'
 
-export const DOT_ENV = '.env';
-export const DOT_ENV_EXAMPLE = `${DOT_ENV}.example`;
+export const DOT_ENV = '.env'
+export const DOT_ENV_EXAMPLE = `${DOT_ENV}.example`
 
 /**
  * Creates a new .env and .env.example with `lines` content, and adds the .env to gitignore
@@ -11,11 +11,7 @@ export const DOT_ENV_EXAMPLE = `${DOT_ENV}.example`;
  * @returns {Rule}
  */
 export function createDotEnv(lines: string[]): Rule {
-  return chain([
-    createOrOverwrite(DOT_ENV, lines),
-    createOrOverwrite(DOT_ENV_EXAMPLE, lines),
-    appendGitIgnore(DOT_ENV),
-  ]);
+  return chain([createOrOverwrite(DOT_ENV, lines), createOrOverwrite(DOT_ENV_EXAMPLE, lines), appendGitIgnore(DOT_ENV)])
 }
 
 /**
@@ -24,8 +20,5 @@ export function createDotEnv(lines: string[]): Rule {
  * @returns {Rule}
  */
 export function appendDotEnv(lines: string[]): Rule {
-  return chain([
-    appendToPath(DOT_ENV, lines),
-    appendToPath(DOT_ENV_EXAMPLE, lines),
-  ]);
+  return chain([appendToPath(DOT_ENV, lines), appendToPath(DOT_ENV_EXAMPLE, lines)])
 }

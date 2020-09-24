@@ -1,7 +1,7 @@
-import { BaseSchema } from '../../utils';
+import { BaseSchema } from '../../utils'
 
 export interface AdminSchematicSchema extends BaseSchema {
-  name: string;
-  tags?: string;
-  directory?: string;
+  name: string
+  tags?: string
+  directory?: string
 }

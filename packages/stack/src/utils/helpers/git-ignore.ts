@@ -1,7 +1,7 @@
-import { Rule, Tree } from '@angular-devkit/schematics';
-import { appendToPath } from '../index';
+import { Rule, Tree } from '@angular-devkit/schematics'
+import { appendToPath } from '../index'
 
-export const GIT_IGNORE = '.gitignore';
+export const GIT_IGNORE = '.gitignore'
 
 /**
  * Append `lines` to an existing .gitignore file
@@ -9,14 +9,14 @@ export const GIT_IGNORE = '.gitignore';
  * @returns {Rule}
  */
 export function appendGitIgnore(lines: string | string[]): Rule {
-  const content = Array.isArray(lines) ? lines : [lines];
+  const content = Array.isArray(lines) ? lines : [lines]
 
   return (tree: Tree) => {
-    const gitIgnore = tree.read(GIT_IGNORE);
+    const gitIgnore = tree.read(GIT_IGNORE)
 
     return appendToPath(
       GIT_IGNORE,
-      content.filter((line) => !gitIgnore?.includes(line))
-    );
-  };
+      content.filter((line) => !gitIgnore?.includes(line)),
+    )
+  }
 }

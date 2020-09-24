@@ -1,19 +1,13 @@
-import { chain, externalSchematic, Rule } from '@angular-devkit/schematics';
-import { ProjectType } from '@nrwl/workspace';
-import { addFiles, normalizeOptions } from '../../utils';
-import { AdminLibSchematicSchema } from './schema';
+import { chain, externalSchematic, Rule } from '@angular-devkit/schematics'
+import { ProjectType } from '@nrwl/workspace'
+import { addFiles, normalizeOptions } from '../../utils'
+import { AdminLibSchematicSchema } from './schema'
 
 export default function (options: AdminLibSchematicSchema): Rule {
-  const directory = options.directory || 'admin';
-  const name =
-    options.name === options.type
-      ? options.type
-      : `${options.type}-${options.name}`;
+  const directory = options.directory || 'admin'
+  const name = options.name === options.type ? options.type : `${options.type}-${options.name}`
 
-  const normalizedOptions = normalizeOptions(
-    { ...options, directory, name },
-    ProjectType.Library
-  );
+  const normalizedOptions = normalizeOptions({ ...options, directory, name }, ProjectType.Library)
   return chain([
     externalSchematic('@nrwl/angular', 'library', {
       name,
@@ -27,5 +21,5 @@ export default function (options: AdminLibSchematicSchema): Rule {
       lazy: true,
     }),
     addFiles(normalizedOptions),
-  ]);
+  ])
 }
