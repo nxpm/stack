@@ -1,0 +1,12 @@
+{
+  "$schema": "../../node_modules/@angular-devkit/schematics/collection-schema.json",
+  "name": "ci",
+  "version": "0.0.1",
+  "schematics": {
+    "github": {
+      "factory": "./src/schematics/github/schematic-ci-github",
+      "schema": "./src/schematics/github/schema.json",
+      "description": "github schematic"
+    }
+  }
+}

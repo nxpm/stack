@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "id": "Github",
+  "title": "",
+  "type": "object",
+  "properties": {
+    "main": {
+      "type": "string",
+      "description": "The main branch of the repo on which to run CI",
+      "default": "main"
+    }
+  },
+  "required": []
+}

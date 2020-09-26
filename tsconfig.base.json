@@ -16,7 +16,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "nxpm/stack": ["packages/stack/src/index.ts"]
+      "@nxpm/stack": ["packages/stack/src/index.ts"],
+      "@nxpm/ci": ["packages/ci/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

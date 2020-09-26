@@ -32,6 +32,13 @@
     "stack-e2e": {
       "tags": [],
       "implicitDependencies": ["stack"]
+    },
+    "ci": {
+      "tags": []
+    },
+    "ci-e2e": {
+      "tags": [],
+      "implicitDependencies": ["ci"]
     }
   },
   "workspaceLayout": {
