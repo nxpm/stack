@@ -16,12 +16,10 @@ env:
 
 jobs:
   build:
-    env:
-      NX_BRANCH: ${{ github.ref }}
-      NX_RUN_GROUP: ${{ github.action }}
     runs-on: ${{ matrix.operating-system }}
     strategy:
       matrix:
+        node-version: [ 14.x ]
         operating-system: [ubuntu-latest]
     steps:
       - uses: actions/checkout@v2
@@ -29,11 +27,11 @@ jobs:
         with:
           path: '**/node_modules'
           key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
-      - name: Setup node 12
+      - name: Setup node ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
-          node-version: 12.x
-      - run: yarn
+          node-version: ${{ matrix.node-version }}
+      - run: yarn install --frozen-lockfile
       - run: yarn build
       - run: yarn format:check
       - run: yarn test:ci
