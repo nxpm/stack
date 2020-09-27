@@ -15,7 +15,13 @@ describe('@nxpm/ci', () => {
         runFileTests({
           existing: [workflowFile],
           contain: {
-            [workflowFile]: [`main`],
+            [workflowFile]: [
+              `master`,
+              `yarn install --frozen-lockfile`,
+              `yarn build`,
+              `yarn format:check`,
+              `yarn test:ci`,
+            ],
           },
         })
       })

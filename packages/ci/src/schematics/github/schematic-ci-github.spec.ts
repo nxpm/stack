@@ -7,7 +7,7 @@ import { GithubSchematicSchema } from './schema'
 
 describe('github schematic', () => {
   let appTree: Tree
-  const options: GithubSchematicSchema = { main: 'main' }
+  const options: GithubSchematicSchema = { branch: 'main' }
 
   const testRunner = new SchematicTestRunner('@nxpm/github', join(__dirname, '../../../collection.json'))
 

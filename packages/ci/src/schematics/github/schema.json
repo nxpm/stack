@@ -6,8 +6,7 @@
   "properties": {
     "branch": {
       "type": "string",
-      "description": "The branch of the repo on which to run CI",
-      "default": "main"
+      "description": "Default branch of the repo (default: value of affected.defaultBase in nx.json)"
     },
     "name": {
       "type": "string",
