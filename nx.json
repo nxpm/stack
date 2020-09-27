@@ -37,7 +37,8 @@
       "tags": []
     },
     "stack": {
-      "tags": []
+      "tags": [],
+      "implicitDependencies": ["ci"]
     },
     "stack-e2e": {
       "tags": [],

@@ -1,4 +1,4 @@
-import { chain, Rule, schematic, Tree } from '@angular-devkit/schematics'
+import { chain, externalSchematic, Rule, schematic, Tree } from '@angular-devkit/schematics'
 import { addDepsToPackageJson, formatFiles, ProjectType } from '@nrwl/workspace'
 import { addRunScript, configureHuskyLintStaged, normalizeOptions, removeFiles } from '../../utils'
 
@@ -85,6 +85,7 @@ export default function (options: InitSchematicSchema): Rule {
     addDockerfile(),
     addDockerignore(),
     configureHuskyLintStaged(),
+    externalSchematic('@nxpm/ci', 'github', {}),
     schematic('api', { name: apiName }),
     schematic('admin', { name: adminName }),
     addRunScript('start', 'node dist/apps/api/main.js', true),
