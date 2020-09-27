@@ -1,4 +1,4 @@
-name: build-test
+name: <%= name %>
 
 on:
   pull_request:
@@ -6,7 +6,7 @@ on:
       - '**.md'
   push:
     branches:
-      - <%= main %>
+      - <%= branch %>
     paths-ignore:
       - '**.md'
 

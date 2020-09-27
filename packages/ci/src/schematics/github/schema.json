@@ -4,10 +4,16 @@
   "title": "",
   "type": "object",
   "properties": {
-    "main": {
+    "branch": {
       "type": "string",
-      "description": "The main branch of the repo on which to run CI",
+      "description": "The branch of the repo on which to run CI",
       "default": "main"
+    },
+    "name": {
+      "type": "string",
+      "description": "The name if the workflow",
+      "format": "html-selector",
+      "default": "build-test"
     }
   },
   "required": []

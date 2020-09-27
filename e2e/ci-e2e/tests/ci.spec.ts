@@ -3,7 +3,7 @@ import { runFileTests } from '../../e2e-file-utils'
 
 describe('@nxpm/ci', () => {
   describe('github', () => {
-    const githubWorkflowFile = '.github/workflows/build-test.yml'
+    const workflowFile = '.github/workflows/build-test.yml'
 
     describe('github default branch', () => {
       beforeAll(async () => {
@@ -13,9 +13,9 @@ describe('@nxpm/ci', () => {
 
       describe('file existence', () => {
         runFileTests({
-          existing: [githubWorkflowFile],
+          existing: [workflowFile],
           contain: {
-            [githubWorkflowFile]: [`main`],
+            [workflowFile]: [`main`],
           },
         })
       })
@@ -27,11 +27,47 @@ describe('@nxpm/ci', () => {
         await runNxCommandAsync(`generate @nxpm/ci:github --branch develop`)
       })
 
-      describe('file existence', () => {
+      describe('file contents', () => {
         runFileTests({
-          existing: [githubWorkflowFile],
+          existing: [workflowFile],
           contain: {
-            [githubWorkflowFile]: [`develop`],
+            [workflowFile]: [`develop`],
+          },
+        })
+      })
+    })
+
+    describe('github custom workflow name', () => {
+      beforeAll(async () => {
+        ensureNxProject('@nxpm/ci', 'dist/packages/ci')
+        await runNxCommandAsync(`generate @nxpm/ci:github --name build-deploy`)
+      })
+
+      const workflowFileCustom = '.github/workflows/build-deploy.yml'
+
+      describe('file contents', () => {
+        runFileTests({
+          existing: [workflowFileCustom],
+          contain: {
+            [workflowFileCustom]: [`build-deploy`],
+          },
+        })
+      })
+    })
+
+    describe('github custom workflow name and branch', () => {
+      beforeAll(async () => {
+        ensureNxProject('@nxpm/ci', 'dist/packages/ci')
+        await runNxCommandAsync(`generate @nxpm/ci:github --branch develop --name build-deploy-develop`)
+      })
+
+      const workflowFileCustom = '.github/workflows/build-deploy-develop.yml'
+
+      describe('file contents', () => {
+        runFileTests({
+          existing: [workflowFileCustom],
+          contain: {
+            [workflowFileCustom]: [`build-deploy`],
           },
         })
       })
