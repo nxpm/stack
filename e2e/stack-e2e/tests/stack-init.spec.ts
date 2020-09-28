@@ -20,7 +20,7 @@ describe('@nxpm/stack:init e2e', () => {
       const nxJson = readJson('nx.json')
       const projectNames = Object.keys(nxJson.projects)
 
-      expect(projectNames).toEqual([...apiProjects(projectNameApi), ...adminProjects(projectNameAdmin)])
+      expect(projectNames.sort()).toEqual([...apiProjects(projectNameApi), ...adminProjects(projectNameAdmin)].sort())
       done()
     })
   })
