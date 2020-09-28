@@ -38,6 +38,12 @@ export function adminFileTests(project: string): FileTests {
         `libs/${project}/feature-core/src/environments/environment.ts`,
         `libs/${project}/feature-core/src/environments/environment.prod.ts`,
       ],
+      [`apps/${project}/src/app/app.module.ts`]: [
+        `FeatureShellModule`,
+        `/${project}/feature-shell'`,
+        `FeatureCoreModule`,
+        `/${project}/feature-core'`,
+      ],
       [`libs/${project}/data-access/src/codegen.yml`]: [
         `libs/${project}/data-access/src/graphql/**/*.graphql`,
         `libs/${project}/data-access/src/generated/graphql.ts:`,

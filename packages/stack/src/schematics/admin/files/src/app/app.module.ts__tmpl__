@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { <%= classify(name) %>FeatureCoreModule } from '@<%= npmScope %>/<%= name %>/feature-core'
+import { <%= classify(name) %>FeatureShellModule } from '@<%= npmScope %>/<%= name %>/feature-shell'
 
 import { AppComponent } from './app.component';
 
@@ -9,6 +11,8 @@ import { AppComponent } from './app.component';
   imports: [
     BrowserModule,
     RouterModule,
+    <%= classify(name) %>FeatureCoreModule,
+    <%= classify(name) %>FeatureShellModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

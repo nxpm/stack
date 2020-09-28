@@ -1,5 +1,6 @@
+import { CommonModule } from '@angular/common'
 import { NgModule } from '@angular/core'
-import { Routes } from '@angular/routes'
+import { RouterModule, Routes } from '@angular/router'
 
 import { <%= classify(projectName) %>Component  } from './<%= projectName %>.component'
 
@@ -14,6 +15,7 @@ const routes: Routes = [
 ]
 
 @NgModule({
+  declarations: [<%= classify(projectName) %>Component],
   imports: [CommonModule, RouterModule.forRoot(routes)],
 })
 export class <%= classify(projectName) %>Module {}
