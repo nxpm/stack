@@ -25,7 +25,6 @@ export function apiFileTests(project: string): FileTests {
     existing: [
       `.env`,
       `.env.example`,
-      `.github/workflows/build-test.yml`,
       `apps/${project}/src/main.ts`,
       `apps/${project}/src/app/app.module.ts`,
       ...apiCrudFiles(project, 'feature-auth'),
@@ -76,6 +75,7 @@ export function apiFileTests(project: string): FileTests {
         `public findUserByUsername(username: string) {`,
       ],
       [`libs/${project}/data-access-core/src/prisma/schema.prisma`]: [`env("DATABASE_URL")`, `"prisma-client-js"`],
+      [`apps/${project}/src/main.ts`]: [`Logger.log('Listening at http://localhost:' + port + '/graphql')`],
       [`libs/${project}/feature-core/src/lib/${project}-feature-core.module.ts`]: [
         `ConfigModule.forRoot`,
         `GraphQLModule.forRoot`,

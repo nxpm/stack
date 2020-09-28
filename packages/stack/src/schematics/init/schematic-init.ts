@@ -88,6 +88,8 @@ export default function (options: InitSchematicSchema): Rule {
     externalSchematic('@nxpm/ci', 'github', {}),
     schematic('api', { name: apiName }),
     schematic('admin', { name: adminName }),
+    // TODO: Figure out how to correctly run this schematic
+    // externalSchematic('@nxpm/ci', 'github', {}),
     addRunScript('start', 'node dist/apps/api/main.js', true),
     addRunScript('build', `yarn build:${adminName} && yarn build:${apiName}`, true),
     addRunScript('docker:build', `docker build . -t ${normalizedOptions.npmScope}/${apiName}`, true),
