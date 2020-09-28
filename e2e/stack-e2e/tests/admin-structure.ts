@@ -37,10 +37,12 @@ export function adminFileTests(project: string): FileTests {
       'workspace.json': [
         `libs/${project}/feature-core/src/environments/environment.ts`,
         `libs/${project}/feature-core/src/environments/environment.prod.ts`,
+        `apps/${project}/proxy.conf.js`,
         `allowedCommonJsDependencies`,
         `graphql-tag`,
         `zen-observable`,
       ],
+      [`apps/${project}/proxy.conf.js`]: [`'/api': { target, secure: false }`, `'/graphql': { target, secure: false }`],
       [`apps/${project}/src/app/app.module.ts`]: [
         `FeatureShellModule`,
         `/${project}/feature-shell'`,

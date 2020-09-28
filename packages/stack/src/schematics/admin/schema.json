@@ -22,10 +22,6 @@
       "type": "string",
       "description": "A directory where the project is placed",
       "alias": "d"
-    },
-    "backendProject": {
-      "type": "string",
-      "description": "Backend project that provides data to this application. This sets up proxy.config.json."
     }
   },
   "required": ["name"]

@@ -38,6 +38,40 @@ function addAllowedCommonJsDependencies(name: string, allowedCommonJsDependencie
   }
 }
 
+function proxyConfigTemplate(): string {
+  return [
+    `const dotenv = require('dotenv')`,
+    `dotenv.config()`,
+    ``,
+    `const PORT = process.env.PORT || 3000`,
+    `const HOST = process.env.HOST || 'localhost'`,
+    'const target = `http://${HOST}:${PORT}`',
+    `module.exports = {`,
+    `  '/api': { target, secure: false },`,
+    `  '/graphql': { target, secure: false },`,
+    `}`,
+  ].join('\n')
+}
+
+function addProxyConfig(name: string): Rule {
+  const contents = proxyConfigTemplate()
+
+  return (host: Tree, context: SchematicContext) => {
+    const projectConfig = getProjectConfig(host, name)
+    if (projectConfig.architect && projectConfig.architect.serve) {
+      const proxyConfig = `${projectConfig.root}/proxy.conf.js`
+      host.create(proxyConfig, contents)
+      return chain([
+        updateWorkspaceInTree((json) => {
+          projectConfig.architect.serve.options.proxyConfig = proxyConfig
+          json.projects[name] = projectConfig
+          return json
+        }),
+      ])(host, context)
+    }
+  }
+}
+
 export default function (options: AdminSchematicSchema): Rule {
   const name = options.name || 'admin'
   const directory = options.directory || options.name
@@ -62,7 +96,6 @@ export default function (options: AdminSchematicSchema): Rule {
       name,
       style: 'scss',
       routing: true,
-      backendProject: options.backendProject,
     }),
     schematic('admin-data-access', {
       directory,
@@ -90,6 +123,7 @@ export default function (options: AdminSchematicSchema): Rule {
       `${normalizedOptions.projectRoot}/src/environments`,
     ]),
     updateEnvironment(normalizedOptions.name),
+    addProxyConfig(normalizedOptions.name),
     addAllowedCommonJsDependencies(normalizedOptions.name, ['graphql-tag', 'zen-observable']),
   ])
 }
