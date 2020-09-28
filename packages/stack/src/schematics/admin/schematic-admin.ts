@@ -1,21 +1,36 @@
 import { chain, externalSchematic, Rule, schematic, SchematicContext, Tree } from '@angular-devkit/schematics'
 import { addDepsToPackageJson, getProjectConfig, ProjectType, updateWorkspaceInTree } from '@nrwl/workspace'
-import { addFiles, addRunScript, NormalizedSchema, normalizeOptions, removeFiles } from '../../utils'
+import { addFiles, addRunScript, normalizeOptions, removeFiles } from '../../utils'
 import { AdminSchematicSchema } from './schema'
 
-function updateEnvironment(options: NormalizedSchema): Rule {
+function updateEnvironment(name: string): Rule {
   return (host: Tree, context: SchematicContext) => {
-    const projectConfig = getProjectConfig(host, options.name)
+    const projectConfig = getProjectConfig(host, name)
     if (projectConfig.architect && projectConfig.architect?.build?.configurations?.production?.fileReplacements) {
       return chain([
         updateWorkspaceInTree((json) => {
           projectConfig.architect.build.configurations.production.fileReplacements = [
             {
-              replace: `libs/${options.name}/feature-core/src/environments/environment.ts`,
-              with: `libs/${options.name}/feature-core/src/environments/environment.prod.ts`,
+              replace: `libs/${name}/feature-core/src/environments/environment.ts`,
+              with: `libs/${name}/feature-core/src/environments/environment.prod.ts`,
             },
           ]
-          json.projects[options.name] = projectConfig
+          json.projects[name] = projectConfig
+          return json
+        }),
+      ])(host, context)
+    }
+  }
+}
+
+function addAllowedCommonJsDependencies(name: string, allowedCommonJsDependencies: string[]): Rule {
+  return (host: Tree, context: SchematicContext) => {
+    const projectConfig = getProjectConfig(host, name)
+    if (projectConfig.architect && projectConfig.architect?.build?.options) {
+      return chain([
+        updateWorkspaceInTree((json) => {
+          projectConfig.architect.build.options.allowedCommonJsDependencies = allowedCommonJsDependencies
+          json.projects[name] = projectConfig
           return json
         }),
       ])(host, context)
@@ -74,6 +89,7 @@ export default function (options: AdminSchematicSchema): Rule {
       `${normalizedOptions.projectRoot}/src/environments/environment.prod.ts`,
       `${normalizedOptions.projectRoot}/src/environments`,
     ]),
-    updateEnvironment(normalizedOptions),
+    updateEnvironment(normalizedOptions.name),
+    addAllowedCommonJsDependencies(normalizedOptions.name, ['graphql-tag', 'zen-observable']),
   ])
 }

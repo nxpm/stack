@@ -37,6 +37,9 @@ export function adminFileTests(project: string): FileTests {
       'workspace.json': [
         `libs/${project}/feature-core/src/environments/environment.ts`,
         `libs/${project}/feature-core/src/environments/environment.prod.ts`,
+        `allowedCommonJsDependencies`,
+        `graphql-tag`,
+        `zen-observable`,
       ],
       [`apps/${project}/src/app/app.module.ts`]: [
         `FeatureShellModule`,
