@@ -29,6 +29,10 @@ export function adminFileTests(project: string): FileTests {
         `export * from './lib/data-access.service'`,
       ],
       [`libs/${project}/feature-auth/src/index.ts`]: [`export * from './lib/${project}-feature-auth.module'`],
+      [`libs/${project}/feature-shell/src/lib/${project}-feature-shell.component.ts`]: [
+        `<router-outlet></router-outlet>`,
+      ],
+      [`libs/${project}/feature-shell/src/lib/${project}-feature-shell.module.ts`]: [`RouterModule.forRoot(routes)`],
     },
   }
 }
