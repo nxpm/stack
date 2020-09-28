@@ -32,7 +32,10 @@ export default function (options: AdminSchematicSchema): Rule {
       directory,
       name: 'data-access',
     }),
-    schematic('admin-lib', { directory, name: 'shell', type: 'feature' }),
+    schematic('admin-feature-shell', {
+      directory,
+      name: 'shell',
+    }),
     schematic('admin-lib', { directory, name: 'auth', type: 'feature' }),
     addRunScript(`dev:${name}`, `nx serve ${name}`),
     addRunScript(`build:${name}`, `nx build ${name} --prod`),
