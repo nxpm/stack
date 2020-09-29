@@ -1,0 +1,15 @@
+import { NgModule } from '@angular/core'
+import { CommonModule } from '@angular/common'
+import { RouterModule } from '@angular/router'
+import { <%= classify(appName) %>DataAccessModule } from '@<%= npmScope %>/<%= appName %>/data-access'
+import { <%= classify(projectName) %>Component } from './<%= projectName %>.component'
+
+@NgModule({
+  declarations: [<%= classify(projectName) %>Component],
+  imports: [
+    CommonModule,
+    <%= classify(appName) %>DataAccessModule,
+    RouterModule.forChild([{ path: '', pathMatch: 'full', component: <%= classify(projectName) %>Component }]),
+  ],
+})
+export class <%= classify(projectName) %>Module {}
