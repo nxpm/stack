@@ -18,6 +18,11 @@
       "schema": "./src/schematics/admin-feature-core/schema.json",
       "description": "admin-feature-core schematic"
     },
+    "admin-feature-dashboard": {
+      "factory": "./src/schematics/admin-feature-dashboard/schematic-admin-feature-dashboard",
+      "schema": "./src/schematics/admin-feature-dashboard/schema.json",
+      "description": "admin-feature-dashboard schematic"
+    },
     "admin-feature-shell": {
       "factory": "./src/schematics/admin-feature-shell/schematic-admin-feature-shell",
       "schema": "./src/schematics/admin-feature-shell/schema.json",

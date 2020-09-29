@@ -10,6 +10,11 @@ const routes: Routes = [
     component: <%= classify(projectName) %>Component,
     children: [
       // Application routes here
+      { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
+      {
+        path: 'dashboard',
+        loadChildren: () => import('@<%= npmScope %>/<%= appName %>/feature-dashboard').then((m) => m.<%= classify(appName) %>FeatureDashboardModule),
+      },
     ],
   },
 ]

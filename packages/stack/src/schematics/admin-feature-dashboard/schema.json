@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema",
-  "id": "AdminFeatureShell",
+  "id": "AdminFeatureDashboard",
   "title": "",
   "type": "object",
   "properties": {

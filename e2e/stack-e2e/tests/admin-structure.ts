@@ -6,6 +6,7 @@ export function adminProjects(project: string) {
     `${project}-e2e`,
     `${project}-data-access`,
     `${project}-feature-auth`,
+    `${project}-feature-dashboard`,
     `${project}-feature-core`,
     `${project}-feature-shell`,
   ]
@@ -64,10 +65,22 @@ export function adminFileTests(project: string): FileTests {
         `import { environment } from '../environments/environment'`,
         `environment.graphqlUri`,
       ],
+      [`libs/${project}/feature-dashboard/src/lib/${project}-feature-dashboard.module.ts`]: [
+        `${project}/data-access`,
+        `${project}-feature-dashboard.component`,
+      ],
+      [`libs/${project}/feature-dashboard/src/lib/${project}-feature-dashboard.component.ts`]: [
+        `${project}/data-access`,
+      ],
       [`libs/${project}/feature-shell/src/lib/${project}-feature-shell.component.ts`]: [
         `<router-outlet></router-outlet>`,
       ],
-      [`libs/${project}/feature-shell/src/lib/${project}-feature-shell.module.ts`]: [`RouterModule.forRoot(routes)`],
+      [`libs/${project}/feature-shell/src/lib/${project}-feature-shell.module.ts`]: [
+        `RouterModule.forRoot(routes)`,
+        `{ path: '', pathMatch: 'full', redirectTo: 'dashboard' }`,
+        `path: 'dashboard'`,
+        `${project}/feature-dashboard`,
+      ],
     },
   }
 }
