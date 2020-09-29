@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core'
+import { HttpClientModule } from '@angular/common/http'
 
 import { <%= classify(projectName) %>GraphQLModule  } from './<%= projectName %>-graphql.module'
 
 @NgModule({
-  imports: [ <%= classify(projectName) %>GraphQLModule ],
+  imports: [HttpClientModule, <%= classify(projectName) %>GraphQLModule],
 })
 export class <%= classify(projectName) %>Module {}

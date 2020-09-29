@@ -69,7 +69,12 @@ export function adminFileTests(project: string): FileTests {
         `public environment = environment`,
       ],
       [`libs/${project}/feature-auth/src/index.ts`]: [`export * from './lib/${project}-feature-auth.module'`],
-      [`libs/${project}/feature-core/src/lib/${project}-feature-core.module.ts`]: [`-graphql.module`, 'GraphQLModule'],
+      [`libs/${project}/feature-core/src/lib/${project}-feature-core.module.ts`]: [
+        `-graphql.module`,
+        'GraphQLModule',
+        `import { HttpClientModule } from '@angular/common/http'`,
+        'HttpClientModule',
+      ],
       [`libs/${project}/feature-core/src/lib/${project}-feature-core-graphql.module.ts`]: [
         `import { environment } from '../environments/environment'`,
         `environment.graphqlUri`,
