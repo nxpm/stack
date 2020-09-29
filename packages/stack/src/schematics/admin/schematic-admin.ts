@@ -101,6 +101,11 @@ export default function (options: AdminSchematicSchema): Rule {
       directory,
       name: 'data-access',
     }),
+    schematic('admin-feature-about', {
+      appName: name,
+      directory,
+      name: 'about',
+    }),
     schematic('admin-feature-core', {
       directory,
       name: 'core',

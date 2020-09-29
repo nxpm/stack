@@ -5,6 +5,7 @@ export function adminProjects(project: string) {
     project,
     `${project}-e2e`,
     `${project}-data-access`,
+    `${project}-feature-about`,
     `${project}-feature-auth`,
     `${project}-feature-dashboard`,
     `${project}-feature-core`,
@@ -59,6 +60,14 @@ export function adminFileTests(project: string): FileTests {
         `export * from './lib/${project}-data-access.module'`,
         `export * from './lib/${project}-data-access.service'`,
       ],
+      [`libs/${project}/feature-about/src/lib/${project}-feature-about.module.ts`]: [
+        `${project}/data-access`,
+        `${project}-feature-about.component`,
+      ],
+      [`libs/${project}/feature-about/src/lib/${project}-feature-about.component.ts`]: [
+        `${project}/data-access`,
+        `public environment = environment`,
+      ],
       [`libs/${project}/feature-auth/src/index.ts`]: [`export * from './lib/${project}-feature-auth.module'`],
       [`libs/${project}/feature-core/src/lib/${project}-feature-core.module.ts`]: [`-graphql.module`, 'GraphQLModule'],
       [`libs/${project}/feature-core/src/lib/${project}-feature-core-graphql.module.ts`]: [
@@ -78,6 +87,8 @@ export function adminFileTests(project: string): FileTests {
       [`libs/${project}/feature-shell/src/lib/${project}-feature-shell.module.ts`]: [
         `RouterModule.forRoot(routes)`,
         `{ path: '', pathMatch: 'full', redirectTo: 'dashboard' }`,
+        `path: 'about'`,
+        `${project}/feature-about`,
         `path: 'dashboard'`,
         `${project}/feature-dashboard`,
       ],

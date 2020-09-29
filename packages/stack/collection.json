@@ -13,6 +13,11 @@
       "schema": "./src/schematics/admin-data-access/schema.json",
       "description": "admin-data-access schematic"
     },
+    "admin-feature-about": {
+      "factory": "./src/schematics/admin-feature-about/schematic-admin-feature-about",
+      "schema": "./src/schematics/admin-feature-about/schema.json",
+      "description": "admin-feature-about schematic"
+    },
     "admin-feature-core": {
       "factory": "./src/schematics/admin-feature-core/schematic-admin-feature-core",
       "schema": "./src/schematics/admin-feature-core/schema.json",
