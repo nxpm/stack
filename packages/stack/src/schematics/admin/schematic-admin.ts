@@ -105,7 +105,13 @@ export default function (options: AdminSchematicSchema): Rule {
       directory,
       name: 'core',
     }),
+    schematic('admin-feature-dashboard', {
+      appName: name,
+      directory,
+      name: 'dashboard',
+    }),
     schematic('admin-feature-shell', {
+      appName: name,
       directory,
       name: 'shell',
     }),

@@ -7,7 +7,7 @@ import { AdminFeatureShellSchematicSchema } from './schema'
 
 describe('admin-feature-shell schematic', () => {
   let appTree: Tree
-  const options: AdminFeatureShellSchematicSchema = { name: 'test' }
+  const options: AdminFeatureShellSchematicSchema = { name: 'test', appName: 'admin' }
 
   const testRunner = new SchematicTestRunner('@nxpm/admin-feature-shell', join(__dirname, '../../../collection.json'))
 

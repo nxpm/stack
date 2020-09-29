@@ -1,0 +1,13 @@
+import { Component } from '@angular/core'
+import { <%= classify(appName) %>DataAccessService } from '@<%= npmScope %>/<%= appName %>/data-access'
+
+@Component({
+  template: `
+    <h2>Dashboard</h2>
+    <pre>Server uptime: {{ uptime$ | async }}</pre>
+  `,
+})
+export class <%= classify(projectName) %>Component {
+  public uptime$ = this.data.uptime()
+  constructor(private readonly data: <%= classify(appName) %>DataAccessService) {}
+}

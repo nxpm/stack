@@ -1,4 +1,4 @@
-export interface AdminFeatureShellSchematicSchema {
+export interface AdminFeatureDashboardSchematicSchema {
   appName: string
   name: string
   tags?: string
