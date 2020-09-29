@@ -8,7 +8,7 @@ export class <%= classify(projectName) %>Service {
   constructor(protected readonly sdk: ApolloAngularSDK) {}
 
   public uptime(): Observable<number> {
-    return this.sdk.uptime().pipe(map((res) => res?.data?.uptime))
+    return this.sdk.uptime(null, { fetchPolicy: 'network-only' }).pipe(map((res) => res?.data?.uptime))
   }
 
   public intercomPub(type: string, scope: string, payload: any): Observable<IntercomMessage> {
