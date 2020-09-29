@@ -48,7 +48,7 @@ function proxyConfigTemplate(): string {
     'const target = `http://${HOST}:${PORT}`',
     `module.exports = {`,
     `  '/api': { target, secure: false },`,
-    `  '/graphql': { target, secure: false },`,
+    `  '/graphql': { target, secure: false, ws: true },`,
     `}`,
   ].join('\n')
 }
@@ -135,6 +135,10 @@ export default function (options: AdminSchematicSchema): Rule {
     ]),
     updateEnvironment(normalizedOptions.name),
     addProxyConfig(normalizedOptions.name),
-    addAllowedCommonJsDependencies(normalizedOptions.name, ['graphql-tag', 'zen-observable']),
+    addAllowedCommonJsDependencies(normalizedOptions.name, [
+      'graphql-tag',
+      'subscriptions-transport-ws',
+      'zen-observable',
+    ]),
   ])
 }
