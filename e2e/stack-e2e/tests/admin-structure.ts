@@ -42,6 +42,7 @@ export function adminFileTests(project: string): FileTests {
         `apps/${project}/proxy.conf.js`,
         `allowedCommonJsDependencies`,
         `graphql-tag`,
+        `subscriptions-transport-ws`,
         `zen-observable`,
       ],
       [`apps/${project}/proxy.conf.js`]: [`'/api': { target, secure: false }`, `'/graphql': { target, secure: false }`],
@@ -69,6 +70,16 @@ export function adminFileTests(project: string): FileTests {
         `public environment = environment`,
       ],
       [`libs/${project}/feature-auth/src/index.ts`]: [`export * from './lib/${project}-feature-auth.module'`],
+      [`libs/${project}/feature-core/src/environments/environment.ts`]: [
+        `api: '/api'`,
+        `graphql: '/graphql'`,
+        `production: false`,
+      ],
+      [`libs/${project}/feature-core/src/environments/environment.prod.ts`]: [
+        `api: '/api'`,
+        `graphql: '/graphql'`,
+        `production: true`,
+      ],
       [`libs/${project}/feature-core/src/lib/${project}-feature-core.module.ts`]: [
         `-graphql.module`,
         'GraphQLModule',
@@ -77,7 +88,7 @@ export function adminFileTests(project: string): FileTests {
       ],
       [`libs/${project}/feature-core/src/lib/${project}-feature-core-graphql.module.ts`]: [
         `import { environment } from '../environments/environment'`,
-        `environment.graphqlUri`,
+        `environment.graphql`,
       ],
       [`libs/${project}/feature-dashboard/src/lib/${project}-feature-dashboard.module.ts`]: [
         `${project}/data-access`,
