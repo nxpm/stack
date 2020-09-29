@@ -55,8 +55,8 @@ export function adminFileTests(project: string): FileTests {
       ],
       [`libs/${project}/data-access/src/index.ts`]: [
         `export * from './generated/graphql'`,
-        `export * from './lib/data-access.module'`,
-        `export * from './lib/data-access.service'`,
+        `export * from './lib/${project}-data-access.module'`,
+        `export * from './lib/${project}-data-access.service'`,
       ],
       [`libs/${project}/feature-auth/src/index.ts`]: [`export * from './lib/${project}-feature-auth.module'`],
       [`libs/${project}/feature-core/src/lib/${project}-feature-core.module.ts`]: [`-graphql.module`, 'GraphQLModule'],
