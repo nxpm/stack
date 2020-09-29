@@ -30,6 +30,8 @@ export function apiFileTests(project: string): FileTests {
     missing: [`apps/${project}/src/app/app.controller.ts`, `apps/.gitkeep`, `libs/.gitkeep`],
     contain: {
       [`.gitignore`]: [`.env`],
+      [`.dockerignore`]: [`dist`, `node_modules`],
+      [`Dockerfile`]: [`FROM node:14-alpine`],
       [`apps/${project}/src/main.ts`]: [`Logger.log('Listening at http://localhost:' + port + '/graphql')`],
       [`libs/${project}/feature-core/src/lib/${project}-feature-core.module.ts`]: [
         `ConfigModule.forRoot`,
