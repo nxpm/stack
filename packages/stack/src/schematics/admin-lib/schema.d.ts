@@ -4,5 +4,5 @@ export interface AdminLibSchematicSchema extends BaseSchema {
   buildable?: boolean
   prefix?: string
   publishable?: boolean
-  type: 'data-access' | 'feature' | 'ui' | 'util'
+  type: 'assets' | 'data-access' | 'feature' | 'ui' | 'util'
 }
