@@ -23,13 +23,9 @@ export default function (options: ApiSchematicSchema): Rule {
     addRunScript(`dev:${name}`, `nx serve ${name}`),
     addRunScript(`build:${name}`, `nx build ${name} --prod`),
     createDotEnv([`NODE_ENV=development`, `PORT=3000`]),
-
-    removeFiles([
-      `${normalizedOptions.projectRoot}/src/app/.gitkeep`,
-      `${normalizedOptions.projectRoot}/src/app/app.controller.ts`,
-      `${normalizedOptions.projectRoot}/src/app/app.controller.spec.ts`,
-      `${normalizedOptions.projectRoot}/src/app/app.service.ts`,
-      `${normalizedOptions.projectRoot}/src/app/app.service.spec.ts`,
-    ]),
+    removeFiles(
+      [`.gitkeep`, `app.controller.ts`, `app.controller.spec.ts`, `app.service.ts`, `app.service.spec.ts`],
+      `${normalizedOptions.projectRoot}/src/app/`,
+    ),
   ])
 }

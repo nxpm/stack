@@ -1,38 +1,34 @@
 import { chain, Rule, schematic } from '@angular-devkit/schematics'
-import { ProjectType } from '@nrwl/workspace'
-import { addFiles, normalizeOptions, removeFiles, updateAppAssets, updateProjectArchitects } from '../../utils'
-import { AdminAssetsSchematicSchema } from './schema'
+import { addDepsToPackageJson, ProjectType } from '@nrwl/workspace'
+import { addFiles, normalizeOptions, removeFiles, updateAppStyles, updateProjectArchitects } from '../../utils'
+import { AdminStyleSchematicSchema } from './schema'
 
-export default function (options: AdminAssetsSchematicSchema): Rule {
-  const name = options.name || 'assets'
+export default function (options: AdminStyleSchematicSchema): Rule {
+  const name = options.name || 'style'
   const appName = options.appName
   const projectName = appName ? `${appName}-${name}` : name
   const directory = options.directory || options.name
   const normalizedOptions = normalizeOptions({ ...options, name }, ProjectType.Library)
   return chain([
+    addDepsToPackageJson(
+      {
+        bootstrap: '^4.5.2',
+        bootswatch: '^4.5.2',
+      },
+      {},
+      true,
+    ),
     schematic('admin-lib', {
       directory,
       name,
-      type: 'assets',
+      type: 'style',
     }),
     addFiles(normalizedOptions),
-    updateAppAssets(appName, [
-      {
-        glob: 'favicon.ico',
-        input: `libs/${appName}/${name}/src`,
-        output: './',
-      },
-      {
-        glob: '**/*',
-        input: `libs/${appName}/${name}/src/assets`,
-        output: 'assets',
-      },
-    ]),
+    updateAppStyles(appName, [`apps/${appName}/src/styles.scss`, `libs/${appName}/${name}/src/index.scss`]),
     updateProjectArchitects(projectName),
     removeFiles(
       [
         `src/lib/${projectName}.module.ts`,
-        `src/lib/`,
         `src/index.ts`,
         `src/test-setup.ts`,
         `jest.config.js`,

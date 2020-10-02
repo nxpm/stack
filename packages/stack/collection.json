@@ -11,7 +11,7 @@
     "admin-assets": {
       "factory": "./src/schematics/admin-assets/schematic-admin-assets",
       "schema": "./src/schematics/admin-assets/schema.json",
-      "description": "admin-data-access schematic"
+      "description": "admin-assets schematic"
     },
     "admin-data-access": {
       "factory": "./src/schematics/admin-data-access/schematic-admin-data-access",
@@ -42,6 +42,11 @@
       "factory": "./src/schematics/admin-lib/schematic-admin-lib",
       "schema": "./src/schematics/admin-lib/schema.json",
       "description": "admin-lib schematic"
+    },
+    "admin-style": {
+      "factory": "./src/schematics/admin-style/schematic-admin-style",
+      "schema": "./src/schematics/admin-style/schema.json",
+      "description": "admin-styles schematic"
     },
     "api": {
       "factory": "./src/schematics/api/schematic-api",

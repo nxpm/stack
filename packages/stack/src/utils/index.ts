@@ -146,14 +146,15 @@ export function normalizeOptions<T extends BaseSchema>(options: T, projectType: 
   }
 }
 
-export function removeFiles(files: string[]): Rule {
+export function removeFiles(files: string[], path = ''): Rule {
   return function (tree: Tree, context: SchematicContext) {
     for (const file of files) {
-      if (tree.exists(file)) {
-        tree.delete(file)
-        context.logger.info(`File deleted: ${file}`)
+      const filePath = join(path, file)
+      if (tree.exists(filePath)) {
+        tree.delete(filePath)
+        context.logger.info(`File deleted: ${filePath}`)
       } else {
-        context.logger.warn(`File not found: ${file}`)
+        context.logger.warn(`File not found: ${filePath}`)
       }
     }
     return tree
@@ -175,20 +176,28 @@ export function updateProjectArchitects(projectName: string, config: Record<stri
   }
 }
 
-export function updateAppAssets(
-  projectName: string,
-  assets: { glob: string; input: string; output: string }[] = [],
-): Rule {
+export function updateAppOptions(projectName: string, key: string, options): Rule {
   return (host: Tree, context: SchematicContext) => {
     const projectConfig = getProjectConfig(host, projectName)
-    if (projectConfig && projectConfig?.architect?.build?.options?.assets) {
+    if (projectConfig && projectConfig?.architect?.build?.options[key]) {
       return chain([
         updateWorkspaceInTree((json) => {
-          projectConfig.architect.build.options.assets = assets
+          projectConfig.architect.build.options[key] = options
           json.projects[projectName] = projectConfig
           return json
         }),
       ])(host, context)
     }
   }
+}
+
+export function updateAppAssets(
+  projectName: string,
+  assets: { glob: string; input: string; output: string }[] = [],
+): Rule {
+  return updateAppOptions(projectName, 'assets', assets)
+}
+
+export function updateAppStyles(projectName: string, styles: string[] = []): Rule {
+  return updateAppOptions(projectName, 'styles', styles)
 }
