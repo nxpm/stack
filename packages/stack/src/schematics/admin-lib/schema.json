@@ -26,12 +26,20 @@
         "type": "list",
         "items": [
           {
+            "value": "assets",
+            "label": "Assets library"
+          },
+          {
             "value": "data-access",
             "label": "Data access library"
           },
           {
             "value": "feature",
             "label": "Feature library"
+          },
+          {
+            "value": "style",
+            "label": "Style Library"
           },
           {
             "value": "ui",

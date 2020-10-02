@@ -11,6 +11,7 @@ export function adminProjects(project: string) {
     `${project}-feature-dashboard`,
     `${project}-feature-core`,
     `${project}-feature-shell`,
+    `${project}-style`,
   ]
 }
 
@@ -32,6 +33,8 @@ export function adminFileTests(project: string): FileTests {
       `libs/${project}/feature-core/src/environments/environment.ts`,
       `libs/${project}/feature-core/src/environments/environment.prod.ts`,
       `libs/${project}/feature-shell/src/lib/${project}-feature-shell.module.ts`,
+      `libs/${project}/style/src/lib/_global.scss`,
+      `libs/${project}/style/src/index.scss`,
     ],
     missing: [
       `apps/${project}/src/app/app.component.html`,
@@ -47,6 +50,11 @@ export function adminFileTests(project: string): FileTests {
       `libs/${project}/assets/tsconfig.json`,
       `libs/${project}/assets/tsconfig.lib.json`,
       `libs/${project}/assets/README.md`,
+      `libs/${project}/style/src/lib/${project}-style.module.ts`,
+      `libs/${project}/style/src/index.ts`,
+      `libs/${project}/style/tsconfig.json`,
+      `libs/${project}/style/tsconfig.lib.json`,
+      `libs/${project}/style/README.md`,
     ],
     contain: {
       'workspace.json': [
@@ -58,6 +66,8 @@ export function adminFileTests(project: string): FileTests {
         // Moved assets to lib
         `"input": "libs/${project}/assets/src"`,
         `"input": "libs/${project}/assets/src/assets"`,
+        `"apps/${project}/src/styles.scss"`,
+        `"libs/${project}/style/src/index.scss"`,
         // Add CommonJs dep list
         `allowedCommonJsDependencies`,
         `graphql-tag`,
