@@ -8,15 +8,18 @@ import { strings } from '@angular-devkit/core'
 import {
   apply,
   applyTemplates,
+  chain,
   MergeStrategy,
   mergeWith,
   move,
   Rule,
+  SchematicContext,
   template,
   Tree,
   url,
 } from '@angular-devkit/schematics'
 import {
+  getProjectConfig,
   insert,
   names,
   offsetFromRoot,
@@ -24,6 +27,7 @@ import {
   ProjectType,
   toFileName,
   updateJsonInTree,
+  updateWorkspaceInTree,
 } from '@nrwl/workspace'
 import { InsertChange } from '@nrwl/workspace/src/utils/ast-utils'
 import { readJSONSync } from 'fs-extra'
@@ -81,6 +85,8 @@ export function addFiles(options: NormalizedSchema): Rule {
         ...strings,
         ...options,
         tmpl: '',
+        dot: '.',
+        '.': '.',
       }),
       applyTemplates({
         ...options,
@@ -141,12 +147,48 @@ export function normalizeOptions<T extends BaseSchema>(options: T, projectType: 
 }
 
 export function removeFiles(files: string[]): Rule {
-  return function (tree: Tree) {
+  return function (tree: Tree, context: SchematicContext) {
     for (const file of files) {
       if (tree.exists(file)) {
         tree.delete(file)
+        context.logger.info(`File deleted: ${file}`)
+      } else {
+        context.logger.warn(`File not found: ${file}`)
       }
     }
     return tree
+  }
+}
+
+export function updateProjectArchitects(projectName: string, config: Record<string, unknown> = {}): Rule {
+  return (host: Tree, context: SchematicContext) => {
+    const projectConfig = getProjectConfig(host, projectName)
+    if (projectConfig && projectConfig?.architect) {
+      return chain([
+        updateWorkspaceInTree((json) => {
+          projectConfig.architect = config
+          json.projects[projectName] = projectConfig
+          return json
+        }),
+      ])(host, context)
+    }
+  }
+}
+
+export function updateAppAssets(
+  projectName: string,
+  assets: { glob: string; input: string; output: string }[] = [],
+): Rule {
+  return (host: Tree, context: SchematicContext) => {
+    const projectConfig = getProjectConfig(host, projectName)
+    if (projectConfig && projectConfig?.architect?.build?.options?.assets) {
+      return chain([
+        updateWorkspaceInTree((json) => {
+          projectConfig.architect.build.options.assets = assets
+          json.projects[projectName] = projectConfig
+          return json
+        }),
+      ])(host, context)
+    }
   }
 }

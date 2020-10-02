@@ -97,6 +97,11 @@ export default function (options: AdminSchematicSchema): Rule {
       style: 'scss',
       routing: true,
     }),
+    schematic('admin-assets', {
+      appName: name,
+      directory,
+      name: 'assets',
+    }),
     schematic('admin-data-access', {
       directory,
       name: 'data-access',
@@ -132,6 +137,9 @@ export default function (options: AdminSchematicSchema): Rule {
       `${normalizedOptions.projectRoot}/src/environments/environment.ts`,
       `${normalizedOptions.projectRoot}/src/environments/environment.prod.ts`,
       `${normalizedOptions.projectRoot}/src/environments`,
+      `${normalizedOptions.projectRoot}/src/assets/.gitkeep`,
+      `${normalizedOptions.projectRoot}/src/assets/`,
+      `${normalizedOptions.projectRoot}/src/favicon.ico`,
     ]),
     updateEnvironment(normalizedOptions.name),
     addProxyConfig(normalizedOptions.name),

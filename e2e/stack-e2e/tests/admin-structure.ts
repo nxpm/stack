@@ -4,6 +4,7 @@ export function adminProjects(project: string) {
   return [
     project,
     `${project}-e2e`,
+    `${project}-assets`,
     `${project}-data-access`,
     `${project}-feature-about`,
     `${project}-feature-auth`,
@@ -18,6 +19,10 @@ export function adminFileTests(project: string): FileTests {
     existing: [
       `apps/${project}/src/app/app.module.ts`,
       `apps/${project}/src/app/app.component.ts`,
+      `libs/${project}/assets/src/assets/fonts/.gitkeep`,
+      `libs/${project}/assets/src/assets/icons/.gitkeep`,
+      `libs/${project}/assets/src/assets/images/logo.png`,
+      `libs/${project}/assets/src/favicon.ico`,
       `libs/${project}/data-access/src/lib/${project}-data-access.module.ts`,
       `libs/${project}/data-access/src/lib/${project}-data-access.service.ts`,
       `libs/${project}/data-access/src/generated/graphql.ts`,
@@ -34,18 +39,35 @@ export function adminFileTests(project: string): FileTests {
       `apps/${project}/src/environments/environment.ts`,
       `apps/${project}/src/environments/environment.prod.ts`,
       `apps/${project}/src/environments`,
+      `apps/${project}/src/assets`,
+      `apps/${project}/src/favicon.ico`,
+      `libs/${project}/assets/src/lib/${project}-assets.module.ts`,
+      `libs/${project}/assets/src/lib`,
+      `libs/${project}/assets/src/index.ts`,
+      `libs/${project}/assets/tsconfig.json`,
+      `libs/${project}/assets/tsconfig.lib.json`,
+      `libs/${project}/assets/README.md`,
     ],
     contain: {
       'workspace.json': [
+        // Registered a proxy file
+        `apps/${project}/proxy.conf.js`,
+        // Moved environment files in fileReplacements
         `libs/${project}/feature-core/src/environments/environment.ts`,
         `libs/${project}/feature-core/src/environments/environment.prod.ts`,
-        `apps/${project}/proxy.conf.js`,
+        // Moved assets to lib
+        `"input": "libs/${project}/assets/src"`,
+        `"input": "libs/${project}/assets/src/assets"`,
+        // Add CommonJs dep list
         `allowedCommonJsDependencies`,
         `graphql-tag`,
         `subscriptions-transport-ws`,
         `zen-observable`,
       ],
-      [`apps/${project}/proxy.conf.js`]: [`'/api': { target, secure: false }`, `'/graphql': { target, secure: false }`],
+      [`apps/${project}/proxy.conf.js`]: [
+        `'/api': { target, secure: false }`,
+        `'/graphql': { target, secure: false, ws: true }`,
+      ],
       [`apps/${project}/src/app/app.module.ts`]: [
         `FeatureShellModule`,
         `/${project}/feature-shell'`,

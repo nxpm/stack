@@ -8,6 +8,11 @@
       "schema": "./src/schematics/admin/schema.json",
       "description": "admin schematic"
     },
+    "admin-assets": {
+      "factory": "./src/schematics/admin-assets/schematic-admin-assets",
+      "schema": "./src/schematics/admin-assets/schema.json",
+      "description": "admin-data-access schematic"
+    },
     "admin-data-access": {
       "factory": "./src/schematics/admin-data-access/schematic-admin-data-access",
       "schema": "./src/schematics/admin-data-access/schema.json",
