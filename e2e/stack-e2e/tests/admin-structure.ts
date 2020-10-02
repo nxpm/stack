@@ -11,6 +11,7 @@ export function adminProjects(project: string) {
     `${project}-feature-dashboard`,
     `${project}-feature-core`,
     `${project}-feature-shell`,
+    `${project}-layout`,
     `${project}-style`,
   ]
 }
@@ -33,6 +34,8 @@ export function adminFileTests(project: string): FileTests {
       `libs/${project}/feature-core/src/environments/environment.ts`,
       `libs/${project}/feature-core/src/environments/environment.prod.ts`,
       `libs/${project}/feature-shell/src/lib/${project}-feature-shell.module.ts`,
+      `libs/${project}/layout/src/lib/${project}-layout.module.ts`,
+      `libs/${project}/layout/src/lib/${project}-layout.component.ts`,
       `libs/${project}/style/src/lib/_global.scss`,
       `libs/${project}/style/src/index.scss`,
     ],
@@ -139,6 +142,13 @@ export function adminFileTests(project: string): FileTests {
         `${project}/feature-about`,
         `path: 'dashboard'`,
         `${project}/feature-dashboard`,
+      ],
+      [`libs/${project}/layout/src/lib/${project}-layout.component.ts`]: ['<router-outlet></router-outlet>'],
+      [`libs/${project}/style/src/lib/_global.scss`]: [`@import './lib/global'`],
+      [`libs/${project}/style/src/lib/_global.scss`]: [
+        `@import '~bootswatch/dist/darkly/variables'`,
+        `@import '~bootstrap/scss/bootstrap'`,
+        `@import '~bootswatch/dist/darkly/bootswatch'`,
       ],
     },
   }

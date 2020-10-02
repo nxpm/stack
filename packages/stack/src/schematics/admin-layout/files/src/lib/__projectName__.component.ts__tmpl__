@@ -1,0 +1,11 @@
+import { Component } from '@angular/core'
+
+@Component({
+  template: `
+    <div>
+      <%= appName %>
+    </div>
+    <router-outlet></router-outlet>
+  `
+})
+export class <%= classify(projectName) %>Component {}
