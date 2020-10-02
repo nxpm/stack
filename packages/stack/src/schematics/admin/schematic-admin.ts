@@ -125,6 +125,11 @@ export default function (options: AdminSchematicSchema): Rule {
       directory,
       name: 'shell',
     }),
+    schematic('admin-layout', {
+      appName: name,
+      directory,
+      name: 'layout',
+    }),
     schematic('admin-style', {
       appName: name,
       directory,

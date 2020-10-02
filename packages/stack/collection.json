@@ -38,6 +38,11 @@
       "schema": "./src/schematics/admin-feature-shell/schema.json",
       "description": "admin-feature-shell schematic"
     },
+    "admin-layout": {
+      "factory": "./src/schematics/admin-layout/schematic-admin-layout",
+      "schema": "./src/schematics/admin-layout/schema.json",
+      "description": "admin-layout schematic"
+    },
     "admin-lib": {
       "factory": "./src/schematics/admin-lib/schematic-admin-lib",
       "schema": "./src/schematics/admin-lib/schema.json",
