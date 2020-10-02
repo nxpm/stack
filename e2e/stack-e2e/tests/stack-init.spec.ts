@@ -26,6 +26,12 @@ describe('@nxpm/stack:init e2e', () => {
   })
 
   describe('build the apps', () => {
+    const apiSchemaFile = `api-schema.graphql`
+    it(`should not have a ${apiSchemaFile}`, (done) => {
+      expect(() => checkFilesExist(apiSchemaFile)).toThrow()
+      done()
+    })
+
     it('should build the api', async (done) => {
       await runNxCommandAsync(`build ${projectNameApi}`)
       expect(() => checkFilesExist(`dist/apps/${projectNameApi}/main.js`)).not.toThrow()
