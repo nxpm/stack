@@ -12,6 +12,10 @@ export default function (options: ApiSchematicSchema): Rule {
     externalSchematic('@nrwl/nest', 'application', {
       name,
     }),
+    schematic('api-e2e', {
+      appName: name,
+      name: 'e2e',
+    }),
     schematic('api-lib', {
       directory,
       name: 'data-access',
