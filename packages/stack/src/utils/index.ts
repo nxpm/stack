@@ -201,3 +201,17 @@ export function updateAppAssets(
 export function updateAppStyles(projectName: string, styles: string[] = []): Rule {
   return updateAppOptions(projectName, 'styles', styles)
 }
+
+export function addTsconfigPath(packageName: string, paths: string[]): Rule {
+  return (host: Tree, context: SchematicContext) => {
+    return chain([
+      updateJsonInTree('tsconfig.base.json', (json) => {
+        json.compilerOptions.paths = {
+          [packageName]: paths,
+          ...json.compilerOptions.paths,
+        }
+        return json
+      }),
+    ])(host, context)
+  }
+}

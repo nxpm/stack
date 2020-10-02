@@ -38,6 +38,12 @@ describe('@nxpm/stack:init e2e', () => {
       done()
     })
 
+    it(`should run the ${projectNameApi}:e2e test`, async (done) => {
+      await runNxCommandAsync(`e2e ${projectNameApi}-e2e`)
+      expect(() => checkFilesExist(apiSchemaFile)).not.toThrow()
+      done()
+    })
+
     it('should build the admin', async (done) => {
       await runNxCommandAsync(`build ${projectNameAdmin}`)
       expect(() => checkFilesExist(`dist/apps/${projectNameAdmin}/index.html`)).not.toThrow()
