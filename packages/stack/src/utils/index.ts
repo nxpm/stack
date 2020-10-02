@@ -147,14 +147,11 @@ export function normalizeOptions<T extends BaseSchema>(options: T, projectType: 
 }
 
 export function removeFiles(files: string[], path = ''): Rule {
-  return function (tree: Tree, context: SchematicContext) {
+  return function (tree: Tree) {
     for (const file of files) {
       const filePath = join(path, file)
       if (tree.exists(filePath)) {
         tree.delete(filePath)
-        context.logger.info(`File deleted: ${filePath}`)
-      } else {
-        context.logger.warn(`File not found: ${filePath}`)
       }
     }
     return tree

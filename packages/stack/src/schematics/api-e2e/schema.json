@@ -14,36 +14,6 @@
       "x-prompt": "What name would you like to use for the library?",
       "pattern": "^[a-zA-Z]{1}.*$"
     },
-    "type": {
-      "description": "The type of library",
-      "type": "string",
-      "$default": {
-        "$source": "argv",
-        "index": 1
-      },
-      "x-prompt": {
-        "message": "Which type of library would you like to create?",
-        "type": "list",
-        "items": [
-          {
-            "value": "data-access",
-            "label": "Data access library"
-          },
-          {
-            "value": "feature",
-            "label": "Feature library"
-          },
-          {
-            "value": "ui",
-            "label": "UI Library"
-          },
-          {
-            "value": "util",
-            "label": "Utility library"
-          }
-        ]
-      }
-    },
     "tags": {
       "type": "string",
       "description": "Add tags to the project (used for linting)",
