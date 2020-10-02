@@ -132,9 +132,6 @@ export function adminFileTests(project: string): FileTests {
       [`libs/${project}/feature-dashboard/src/lib/${project}-feature-dashboard.component.ts`]: [
         `${project}/data-access`,
       ],
-      [`libs/${project}/feature-shell/src/lib/${project}-feature-shell.component.ts`]: [
-        `<router-outlet></router-outlet>`,
-      ],
       [`libs/${project}/feature-shell/src/lib/${project}-feature-shell.module.ts`]: [
         `RouterModule.forRoot(routes)`,
         `{ path: '', pathMatch: 'full', redirectTo: 'dashboard' }`,
@@ -142,8 +139,19 @@ export function adminFileTests(project: string): FileTests {
         `${project}/feature-about`,
         `path: 'dashboard'`,
         `${project}/feature-dashboard`,
+        `LayoutComponent`,
+        `${project}/layout`,
       ],
-      [`libs/${project}/layout/src/lib/${project}-layout.component.ts`]: ['<router-outlet></router-outlet>'],
+      [`libs/${project}/layout/src/lib/${project}-layout.component.ts`]: [
+        '<router-outlet></router-outlet>',
+        'layout-footer',
+        'layout-header',
+      ],
+      [`libs/${project}/layout/src/lib/components/layout-footer/layout-footer.component.ts`]: ['layout-footer'],
+      [`libs/${project}/layout/src/lib/components/layout-header/layout-header.component.ts`]: ['layout-header'],
+      [`libs/${project}/layout/src/lib/components/layout-header-links/layout-header-links.component.ts`]: [
+        'layout-header-links',
+      ],
       [`libs/${project}/style/src/lib/_global.scss`]: [`@import './lib/global'`],
       [`libs/${project}/style/src/lib/_global.scss`]: [
         `@import '~bootswatch/dist/darkly/variables'`,
