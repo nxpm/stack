@@ -2,10 +2,30 @@ import { Component } from '@angular/core'
 
 @Component({
   template: `
-    <div>
-      <%= appName %>
+    <!-- This flex container takes the full height -->
+    <div class="d-flex flex-column h-100">
+      <layout-header
+        [logo]="appLogo"
+        [linksLeft]="linksLeft"
+        [linksRight]="linksRight"
+        [name]="appName"
+      ></layout-header>
+      <!-- The main area does not shrink, 'pushing down' the footer -->
+      <main class="flex-shrink-0">
+        <!-- This will render the routes -->
+        <router-outlet></router-outlet>
+      </main>
+      <!-- This keeps the footer down if the main content does not fill up the space -->
+      <footer class="mt-auto">
+        <layout-footer [html]="footerHtml"></layout-footer>
+      </footer>
     </div>
-    <router-outlet></router-outlet>
-  `
+  `,
 })
-export class <%= classify(projectName) %>Component {}
+export class <%= classify(projectName) %>Component {
+  appLogo = '/assets/images/logo.png'
+  appName = '<%= classify(appName) %>'
+  footerHtml = `Copyright &copy; ${new Date().getFullYear()}`
+  linksLeft: { label: string; route: string }[] = [{ label: 'Dashboard', route: '/dashboard' }]
+  linksRight: { label: string; route: string }[] = [{ label: 'About', route: '/about' }]
+}
