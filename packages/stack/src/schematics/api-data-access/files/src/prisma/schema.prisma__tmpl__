@@ -1,0 +1,35 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native"]
+}
+
+model User {
+  id                   String           @id @default(cuid())
+  createdAt            DateTime         @default(now())
+  updatedAt            DateTime         @default(now()) @updatedAt
+  lastSeen             DateTime?
+  developer            Boolean          @default(false)
+  admin                Boolean          @default(false)
+  email                String           @unique
+  username             String           @unique
+  password             String?
+  passwordResetToken   String?
+  passwordResetExpires DateTime?
+  firstName            String?
+  lastName             String?
+  avatarUrl            String?
+  location             String?
+  phone                String?
+  bio                  String?
+}
+
+enum Role {
+  Admin
+  User
+}
+

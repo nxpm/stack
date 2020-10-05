@@ -16,11 +16,7 @@ export default function (options: ApiSchematicSchema): Rule {
       appName: name,
       name: 'e2e',
     }),
-    schematic('api-lib', {
-      directory,
-      name: 'data-access',
-      type: 'data-access',
-    }),
+    schematic('api-data-access', { directory, name: 'data-access', appName: name }),
     schematic('api-feature-core', { directory, name: 'core' }),
     schematic('api-lib', { directory, name: 'auth', type: 'feature' }),
     addFiles(normalizedOptions),
