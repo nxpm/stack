@@ -25,4 +25,4 @@ Initialize a new project (where admin is the name of the Angular frontend):
 nx g @nxpm/stack:init admin
 ```
 
-## License MIT
+## MIT Licensed by beeman 🐝

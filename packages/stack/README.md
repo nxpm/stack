@@ -18,3 +18,5 @@ Initialize a new project:
 ```shell script
 nx g @nxpm/stack:init
 ```
+
+## MIT Licensed by beeman 🐝

@@ -36,4 +36,4 @@ nx g @nxpm/ci:github --branch stage --name deploy-stage
 - [ ] Add Travis
 - [ ] Add more flexibility of commands to run (currently: `build`, `format:check`, `test:ci`)
 
-## License MIT
+## MIT Licensed by beeman 🐝
