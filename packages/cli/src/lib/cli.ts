@@ -7,7 +7,9 @@ yargs
     'lint',
     'Run nxpm workspace linter',
     () => null,
-    () => workspaceLint(),
+    async (args) => {
+      await workspaceLint({ dryRun: !!args.dryRun })
+    },
   )
   .command(
     '$0',
@@ -16,5 +18,6 @@ yargs
     (args) => {
       console.log(basename(args['$0']))
       console.log(`See --help for usage.`)
+      console.log(args)
     },
   ).argv

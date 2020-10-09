@@ -16,7 +16,7 @@ function sortItems(items: Record<string, unknown>) {
     .reduce((acc, curr) => ({ ...acc, [curr]: items[curr] }), {})
 }
 
-function sortTsConfigPaths(file) {
+export function sortTsConfigPaths(file) {
   return {
     ...file,
     compilerOptions: {
@@ -26,24 +26,24 @@ function sortTsConfigPaths(file) {
   }
 }
 
-function sortWorkspaceProjects(file) {
+export function sortWorkspaceProjects(file) {
   return {
     ...file,
     projects: sortItems(file?.projects),
   }
 }
 
-export async function workspaceLint() {
+export async function workspaceLint({ dryRun }: { dryRun: boolean }) {
   for (const file of projectFiles) {
     const contents = await getFileContents(file)
-    if (contents) {
+    if (contents && !dryRun) {
       await writeJson(file, sortWorkspaceProjects(contents), { spaces: 2 })
     }
   }
 
   for (const file of tsconfigFiles) {
     const contents = await getFileContents(file)
-    if (contents) {
+    if (contents && !dryRun) {
       await writeJson(file, sortTsConfigPaths(contents), { spaces: 2 })
     }
   }

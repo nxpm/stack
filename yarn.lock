@@ -1329,6 +1329,11 @@
     yargs "15.4.1"
     yargs-parser "20.0.0"
 
+"@nxpm/cli@^1.8.2":
+  version "1.8.2"
+  resolved "https://registry.yarnpkg.com/@nxpm/cli/-/cli-1.8.2.tgz#20f1e0f73ac795d719c27f52a0346b6f9563f4b7"
+  integrity sha512-GXNi2qg99JOzfdMAyzv8cVNLY3tuKJsFAqPhEddJqRfrOEpsq8PMuatx6P4+xlWIRja7a4YRAhQbjopj1D9MXQ==
+
 "@schematics/angular@~10.0.0":
   version "10.0.8"
   resolved "https://registry.yarnpkg.com/@schematics/angular/-/angular-10.0.8.tgz#af730827b2de6cab7561157a8772250eb5f277e1"

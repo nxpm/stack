@@ -26,13 +26,6 @@
     }
   },
   "projects": {
-    "stack": {
-      "tags": []
-    },
-    "stack-e2e": {
-      "tags": [],
-      "implicitDependencies": ["stack"]
-    },
     "ci": {
       "tags": []
     },
@@ -42,6 +35,13 @@
     },
     "cli": {
       "tags": []
+    },
+    "stack": {
+      "tags": []
+    },
+    "stack-e2e": {
+      "tags": [],
+      "implicitDependencies": ["stack"]
     }
   },
   "workspaceLayout": {
