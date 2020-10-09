@@ -37,6 +37,7 @@
     "@nrwl/nest": "^10.2.1",
     "@nrwl/nx-plugin": "10.2.1",
     "@nrwl/workspace": "10.2.1",
+    "@types/fs-extra": "^9.0.1",
     "@types/jest": "26.0.8",
     "@types/node": "~8.9.4",
     "@typescript-eslint/eslint-plugin": "2.19.2",

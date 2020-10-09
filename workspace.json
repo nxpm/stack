@@ -127,6 +127,78 @@
           }
         }
       }
+    },
+    "cli": {
+      "root": "packages/cli",
+      "sourceRoot": "packages/cli/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "tsConfig": ["packages/cli/tsconfig.lib.json", "packages/cli/tsconfig.spec.json"],
+            "exclude": ["**/node_modules/**", "!packages/cli/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "packages/cli/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "build-base": {
+          "builder": "@nrwl/node:package",
+          "options": {
+            "outputPath": "dist/packages/cli",
+            "tsConfig": "packages/cli/tsconfig.lib.json",
+            "packageJson": "packages/cli/package.json",
+            "main": "packages/cli/src/index.ts",
+            "updateBuildableProjectDepsInPackageJson": false,
+            "assets": [
+              {
+                "input": "packages/cli",
+                "glob": "**/files/**",
+                "output": "/"
+              },
+              {
+                "input": "packages/cli",
+                "glob": "**/files/**/.gitkeep",
+                "output": "/"
+              },
+              {
+                "input": "packages/cli",
+                "glob": "**/*.json",
+                "output": "/"
+              },
+              {
+                "input": "packages/cli",
+                "glob": "**/*.js",
+                "output": "/"
+              },
+              "LICENSE"
+            ]
+          }
+        },
+        "build": {
+          "builder": "@nrwl/workspace:run-commands",
+          "outputs": ["build/packages/cli"],
+          "options": {
+            "outputPath": "dist/packages/cli",
+            "commands": [
+              {
+                "command": "nx build-base cli"
+              },
+              {
+                "command": "chmod +x dist/packages/cli/bin/*.js"
+              }
+            ],
+            "parallel": false
+          }
+        }
+      }
     }
   },
   "cli": {

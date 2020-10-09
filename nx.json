@@ -39,6 +39,9 @@
     "ci-e2e": {
       "tags": [],
       "implicitDependencies": ["ci"]
+    },
+    "cli": {
+      "tags": []
     }
   },
   "workspaceLayout": {
