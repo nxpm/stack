@@ -1,12 +1,12 @@
 import { chain, Rule, schematic } from '@angular-devkit/schematics'
 import { addDepsToPackageJson, ProjectType } from '@nrwl/workspace'
 import { addFiles, addPrismaConfig, normalizeOptions } from '../../utils'
-import { ApiDataAccessSchematicSchema } from './schema'
+import { ApiDataAccessCoreSchematicSchema } from './schema'
 
-export default function (options: ApiDataAccessSchematicSchema): Rule {
-  const name = options.name || 'data-access'
+export default function (options: ApiDataAccessCoreSchematicSchema): Rule {
+  const name = options.name || 'data-access-core'
   const directory = options.directory || options.name
-  const normalizedOptions = normalizeOptions({ ...options, name }, ProjectType.Library)
+  const normalizedOptions = normalizeOptions({ ...options, name: `data-access-${name}` }, ProjectType.Library)
   return chain([
     addDepsToPackageJson(
       {

@@ -1,7 +1,7 @@
 import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { UserCreateInput } from '@prisma/client';
-import { ApiDataAccessService } from '@<%= npmScope %>/<%= appName %>/data-access';
+import { ApiDataAccessCoreService } from '@<%= npmScope %>/<%= appName %>/data-access-core';
 import { getGravatarUrl, hashPassword, validatePassword } from './<%= projectName %>.helper';
 import { LoginInput } from './dto/login.input';
 import { RegisterInput } from './dto/register.input';
@@ -11,7 +11,7 @@ import { Role } from './models/role';
 @Injectable()
 export class ApiDataAccessAuthService {
   constructor(
-    private readonly data: ApiDataAccessService,
+    private readonly data: ApiDataAccessCoreService,
     private readonly jwtService: JwtService
   ) {}
 
