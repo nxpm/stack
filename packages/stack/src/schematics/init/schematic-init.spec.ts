@@ -7,7 +7,7 @@ import { InitSchematicSchema } from './schema'
 
 describe('init schematic', () => {
   let appTree: Tree
-  const options: InitSchematicSchema = { name: 'test' }
+  const options: InitSchematicSchema = { name: 'test', ci: 'none' }
 
   const testRunner = new SchematicTestRunner('@nxpm/init', join(__dirname, '../../../collection.json'))
 
