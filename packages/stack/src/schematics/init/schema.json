@@ -13,6 +13,12 @@
       },
       "x-prompt": "What name would you like to use?"
     },
+    "ci": {
+      "type": "string",
+      "description": "Select the CI workflow to generate",
+      "alias": "c",
+      "default": "github"
+    },
     "tags": {
       "type": "string",
       "description": "Add tags to the project (used for linting)",
