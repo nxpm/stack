@@ -18,7 +18,6 @@ import {
   Tree,
   url,
 } from '@angular-devkit/schematics'
-import { uniq } from '@nrwl/nx-plugin/testing'
 import {
   getProjectConfig,
   insert,
@@ -35,6 +34,10 @@ import { readJSONSync } from 'fs-extra'
 import { join } from 'path'
 import { BaseSchema } from './schemas/base-schema'
 import { NormalizedSchema } from './schemas/normalized-schema'
+
+export function uniq(prefix: string) {
+  return `${prefix}${Math.floor(Math.random() * 10000000)}`
+}
 
 export function configureHuskyLintStaged() {
   return updateJsonInTree(`/package.json`, (json) => {
