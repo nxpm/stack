@@ -1,7 +1,14 @@
 import { FileTests } from '../../e2e-file-utils'
 
 export function apiProjects(project: string) {
-  return [project, `${project}-e2e`, `${project}-data-access`, `${project}-feature-core`, `${project}-feature-auth`]
+  return [
+    project,
+    `${project}-e2e`,
+    `${project}-data-access`,
+    `${project}-data-access-auth`,
+    `${project}-feature-core`,
+    `${project}-feature-auth`,
+  ]
 }
 
 export function apiCrudFiles(project: string, name: string) {

@@ -1,4 +1,11 @@
-import { checkFilesExist, ensureNxProject, readJson, runNxCommandAsync, uniq } from '@nrwl/nx-plugin/testing'
+import {
+  checkFilesExist,
+  ensureNxProject,
+  readJson,
+  runCommandAsync,
+  runNxCommandAsync,
+  uniq,
+} from '@nrwl/nx-plugin/testing'
 import { runFileTests } from '../../e2e-file-utils'
 import { adminFileTests, adminProjects } from './admin-structure'
 import { apiFileTests, apiProjects } from './api-structure'
@@ -29,6 +36,11 @@ describe('@nxpm/stack:init e2e', () => {
     const apiSchemaFile = `api-schema.graphql`
     it(`should not have a ${apiSchemaFile}`, (done) => {
       expect(() => checkFilesExist(apiSchemaFile)).toThrow()
+      done()
+    })
+
+    it('should run the setup', async (done) => {
+      await runCommandAsync(`yarn setup`)
       done()
     })
 

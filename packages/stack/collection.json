@@ -63,10 +63,20 @@
       "schema": "./src/schematics/api-data-access/schema.json",
       "description": "api-data-access schematic"
     },
+    "api-data-access-auth": {
+      "factory": "./src/schematics/api-data-access-auth/schematic-api-data-access-auth",
+      "schema": "./src/schematics/api-data-access-auth/schema.json",
+      "description": "api-data-access-auth schematic"
+    },
     "api-e2e": {
       "factory": "./src/schematics/api-e2e/schematic-api-e2e",
       "schema": "./src/schematics/api-e2e/schema.json",
       "description": "api e2e schematic"
+    },
+    "api-feature-auth": {
+      "factory": "./src/schematics/api-feature-auth/schematic-api-feature-auth",
+      "schema": "./src/schematics/api-feature-auth/schema.json",
+      "description": "api-feature-auth schematic"
     },
     "api-feature-core": {
       "factory": "./src/schematics/api-feature-core/schematic-api-feature-core",

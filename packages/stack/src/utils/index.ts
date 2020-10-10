@@ -18,6 +18,7 @@ import {
   Tree,
   url,
 } from '@angular-devkit/schematics'
+import { uniq } from '@nrwl/nx-plugin/testing'
 import {
   getProjectConfig,
   insert,
@@ -57,7 +58,10 @@ export function addRunScript(script: string, command: string, force = false) {
       json['scripts'] = {}
     }
     if (!json['scripts'][script] || force) {
-      json['scripts'][script] = command
+      json['scripts'] = {
+        [script]: command,
+        ...json['scripts'],
+      }
     }
     return json
   })
@@ -216,7 +220,8 @@ export function addTsconfigPath(packageName: string, paths: string[]): Rule {
 export function addPrismaConfig(normalizedOptions: NormalizedSchema) {
   const prismaFile = `libs/${normalizedOptions.directory}/${normalizedOptions.name}/src/prisma/schema.prisma`
   const prismaEnvFile = prismaFile.replace('schema.prisma', '.env')
-  const envFileContent = `DATABASE_URL=postgresql://prisma:prisma@localhost:5432/prisma?schema=${normalizedOptions.npmScope}-${normalizedOptions.name}\n`
+  const schemaName = uniq(`${normalizedOptions.npmScope}-${normalizedOptions.name}`)
+  const envFileContent = `DATABASE_URL=postgresql://prisma:prisma@localhost:5432/prisma?schema=${schemaName}\n`
   return (host: Tree, context: SchematicContext) => {
     if (host.exists(prismaEnvFile)) {
       host.overwrite(prismaEnvFile, envFileContent)

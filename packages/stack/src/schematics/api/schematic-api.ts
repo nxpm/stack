@@ -17,11 +17,16 @@ export default function (options: ApiSchematicSchema): Rule {
       name: 'e2e',
     }),
     schematic('api-data-access', { directory, name: 'data-access', appName: name }),
+    schematic('api-data-access-auth', { directory, name: 'auth', appName: name }),
+    schematic('api-feature-auth', { directory, name: 'auth', appName: name }),
     schematic('api-feature-core', { directory, name: 'core' }),
-    schematic('api-lib', { directory, name: 'auth', type: 'feature' }),
     addFiles(normalizedOptions),
     addRunScript(`dev:${name}`, `nx serve ${name}`),
     addRunScript(`build:${name}`, `nx build ${name} --prod`),
+    addRunScript(
+      `setup`,
+      `yarn prisma migrate save -n initial-migration --experimental && yarn prisma migrate up --experimental && yarn prisma:generate`,
+    ),
     createDotEnv([`NODE_ENV=development`, `PORT=3000`]),
     removeFiles(
       [`.gitkeep`, `app.controller.ts`, `app.controller.spec.ts`, `app.service.ts`, `app.service.spec.ts`],

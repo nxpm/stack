@@ -12,14 +12,11 @@ model User {
   id                   String           @id @default(cuid())
   createdAt            DateTime         @default(now())
   updatedAt            DateTime         @default(now()) @updatedAt
-  lastSeen             DateTime?
+  role                 Role
   developer            Boolean          @default(false)
-  admin                Boolean          @default(false)
   email                String           @unique
   username             String           @unique
   password             String?
-  passwordResetToken   String?
-  passwordResetExpires DateTime?
   firstName            String?
   lastName             String?
   avatarUrl            String?

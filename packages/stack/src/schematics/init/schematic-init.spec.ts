@@ -17,5 +17,10 @@ describe('init schematic', () => {
 
   it('should run successfully', async () => {
     await expect(testRunner.runSchematicAsync('init', options, appTree).toPromise()).resolves.not.toThrowError()
+
+    expect(appTree.read('nx.json').toString()).toMatchSnapshot()
+    expect(appTree.read('workspace.json').toString()).toMatchSnapshot()
+    expect(appTree.read('tsconfig.base.json').toString()).toMatchSnapshot()
+    expect(appTree.read('package.json').toString()).toMatchSnapshot()
   })
 })

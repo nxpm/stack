@@ -1,0 +1,738 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`init schematic should run successfully 1`] = `
+"{
+  \\"npmScope\\": \\"proj\\",
+  \\"projects\\": {
+    \\"api\\": {
+      \\"tags\\": []
+    },
+    \\"api-e2e\\": {
+      \\"tags\\": []
+    },
+    \\"api-data-access\\": {
+      \\"tags\\": [\\"scope:api\\", \\"type:data-access\\"]
+    },
+    \\"api-data-access-auth\\": {
+      \\"tags\\": [\\"scope:api\\", \\"type:data-access\\"]
+    },
+    \\"api-feature-auth\\": {
+      \\"tags\\": [\\"scope:api\\", \\"type:feature\\"]
+    },
+    \\"api-feature-core\\": {
+      \\"tags\\": [\\"scope:api\\", \\"type:feature\\"]
+    },
+    \\"test\\": {
+      \\"tags\\": []
+    },
+    \\"test-e2e\\": {
+      \\"tags\\": [],
+      \\"implicitDependencies\\": [\\"test\\"]
+    },
+    \\"test-assets\\": {
+      \\"tags\\": [\\"scope:test\\", \\"type:assets\\"]
+    },
+    \\"test-data-access\\": {
+      \\"tags\\": [\\"scope:test\\", \\"type:data-access\\"]
+    },
+    \\"test-feature-about\\": {
+      \\"tags\\": [\\"scope:test\\", \\"type:feature\\"]
+    },
+    \\"test-feature-core\\": {
+      \\"tags\\": [\\"scope:test\\", \\"type:feature\\"]
+    },
+    \\"test-feature-dashboard\\": {
+      \\"tags\\": [\\"scope:test\\", \\"type:feature\\"]
+    },
+    \\"test-feature-shell\\": {
+      \\"tags\\": [\\"scope:test\\", \\"type:feature\\"]
+    },
+    \\"test-layout\\": {
+      \\"tags\\": [\\"scope:test\\", \\"type:layout\\"]
+    },
+    \\"test-style\\": {
+      \\"tags\\": [\\"scope:test\\", \\"type:style\\"]
+    },
+    \\"test-feature-auth\\": {
+      \\"tags\\": [\\"scope:test\\", \\"type:feature\\"]
+    }
+  },
+  \\"affected\\": {
+    \\"defaultBase\\": \\"master\\"
+  },
+  \\"tasksRunnerOptions\\": {
+    \\"default\\": {
+      \\"runner\\": \\"@nrwl/workspace/tasks-runners/default\\",
+      \\"options\\": {
+        \\"cacheableOperations\\": [\\"build\\", \\"lint\\", \\"test\\", \\"e2e\\"]
+      }
+    }
+  }
+}
+"
+`;
+
+exports[`init schematic should run successfully 2`] = `
+"{
+  \\"version\\": 1,
+  \\"projects\\": {
+    \\"api\\": {
+      \\"root\\": \\"apps/api\\",
+      \\"sourceRoot\\": \\"apps/api/src\\",
+      \\"projectType\\": \\"application\\",
+      \\"prefix\\": \\"api\\",
+      \\"schematics\\": {},
+      \\"architect\\": {
+        \\"build\\": {
+          \\"builder\\": \\"@nrwl/node:build\\",
+          \\"options\\": {
+            \\"outputPath\\": \\"dist/apps/api\\",
+            \\"main\\": \\"apps/api/src/main.ts\\",
+            \\"tsConfig\\": \\"apps/api/tsconfig.app.json\\",
+            \\"assets\\": [\\"apps/api/src/assets\\"]
+          },
+          \\"configurations\\": {
+            \\"production\\": {
+              \\"optimization\\": true,
+              \\"extractLicenses\\": true,
+              \\"inspect\\": false,
+              \\"fileReplacements\\": [
+                {
+                  \\"replace\\": \\"apps/api/src/environments/environment.ts\\",
+                  \\"with\\": \\"apps/api/src/environments/environment.prod.ts\\"
+                }
+              ]
+            }
+          }
+        },
+        \\"serve\\": {
+          \\"builder\\": \\"@nrwl/node:execute\\",
+          \\"options\\": {
+            \\"buildTarget\\": \\"api:build\\"
+          }
+        },
+        \\"lint\\": {
+          \\"builder\\": \\"@nrwl/linter:lint\\",
+          \\"options\\": {
+            \\"linter\\": \\"eslint\\",
+            \\"tsConfig\\": [\\"apps/api/tsconfig.app.json\\", \\"apps/api/tsconfig.spec.json\\"],
+            \\"exclude\\": [\\"**/node_modules/**\\", \\"!apps/api/**/*\\"]
+          }
+        },
+        \\"test\\": {
+          \\"builder\\": \\"@nrwl/jest:jest\\",
+          \\"options\\": {
+            \\"jestConfig\\": \\"apps/api/jest.config.js\\",
+            \\"passWithNoTests\\": true
+          }
+        }
+      }
+    },
+    \\"api-e2e\\": {
+      \\"root\\": \\"apps/api-e2e\\",
+      \\"sourceRoot\\": \\"apps/api-e2e/src\\",
+      \\"projectType\\": \\"application\\",
+      \\"prefix\\": \\"api-e2e\\",
+      \\"schematics\\": {},
+      \\"architect\\": {
+        \\"e2e\\": {
+          \\"builder\\": \\"@nrwl/jest:jest\\",
+          \\"options\\": {
+            \\"jestConfig\\": \\"apps/api-e2e/jest.config.js\\",
+            \\"passWithNoTests\\": true
+          }
+        },
+        \\"lint\\": {
+          \\"builder\\": \\"@nrwl/linter:lint\\",
+          \\"options\\": {
+            \\"linter\\": \\"eslint\\",
+            \\"tsConfig\\": [\\"apps/api-e2e/tsconfig.spec.json\\"],
+            \\"exclude\\": [\\"**/node_modules/**\\", \\"!apps/api-e2e/**/*\\"]
+          }
+        }
+      }
+    },
+    \\"api-data-access\\": {
+      \\"root\\": \\"libs/api/data-access\\",
+      \\"sourceRoot\\": \\"libs/api/data-access/src\\",
+      \\"projectType\\": \\"library\\",
+      \\"schematics\\": {},
+      \\"architect\\": {
+        \\"lint\\": {
+          \\"builder\\": \\"@nrwl/linter:lint\\",
+          \\"options\\": {
+            \\"linter\\": \\"eslint\\",
+            \\"tsConfig\\": [\\"libs/api/data-access/tsconfig.lib.json\\", \\"libs/api/data-access/tsconfig.spec.json\\"],
+            \\"exclude\\": [\\"**/node_modules/**\\", \\"!libs/api/data-access/**/*\\"]
+          }
+        },
+        \\"test\\": {
+          \\"builder\\": \\"@nrwl/jest:jest\\",
+          \\"options\\": {
+            \\"jestConfig\\": \\"libs/api/data-access/jest.config.js\\",
+            \\"passWithNoTests\\": true
+          }
+        }
+      }
+    },
+    \\"api-data-access-auth\\": {
+      \\"root\\": \\"libs/api/data-access-auth\\",
+      \\"sourceRoot\\": \\"libs/api/data-access-auth/src\\",
+      \\"projectType\\": \\"library\\",
+      \\"schematics\\": {},
+      \\"architect\\": {
+        \\"lint\\": {
+          \\"builder\\": \\"@nrwl/linter:lint\\",
+          \\"options\\": {
+            \\"linter\\": \\"eslint\\",
+            \\"tsConfig\\": [\\"libs/api/data-access-auth/tsconfig.lib.json\\", \\"libs/api/data-access-auth/tsconfig.spec.json\\"],
+            \\"exclude\\": [\\"**/node_modules/**\\", \\"!libs/api/data-access-auth/**/*\\"]
+          }
+        },
+        \\"test\\": {
+          \\"builder\\": \\"@nrwl/jest:jest\\",
+          \\"options\\": {
+            \\"jestConfig\\": \\"libs/api/data-access-auth/jest.config.js\\",
+            \\"passWithNoTests\\": true
+          }
+        }
+      }
+    },
+    \\"api-feature-auth\\": {
+      \\"root\\": \\"libs/api/feature-auth\\",
+      \\"sourceRoot\\": \\"libs/api/feature-auth/src\\",
+      \\"projectType\\": \\"library\\",
+      \\"schematics\\": {},
+      \\"architect\\": {
+        \\"lint\\": {
+          \\"builder\\": \\"@nrwl/linter:lint\\",
+          \\"options\\": {
+            \\"linter\\": \\"eslint\\",
+            \\"tsConfig\\": [\\"libs/api/feature-auth/tsconfig.lib.json\\", \\"libs/api/feature-auth/tsconfig.spec.json\\"],
+            \\"exclude\\": [\\"**/node_modules/**\\", \\"!libs/api/feature-auth/**/*\\"]
+          }
+        },
+        \\"test\\": {
+          \\"builder\\": \\"@nrwl/jest:jest\\",
+          \\"options\\": {
+            \\"jestConfig\\": \\"libs/api/feature-auth/jest.config.js\\",
+            \\"passWithNoTests\\": true
+          }
+        }
+      }
+    },
+    \\"api-feature-core\\": {
+      \\"root\\": \\"libs/api/feature-core\\",
+      \\"sourceRoot\\": \\"libs/api/feature-core/src\\",
+      \\"projectType\\": \\"library\\",
+      \\"schematics\\": {},
+      \\"architect\\": {
+        \\"lint\\": {
+          \\"builder\\": \\"@nrwl/linter:lint\\",
+          \\"options\\": {
+            \\"linter\\": \\"eslint\\",
+            \\"tsConfig\\": [\\"libs/api/feature-core/tsconfig.lib.json\\", \\"libs/api/feature-core/tsconfig.spec.json\\"],
+            \\"exclude\\": [\\"**/node_modules/**\\", \\"!libs/api/feature-core/**/*\\"]
+          }
+        },
+        \\"test\\": {
+          \\"builder\\": \\"@nrwl/jest:jest\\",
+          \\"options\\": {
+            \\"jestConfig\\": \\"libs/api/feature-core/jest.config.js\\",
+            \\"passWithNoTests\\": true
+          }
+        }
+      }
+    },
+    \\"test\\": {
+      \\"projectType\\": \\"application\\",
+      \\"schematics\\": {
+        \\"@schematics/angular:component\\": {
+          \\"style\\": \\"scss\\"
+        }
+      },
+      \\"root\\": \\"apps/test\\",
+      \\"sourceRoot\\": \\"apps/test/src\\",
+      \\"prefix\\": \\"proj\\",
+      \\"architect\\": {
+        \\"build\\": {
+          \\"builder\\": \\"@angular-devkit/build-angular:browser\\",
+          \\"options\\": {
+            \\"outputPath\\": \\"dist/apps/test\\",
+            \\"index\\": \\"apps/test/src/index.html\\",
+            \\"main\\": \\"apps/test/src/main.ts\\",
+            \\"polyfills\\": \\"apps/test/src/polyfills.ts\\",
+            \\"tsConfig\\": \\"apps/test/tsconfig.app.json\\",
+            \\"aot\\": true,
+            \\"assets\\": [
+              {
+                \\"glob\\": \\"favicon.ico\\",
+                \\"input\\": \\"libs/test/assets/src\\",
+                \\"output\\": \\"./\\"
+              },
+              {
+                \\"glob\\": \\"**/*\\",
+                \\"input\\": \\"libs/test/assets/src/assets\\",
+                \\"output\\": \\"assets\\"
+              }
+            ],
+            \\"styles\\": [\\"apps/test/src/styles.scss\\", \\"libs/test/style/src/index.scss\\"],
+            \\"scripts\\": [],
+            \\"allowedCommonJsDependencies\\": [\\"graphql-tag\\", \\"subscriptions-transport-ws\\", \\"zen-observable\\"]
+          },
+          \\"configurations\\": {
+            \\"production\\": {
+              \\"fileReplacements\\": [
+                {
+                  \\"replace\\": \\"libs/test/feature-core/src/environments/environment.ts\\",
+                  \\"with\\": \\"libs/test/feature-core/src/environments/environment.prod.ts\\"
+                }
+              ],
+              \\"optimization\\": true,
+              \\"outputHashing\\": \\"all\\",
+              \\"sourceMap\\": false,
+              \\"extractCss\\": true,
+              \\"namedChunks\\": false,
+              \\"extractLicenses\\": true,
+              \\"vendorChunk\\": false,
+              \\"buildOptimizer\\": true,
+              \\"budgets\\": [
+                {
+                  \\"type\\": \\"initial\\",
+                  \\"maximumWarning\\": \\"2mb\\",
+                  \\"maximumError\\": \\"5mb\\"
+                },
+                {
+                  \\"type\\": \\"anyComponentStyle\\",
+                  \\"maximumWarning\\": \\"6kb\\",
+                  \\"maximumError\\": \\"10kb\\"
+                }
+              ]
+            }
+          }
+        },
+        \\"serve\\": {
+          \\"builder\\": \\"@angular-devkit/build-angular:dev-server\\",
+          \\"options\\": {
+            \\"browserTarget\\": \\"test:build\\",
+            \\"proxyConfig\\": \\"apps/test/proxy.conf.js\\"
+          },
+          \\"configurations\\": {
+            \\"production\\": {
+              \\"browserTarget\\": \\"test:build:production\\"
+            }
+          }
+        },
+        \\"extract-i18n\\": {
+          \\"builder\\": \\"@angular-devkit/build-angular:extract-i18n\\",
+          \\"options\\": {
+            \\"browserTarget\\": \\"test:build\\"
+          }
+        },
+        \\"lint\\": {
+          \\"builder\\": \\"@angular-devkit/build-angular:tslint\\",
+          \\"options\\": {
+            \\"tsConfig\\": [\\"apps/test/tsconfig.app.json\\", \\"apps/test/tsconfig.spec.json\\"],
+            \\"exclude\\": [\\"**/node_modules/**\\", \\"!apps/test/**/*\\"]
+          }
+        },
+        \\"test\\": {
+          \\"builder\\": \\"@nrwl/jest:jest\\",
+          \\"options\\": {
+            \\"jestConfig\\": \\"apps/test/jest.config.js\\",
+            \\"passWithNoTests\\": true
+          }
+        }
+      }
+    },
+    \\"test-e2e\\": {
+      \\"root\\": \\"apps/test-e2e\\",
+      \\"sourceRoot\\": \\"apps/test-e2e/src\\",
+      \\"projectType\\": \\"application\\",
+      \\"architect\\": {
+        \\"e2e\\": {
+          \\"builder\\": \\"@nrwl/cypress:cypress\\",
+          \\"options\\": {
+            \\"cypressConfig\\": \\"apps/test-e2e/cypress.json\\",
+            \\"tsConfig\\": \\"apps/test-e2e/tsconfig.e2e.json\\",
+            \\"devServerTarget\\": \\"test:serve\\"
+          },
+          \\"configurations\\": {
+            \\"production\\": {
+              \\"devServerTarget\\": \\"test:serve:production\\"
+            }
+          }
+        },
+        \\"lint\\": {
+          \\"builder\\": \\"@angular-devkit/build-angular:tslint\\",
+          \\"options\\": {
+            \\"tsConfig\\": [\\"apps/test-e2e/tsconfig.e2e.json\\"],
+            \\"exclude\\": [\\"**/node_modules/**\\", \\"!apps/test-e2e/**/*\\"]
+          }
+        }
+      }
+    },
+    \\"test-assets\\": {
+      \\"projectType\\": \\"library\\",
+      \\"root\\": \\"libs/test/assets\\",
+      \\"sourceRoot\\": \\"libs/test/assets/src\\",
+      \\"prefix\\": \\"assets\\",
+      \\"architect\\": {},
+      \\"schematics\\": {
+        \\"@schematics/angular:component\\": {
+          \\"style\\": \\"scss\\"
+        }
+      }
+    },
+    \\"test-data-access\\": {
+      \\"projectType\\": \\"library\\",
+      \\"root\\": \\"libs/test/data-access\\",
+      \\"sourceRoot\\": \\"libs/test/data-access/src\\",
+      \\"prefix\\": \\"data-access\\",
+      \\"architect\\": {
+        \\"lint\\": {
+          \\"builder\\": \\"@angular-devkit/build-angular:tslint\\",
+          \\"options\\": {
+            \\"tsConfig\\": [\\"libs/test/data-access/tsconfig.lib.json\\", \\"libs/test/data-access/tsconfig.spec.json\\"],
+            \\"exclude\\": [\\"**/node_modules/**\\", \\"!libs/test/data-access/**/*\\"]
+          }
+        },
+        \\"test\\": {
+          \\"builder\\": \\"@nrwl/jest:jest\\",
+          \\"options\\": {
+            \\"jestConfig\\": \\"libs/test/data-access/jest.config.js\\",
+            \\"passWithNoTests\\": true
+          }
+        }
+      },
+      \\"schematics\\": {
+        \\"@schematics/angular:component\\": {
+          \\"style\\": \\"scss\\"
+        }
+      }
+    },
+    \\"test-feature-about\\": {
+      \\"projectType\\": \\"library\\",
+      \\"root\\": \\"libs/test/feature-about\\",
+      \\"sourceRoot\\": \\"libs/test/feature-about/src\\",
+      \\"prefix\\": \\"about\\",
+      \\"architect\\": {
+        \\"lint\\": {
+          \\"builder\\": \\"@angular-devkit/build-angular:tslint\\",
+          \\"options\\": {
+            \\"tsConfig\\": [\\"libs/test/feature-about/tsconfig.lib.json\\", \\"libs/test/feature-about/tsconfig.spec.json\\"],
+            \\"exclude\\": [\\"**/node_modules/**\\", \\"!libs/test/feature-about/**/*\\"]
+          }
+        },
+        \\"test\\": {
+          \\"builder\\": \\"@nrwl/jest:jest\\",
+          \\"options\\": {
+            \\"jestConfig\\": \\"libs/test/feature-about/jest.config.js\\",
+            \\"passWithNoTests\\": true
+          }
+        }
+      },
+      \\"schematics\\": {
+        \\"@schematics/angular:component\\": {
+          \\"style\\": \\"scss\\"
+        }
+      }
+    },
+    \\"test-feature-core\\": {
+      \\"projectType\\": \\"library\\",
+      \\"root\\": \\"libs/test/feature-core\\",
+      \\"sourceRoot\\": \\"libs/test/feature-core/src\\",
+      \\"prefix\\": \\"core\\",
+      \\"architect\\": {
+        \\"lint\\": {
+          \\"builder\\": \\"@angular-devkit/build-angular:tslint\\",
+          \\"options\\": {
+            \\"tsConfig\\": [\\"libs/test/feature-core/tsconfig.lib.json\\", \\"libs/test/feature-core/tsconfig.spec.json\\"],
+            \\"exclude\\": [\\"**/node_modules/**\\", \\"!libs/test/feature-core/**/*\\"]
+          }
+        },
+        \\"test\\": {
+          \\"builder\\": \\"@nrwl/jest:jest\\",
+          \\"options\\": {
+            \\"jestConfig\\": \\"libs/test/feature-core/jest.config.js\\",
+            \\"passWithNoTests\\": true
+          }
+        }
+      },
+      \\"schematics\\": {
+        \\"@schematics/angular:component\\": {
+          \\"style\\": \\"scss\\"
+        }
+      }
+    },
+    \\"test-feature-dashboard\\": {
+      \\"projectType\\": \\"library\\",
+      \\"root\\": \\"libs/test/feature-dashboard\\",
+      \\"sourceRoot\\": \\"libs/test/feature-dashboard/src\\",
+      \\"prefix\\": \\"dashboard\\",
+      \\"architect\\": {
+        \\"lint\\": {
+          \\"builder\\": \\"@angular-devkit/build-angular:tslint\\",
+          \\"options\\": {
+            \\"tsConfig\\": [
+              \\"libs/test/feature-dashboard/tsconfig.lib.json\\",
+              \\"libs/test/feature-dashboard/tsconfig.spec.json\\"
+            ],
+            \\"exclude\\": [\\"**/node_modules/**\\", \\"!libs/test/feature-dashboard/**/*\\"]
+          }
+        },
+        \\"test\\": {
+          \\"builder\\": \\"@nrwl/jest:jest\\",
+          \\"options\\": {
+            \\"jestConfig\\": \\"libs/test/feature-dashboard/jest.config.js\\",
+            \\"passWithNoTests\\": true
+          }
+        }
+      },
+      \\"schematics\\": {
+        \\"@schematics/angular:component\\": {
+          \\"style\\": \\"scss\\"
+        }
+      }
+    },
+    \\"test-feature-shell\\": {
+      \\"projectType\\": \\"library\\",
+      \\"root\\": \\"libs/test/feature-shell\\",
+      \\"sourceRoot\\": \\"libs/test/feature-shell/src\\",
+      \\"prefix\\": \\"shell\\",
+      \\"architect\\": {
+        \\"lint\\": {
+          \\"builder\\": \\"@angular-devkit/build-angular:tslint\\",
+          \\"options\\": {
+            \\"tsConfig\\": [\\"libs/test/feature-shell/tsconfig.lib.json\\", \\"libs/test/feature-shell/tsconfig.spec.json\\"],
+            \\"exclude\\": [\\"**/node_modules/**\\", \\"!libs/test/feature-shell/**/*\\"]
+          }
+        },
+        \\"test\\": {
+          \\"builder\\": \\"@nrwl/jest:jest\\",
+          \\"options\\": {
+            \\"jestConfig\\": \\"libs/test/feature-shell/jest.config.js\\",
+            \\"passWithNoTests\\": true
+          }
+        }
+      },
+      \\"schematics\\": {
+        \\"@schematics/angular:component\\": {
+          \\"style\\": \\"scss\\"
+        }
+      }
+    },
+    \\"test-layout\\": {
+      \\"projectType\\": \\"library\\",
+      \\"root\\": \\"libs/test/layout\\",
+      \\"sourceRoot\\": \\"libs/test/layout/src\\",
+      \\"prefix\\": \\"layout\\",
+      \\"architect\\": {
+        \\"lint\\": {
+          \\"builder\\": \\"@angular-devkit/build-angular:tslint\\",
+          \\"options\\": {
+            \\"tsConfig\\": [\\"libs/test/layout/tsconfig.lib.json\\", \\"libs/test/layout/tsconfig.spec.json\\"],
+            \\"exclude\\": [\\"**/node_modules/**\\", \\"!libs/test/layout/**/*\\"]
+          }
+        },
+        \\"test\\": {
+          \\"builder\\": \\"@nrwl/jest:jest\\",
+          \\"options\\": {
+            \\"jestConfig\\": \\"libs/test/layout/jest.config.js\\",
+            \\"passWithNoTests\\": true
+          }
+        }
+      },
+      \\"schematics\\": {
+        \\"@schematics/angular:component\\": {
+          \\"style\\": \\"scss\\"
+        }
+      }
+    },
+    \\"test-style\\": {
+      \\"projectType\\": \\"library\\",
+      \\"root\\": \\"libs/test/style\\",
+      \\"sourceRoot\\": \\"libs/test/style/src\\",
+      \\"prefix\\": \\"style\\",
+      \\"architect\\": {},
+      \\"schematics\\": {
+        \\"@schematics/angular:component\\": {
+          \\"style\\": \\"scss\\"
+        }
+      }
+    },
+    \\"test-feature-auth\\": {
+      \\"projectType\\": \\"library\\",
+      \\"root\\": \\"libs/test/feature-auth\\",
+      \\"sourceRoot\\": \\"libs/test/feature-auth/src\\",
+      \\"prefix\\": \\"auth\\",
+      \\"architect\\": {
+        \\"lint\\": {
+          \\"builder\\": \\"@angular-devkit/build-angular:tslint\\",
+          \\"options\\": {
+            \\"tsConfig\\": [\\"libs/test/feature-auth/tsconfig.lib.json\\", \\"libs/test/feature-auth/tsconfig.spec.json\\"],
+            \\"exclude\\": [\\"**/node_modules/**\\", \\"!libs/test/feature-auth/**/*\\"]
+          }
+        },
+        \\"test\\": {
+          \\"builder\\": \\"@nrwl/jest:jest\\",
+          \\"options\\": {
+            \\"jestConfig\\": \\"libs/test/feature-auth/jest.config.js\\",
+            \\"passWithNoTests\\": true
+          }
+        }
+      },
+      \\"schematics\\": {
+        \\"@schematics/angular:component\\": {
+          \\"style\\": \\"scss\\"
+        }
+      }
+    }
+  },
+  \\"newProjectRoot\\": \\"\\",
+  \\"cli\\": {
+    \\"defaultCollection\\": \\"@nrwl/nest\\"
+  },
+  \\"defaultProject\\": \\"api\\",
+  \\"schematics\\": {
+    \\"@nrwl/angular:application\\": {
+      \\"unitTestRunner\\": \\"jest\\",
+      \\"e2eTestRunner\\": \\"cypress\\"
+    },
+    \\"@nrwl/angular:library\\": {
+      \\"unitTestRunner\\": \\"jest\\"
+    }
+  }
+}
+"
+`;
+
+exports[`init schematic should run successfully 3`] = `
+"{
+  \\"compilerOptions\\": {
+    \\"paths\\": {
+      \\"@nxpm/api-app-module\\": [\\"apps/api/src/app/app.module.ts\\"],
+      \\"@proj/api/data-access\\": [\\"libs/api/data-access/src/index.ts\\"],
+      \\"@proj/api/data-access-auth\\": [\\"libs/api/data-access-auth/src/index.ts\\"],
+      \\"@proj/api/feature-auth\\": [\\"libs/api/feature-auth/src/index.ts\\"],
+      \\"@proj/api/feature-core\\": [\\"libs/api/feature-core/src/index.ts\\"],
+      \\"@proj/test/assets\\": [\\"libs/test/assets/src/index.ts\\"],
+      \\"@proj/test/data-access\\": [\\"libs/test/data-access/src/index.ts\\"],
+      \\"@proj/test/feature-about\\": [\\"libs/test/feature-about/src/index.ts\\"],
+      \\"@proj/test/feature-core\\": [\\"libs/test/feature-core/src/index.ts\\"],
+      \\"@proj/test/feature-dashboard\\": [\\"libs/test/feature-dashboard/src/index.ts\\"],
+      \\"@proj/test/feature-shell\\": [\\"libs/test/feature-shell/src/index.ts\\"],
+      \\"@proj/test/layout\\": [\\"libs/test/layout/src/index.ts\\"],
+      \\"@proj/test/style\\": [\\"libs/test/style/src/index.ts\\"],
+      \\"@proj/test/feature-auth\\": [\\"libs/test/feature-auth/src/index.ts\\"]
+    }
+  }
+}
+"
+`;
+
+exports[`init schematic should run successfully 4`] = `
+"{
+  \\"name\\": \\"test-name\\",
+  \\"dependencies\\": {
+    \\"@nestjs/common\\": \\"^7.0.0\\",
+    \\"@nestjs/core\\": \\"^7.0.0\\",
+    \\"@nestjs/platform-express\\": \\"^7.0.0\\",
+    \\"reflect-metadata\\": \\"^0.1.13\\",
+    \\"rxjs\\": \\"~6.5.5\\",
+    \\"supertest\\": \\"^5.0.0\\",
+    \\"@prisma/cli\\": \\"^2.8.0\\",
+    \\"@prisma/client\\": \\"^2.8.0\\",
+    \\"@nestjs/jwt\\": \\"^7.1.0\\",
+    \\"@nestjs/passport\\": \\"^7.1.0\\",
+    \\"bcryptjs\\": \\"^2.4.3\\",
+    \\"passport\\": \\"^0.4.1\\",
+    \\"passport-jwt\\": \\"^4.0.0\\",
+    \\"@kikstart-playground/graphql-intercom\\": \\"1.4.1\\",
+    \\"@nestjs/config\\": \\"^0.5.0\\",
+    \\"@nestjs/graphql\\": \\"^7.7.0\\",
+    \\"apollo-server-express\\": \\"^2.18.0\\",
+    \\"class-transformer\\": \\"^0.3.1\\",
+    \\"class-validator\\": \\"^0.12.2\\",
+    \\"joi\\": \\"^17.2.1\\",
+    \\"graphql\\": \\"^15.3.0\\",
+    \\"graphql-type-json\\": \\"^0.3.2\\",
+    \\"graphql-tools\\": \\"^6.2.3\\",
+    \\"@apollo/client\\": \\"^3.2.1\\",
+    \\"apollo-angular\\": \\"^2.0.4\\",
+    \\"@angular/animations\\": \\"^10.0.0\\",
+    \\"@angular/common\\": \\"^10.0.0\\",
+    \\"@angular/compiler\\": \\"^10.0.0\\",
+    \\"@angular/core\\": \\"^10.0.0\\",
+    \\"@angular/forms\\": \\"^10.0.0\\",
+    \\"@angular/platform-browser\\": \\"^10.0.0\\",
+    \\"@angular/platform-browser-dynamic\\": \\"^10.0.0\\",
+    \\"@angular/router\\": \\"^10.0.0\\",
+    \\"zone.js\\": \\"^0.10.2\\",
+    \\"bootstrap\\": \\"^4.5.2\\",
+    \\"bootswatch\\": \\"^4.5.2\\"
+  },
+  \\"devDependencies\\": {
+    \\"husky\\": \\"^4.3.0\\",
+    \\"lint-staged\\": \\"^10.4.0\\",
+    \\"@nrwl/jest\\": \\"10.2.1\\",
+    \\"jest\\": \\"26.2.2\\",
+    \\"@types/jest\\": \\"26.0.8\\",
+    \\"ts-jest\\": \\"26.1.4\\",
+    \\"@nrwl/node\\": \\"10.2.1\\",
+    \\"@nestjs/schematics\\": \\"^7.0.0\\",
+    \\"@nestjs/testing\\": \\"^7.0.0\\",
+    \\"@nrwl/nest\\": \\"10.2.1\\",
+    \\"@nrwl/eslint-plugin-nx\\": \\"10.2.1\\",
+    \\"@typescript-eslint/parser\\": \\"2.19.2\\",
+    \\"@typescript-eslint/eslint-plugin\\": \\"2.19.2\\",
+    \\"eslint\\": \\"6.8.0\\",
+    \\"eslint-config-prettier\\": \\"6.0.0\\",
+    \\"@graphql-codegen/cli\\": \\"1.17.8\\",
+    \\"@graphql-codegen/introspection\\": \\"1.17.8\\",
+    \\"@graphql-codegen/typescript\\": \\"1.17.8\\",
+    \\"@graphql-codegen/typescript-apollo-angular\\": \\"^2.0.1\\",
+    \\"@graphql-codegen/typescript-operations\\": \\"1.17.8\\",
+    \\"@angular/compiler-cli\\": \\"^10.0.0\\",
+    \\"@angular/language-service\\": \\"^10.0.0\\",
+    \\"@angular-devkit/build-angular\\": \\"~0.1000.0\\",
+    \\"codelyzer\\": \\"~5.0.1\\",
+    \\"jest-preset-angular\\": \\"8.3.1\\",
+    \\"cypress\\": \\"^4.1.0\\",
+    \\"@nrwl/cypress\\": \\"10.2.1\\",
+    \\"typescript\\": \\"~3.9.5\\"
+  },
+  \\"husky\\": {
+    \\"hooks\\": {
+      \\"pre-commit\\": \\"lint-staged\\"
+    }
+  },
+  \\"lint-staged\\": {
+    \\"*.{js,json,css,scss,md,ts,html,graphql}\\": [
+      \\"yarn run format --uncommitted\\"
+    ]
+  },
+  \\"prisma\\": {
+    \\"schema\\": \\"libs/api/data-access/src/prisma/schema.prisma\\"
+  },
+  \\"scripts\\": {
+    \\"docker:push\\": \\"docker push nxpm/api\\",
+    \\"docker:run\\": \\"docker run -it -p 8000:3000 nxpm/api\\",
+    \\"docker:build\\": \\"docker build . -t nxpm/api\\",
+    \\"build\\": \\"yarn build:test && yarn build:api\\",
+    \\"start\\": \\"node dist/apps/api/main.js\\",
+    \\"build:test\\": \\"nx build test --prod\\",
+    \\"dev:test\\": \\"nx serve test\\",
+    \\"setup\\": \\"yarn prisma migrate save -n initial-migration --experimental && yarn prisma migrate up --experimental && yarn prisma:generate\\",
+    \\"build:api\\": \\"nx build api --prod\\",
+    \\"dev:api\\": \\"nx serve api\\",
+    \\"prisma:apply\\": \\"yarn prisma:format && yarn prisma:migrate && yarn prisma:generate\\",
+    \\"prisma:format\\": \\"yarn prisma format\\",
+    \\"prisma:generate\\": \\"yarn prisma generate\\",
+    \\"prisma:migrate\\": \\"yarn prisma migrate save --experimental && yarn prisma migrate up --experimental\\",
+    \\"prisma:studio\\": \\"yarn prisma studio\\",
+    \\"postinstall\\": \\"ngcc --properties es2015 browser module main --first-only --create-ivy-entry-points\\"
+  }
+}
+"
+`;
