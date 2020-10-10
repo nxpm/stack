@@ -72,7 +72,15 @@ export default function (options: InitSchematicSchema): Rule {
   const adminName = options.name
   const apiName = 'api'
   return chain([
-    addDepsToPackageJson({}, { husky: '^4.3.0', 'lint-staged': '^10.4.0' }, true),
+    addDepsToPackageJson(
+      {},
+      {
+        '@nxpm/cli': '^1.9.0',
+        husky: '^4.3.0',
+        'lint-staged': '^10.4.0',
+      },
+      true,
+    ),
     updatePrettierConfig(),
     addDockerfile(),
     addDockerignore(),

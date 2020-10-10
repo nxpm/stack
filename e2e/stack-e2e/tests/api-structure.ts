@@ -62,6 +62,8 @@ export function apiFileTests(project: string): FileTests {
         'prisma:studio',
         'prisma:apply',
         `libs/${project}/data-access/src/prisma/schema.prisma`,
+        `@nxpm/cli`,
+        `yarn nxpm-stack lint`,
       ],
       [`tsconfig.base.json`]: [`"apps/${project}/src/app/app.module.ts"`],
       [`apps/${project}/src/main.ts`]: [`Logger.log('Listening at http://localhost:' + port + '/graphql')`],

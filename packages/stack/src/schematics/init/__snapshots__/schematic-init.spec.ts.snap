@@ -673,6 +673,7 @@ exports[`init schematic should run successfully 4`] = `
     \\"bootswatch\\": \\"^4.5.2\\"
   },
   \\"devDependencies\\": {
+    \\"@nxpm/cli\\": \\"^1.9.0\\",
     \\"husky\\": \\"^4.3.0\\",
     \\"lint-staged\\": \\"^10.4.0\\",
     \\"@nrwl/jest\\": \\"10.2.1\\",
@@ -704,12 +705,17 @@ exports[`init schematic should run successfully 4`] = `
   },
   \\"husky\\": {
     \\"hooks\\": {
-      \\"pre-commit\\": \\"lint-staged\\"
+      \\"pre-commit\\": \\"lint-staged\\",
+      \\"pre-push\\": \\"yarn format:check\\"
     }
   },
   \\"lint-staged\\": {
+    \\"nx.json\\": [
+      \\"yarn nxpm-stack lint\\",
+      \\"yarn format:write\\"
+    ],
     \\"*.{js,json,css,scss,md,ts,html,graphql}\\": [
-      \\"yarn run format --uncommitted\\"
+      \\"yarn format --uncommitted\\"
     ]
   },
   \\"prisma\\": {

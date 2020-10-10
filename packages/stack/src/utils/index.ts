@@ -40,12 +40,13 @@ export function configureHuskyLintStaged() {
   return updateJsonInTree(`/package.json`, (json) => {
     if (!json['husky']) {
       json['husky'] = {
-        hooks: { 'pre-commit': 'lint-staged' },
+        hooks: { 'pre-commit': 'lint-staged', 'pre-push': 'yarn format:check' },
       }
     }
     if (!json['lint-staged']) {
       json['lint-staged'] = {
-        '*.{js,json,css,scss,md,ts,html,graphql}': ['yarn run format --uncommitted'],
+        'nx.json': ['yarn nxpm-stack lint', 'yarn format:write'],
+        '*.{js,json,css,scss,md,ts,html,graphql}': ['yarn format --uncommitted'],
       }
     }
     return json
