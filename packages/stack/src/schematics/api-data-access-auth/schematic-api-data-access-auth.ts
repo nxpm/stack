@@ -1,7 +1,6 @@
 import { chain, Rule, schematic } from '@angular-devkit/schematics'
-import { uniq } from '@nrwl/nx-plugin/testing'
 import { addDepsToPackageJson, ProjectType } from '@nrwl/workspace'
-import { addFiles, normalizeOptions } from '../../utils'
+import { addFiles, normalizeOptions, uniq } from '../../utils'
 import { ApiDataAccessAuthSchematicSchema } from './schema'
 
 export default function (options: ApiDataAccessAuthSchematicSchema): Rule {
