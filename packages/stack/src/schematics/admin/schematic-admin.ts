@@ -103,6 +103,7 @@ export default function (options: AdminSchematicSchema): Rule {
       name: 'assets',
     }),
     schematic('admin-data-access', {
+      appName: name,
       directory,
       name: 'data-access',
     }),
