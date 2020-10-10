@@ -7,7 +7,7 @@ import { AdminDataAccessSchematicSchema } from './schema'
 
 describe('admin-data-access schematic', () => {
   let appTree: Tree
-  const options: AdminDataAccessSchematicSchema = { name: 'test' }
+  const options: AdminDataAccessSchematicSchema = { name: 'test', appName: 'admin' }
 
   const testRunner = new SchematicTestRunner('@nxpm/admin-data-access', join(__dirname, '../../../collection.json'))
 

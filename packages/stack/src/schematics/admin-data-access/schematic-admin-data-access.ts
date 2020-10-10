@@ -1,6 +1,6 @@
 import { chain, Rule, schematic } from '@angular-devkit/schematics'
 import { ProjectType } from '@nrwl/workspace'
-import { addFiles, normalizeOptions } from '../../utils'
+import { addFiles, addRunScript, normalizeOptions } from '../../utils'
 import { AdminDataAccessSchematicSchema } from './schema'
 
 export default function (options: AdminDataAccessSchematicSchema): Rule {
@@ -14,5 +14,6 @@ export default function (options: AdminDataAccessSchematicSchema): Rule {
       type: 'data-access',
     }),
     addFiles(normalizedOptions),
+    addRunScript('sdk', `graphql-codegen --config libs/${options.appName}/data-access/src/codegen.yml`),
   ])
 }

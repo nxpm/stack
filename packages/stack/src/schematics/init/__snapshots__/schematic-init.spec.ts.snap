@@ -729,6 +729,7 @@ exports[`init schematic should run successfully 4`] = `
     \\"start\\": \\"node dist/apps/api/main.js\\",
     \\"build:test\\": \\"nx build test --prod\\",
     \\"dev:test\\": \\"nx serve test\\",
+    \\"sdk\\": \\"graphql-codegen --config libs/undefined/data-access/src/codegen.yml\\",
     \\"setup\\": \\"yarn prisma migrate save -n initial-migration --experimental && yarn prisma migrate up --experimental && yarn prisma:generate\\",
     \\"build:api\\": \\"nx build api --prod\\",
     \\"dev:api\\": \\"nx serve api\\",
