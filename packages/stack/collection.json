@@ -13,10 +13,10 @@
       "schema": "./src/schematics/admin-assets/schema.json",
       "description": "admin-assets schematic"
     },
-    "admin-data-access": {
-      "factory": "./src/schematics/admin-data-access/schematic-admin-data-access",
-      "schema": "./src/schematics/admin-data-access/schema.json",
-      "description": "admin-data-access schematic"
+    "admin-data-access-core": {
+      "factory": "./src/schematics/admin-data-access-core/schematic-admin-data-access-core",
+      "schema": "./src/schematics/admin-data-access-core/schema.json",
+      "description": "admin-data-access-core schematic"
     },
     "admin-feature-about": {
       "factory": "./src/schematics/admin-feature-about/schematic-admin-feature-about",
