@@ -1,4 +1,4 @@
-export interface AdminDataAccessSchematicSchema {
+export interface AdminDataAccessCoreSchematicSchema {
   appName: string
   name: string
   tags?: string

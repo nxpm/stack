@@ -1,5 +1,5 @@
 import { Component } from '@angular/core'
-import { <%= classify(appName) %>DataAccessService } from '@<%= npmScope %>/<%= appName %>/data-access'
+import { <%= classify(appName) %>DataAccessCoreService } from '@<%= npmScope %>/<%= appName %>/data-access-core'
 import { environment } from '@<%= npmScope %>/<%= appName %>/feature-core'
 
 @Component({
@@ -18,5 +18,5 @@ import { environment } from '@<%= npmScope %>/<%= appName %>/feature-core'
 export class <%= classify(projectName) %>Component {
   public environment = environment
   public uptime$ = this.data.uptimeWatch()
-  constructor(private readonly data: <%= classify(appName) %>DataAccessService) {}
+  constructor(private readonly data: <%= classify(appName) %>DataAccessCoreService) {}
 }

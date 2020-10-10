@@ -32,7 +32,7 @@ exports[`init schematic should run successfully 1`] = `
     \\"test-assets\\": {
       \\"tags\\": [\\"scope:test\\", \\"type:assets\\"]
     },
-    \\"test-data-access\\": {
+    \\"test-data-access-core\\": {
       \\"tags\\": [\\"scope:test\\", \\"type:data-access\\"]
     },
     \\"test-feature-about\\": {
@@ -384,23 +384,26 @@ exports[`init schematic should run successfully 2`] = `
         }
       }
     },
-    \\"test-data-access\\": {
+    \\"test-data-access-core\\": {
       \\"projectType\\": \\"library\\",
-      \\"root\\": \\"libs/test/data-access\\",
-      \\"sourceRoot\\": \\"libs/test/data-access/src\\",
-      \\"prefix\\": \\"data-access\\",
+      \\"root\\": \\"libs/test/data-access-core\\",
+      \\"sourceRoot\\": \\"libs/test/data-access-core/src\\",
+      \\"prefix\\": \\"core\\",
       \\"architect\\": {
         \\"lint\\": {
           \\"builder\\": \\"@angular-devkit/build-angular:tslint\\",
           \\"options\\": {
-            \\"tsConfig\\": [\\"libs/test/data-access/tsconfig.lib.json\\", \\"libs/test/data-access/tsconfig.spec.json\\"],
-            \\"exclude\\": [\\"**/node_modules/**\\", \\"!libs/test/data-access/**/*\\"]
+            \\"tsConfig\\": [
+              \\"libs/test/data-access-core/tsconfig.lib.json\\",
+              \\"libs/test/data-access-core/tsconfig.spec.json\\"
+            ],
+            \\"exclude\\": [\\"**/node_modules/**\\", \\"!libs/test/data-access-core/**/*\\"]
           }
         },
         \\"test\\": {
           \\"builder\\": \\"@nrwl/jest:jest\\",
           \\"options\\": {
-            \\"jestConfig\\": \\"libs/test/data-access/jest.config.js\\",
+            \\"jestConfig\\": \\"libs/test/data-access-core/jest.config.js\\",
             \\"passWithNoTests\\": true
           }
         }
@@ -617,7 +620,7 @@ exports[`init schematic should run successfully 3`] = `
       \\"@proj/api/feature-auth\\": [\\"libs/api/feature-auth/src/index.ts\\"],
       \\"@proj/api/feature-core\\": [\\"libs/api/feature-core/src/index.ts\\"],
       \\"@proj/test/assets\\": [\\"libs/test/assets/src/index.ts\\"],
-      \\"@proj/test/data-access\\": [\\"libs/test/data-access/src/index.ts\\"],
+      \\"@proj/test/data-access-core\\": [\\"libs/test/data-access-core/src/index.ts\\"],
       \\"@proj/test/feature-about\\": [\\"libs/test/feature-about/src/index.ts\\"],
       \\"@proj/test/feature-core\\": [\\"libs/test/feature-core/src/index.ts\\"],
       \\"@proj/test/feature-dashboard\\": [\\"libs/test/feature-dashboard/src/index.ts\\"],
@@ -729,7 +732,7 @@ exports[`init schematic should run successfully 4`] = `
     \\"start\\": \\"node dist/apps/api/main.js\\",
     \\"build:test\\": \\"nx build test --prod\\",
     \\"dev:test\\": \\"nx serve test\\",
-    \\"sdk\\": \\"graphql-codegen --config libs/test/data-access/src/codegen.yml\\",
+    \\"sdk\\": \\"graphql-codegen --config libs/test/test-data-access-core/src/codegen.yml\\",
     \\"sdk:watch\\": \\"yarn sdk --watch\\",
     \\"setup\\": \\"yarn prisma migrate save -n initial-migration --experimental && yarn prisma migrate up --experimental && yarn prisma:generate\\",
     \\"build:api\\": \\"nx build api --prod\\",
