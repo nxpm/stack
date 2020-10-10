@@ -7,7 +7,7 @@ import { AdminDataAccessSchematicSchema } from './schema'
 
 describe('admin-data-access schematic', () => {
   let appTree: Tree
-  const options: AdminDataAccessSchematicSchema = { name: 'test', appName: 'admin' }
+  const options: AdminDataAccessSchematicSchema = { name: 'test', appName: 'admin-app' }
 
   const testRunner = new SchematicTestRunner('@nxpm/admin-data-access', join(__dirname, '../../../collection.json'))
 
@@ -19,5 +19,6 @@ describe('admin-data-access schematic', () => {
     await expect(
       testRunner.runSchematicAsync('admin-data-access', options, appTree).toPromise(),
     ).resolves.not.toThrowError()
+    expect(appTree.read('package.json').toString()).toContain('libs/admin-app/data-access/src/codegen.yml')
   })
 })

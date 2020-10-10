@@ -14,6 +14,7 @@ export default function (options: AdminDataAccessSchematicSchema): Rule {
       type: 'data-access',
     }),
     addFiles(normalizedOptions),
+    addRunScript('sdk:watch', 'yarn sdk --watch'),
     addRunScript('sdk', `graphql-codegen --config libs/${options.appName}/data-access/src/codegen.yml`),
   ])
 }
