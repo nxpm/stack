@@ -3,13 +3,13 @@ import { SchematicTestRunner } from '@angular-devkit/schematics/testing'
 import { createEmptyWorkspace } from '@nrwl/workspace/testing'
 import { join } from 'path'
 
-import { ApiDataAccessSchematicSchema } from './schema'
+import { ApiDataAccessCoreSchematicSchema } from './schema'
 
-describe('api-data-access schematic', () => {
+describe('api-data-access-core schematic', () => {
   let appTree: Tree
-  const options: ApiDataAccessSchematicSchema = { name: 'test', appName: 'api' }
+  const options: ApiDataAccessCoreSchematicSchema = { name: 'test', appName: 'api' }
 
-  const testRunner = new SchematicTestRunner('@nxpm/api-data-access', join(__dirname, '../../../collection.json'))
+  const testRunner = new SchematicTestRunner('@nxpm/api-data-access-core', join(__dirname, '../../../collection.json'))
 
   beforeEach(() => {
     appTree = createEmptyWorkspace(Tree.empty())
@@ -17,7 +17,7 @@ describe('api-data-access schematic', () => {
 
   it('should run successfully', async () => {
     await expect(
-      testRunner.runSchematicAsync('api-data-access', options, appTree).toPromise(),
+      testRunner.runSchematicAsync('api-data-access-core', options, appTree).toPromise(),
     ).resolves.not.toThrowError()
   })
 })

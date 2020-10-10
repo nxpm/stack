@@ -58,10 +58,10 @@
       "schema": "./src/schematics/api/schema.json",
       "description": "api schematic"
     },
-    "api-data-access": {
-      "factory": "./src/schematics/api-data-access/schematic-api-data-access",
-      "schema": "./src/schematics/api-data-access/schema.json",
-      "description": "api-data-access schematic"
+    "api-data-access-core": {
+      "factory": "./src/schematics/api-data-access-core/schematic-api-data-access-core",
+      "schema": "./src/schematics/api-data-access-core/schema.json",
+      "description": "api-data-access-core schematic"
     },
     "api-data-access-auth": {
       "factory": "./src/schematics/api-data-access-auth/schematic-api-data-access-auth",

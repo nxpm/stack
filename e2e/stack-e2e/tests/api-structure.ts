@@ -4,10 +4,10 @@ export function apiProjects(project: string) {
   return [
     project,
     `${project}-e2e`,
-    `${project}-data-access`,
     `${project}-data-access-auth`,
-    `${project}-feature-core`,
+    `${project}-data-access-core`,
     `${project}-feature-auth`,
+    `${project}-feature-core`,
   ]
 }
 
@@ -29,10 +29,10 @@ export function apiFileTests(project: string): FileTests {
       `apps/${project}/src/app/app.module.ts`,
       ...apiCrudFiles(project, 'feature-auth'),
       ...apiCrudFiles(project, 'feature-core'),
-      `libs/${project}/data-access/src/lib/${project}-data-access.module.ts`,
-      `libs/${project}/data-access/src/lib/${project}-data-access.service.ts`,
-      `libs/${project}/data-access/src/prisma/.env`,
-      `libs/${project}/data-access/src/prisma/schema.prisma`,
+      `libs/${project}/data-access-core/src/lib/${project}-data-access-core.module.ts`,
+      `libs/${project}/data-access-core/src/lib/${project}-data-access-core.service.ts`,
+      `libs/${project}/data-access-core/src/prisma/.env`,
+      `libs/${project}/data-access-core/src/prisma/schema.prisma`,
       `libs/${project}/feature-core/src/lib/${project}-feature-core.module.ts`,
       `libs/${project}/feature-core/src/lib/config/configuration.ts`,
       `libs/${project}/feature-core/src/lib/config/validation.ts`,
@@ -61,20 +61,20 @@ export function apiFileTests(project: string): FileTests {
         'prisma:format',
         'prisma:studio',
         'prisma:apply',
-        `libs/${project}/data-access/src/prisma/schema.prisma`,
+        `libs/${project}/data-access-core/src/prisma/schema.prisma`,
         `@nxpm/cli`,
         `yarn nxpm-stack lint`,
       ],
       [`tsconfig.base.json`]: [`"apps/${project}/src/app/app.module.ts"`],
       [`apps/${project}/src/main.ts`]: [`Logger.log('Listening at http://localhost:' + port + '/graphql')`],
-      [`libs/${project}/data-access/src/lib/${project}-data-access.service.ts`]: [
+      [`libs/${project}/data-access-core/src/lib/${project}-data-access-core.service.ts`]: [
         `extends PrismaClient`,
         `implements OnModuleInit, OnModuleDestroy`,
         `public findUserByEmail(email: string) {`,
         `public findUserById(userId: string) {`,
         `public findUserByUsername(username: string) {`,
       ],
-      [`libs/${project}/data-access/src/prisma/schema.prisma`]: [`env("DATABASE_URL")`, `"prisma-client-js"`],
+      [`libs/${project}/data-access-core/src/prisma/schema.prisma`]: [`env("DATABASE_URL")`, `"prisma-client-js"`],
       [`libs/${project}/feature-core/src/lib/${project}-feature-core.module.ts`]: [
         `ConfigModule.forRoot`,
         `GraphQLModule.forRoot`,

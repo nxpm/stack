@@ -5,7 +5,7 @@ import { join } from 'path'
 
 import { ApiDataAccessAuthSchematicSchema } from './schema'
 
-describe('api-data-access schematic', () => {
+describe('api-data-access-auth schematic', () => {
   let appTree: Tree
   const options: ApiDataAccessAuthSchematicSchema = { name: 'test', appName: 'api' }
 
