@@ -1,6 +1,6 @@
 {
   "name": "nxpm-stack",
-  "version": "1.9.7",
+  "version": "1.9.8",
   "license": "MIT",
   "scripts": {
     "nx": "nx",
