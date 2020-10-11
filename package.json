@@ -1,6 +1,6 @@
 {
   "name": "nxpm-stack",
-  "version": "1.9.6",
+  "version": "1.9.7",
   "license": "MIT",
   "scripts": {
     "nx": "nx",
@@ -57,8 +57,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged",
-      "pre-push": "yarn nx format:check --base=origin/main --head=HEAD"
+      "pre-commit": "lint-staged"
     }
   },
   "lint-staged": {
