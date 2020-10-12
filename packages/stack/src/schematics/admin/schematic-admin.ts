@@ -136,6 +136,11 @@ export default function (options: AdminSchematicSchema): Rule {
       directory,
       name: 'style',
     }),
+    schematic('admin-ui-form', {
+      appName: name,
+      directory,
+      name: 'form',
+    }),
     schematic('admin-lib', { directory, name: 'auth', type: 'feature' }),
     addRunScript(`dev:${name}`, `nx serve ${name}`),
     addRunScript(`build:${name}`, `nx build ${name} --prod`),
