@@ -53,6 +53,11 @@
       "schema": "./src/schematics/admin-style/schema.json",
       "description": "admin-styles schematic"
     },
+    "admin-ui-form": {
+      "factory": "./src/schematics/admin-ui-form/schematic-admin-ui-form",
+      "schema": "./src/schematics/admin-ui-form/schema.json",
+      "description": "admin-ui-forms schematic"
+    },
     "api": {
       "factory": "./src/schematics/api/schematic-api",
       "schema": "./src/schematics/api/schema.json",

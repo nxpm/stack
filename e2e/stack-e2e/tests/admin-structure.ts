@@ -13,6 +13,7 @@ export function adminProjects(project: string) {
     `${project}-feature-shell`,
     `${project}-layout`,
     `${project}-style`,
+    `${project}-ui-form`,
   ]
 }
 

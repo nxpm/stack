@@ -53,6 +53,9 @@ exports[`init schematic should run successfully 1`] = `
     \\"test-style\\": {
       \\"tags\\": [\\"scope:test\\", \\"type:style\\"]
     },
+    \\"test-ui-form\\": {
+      \\"tags\\": [\\"scope:test\\", \\"type:ui\\"]
+    },
     \\"test-feature-auth\\": {
       \\"tags\\": [\\"scope:test\\", \\"type:feature\\"]
     }
@@ -564,6 +567,33 @@ exports[`init schematic should run successfully 2`] = `
         }
       }
     },
+    \\"test-ui-form\\": {
+      \\"projectType\\": \\"library\\",
+      \\"root\\": \\"libs/test/ui-form\\",
+      \\"sourceRoot\\": \\"libs/test/ui-form/src\\",
+      \\"prefix\\": \\"form\\",
+      \\"architect\\": {
+        \\"lint\\": {
+          \\"builder\\": \\"@angular-devkit/build-angular:tslint\\",
+          \\"options\\": {
+            \\"tsConfig\\": [\\"libs/test/ui-form/tsconfig.lib.json\\", \\"libs/test/ui-form/tsconfig.spec.json\\"],
+            \\"exclude\\": [\\"**/node_modules/**\\", \\"!libs/test/ui-form/**/*\\"]
+          }
+        },
+        \\"test\\": {
+          \\"builder\\": \\"@nrwl/jest:jest\\",
+          \\"options\\": {
+            \\"jestConfig\\": \\"libs/test/ui-form/jest.config.js\\",
+            \\"passWithNoTests\\": true
+          }
+        }
+      },
+      \\"schematics\\": {
+        \\"@schematics/angular:component\\": {
+          \\"style\\": \\"scss\\"
+        }
+      }
+    },
     \\"test-feature-auth\\": {
       \\"projectType\\": \\"library\\",
       \\"root\\": \\"libs/test/feature-auth\\",
@@ -627,6 +657,7 @@ exports[`init schematic should run successfully 3`] = `
       \\"@proj/test/feature-shell\\": [\\"libs/test/feature-shell/src/index.ts\\"],
       \\"@proj/test/layout\\": [\\"libs/test/layout/src/index.ts\\"],
       \\"@proj/test/style\\": [\\"libs/test/style/src/index.ts\\"],
+      \\"@proj/test/ui-form\\": [\\"libs/test/ui-form/src/index.ts\\"],
       \\"@proj/test/feature-auth\\": [\\"libs/test/feature-auth/src/index.ts\\"]
     }
   }
@@ -673,7 +704,9 @@ exports[`init schematic should run successfully 4`] = `
     \\"@angular/router\\": \\"^10.0.0\\",
     \\"zone.js\\": \\"^0.10.2\\",
     \\"bootstrap\\": \\"^4.5.2\\",
-    \\"bootswatch\\": \\"^4.5.2\\"
+    \\"bootswatch\\": \\"^4.5.2\\",
+    \\"@ngx-formly/core\\": \\"5.10.3\\",
+    \\"@ngx-formly/bootstrap\\": \\"5.10.3\\"
   },
   \\"devDependencies\\": {
     \\"@nxpm/cli\\": \\"^1.9.0\\",
