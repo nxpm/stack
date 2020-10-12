@@ -703,6 +703,10 @@ exports[`init schematic should run successfully 4`] = `
     \\"@angular/platform-browser-dynamic\\": \\"^10.0.0\\",
     \\"@angular/router\\": \\"^10.0.0\\",
     \\"zone.js\\": \\"^0.10.2\\",
+    \\"@ngrx/store\\": \\"10.0.0\\",
+    \\"@ngrx/effects\\": \\"10.0.0\\",
+    \\"@ngrx/entity\\": \\"10.0.0\\",
+    \\"@ngrx/router-store\\": \\"10.0.0\\",
     \\"bootstrap\\": \\"^4.5.2\\",
     \\"bootswatch\\": \\"^4.5.2\\",
     \\"@ngx-formly/core\\": \\"5.10.3\\",
@@ -737,7 +741,9 @@ exports[`init schematic should run successfully 4`] = `
     \\"jest-preset-angular\\": \\"8.3.1\\",
     \\"cypress\\": \\"^4.1.0\\",
     \\"@nrwl/cypress\\": \\"10.2.1\\",
-    \\"typescript\\": \\"~3.9.5\\"
+    \\"typescript\\": \\"~3.9.5\\",
+    \\"@ngrx/schematics\\": \\"10.0.0\\",
+    \\"@ngrx/store-devtools\\": \\"10.0.0\\"
   },
   \\"husky\\": {
     \\"hooks\\": {
@@ -765,7 +771,7 @@ exports[`init schematic should run successfully 4`] = `
     \\"start\\": \\"node dist/apps/api/main.js\\",
     \\"build:test\\": \\"nx build test --prod\\",
     \\"dev:test\\": \\"nx serve test\\",
-    \\"sdk\\": \\"graphql-codegen --config libs/test/test-data-access-core/src/codegen.yml\\",
+    \\"sdk\\": \\"graphql-codegen --config libs/test/data-access-core/src/codegen.yml\\",
     \\"sdk:watch\\": \\"yarn sdk --watch\\",
     \\"setup\\": \\"yarn prisma migrate save -n initial-migration --experimental && yarn prisma migrate up --experimental && yarn prisma:generate\\",
     \\"build:api\\": \\"nx build api --prod\\",
