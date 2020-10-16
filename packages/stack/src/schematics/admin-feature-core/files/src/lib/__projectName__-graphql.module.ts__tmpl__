@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core'
+import { Store } from '@ngrx/store'
+import { getAuthToken } from '@<%= npmScope %>/<%= appName %>/data-access-auth'
 import { APOLLO_OPTIONS } from 'apollo-angular'
-import { ApolloClientOptions, InMemoryCache, split } from '@apollo/client/core'
+import { ApolloClientOptions, ApolloLink, InMemoryCache, split } from '@apollo/client/core'
 import { WebSocketLink } from '@apollo/client/link/ws'
 import { getMainDefinition } from '@apollo/client/utilities'
 import { HttpLink } from 'apollo-angular/http'
@@ -19,9 +21,31 @@ function wsUri(): string {
     environment.graphql,
   ].join('')
 }
+const getHeaders = (token?: string) => {
+  if (!token) {
+    console.log('AdminFeatureCoreGraphQLModule: No Token')
+    return undefined
+  }
+  return {
+    authorization: token ? `Bearer ${token}` : null,
+  }
+}
 
-export function createApollo(httpLink: HttpLink): ApolloClientOptions<any> {
+export function createApollo(httpLink: HttpLink, store: Store): ApolloClientOptions<any> {
+  let token
+  store.select(getAuthToken).subscribe((res) => {
+    token = res
+  })
   const http = httpLink.create({ uri: environment.graphql })
+  const middlewareLink = new ApolloLink((operation, forward) => {
+    operation.setContext(() => {
+      return {
+        headers: getHeaders(token),
+      }
+    })
+    return forward(operation)
+  })
+  const httpAuth = middlewareLink.concat(http)
   const ws = new WebSocketLink({
     uri: wsUri(),
     options: {
@@ -34,7 +58,7 @@ export function createApollo(httpLink: HttpLink): ApolloClientOptions<any> {
       return kind === 'OperationDefinition' && operation === 'subscription'
     },
     ws,
-    http,
+    httpAuth,
   )
   return {
     link,
@@ -47,7 +71,7 @@ export function createApollo(httpLink: HttpLink): ApolloClientOptions<any> {
     {
       provide: APOLLO_OPTIONS,
       useFactory: createApollo,
-      deps: [HttpLink],
+      deps: [HttpLink, Store],
     },
   ],
 })
