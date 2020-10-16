@@ -6,9 +6,30 @@
 
 ## Creating a new project
 
-> Currently, creating a project is a manual process. This will be simplified soon™!️
+### Using @nxpm/cli
 
-Create a new Nx Workspace and make sure to use the `empty` preset!
+You can create a new workspace by installing the @nxpm/cli package globally.
+
+Run the following command:
+
+```shell script
+yarn global add @nxpm/cli
+```
+
+After the installation, you should have the `nxpm-stack` command available.
+
+Run the following command to create a project called 'sandbox':
+
+```shell script
+nxpm-stack init --name sandbox
+cd sandbox
+```
+
+### Manual installation
+
+Alternatively, you can create a project manually:
+
+Create a new Nx Workspace and make sure to use the `empty` preset.
 
 ```shell script
 yarn create nx-workspace sandbox --preset=empty --nx-cloud true --cli=angular
@@ -42,6 +63,8 @@ To start the server, run the following command:
 ```shell script
 docker-compose up
 ```
+
+> Currently, the database connection string is defined in `libs/api/data-access-core/src/prisma/.env`. When [this issue](https://github.com/prisma/prisma/issues/3720) is closed it will be defined in `.env`.
 
 ### Seed the database
 
@@ -82,5 +105,7 @@ yarn dev:admin
 ```
 
 You should be able to navigate to [http://localhost:4200](http://localhost:4200) and see the Angular app.
+
+You can now register a new user, the initial user will get the Admin role.
 
 ## MIT Licensed by beeman 🐝
