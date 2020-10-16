@@ -63,7 +63,7 @@
   },
   "lint-staged": {
     "*.{js,json,css,scss,md,ts,html,graphql}": [
-      "yarn run format --uncommitted"
+      "yarn run format"
     ]
   }
 }

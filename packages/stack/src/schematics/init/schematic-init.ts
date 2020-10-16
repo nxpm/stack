@@ -1,7 +1,13 @@
 import { chain, externalSchematic, noop, Rule, schematic, Tree } from '@angular-devkit/schematics'
 import { addDepsToPackageJson, formatFiles, ProjectType } from '@nrwl/workspace'
 import { stringify } from 'yaml'
-import { addRunScript, configureHuskyLintStaged, normalizeOptions, removeFiles } from '../../utils'
+import {
+  addRunScript,
+  configureHuskyLintStaged,
+  configureNxJsonDefaultBase,
+  normalizeOptions,
+  removeFiles,
+} from '../../utils'
 
 import { InitSchematicSchema } from './schema'
 
@@ -113,6 +119,7 @@ export default function (options: InitSchematicSchema): Rule {
     addDockerignore(),
     addDockerCompose(),
     configureHuskyLintStaged(),
+    configureNxJsonDefaultBase('main'),
     options?.ci === 'github' ? externalSchematic('@nxpm/ci', 'github', {}) : noop(),
     schematic('api', { name: apiName }),
     schematic('admin', { name: adminName }),

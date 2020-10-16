@@ -56,6 +56,13 @@ export function configureHuskyLintStaged() {
   })
 }
 
+export function configureNxJsonDefaultBase(defaultBase: string) {
+  return updateJsonInTree(`/nx.json`, (json) => {
+    json['affected'] = { defaultBase }
+    return json
+  })
+}
+
 export function addRunScript(script: string, command: string, force = false) {
   return updateJsonInTree(`/package.json`, (json) => {
     if (!json['scripts']) {
