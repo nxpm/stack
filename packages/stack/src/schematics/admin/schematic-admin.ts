@@ -152,8 +152,8 @@ export default function (options: AdminSchematicSchema): Rule {
       directory,
       name: 'form',
     }),
-    addRunScript(`dev:${name}`, `nx serve ${name}`),
     addRunScript(`build:${name}`, `nx build ${name} --prod`),
+    addRunScript(`dev:${name}`, `nx serve ${name}`),
     addFiles(normalizedOptions),
     removeFiles(
       [

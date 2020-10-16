@@ -21,12 +21,12 @@ export default function (options: ApiSchematicSchema): Rule {
     schematic('api-data-access-core', { directory, name: 'core', appName: name }),
     schematic('api-feature-core', { directory, name: 'core' }),
     addFiles(normalizedOptions),
-    addRunScript(`dev:${name}`, `nx serve ${name}`),
-    addRunScript(`build:${name}`, `nx build ${name} --prod`),
     addRunScript(
       `setup`,
       `yarn prisma migrate save -n initial-migration --experimental && yarn prisma migrate up --experimental && yarn prisma:generate`,
     ),
+    addRunScript(`build:${name}`, `nx build ${name} --prod`),
+    addRunScript(`dev:${name}`, `yarn prisma:generate && nx serve ${name}`),
     createDotEnv([`NODE_ENV=development`, `PORT=3000`]),
     removeFiles(
       [`.gitkeep`, `app.controller.ts`, `app.controller.spec.ts`, `app.service.ts`, `app.service.spec.ts`],
