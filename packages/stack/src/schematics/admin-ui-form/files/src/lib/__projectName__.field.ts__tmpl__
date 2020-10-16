@@ -108,5 +108,3 @@ export class <%= classify(projectName) %>Field implements FormlyFieldConfig {
     return <%= classify(projectName) %>Field.field('rating', key, { ...templateOptions }, { ...options })
   }
 }
-
-export class <%= classify(projectName) %>Field extends <%= classify(projectName) %>Field {}
