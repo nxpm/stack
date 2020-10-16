@@ -69,6 +69,9 @@ export function addRunScript(script: string, command: string, force = false) {
       json['scripts'] = {}
     }
     if (!json['scripts'][script] || force) {
+      if (json['scripts'][script]) {
+        delete json['scripts'][script]
+      }
       json['scripts'] = {
         [script]: command,
         ...json['scripts'],
