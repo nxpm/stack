@@ -794,28 +794,28 @@ exports[`init schematic should run successfully 4`] = `
       \\"yarn format --uncommitted\\"
     ]
   },
-  \\"prisma\\": {
-    \\"schema\\": \\"libs/api/data-access-core/src/prisma/schema.prisma\\"
-  },
   \\"scripts\\": {
-    \\"docker:push\\": \\"docker push nxpm/api\\",
-    \\"docker:run\\": \\"docker run -it -p 8000:3000 nxpm/api\\",
-    \\"docker:build\\": \\"docker build . -t nxpm/api\\",
-    \\"build\\": \\"yarn build:test && yarn build:api\\",
-    \\"start\\": \\"node dist/apps/api/main.js\\",
-    \\"build:test\\": \\"nx build test --prod\\",
     \\"dev:test\\": \\"nx serve test\\",
+    \\"build:test\\": \\"nx build test --prod\\",
     \\"sdk\\": \\"graphql-codegen --config libs/test/data-access-auth/src/codegen.yml\\",
     \\"sdk:watch\\": \\"yarn sdk --watch\\",
-    \\"setup\\": \\"yarn prisma migrate save -n initial-migration --experimental && yarn prisma migrate up --experimental && yarn prisma:generate\\",
+    \\"dev:api\\": \\"yarn prisma:generate && nx serve api\\",
     \\"build:api\\": \\"nx build api --prod\\",
-    \\"dev:api\\": \\"nx serve api\\",
+    \\"setup\\": \\"yarn prisma migrate save -n initial-migration --experimental && yarn prisma migrate up --experimental && yarn prisma:generate\\",
     \\"prisma:apply\\": \\"yarn prisma:format && yarn prisma:migrate && yarn prisma:generate\\",
     \\"prisma:format\\": \\"yarn prisma format\\",
     \\"prisma:generate\\": \\"yarn prisma generate\\",
     \\"prisma:migrate\\": \\"yarn prisma migrate save --experimental && yarn prisma migrate up --experimental\\",
     \\"prisma:studio\\": \\"yarn prisma studio\\",
+    \\"build\\": \\"yarn build:test && yarn build:api\\",
+    \\"start\\": \\"node dist/apps/api/main.js\\",
+    \\"docker:build\\": \\"docker build . -t nxpm/api\\",
+    \\"docker:run\\": \\"docker run -it -p 8000:3000 nxpm/api\\",
+    \\"docker:push\\": \\"docker push nxpm/api\\",
     \\"postinstall\\": \\"ngcc --properties es2015 browser module main --first-only --create-ivy-entry-points\\"
+  },
+  \\"prisma\\": {
+    \\"schema\\": \\"libs/api/data-access-core/src/prisma/schema.prisma\\"
   }
 }
 "
