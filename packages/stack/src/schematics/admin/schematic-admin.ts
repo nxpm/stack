@@ -102,6 +102,11 @@ export default function (options: AdminSchematicSchema): Rule {
       directory,
       name: 'assets',
     }),
+    schematic('admin-data-access-auth', {
+      appName: name,
+      directory,
+      name: 'auth',
+    }),
     schematic('admin-data-access-core', {
       appName: name,
       directory,
@@ -112,7 +117,13 @@ export default function (options: AdminSchematicSchema): Rule {
       directory,
       name: 'about',
     }),
+    schematic('admin-feature-auth', {
+      appName: name,
+      directory,
+      name: 'auth',
+    }),
     schematic('admin-feature-core', {
+      appName: name,
       directory,
       name: 'core',
     }),
@@ -141,7 +152,6 @@ export default function (options: AdminSchematicSchema): Rule {
       directory,
       name: 'form',
     }),
-    schematic('admin-lib', { directory, name: 'auth', type: 'feature' }),
     addRunScript(`dev:${name}`, `nx serve ${name}`),
     addRunScript(`build:${name}`, `nx build ${name} --prod`),
     addFiles(normalizedOptions),

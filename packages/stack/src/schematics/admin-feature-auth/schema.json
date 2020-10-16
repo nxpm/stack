@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema",
-  "id": "AdminFeatureCore",
+  "id": "AdminFeatureAuth",
   "title": "",
   "type": "object",
   "properties": {
@@ -29,5 +29,5 @@
       "alias": "d"
     }
   },
-  "required": ["name"]
+  "required": ["appName", "name"]
 }

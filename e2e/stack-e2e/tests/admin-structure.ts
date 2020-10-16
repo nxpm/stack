@@ -5,6 +5,7 @@ export function adminProjects(project: string) {
     project,
     `${project}-e2e`,
     `${project}-assets`,
+    `${project}-data-access-auth`,
     `${project}-data-access-core`,
     `${project}-feature-about`,
     `${project}-feature-auth`,

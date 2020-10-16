@@ -1,0 +1,16 @@
+import { Injectable } from '@angular/core'
+import { ApolloAngularSDK, LoginInput, RegisterInput } from '@<%= npmScope %>/<%= appName %>/data-access-core'
+import { map } from 'rxjs/operators'
+
+@Injectable()
+export class <%= classify(projectName) %>Service {
+  constructor(public readonly sdk: ApolloAngularSDK) {}
+
+  login(input: LoginInput) {
+    return this.sdk.login({ input }).pipe(map((res) => res?.data?.login))
+  }
+
+  register(input: RegisterInput) {
+    return this.sdk.register({ input }).pipe(map((res) => res?.data?.register))
+  }
+}

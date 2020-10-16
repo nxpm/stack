@@ -13,6 +13,11 @@
       "schema": "./src/schematics/admin-assets/schema.json",
       "description": "admin-assets schematic"
     },
+    "admin-data-access-auth": {
+      "factory": "./src/schematics/admin-data-access-auth/schematic-admin-data-access-auth",
+      "schema": "./src/schematics/admin-data-access-auth/schema.json",
+      "description": "admin-data-access-auth schematic"
+    },
     "admin-data-access-core": {
       "factory": "./src/schematics/admin-data-access-core/schematic-admin-data-access-core",
       "schema": "./src/schematics/admin-data-access-core/schema.json",
@@ -22,6 +27,11 @@
       "factory": "./src/schematics/admin-feature-about/schematic-admin-feature-about",
       "schema": "./src/schematics/admin-feature-about/schema.json",
       "description": "admin-feature-about schematic"
+    },
+    "admin-feature-auth": {
+      "factory": "./src/schematics/admin-feature-auth/schematic-admin-feature-auth",
+      "schema": "./src/schematics/admin-feature-auth/schema.json",
+      "description": "admin-feature-auth schematic"
     },
     "admin-feature-core": {
       "factory": "./src/schematics/admin-feature-core/schematic-admin-feature-core",

@@ -16,7 +16,7 @@ describe('@nxpm/stack:init e2e', () => {
 
   beforeAll(async () => {
     // During this test we don't want to install the Husky hooks as it interferes with the hooks in this projects repo.
-    process.env.HUSKY_SKIP_INSTALL = '1'
+    process.env.HUSKY_SKIP_INSTALL = 'true'
     ensureNxProject('@nxpm/stack', 'dist/packages/stack')
     await runNxCommandAsync(`generate @nxpm/stack:init ${projectNameAdmin}`)
   })

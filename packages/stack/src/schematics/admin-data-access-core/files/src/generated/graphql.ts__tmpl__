@@ -11,8 +11,39 @@ export type Scalars = {
   Boolean: boolean
   Int: number
   Float: number
+  /** A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format. */
+  DateTime: any
   /** The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf). */
   JSON: any
+}
+
+export type User = {
+  __typename?: 'User'
+  id?: Maybe<Scalars['String']>
+  createdAt?: Maybe<Scalars['DateTime']>
+  updatedAt?: Maybe<Scalars['DateTime']>
+  email?: Maybe<Scalars['String']>
+  phone?: Maybe<Scalars['String']>
+  username?: Maybe<Scalars['String']>
+  firstName?: Maybe<Scalars['String']>
+  lastName?: Maybe<Scalars['String']>
+  avatarUrl?: Maybe<Scalars['String']>
+  location?: Maybe<Scalars['String']>
+  bio?: Maybe<Scalars['String']>
+  role?: Maybe<Role>
+}
+
+/** User role */
+export enum Role {
+  Admin = 'Admin',
+  User = 'User',
+}
+
+export type UserToken = {
+  __typename?: 'UserToken'
+  /** JWT Bearer token */
+  token: Scalars['String']
+  user: User
 }
 
 export type IntercomMessage = {
@@ -24,18 +55,44 @@ export type IntercomMessage = {
 
 export type Query = {
   __typename?: 'Query'
+  me?: Maybe<User>
   uptime: Scalars['Float']
 }
 
 export type Mutation = {
   __typename?: 'Mutation'
+  register?: Maybe<UserToken>
+  login?: Maybe<UserToken>
   intercomPub?: Maybe<IntercomMessage>
+}
+
+export type MutationRegisterArgs = {
+  input: RegisterInput
+}
+
+export type MutationLoginArgs = {
+  input: LoginInput
 }
 
 export type MutationIntercomPubArgs = {
   payload?: Maybe<Scalars['JSON']>
   scope?: Maybe<Scalars['String']>
   type: Scalars['String']
+}
+
+export type RegisterInput = {
+  email: Scalars['String']
+  username?: Maybe<Scalars['String']>
+  firstName?: Maybe<Scalars['String']>
+  lastName?: Maybe<Scalars['String']>
+  phone?: Maybe<Scalars['String']>
+  avatarUrl?: Maybe<Scalars['String']>
+  password: Scalars['String']
+}
+
+export type LoginInput = {
+  email: Scalars['String']
+  password: Scalars['String']
 }
 
 export type Subscription = {
@@ -46,6 +103,32 @@ export type Subscription = {
 export type SubscriptionIntercomSubArgs = {
   scope?: Maybe<Scalars['String']>
   type?: Maybe<Scalars['String']>
+}
+
+export type UserTokenDetailsFragment = { __typename?: 'UserToken' } & Pick<UserToken, 'token'> & {
+    user: { __typename?: 'User' } & UserDetailsFragment
+  }
+
+export type UserDetailsFragment = { __typename?: 'User' } & Pick<User, 'id' | 'username' | 'avatarUrl' | 'email'>
+
+export type MeQueryVariables = Exact<{ [key: string]: never }>
+
+export type MeQuery = { __typename?: 'Query' } & { me?: Maybe<{ __typename?: 'User' } & UserDetailsFragment> }
+
+export type RegisterMutationVariables = Exact<{
+  input: RegisterInput
+}>
+
+export type RegisterMutation = { __typename?: 'Mutation' } & {
+  register?: Maybe<{ __typename?: 'UserToken' } & UserTokenDetailsFragment>
+}
+
+export type LoginMutationVariables = Exact<{
+  input: LoginInput
+}>
+
+export type LoginMutation = { __typename?: 'Mutation' } & {
+  login?: Maybe<{ __typename?: 'UserToken' } & UserTokenDetailsFragment>
 }
 
 export type UptimeQueryVariables = Exact<{ [key: string]: never }>
@@ -73,6 +156,23 @@ export type IntercomSubSubscription = { __typename?: 'Subscription' } & {
   intercomSub?: Maybe<{ __typename?: 'IntercomMessage' } & IntercomDetailsFragment>
 }
 
+export const UserDetailsFragmentDoc = gql`
+  fragment UserDetails on User {
+    id
+    username
+    avatarUrl
+    email
+  }
+`
+export const UserTokenDetailsFragmentDoc = gql`
+  fragment UserTokenDetails on UserToken {
+    token
+    user {
+      ...UserDetails
+    }
+  }
+  ${UserDetailsFragmentDoc}
+`
 export const IntercomDetailsFragmentDoc = gql`
   fragment IntercomDetails on IntercomMessage {
     type
@@ -80,6 +180,63 @@ export const IntercomDetailsFragmentDoc = gql`
     payload
   }
 `
+export const MeDocument = gql`
+  query me {
+    me {
+      ...UserDetails
+    }
+  }
+  ${UserDetailsFragmentDoc}
+`
+
+@Injectable({
+  providedIn: 'root',
+})
+export class MeGQL extends Apollo.Query<MeQuery, MeQueryVariables> {
+  document = MeDocument
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo)
+  }
+}
+export const RegisterDocument = gql`
+  mutation Register($input: RegisterInput!) {
+    register(input: $input) {
+      ...UserTokenDetails
+    }
+  }
+  ${UserTokenDetailsFragmentDoc}
+`
+
+@Injectable({
+  providedIn: 'root',
+})
+export class RegisterGQL extends Apollo.Mutation<RegisterMutation, RegisterMutationVariables> {
+  document = RegisterDocument
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo)
+  }
+}
+export const LoginDocument = gql`
+  mutation Login($input: LoginInput!) {
+    login(input: $input) {
+      ...UserTokenDetails
+    }
+  }
+  ${UserTokenDetailsFragmentDoc}
+`
+
+@Injectable({
+  providedIn: 'root',
+})
+export class LoginGQL extends Apollo.Mutation<LoginMutation, LoginMutationVariables> {
+  document = LoginDocument
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo)
+  }
+}
 export const UptimeDocument = gql`
   query Uptime {
     uptime
@@ -148,10 +305,32 @@ interface SubscriptionOptionsAlone<V> extends Omit<ApolloCore.SubscriptionOption
 @Injectable({ providedIn: 'root' })
 export class ApolloAngularSDK {
   constructor(
+    private meGql: MeGQL,
+    private registerGql: RegisterGQL,
+    private loginGql: LoginGQL,
     private uptimeGql: UptimeGQL,
     private intercomPubGql: IntercomPubGQL,
     private intercomSubGql: IntercomSubGQL,
   ) {}
+
+  me(variables?: MeQueryVariables, options?: QueryOptionsAlone<MeQueryVariables>) {
+    return this.meGql.fetch(variables, options)
+  }
+
+  meWatch(variables?: MeQueryVariables, options?: WatchQueryOptionsAlone<MeQueryVariables>) {
+    return this.meGql.watch(variables, options)
+  }
+
+  register(
+    variables: RegisterMutationVariables,
+    options?: MutationOptionsAlone<RegisterMutation, RegisterMutationVariables>,
+  ) {
+    return this.registerGql.mutate(variables, options)
+  }
+
+  login(variables: LoginMutationVariables, options?: MutationOptionsAlone<LoginMutation, LoginMutationVariables>) {
+    return this.loginGql.mutate(variables, options)
+  }
 
   uptime(variables?: UptimeQueryVariables, options?: QueryOptionsAlone<UptimeQueryVariables>) {
     return this.uptimeGql.fetch(variables, options)
