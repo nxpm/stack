@@ -50,7 +50,7 @@ When starting with an empty database, you need to make sure the table structure 
 To do this, run the following command:
 
 ```shell script
-yarn prisma:apply
+yarn setup
 ```
 
 ### Start the API
