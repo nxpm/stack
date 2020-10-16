@@ -144,6 +144,7 @@ export function adminFileTests(project: string): FileTests {
         `LayoutComponent`,
         `${project}/layout`,
       ],
+      [`libs/${project}/feature-shell/src/lib/not-found/not-found.component.ts`]: [`This page could not be found :(`],
       [`libs/${project}/layout/src/lib/${project}-layout.component.ts`]: [
         '<router-outlet></router-outlet>',
         'layout-footer',
