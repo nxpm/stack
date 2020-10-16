@@ -28,7 +28,8 @@
   },
   "private": true,
   "dependencies": {
-    "@nrwl/nx-cloud": "^10.1.1"
+    "@nrwl/nx-cloud": "^10.1.1",
+    "yaml": "^1.10.0"
   },
   "devDependencies": {
     "@nrwl/angular": "^10.2.1",

@@ -1,5 +1,6 @@
 import { chain, externalSchematic, noop, Rule, schematic, Tree } from '@angular-devkit/schematics'
 import { addDepsToPackageJson, formatFiles, ProjectType } from '@nrwl/workspace'
+import { stringify } from 'yaml'
 import { addRunScript, configureHuskyLintStaged, normalizeOptions, removeFiles } from '../../utils'
 
 import { InitSchematicSchema } from './schema'
@@ -57,12 +58,38 @@ function addDockerfile(): Rule {
     }
   }
 }
+
 function addDockerignore(): Rule {
   const file = '.dockerignore'
   const contents = ['dist', 'node_modules'].join('\n')
   return (tree: Tree) => {
     if (!tree.exists(file)) {
       tree.create(file, contents)
+    }
+  }
+}
+
+function addDockerCompose(): Rule {
+  const file = 'docker-compose.yml'
+  const structure = {
+    version: '3',
+    services: {
+      postgres: {
+        image: 'postgres',
+        ports: ['5432:5432'],
+        environment: {
+          POSTGRES_DB: 'prisma',
+          POSTGRES_USER: 'prisma',
+          POSTGRES_PASSWORD: 'prisma',
+        },
+        volumes: ['./tmp/postgres:/var/lib/postgresql/data'],
+      },
+    },
+  }
+
+  return (tree: Tree) => {
+    if (!tree.exists(file)) {
+      tree.create(file, stringify(structure))
     }
   }
 }
@@ -84,6 +111,7 @@ export default function (options: InitSchematicSchema): Rule {
     updatePrettierConfig(),
     addDockerfile(),
     addDockerignore(),
+    addDockerCompose(),
     configureHuskyLintStaged(),
     options?.ci === 'github' ? externalSchematic('@nxpm/ci', 'github', {}) : noop(),
     schematic('api', { name: apiName }),
