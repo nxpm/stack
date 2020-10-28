@@ -10,8 +10,8 @@ export default function (options: ApiDataAccessCoreSchematicSchema): Rule {
   return chain([
     addDepsToPackageJson(
       {
-        '@prisma/cli': '^2.8.0',
-        '@prisma/client': '^2.8.0',
+        '@prisma/cli': '^2.10.0',
+        '@prisma/client': '^2.10.0',
       },
       {},
       true,

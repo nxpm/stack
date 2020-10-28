@@ -7,6 +7,7 @@ export default function (options: AdminDataAccessCoreSchematicSchema): Rule {
   const name = options.name || 'data-access'
   const directory = options.directory || options.name
   const normalizedOptions = normalizeOptions({ ...options, name: `data-access-${name}` }, ProjectType.Library)
+  const sdkName = `sdk:${options.appName}`
   return chain([
     schematic('admin-lib', {
       directory,
@@ -14,7 +15,7 @@ export default function (options: AdminDataAccessCoreSchematicSchema): Rule {
       type: 'data-access',
     }),
     addFiles(normalizedOptions),
-    addRunScript('sdk:watch', 'yarn sdk --watch'),
-    addRunScript('sdk', `graphql-codegen --config ${normalizedOptions.projectRoot}/src/codegen.yml`),
+    addRunScript(`${sdkName}:watch`, `yarn ${sdkName} --watch`),
+    addRunScript(`${sdkName}`, `graphql-codegen --config ${normalizedOptions.projectRoot}/src/codegen.yml`),
   ])
 }

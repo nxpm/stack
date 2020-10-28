@@ -22,7 +22,5 @@ describe('admin-data-access-auth schematic', () => {
     await expect(
       testRunner.runSchematicAsync('admin-data-access-auth', options, appTree).toPromise(),
     ).resolves.not.toThrowError()
-    const codegenPath = 'data-access-auth/src/codegen.yml'
-    expect(appTree.read('package.json').toString()).toContain(codegenPath)
   })
 })

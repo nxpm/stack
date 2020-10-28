@@ -233,21 +233,13 @@ export function addTsconfigPath(packageName: string, paths: string[]): Rule {
 
 export function addPrismaConfig(normalizedOptions: NormalizedSchema) {
   const prismaFile = `libs/${normalizedOptions.directory}/${normalizedOptions.name}/src/prisma/schema.prisma`
-  const prismaEnvFile = prismaFile.replace('schema.prisma', '.env')
-  const schemaName = uniq(`${normalizedOptions.npmScope}-${normalizedOptions.name}`)
-  const envFileContent = `DATABASE_URL=postgresql://prisma:prisma@localhost:5432/prisma?schema=${schemaName}\n`
-  return (host: Tree, context: SchematicContext) => {
-    if (host.exists(prismaEnvFile)) {
-      host.overwrite(prismaEnvFile, envFileContent)
-    } else {
-      host.create(prismaEnvFile, envFileContent)
-    }
 
+  return (host: Tree, context: SchematicContext) => {
     return chain([
       updateJsonInTree('package.json', (json) => {
         json.prisma = { schema: prismaFile }
         json.scripts = {
-          'prisma:apply': 'yarn prisma:format && yarn prisma:migrate && yarn prisma:generate',
+          'prisma:apply': 'yarn prisma:format && yarn prisma db push --preview-feature',
           'prisma:format': 'yarn prisma format',
           'prisma:generate': 'yarn prisma generate',
           'prisma:migrate': 'yarn prisma migrate save --experimental && yarn prisma migrate up --experimental',
