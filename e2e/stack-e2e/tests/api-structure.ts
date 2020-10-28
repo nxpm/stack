@@ -31,7 +31,6 @@ export function apiFileTests(project: string): FileTests {
       ...apiCrudFiles(project, 'feature-core'),
       `libs/${project}/data-access-core/src/lib/${project}-data-access-core.module.ts`,
       `libs/${project}/data-access-core/src/lib/${project}-data-access-core.service.ts`,
-      `libs/${project}/data-access-core/src/prisma/.env`,
       `libs/${project}/data-access-core/src/prisma/schema.prisma`,
       `libs/${project}/feature-core/src/lib/${project}-feature-core.module.ts`,
       `libs/${project}/feature-core/src/lib/config/configuration.ts`,
@@ -84,9 +83,6 @@ export function apiFileTests(project: string): FileTests {
         `public findUserByUsername(username: string) {`,
       ],
       [`libs/${project}/data-access-core/src/prisma/schema.prisma`]: [`env("DATABASE_URL")`, `"prisma-client-js"`],
-      [`libs/${project}/data-access-core/src/prisma/.env`]: [
-        `postgresql://prisma:prisma@localhost:5432/prisma?schema=`,
-      ],
       [`apps/${project}/src/main.ts`]: [`Logger.log('Listening at http://localhost:' + port + '/graphql')`],
       [`libs/${project}/feature-core/src/lib/${project}-feature-core.module.ts`]: [
         `ConfigModule.forRoot`,
