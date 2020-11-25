@@ -57,15 +57,15 @@ export class ApiDataAccessAuthService {
   }
 
   public findUserByEmail(email: string) {
-    return this.data.user.findOne({ where: { email } });
+    return this.data.user.findUnique({ where: { email } });
   }
 
   public findUserById(userId: string) {
-    return this.data.user.findOne({ where: { id: userId } });
+    return this.data.user.findUnique({ where: { id: userId } });
   }
 
   public findUserByUsername(username: string) {
-    return this.data.user.findOne({ where: { username } });
+    return this.data.user.findUnique({ where: { username } });
   }
 
 
