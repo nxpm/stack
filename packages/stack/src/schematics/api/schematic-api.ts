@@ -3,7 +3,7 @@ import { addDepsToPackageJson, ProjectType } from '@nrwl/workspace'
 import { addFiles, addRunScript, createDotEnv, normalizeOptions, removeFiles, uniq } from '../../utils'
 import { ApiSchematicSchema } from './schema'
 
-export default function (options: ApiSchematicSchema): Rule {
+export default function(options: ApiSchematicSchema): Rule {
   const name = options.name || 'api'
   const directory = options.directory || options.name
   const normalizedOptions = normalizeOptions<ApiSchematicSchema>({ ...options }, ProjectType.Application)
@@ -22,10 +22,7 @@ export default function (options: ApiSchematicSchema): Rule {
     schematic('api-data-access-core', { directory, name: 'core', appName: name }),
     schematic('api-feature-core', { directory, name: 'core' }),
     addFiles(normalizedOptions),
-    addRunScript(
-      `setup`,
-      `yarn prisma migrate save -n initial-migration --experimental && yarn prisma migrate up --experimental && yarn prisma:generate`,
-    ),
+    addRunScript(`setup`, `yarn prisma:apply`),
     addRunScript(`build:${name}`, `nx build ${name} --prod`),
     addRunScript(`dev:${name}`, `yarn prisma:generate && nx serve ${name}`),
     createDotEnv([
