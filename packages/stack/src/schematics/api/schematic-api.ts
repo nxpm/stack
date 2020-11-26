@@ -3,7 +3,7 @@ import { addDepsToPackageJson, ProjectType } from '@nrwl/workspace'
 import { addFiles, addRunScript, createDotEnv, normalizeOptions, removeFiles, uniq } from '../../utils'
 import { ApiSchematicSchema } from './schema'
 
-export default function(options: ApiSchematicSchema): Rule {
+export default function (options: ApiSchematicSchema): Rule {
   const name = options.name || 'api'
   const directory = options.directory || options.name
   const normalizedOptions = normalizeOptions<ApiSchematicSchema>({ ...options }, ProjectType.Application)
