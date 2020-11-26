@@ -2,6 +2,8 @@ import { BadRequestException, Injectable, NotFoundException } from '@nestjs/comm
 import { JwtService } from '@nestjs/jwt';
 import { UserCreateInput } from '@prisma/client';
 import { ApiDataAccessCoreService } from '@<%= npmScope %>/<%= appName %>/data-access-core';
+import { ApiFeatureCoreService } from '@<%= npmScope %>/<%= appName %>/feature-core'
+import { Response } from 'express'
 import { getGravatarUrl, hashPassword, validatePassword } from './<%= projectName %>.helper';
 import { LoginInput } from './dto/login.input';
 import { RegisterInput } from './dto/register.input';
@@ -12,6 +14,7 @@ import { Role } from './models/role';
 export class ApiDataAccessAuthService {
   constructor(
     private readonly data: ApiDataAccessCoreService,
+    private readonly core: ApiFeatureCoreService,
     private readonly jwtService: JwtService
   ) {}
 
@@ -88,5 +91,13 @@ export class ApiDataAccessAuthService {
         role: Role.User,
       },
     })
+  }
+
+  public setCookie(res: Response, token: string) {
+    return res?.cookie(this.core.cookie.name, token, this.core.cookie.options)
+  }
+
+  public clearCookie(res: Response) {
+    return res.clearCookie(this.core.cookie.name, this.core.cookie.options)
   }
 }

@@ -20,7 +20,14 @@ import { <%= classify(projectName) %>Service } from './<%= projectName %>.servic
     }),
     GraphQLModule.forRoot({
       autoSchemaFile: join(process.cwd(), 'api-schema.graphql'),
+      context: ({ req, res }) => ({ req, res }),
       installSubscriptionHandlers: true,
+      playground: {
+        settings: {
+          'request.credentials': 'include',
+        },
+      },
+      sortSchema: true,
     }),
     GraphQLIntercomModule.forRoot({ pubSub: new PubSub() }),
   ],

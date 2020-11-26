@@ -1,5 +1,5 @@
 import { chain, externalSchematic, Rule, schematic } from '@angular-devkit/schematics'
-import { ProjectType } from '@nrwl/workspace'
+import { addDepsToPackageJson, ProjectType } from '@nrwl/workspace'
 import { addFiles, addRunScript, createDotEnv, normalizeOptions, removeFiles, uniq } from '../../utils'
 import { ApiSchematicSchema } from './schema'
 
@@ -9,6 +9,7 @@ export default function (options: ApiSchematicSchema): Rule {
   const normalizedOptions = normalizeOptions<ApiSchematicSchema>({ ...options }, ProjectType.Application)
   const schemaName = uniq(`${normalizedOptions.npmScope}-${normalizedOptions.name}`)
   return chain([
+    addDepsToPackageJson({ 'cookie-parser': '1.4.5' }, {}, true),
     externalSchematic('@nrwl/nest', 'application', {
       name,
     }),

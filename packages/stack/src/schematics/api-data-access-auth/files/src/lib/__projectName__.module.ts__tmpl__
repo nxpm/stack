@@ -1,4 +1,5 @@
 import { <%= classify(appName) %>DataAccessCoreModule } from '@<%= npmScope %>/<%= appName %>/data-access-core'
+import { <%= classify(appName) %>FeatureCoreModule, } from '@<%= npmScope %>/<%= appName %>/feature-core'
 import { Module } from '@nestjs/common'
 import { JwtModule } from '@nestjs/jwt'
 import { PassportModule } from '@nestjs/passport'
@@ -9,6 +10,7 @@ import { JwtStrategy } from './strategies/jwt.strategy'
 @Module({
   imports: [
     <%= classify(appName) %>DataAccessCoreModule,
+    <%= classify(appName) %>FeatureCoreModule,
     PassportModule.register({ defaultStrategy: 'jwt' }),
     JwtModule.register({
       secret: '<%= jwtSecret %>',

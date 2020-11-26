@@ -4,4 +4,16 @@ export const configuration = () => ({
   host: process.env.HOST,
   port: parseInt(process.env.PORT, 10),
   apiUrl: process.env.API_URL,
+  api: {
+    cookie: {
+      name: process.env.API_COOKIE_NAME,
+      options: {
+        domain: process.env.API_COOKIE_DOMAIN,
+        httpOnly: true,
+      },
+    },
+    cors: {
+      origin: [process.env.ADMIN_URL],
+    },
+  },
 })

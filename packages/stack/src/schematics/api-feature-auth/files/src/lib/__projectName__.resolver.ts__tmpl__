@@ -7,7 +7,7 @@ import {
   User,
   UserToken,
 } from '@<%= npmScope %>/<%= appName %>/data-access-auth'
-import { Float, Query, Resolver, Mutation, Args, ResolveField, Parent } from '@nestjs/graphql';
+import { Float, Context, Query, Resolver, Mutation, Args, ResolveField, Parent } from '@nestjs/graphql';
 import { UseGuards } from '@nestjs/common';
 
 @Resolver(() => UserToken)
@@ -21,13 +21,23 @@ export class <%= classify(projectName) %>Resolver {
   }
 
   @Mutation(() => UserToken, { nullable: true })
-  async register(@Args('input') input: RegisterInput) {
-    return this.service.register(input)
+  async login(@Context() context, @Args('input') input: LoginInput) {
+    const userToken = await this.service.login(input)
+    this.service.setCookie(context.res, userToken.token)
+    return userToken
+  }
+
+  @Mutation(() => Boolean, { nullable: true })
+  async logout(@Context() context) {
+    this.service.clearCookie(context.res)
+    return true
   }
 
   @Mutation(() => UserToken, { nullable: true })
-  async login(@Args('input') input: LoginInput) {
-    return this.service.login(input)
+  async register(@Context() context, @Args('input') input: RegisterInput) {
+    const userToken = await this.service.register(input)
+    this.service.setCookie(context.res, userToken.token)
+    return userToken
   }
 
   @ResolveField('user')
