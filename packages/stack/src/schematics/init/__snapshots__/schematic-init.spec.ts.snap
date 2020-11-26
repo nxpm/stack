@@ -118,11 +118,9 @@ exports[`init schematic should run successfully 2`] = `
           }
         },
         \\"lint\\": {
-          \\"builder\\": \\"@nrwl/linter:lint\\",
+          \\"builder\\": \\"@nrwl/linter:eslint\\",
           \\"options\\": {
-            \\"linter\\": \\"eslint\\",
-            \\"tsConfig\\": [\\"apps/api/tsconfig.app.json\\", \\"apps/api/tsconfig.spec.json\\"],
-            \\"exclude\\": [\\"**/node_modules/**\\", \\"!apps/api/**/*\\"]
+            \\"lintFilePatterns\\": [\\"apps/api/**/*.ts\\"]
           }
         },
         \\"test\\": {
@@ -165,11 +163,9 @@ exports[`init schematic should run successfully 2`] = `
       \\"schematics\\": {},
       \\"architect\\": {
         \\"lint\\": {
-          \\"builder\\": \\"@nrwl/linter:lint\\",
+          \\"builder\\": \\"@nrwl/linter:eslint\\",
           \\"options\\": {
-            \\"linter\\": \\"eslint\\",
-            \\"tsConfig\\": [\\"libs/api/data-access-auth/tsconfig.lib.json\\", \\"libs/api/data-access-auth/tsconfig.spec.json\\"],
-            \\"exclude\\": [\\"**/node_modules/**\\", \\"!libs/api/data-access-auth/**/*\\"]
+            \\"lintFilePatterns\\": [\\"libs/api/data-access-auth/**/*.ts\\"]
           }
         },
         \\"test\\": {
@@ -188,11 +184,9 @@ exports[`init schematic should run successfully 2`] = `
       \\"schematics\\": {},
       \\"architect\\": {
         \\"lint\\": {
-          \\"builder\\": \\"@nrwl/linter:lint\\",
+          \\"builder\\": \\"@nrwl/linter:eslint\\",
           \\"options\\": {
-            \\"linter\\": \\"eslint\\",
-            \\"tsConfig\\": [\\"libs/api/feature-auth/tsconfig.lib.json\\", \\"libs/api/feature-auth/tsconfig.spec.json\\"],
-            \\"exclude\\": [\\"**/node_modules/**\\", \\"!libs/api/feature-auth/**/*\\"]
+            \\"lintFilePatterns\\": [\\"libs/api/feature-auth/**/*.ts\\"]
           }
         },
         \\"test\\": {
@@ -211,11 +205,9 @@ exports[`init schematic should run successfully 2`] = `
       \\"schematics\\": {},
       \\"architect\\": {
         \\"lint\\": {
-          \\"builder\\": \\"@nrwl/linter:lint\\",
+          \\"builder\\": \\"@nrwl/linter:eslint\\",
           \\"options\\": {
-            \\"linter\\": \\"eslint\\",
-            \\"tsConfig\\": [\\"libs/api/data-access-core/tsconfig.lib.json\\", \\"libs/api/data-access-core/tsconfig.spec.json\\"],
-            \\"exclude\\": [\\"**/node_modules/**\\", \\"!libs/api/data-access-core/**/*\\"]
+            \\"lintFilePatterns\\": [\\"libs/api/data-access-core/**/*.ts\\"]
           }
         },
         \\"test\\": {
@@ -234,11 +226,9 @@ exports[`init schematic should run successfully 2`] = `
       \\"schematics\\": {},
       \\"architect\\": {
         \\"lint\\": {
-          \\"builder\\": \\"@nrwl/linter:lint\\",
+          \\"builder\\": \\"@nrwl/linter:eslint\\",
           \\"options\\": {
-            \\"linter\\": \\"eslint\\",
-            \\"tsConfig\\": [\\"libs/api/feature-core/tsconfig.lib.json\\", \\"libs/api/feature-core/tsconfig.spec.json\\"],
-            \\"exclude\\": [\\"**/node_modules/**\\", \\"!libs/api/feature-core/**/*\\"]
+            \\"lintFilePatterns\\": [\\"libs/api/feature-core/**/*.ts\\"]
           }
         },
         \\"test\\": {
@@ -338,7 +328,11 @@ exports[`init schematic should run successfully 2`] = `
         \\"lint\\": {
           \\"builder\\": \\"@angular-devkit/build-angular:tslint\\",
           \\"options\\": {
-            \\"tsConfig\\": [\\"apps/test/tsconfig.app.json\\", \\"apps/test/tsconfig.spec.json\\"],
+            \\"tsConfig\\": [
+              \\"apps/test/tsconfig.app.json\\",
+              \\"apps/test/tsconfig.spec.json\\",
+              \\"apps/test/tsconfig.editor.json\\"
+            ],
             \\"exclude\\": [\\"**/node_modules/**\\", \\"!apps/test/**/*\\"]
           }
         },
@@ -703,81 +697,82 @@ exports[`init schematic should run successfully 4`] = `
 "{
   \\"name\\": \\"test-name\\",
   \\"dependencies\\": {
+    \\"@angular/animations\\": \\"^10.1.0\\",
+    \\"@angular/common\\": \\"^10.1.0\\",
+    \\"@angular/compiler\\": \\"^10.1.0\\",
+    \\"@angular/core\\": \\"^10.1.0\\",
+    \\"@angular/forms\\": \\"^10.1.0\\",
+    \\"@angular/platform-browser\\": \\"^10.1.0\\",
+    \\"@angular/platform-browser-dynamic\\": \\"^10.1.0\\",
+    \\"@angular/router\\": \\"^10.1.0\\",
+    \\"@apollo/client\\": \\"^3.2.1\\",
+    \\"@kikstart-playground/graphql-intercom\\": \\"1.4.1\\",
     \\"@nestjs/common\\": \\"^7.0.0\\",
+    \\"@nestjs/config\\": \\"^0.5.0\\",
     \\"@nestjs/core\\": \\"^7.0.0\\",
-    \\"@nestjs/platform-express\\": \\"^7.0.0\\",
-    \\"reflect-metadata\\": \\"^0.1.13\\",
-    \\"rxjs\\": \\"~6.5.5\\",
-    \\"supertest\\": \\"^5.0.0\\",
+    \\"@nestjs/graphql\\": \\"^7.7.0\\",
     \\"@nestjs/jwt\\": \\"^7.1.0\\",
     \\"@nestjs/passport\\": \\"^7.1.0\\",
-    \\"bcryptjs\\": \\"^2.4.3\\",
-    \\"passport\\": \\"^0.4.1\\",
-    \\"passport-jwt\\": \\"^4.0.0\\",
-    \\"@prisma/cli\\": \\"^2.12.0\\",
-    \\"@prisma/client\\": \\"^2.12.0\\",
-    \\"@kikstart-playground/graphql-intercom\\": \\"1.4.1\\",
-    \\"@nestjs/config\\": \\"^0.5.0\\",
-    \\"@nestjs/graphql\\": \\"^7.7.0\\",
-    \\"apollo-server-express\\": \\"^2.18.0\\",
-    \\"class-transformer\\": \\"^0.3.1\\",
-    \\"class-validator\\": \\"^0.12.2\\",
-    \\"joi\\": \\"^17.2.1\\",
-    \\"graphql\\": \\"^15.3.0\\",
-    \\"graphql-type-json\\": \\"^0.3.2\\",
-    \\"graphql-tools\\": \\"^6.2.3\\",
-    \\"@apollo/client\\": \\"^3.2.1\\",
-    \\"apollo-angular\\": \\"^2.0.4\\",
-    \\"@angular/animations\\": \\"^10.0.0\\",
-    \\"@angular/common\\": \\"^10.0.0\\",
-    \\"@angular/compiler\\": \\"^10.0.0\\",
-    \\"@angular/core\\": \\"^10.0.0\\",
-    \\"@angular/forms\\": \\"^10.0.0\\",
-    \\"@angular/platform-browser\\": \\"^10.0.0\\",
-    \\"@angular/platform-browser-dynamic\\": \\"^10.0.0\\",
-    \\"@angular/router\\": \\"^10.0.0\\",
-    \\"zone.js\\": \\"^0.10.2\\",
-    \\"@ngrx/store\\": \\"10.0.0\\",
+    \\"@nestjs/platform-express\\": \\"^7.0.0\\",
     \\"@ngrx/effects\\": \\"10.0.0\\",
     \\"@ngrx/entity\\": \\"10.0.0\\",
     \\"@ngrx/router-store\\": \\"10.0.0\\",
+    \\"@ngrx/store\\": \\"10.0.0\\",
+    \\"@ngx-formly/bootstrap\\": \\"5.10.3\\",
+    \\"@ngx-formly/core\\": \\"5.10.3\\",
+    \\"@prisma/cli\\": \\"^2.12.0\\",
+    \\"@prisma/client\\": \\"^2.12.0\\",
+    \\"apollo-angular\\": \\"^2.0.4\\",
+    \\"apollo-server-express\\": \\"^2.18.0\\",
+    \\"bcryptjs\\": \\"^2.4.3\\",
     \\"bootstrap\\": \\"^4.5.2\\",
     \\"bootswatch\\": \\"^4.5.2\\",
-    \\"@ngx-formly/core\\": \\"5.10.3\\",
-    \\"@ngx-formly/bootstrap\\": \\"5.10.3\\"
+    \\"class-transformer\\": \\"^0.3.1\\",
+    \\"class-validator\\": \\"^0.12.2\\",
+    \\"graphql\\": \\"^15.3.0\\",
+    \\"graphql-tools\\": \\"^6.2.3\\",
+    \\"graphql-type-json\\": \\"^0.3.2\\",
+    \\"joi\\": \\"^17.2.1\\",
+    \\"passport\\": \\"^0.4.1\\",
+    \\"passport-jwt\\": \\"^4.0.0\\",
+    \\"reflect-metadata\\": \\"^0.1.13\\",
+    \\"rxjs\\": \\"~6.5.5\\",
+    \\"supertest\\": \\"^5.0.0\\",
+    \\"tslib\\": \\"^2.0.0\\",
+    \\"zone.js\\": \\"^0.10.2\\"
   },
   \\"devDependencies\\": {
-    \\"@nxpm/cli\\": \\"^1.9.0\\",
-    \\"husky\\": \\"^4.3.0\\",
-    \\"lint-staged\\": \\"^10.4.0\\",
-    \\"@nrwl/jest\\": \\"10.2.1\\",
-    \\"jest\\": \\"26.2.2\\",
-    \\"@types/jest\\": \\"26.0.8\\",
-    \\"ts-jest\\": \\"26.1.4\\",
-    \\"@nrwl/node\\": \\"10.2.1\\",
-    \\"@nestjs/schematics\\": \\"^7.0.0\\",
-    \\"@nestjs/testing\\": \\"^7.0.0\\",
-    \\"@nrwl/nest\\": \\"10.2.1\\",
-    \\"@nrwl/eslint-plugin-nx\\": \\"10.2.1\\",
-    \\"@typescript-eslint/parser\\": \\"2.19.2\\",
-    \\"@typescript-eslint/eslint-plugin\\": \\"2.19.2\\",
-    \\"eslint\\": \\"6.8.0\\",
-    \\"eslint-config-prettier\\": \\"6.0.0\\",
+    \\"@angular-devkit/build-angular\\": \\"~0.1001.3\\",
+    \\"@angular/compiler-cli\\": \\"^10.1.0\\",
+    \\"@angular/language-service\\": \\"^10.1.0\\",
     \\"@graphql-codegen/cli\\": \\"1.17.8\\",
     \\"@graphql-codegen/introspection\\": \\"1.17.8\\",
     \\"@graphql-codegen/typescript\\": \\"1.17.8\\",
     \\"@graphql-codegen/typescript-apollo-angular\\": \\"^2.0.1\\",
     \\"@graphql-codegen/typescript-operations\\": \\"1.17.8\\",
-    \\"@angular/compiler-cli\\": \\"^10.0.0\\",
-    \\"@angular/language-service\\": \\"^10.0.0\\",
-    \\"@angular-devkit/build-angular\\": \\"~0.1000.0\\",
-    \\"codelyzer\\": \\"~5.0.1\\",
-    \\"jest-preset-angular\\": \\"8.3.1\\",
-    \\"cypress\\": \\"^4.1.0\\",
-    \\"@nrwl/cypress\\": \\"10.2.1\\",
-    \\"typescript\\": \\"~3.9.5\\",
+    \\"@nestjs/schematics\\": \\"^7.0.0\\",
+    \\"@nestjs/testing\\": \\"^7.0.0\\",
     \\"@ngrx/schematics\\": \\"10.0.0\\",
-    \\"@ngrx/store-devtools\\": \\"10.0.0\\"
+    \\"@ngrx/store-devtools\\": \\"10.0.0\\",
+    \\"@nrwl/cypress\\": \\"10.4.4\\",
+    \\"@nrwl/eslint-plugin-nx\\": \\"10.4.4\\",
+    \\"@nrwl/jest\\": \\"10.4.4\\",
+    \\"@nrwl/nest\\": \\"10.4.4\\",
+    \\"@nrwl/node\\": \\"10.4.4\\",
+    \\"@nxpm/cli\\": \\"^1.9.0\\",
+    \\"@types/jest\\": \\"26.0.8\\",
+    \\"@typescript-eslint/eslint-plugin\\": \\"4.3.0\\",
+    \\"@typescript-eslint/parser\\": \\"4.3.0\\",
+    \\"codelyzer\\": \\"~5.0.1\\",
+    \\"cypress\\": \\"^5.5.0\\",
+    \\"eslint\\": \\"7.10.0\\",
+    \\"eslint-config-prettier\\": \\"6.0.0\\",
+    \\"husky\\": \\"^4.3.0\\",
+    \\"jest\\": \\"26.2.2\\",
+    \\"jest-preset-angular\\": \\"8.3.1\\",
+    \\"lint-staged\\": \\"^10.4.0\\",
+    \\"ts-jest\\": \\"26.4.0\\",
+    \\"typescript\\": \\"~4.0.2\\"
   },
   \\"husky\\": {
     \\"hooks\\": {
@@ -812,7 +807,8 @@ exports[`init schematic should run successfully 4`] = `
     \\"docker:build\\": \\"docker build . -t nxpm/api\\",
     \\"docker:run\\": \\"docker run -it -p 8000:3000 nxpm/api\\",
     \\"docker:push\\": \\"docker push nxpm/api\\",
-    \\"postinstall\\": \\"ngcc --properties es2015 browser module main --first-only --create-ivy-entry-points\\"
+    \\"postinstall\\": \\"ngcc --properties es2015 browser module main --first-only --create-ivy-entry-points\\",
+    \\"e2e\\": \\"ng e2e\\"
   },
   \\"prisma\\": {
     \\"schema\\": \\"libs/api/data-access-core/src/prisma/schema.prisma\\"

@@ -231,7 +231,7 @@ export function addTsconfigPath(packageName: string, paths: string[]): Rule {
   }
 }
 
-export function addPrismaConfig(normalizedOptions: NormalizedSchema) {
+export function addPrismaConfig(normalizedOptions: NormalizedSchema): Rule {
   const prismaFile = `libs/${normalizedOptions.directory}/${normalizedOptions.name}/src/prisma/schema.prisma`
 
   return (host: Tree, context: SchematicContext) => {
