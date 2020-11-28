@@ -1,15 +1,13 @@
 import { NgModule } from '@angular/core'
-import { Store } from '@ngrx/store'
-import { getAuthToken } from '@<%= npmScope %>/<%= appName %>/data-access-auth'
-import { APOLLO_OPTIONS } from 'apollo-angular'
-import { ApolloClientOptions, ApolloLink, InMemoryCache, split } from '@apollo/client/core'
+import { ApolloClientOptions, InMemoryCache, split } from '@apollo/client/core'
 import { WebSocketLink } from '@apollo/client/link/ws'
 import { getMainDefinition } from '@apollo/client/utilities'
+import { APOLLO_OPTIONS } from 'apollo-angular'
 import { HttpLink } from 'apollo-angular/http'
 
 import { environment } from '../environments/environment'
 
-function wsUri(): string {
+function httpToWs(path: string): string {
   return [
     // Replace 'http*' with 'ws*'
     location.protocol.replace('http', 'ws'),
@@ -17,37 +15,15 @@ function wsUri(): string {
     `//${location.hostname}`,
     // Get the current port
     `:${location.port}`,
-    // And the GraphQL endpoint from the environment
-    environment.graphql,
+    // Add the path
+    path,
   ].join('')
 }
-const getHeaders = (token?: string) => {
-  if (!token) {
-    console.log('AdminFeatureCoreGraphQLModule: No Token')
-    return undefined
-  }
-  return {
-    authorization: token ? `Bearer ${token}` : null,
-  }
-}
 
-export function createApollo(httpLink: HttpLink, store: Store): ApolloClientOptions<any> {
-  let token
-  store.select(getAuthToken).subscribe((res) => {
-    token = res
-  })
+export function createApollo(httpLink: HttpLink): ApolloClientOptions<any> {
   const http = httpLink.create({ uri: environment.graphql })
-  const middlewareLink = new ApolloLink((operation, forward) => {
-    operation.setContext(() => {
-      return {
-        headers: getHeaders(token),
-      }
-    })
-    return forward(operation)
-  })
-  const httpAuth = middlewareLink.concat(http)
   const ws = new WebSocketLink({
-    uri: wsUri(),
+    uri: httpToWs(environment.graphql),
     options: {
       reconnect: true,
     },
@@ -58,7 +34,7 @@ export function createApollo(httpLink: HttpLink, store: Store): ApolloClientOpti
       return kind === 'OperationDefinition' && operation === 'subscription'
     },
     ws,
-    httpAuth,
+    http,
   )
   return {
     link,
@@ -71,7 +47,7 @@ export function createApollo(httpLink: HttpLink, store: Store): ApolloClientOpti
     {
       provide: APOLLO_OPTIONS,
       useFactory: createApollo,
-      deps: [HttpLink, Store],
+      deps: [HttpLink],
     },
   ],
 })

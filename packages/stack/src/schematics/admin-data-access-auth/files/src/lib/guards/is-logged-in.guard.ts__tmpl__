@@ -1,24 +1,37 @@
 import { Injectable } from '@angular/core'
-import { CanActivate, Router, UrlTree } from '@angular/router'
+import { CanActivate, UrlTree } from '@angular/router'
 import { Store } from '@ngrx/store'
 import { Observable } from 'rxjs'
-import { map } from 'rxjs/operators'
-import { getAuthUser } from '../+state/auth/auth.selectors'
+import { filter, switchMap, take, tap } from 'rxjs/operators'
+import { ensureLogin } from '../+state/auth/auth.actions'
+import { isLoggedIn } from '../+state/auth/auth.selectors'
 
 @Injectable()
 export class IsLoggedInGuard implements CanActivate {
-  constructor(private readonly store: Store, private readonly router: Router) {}
+  constructor(private readonly store: Store) {}
+
+  ensureLogin(): Observable<boolean> {
+    return this.store.select(isLoggedIn).pipe(
+      tap((loggedIn) => {
+        if (!loggedIn) {
+          this.store.dispatch(ensureLogin())
+        }
+      }),
+      filter((loggedIn) => !loggedIn),
+      take(1),
+    )
+  }
+
+  isLoggedIn(): Observable<boolean> {
+    return this.store.select(isLoggedIn).pipe(
+      filter((loggedIn) => {
+        return !!loggedIn
+      }),
+      take(1),
+    )
+  }
 
   canActivate(): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return this.store.select(getAuthUser).pipe(
-      map((user) => {
-        if (!user) {
-          console.log('You are not logged in!')
-          return this.router.parseUrl('/login')
-        }
-        console.log('You are logged in as', user.username)
-        return true
-      }),
-    )
+    return this.ensureLogin().pipe(switchMap(() => this.isLoggedIn()))
   }
 }
