@@ -20,14 +20,18 @@ query me {
   }
 }
 
-mutation Register($input: RegisterInput!) {
-  register(input: $input) {
-    ...UserTokenDetails
-  }
+mutation Logout {
+  logout
 }
 
 mutation Login($input: LoginInput!) {
   login(input: $input) {
+    ...UserTokenDetails
+  }
+}
+
+mutation Register($input: RegisterInput!) {
+  register(input: $input) {
     ...UserTokenDetails
   }
 }

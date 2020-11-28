@@ -4,6 +4,8 @@ import * as Apollo from 'apollo-angular'
 import * as ApolloCore from '@apollo/client/core'
 export type Maybe<T> = T | null
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] }
+export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> }
+export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> }
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string
@@ -17,61 +19,24 @@ export type Scalars = {
   JSON: any
 }
 
-export type User = {
-  __typename?: 'User'
-  id?: Maybe<Scalars['String']>
-  createdAt?: Maybe<Scalars['DateTime']>
-  updatedAt?: Maybe<Scalars['DateTime']>
-  email?: Maybe<Scalars['String']>
-  phone?: Maybe<Scalars['String']>
-  username?: Maybe<Scalars['String']>
-  firstName?: Maybe<Scalars['String']>
-  lastName?: Maybe<Scalars['String']>
-  avatarUrl?: Maybe<Scalars['String']>
-  location?: Maybe<Scalars['String']>
-  bio?: Maybe<Scalars['String']>
-  role?: Maybe<Role>
-}
-
-/** User role */
-export enum Role {
-  Admin = 'Admin',
-  User = 'User',
-}
-
-export type UserToken = {
-  __typename?: 'UserToken'
-  /** JWT Bearer token */
-  token: Scalars['String']
-  user: User
-}
-
 export type IntercomMessage = {
   __typename?: 'IntercomMessage'
-  type?: Maybe<Scalars['String']>
-  scope?: Maybe<Scalars['String']>
   payload?: Maybe<Scalars['JSON']>
+  scope?: Maybe<Scalars['String']>
+  type?: Maybe<Scalars['String']>
 }
 
-export type Query = {
-  __typename?: 'Query'
-  me?: Maybe<User>
-  uptime: Scalars['Float']
+export type LoginInput = {
+  email: Scalars['String']
+  password: Scalars['String']
 }
 
 export type Mutation = {
   __typename?: 'Mutation'
-  register?: Maybe<UserToken>
-  login?: Maybe<UserToken>
   intercomPub?: Maybe<IntercomMessage>
-}
-
-export type MutationRegisterArgs = {
-  input: RegisterInput
-}
-
-export type MutationLoginArgs = {
-  input: LoginInput
+  login?: Maybe<UserToken>
+  logout?: Maybe<Scalars['Boolean']>
+  register?: Maybe<UserToken>
 }
 
 export type MutationIntercomPubArgs = {
@@ -80,19 +45,34 @@ export type MutationIntercomPubArgs = {
   type: Scalars['String']
 }
 
-export type RegisterInput = {
-  email: Scalars['String']
-  username?: Maybe<Scalars['String']>
-  firstName?: Maybe<Scalars['String']>
-  lastName?: Maybe<Scalars['String']>
-  phone?: Maybe<Scalars['String']>
-  avatarUrl?: Maybe<Scalars['String']>
-  password: Scalars['String']
+export type MutationLoginArgs = {
+  input: LoginInput
 }
 
-export type LoginInput = {
+export type MutationRegisterArgs = {
+  input: RegisterInput
+}
+
+export type Query = {
+  __typename?: 'Query'
+  me?: Maybe<User>
+  uptime?: Maybe<Scalars['Float']>
+}
+
+export type RegisterInput = {
+  avatarUrl?: Maybe<Scalars['String']>
   email: Scalars['String']
+  firstName?: Maybe<Scalars['String']>
+  lastName?: Maybe<Scalars['String']>
   password: Scalars['String']
+  phone?: Maybe<Scalars['String']>
+  username?: Maybe<Scalars['String']>
+}
+
+/** User role */
+export enum Role {
+  Admin = 'Admin',
+  User = 'User',
 }
 
 export type Subscription = {
@@ -105,23 +85,45 @@ export type SubscriptionIntercomSubArgs = {
   type?: Maybe<Scalars['String']>
 }
 
+export type User = {
+  __typename?: 'User'
+  avatarUrl?: Maybe<Scalars['String']>
+  bio?: Maybe<Scalars['String']>
+  createdAt?: Maybe<Scalars['DateTime']>
+  email?: Maybe<Scalars['String']>
+  firstName?: Maybe<Scalars['String']>
+  id?: Maybe<Scalars['String']>
+  lastName?: Maybe<Scalars['String']>
+  location?: Maybe<Scalars['String']>
+  phone?: Maybe<Scalars['String']>
+  role?: Maybe<Role>
+  updatedAt?: Maybe<Scalars['DateTime']>
+  username?: Maybe<Scalars['String']>
+}
+
+export type UserToken = {
+  __typename?: 'UserToken'
+  /** JWT Bearer token */
+  token: Scalars['String']
+  user: User
+}
+
 export type UserTokenDetailsFragment = { __typename?: 'UserToken' } & Pick<UserToken, 'token'> & {
     user: { __typename?: 'User' } & UserDetailsFragment
   }
 
-export type UserDetailsFragment = { __typename?: 'User' } & Pick<User, 'id' | 'username' | 'avatarUrl' | 'email'>
+export type UserDetailsFragment = { __typename?: 'User' } & Pick<
+  User,
+  'id' | 'firstName' | 'lastName' | 'username' | 'avatarUrl' | 'email'
+>
 
 export type MeQueryVariables = Exact<{ [key: string]: never }>
 
 export type MeQuery = { __typename?: 'Query' } & { me?: Maybe<{ __typename?: 'User' } & UserDetailsFragment> }
 
-export type RegisterMutationVariables = Exact<{
-  input: RegisterInput
-}>
+export type LogoutMutationVariables = Exact<{ [key: string]: never }>
 
-export type RegisterMutation = { __typename?: 'Mutation' } & {
-  register?: Maybe<{ __typename?: 'UserToken' } & UserTokenDetailsFragment>
-}
+export type LogoutMutation = { __typename?: 'Mutation' } & Pick<Mutation, 'logout'>
 
 export type LoginMutationVariables = Exact<{
   input: LoginInput
@@ -129,6 +131,14 @@ export type LoginMutationVariables = Exact<{
 
 export type LoginMutation = { __typename?: 'Mutation' } & {
   login?: Maybe<{ __typename?: 'UserToken' } & UserTokenDetailsFragment>
+}
+
+export type RegisterMutationVariables = Exact<{
+  input: RegisterInput
+}>
+
+export type RegisterMutation = { __typename?: 'Mutation' } & {
+  register?: Maybe<{ __typename?: 'UserToken' } & UserTokenDetailsFragment>
 }
 
 export type UptimeQueryVariables = Exact<{ [key: string]: never }>
@@ -159,6 +169,8 @@ export type IntercomSubSubscription = { __typename?: 'Subscription' } & {
 export const UserDetailsFragmentDoc = gql`
   fragment UserDetails on User {
     id
+    firstName
+    lastName
     username
     avatarUrl
     email
@@ -199,20 +211,17 @@ export class MeGQL extends Apollo.Query<MeQuery, MeQueryVariables> {
     super(apollo)
   }
 }
-export const RegisterDocument = gql`
-  mutation Register($input: RegisterInput!) {
-    register(input: $input) {
-      ...UserTokenDetails
-    }
+export const LogoutDocument = gql`
+  mutation Logout {
+    logout
   }
-  ${UserTokenDetailsFragmentDoc}
 `
 
 @Injectable({
   providedIn: 'root',
 })
-export class RegisterGQL extends Apollo.Mutation<RegisterMutation, RegisterMutationVariables> {
-  document = RegisterDocument
+export class LogoutGQL extends Apollo.Mutation<LogoutMutation, LogoutMutationVariables> {
+  document = LogoutDocument
 
   constructor(apollo: Apollo.Apollo) {
     super(apollo)
@@ -232,6 +241,25 @@ export const LoginDocument = gql`
 })
 export class LoginGQL extends Apollo.Mutation<LoginMutation, LoginMutationVariables> {
   document = LoginDocument
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo)
+  }
+}
+export const RegisterDocument = gql`
+  mutation Register($input: RegisterInput!) {
+    register(input: $input) {
+      ...UserTokenDetails
+    }
+  }
+  ${UserTokenDetailsFragmentDoc}
+`
+
+@Injectable({
+  providedIn: 'root',
+})
+export class RegisterGQL extends Apollo.Mutation<RegisterMutation, RegisterMutationVariables> {
+  document = RegisterDocument
 
   constructor(apollo: Apollo.Apollo) {
     super(apollo)
@@ -306,8 +334,9 @@ interface SubscriptionOptionsAlone<V> extends Omit<ApolloCore.SubscriptionOption
 export class ApolloAngularSDK {
   constructor(
     private meGql: MeGQL,
-    private registerGql: RegisterGQL,
+    private logoutGql: LogoutGQL,
     private loginGql: LoginGQL,
+    private registerGql: RegisterGQL,
     private uptimeGql: UptimeGQL,
     private intercomPubGql: IntercomPubGQL,
     private intercomSubGql: IntercomSubGQL,
@@ -321,15 +350,19 @@ export class ApolloAngularSDK {
     return this.meGql.watch(variables, options)
   }
 
+  logout(variables?: LogoutMutationVariables, options?: MutationOptionsAlone<LogoutMutation, LogoutMutationVariables>) {
+    return this.logoutGql.mutate(variables, options)
+  }
+
+  login(variables: LoginMutationVariables, options?: MutationOptionsAlone<LoginMutation, LoginMutationVariables>) {
+    return this.loginGql.mutate(variables, options)
+  }
+
   register(
     variables: RegisterMutationVariables,
     options?: MutationOptionsAlone<RegisterMutation, RegisterMutationVariables>,
   ) {
     return this.registerGql.mutate(variables, options)
-  }
-
-  login(variables: LoginMutationVariables, options?: MutationOptionsAlone<LoginMutation, LoginMutationVariables>) {
-    return this.loginGql.mutate(variables, options)
   }
 
   uptime(variables?: UptimeQueryVariables, options?: QueryOptionsAlone<UptimeQueryVariables>) {

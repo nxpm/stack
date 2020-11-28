@@ -80,15 +80,15 @@ export default function (options: AdminSchematicSchema): Rule {
   return chain([
     addDepsToPackageJson(
       {
-        '@apollo/client': '^3.2.1',
-        'apollo-angular': '^2.0.4',
+        '@apollo/client': '^3.2.9',
+        'apollo-angular': '^2.1.0',
       },
       {
-        '@graphql-codegen/cli': '1.17.8',
-        '@graphql-codegen/introspection': '1.17.8',
-        '@graphql-codegen/typescript': '1.17.8',
-        '@graphql-codegen/typescript-apollo-angular': '^2.0.1',
-        '@graphql-codegen/typescript-operations': '1.17.8',
+        '@graphql-codegen/cli': '1.19.3',
+        '@graphql-codegen/introspection': '1.18.1',
+        '@graphql-codegen/typescript': '1.18.1',
+        '@graphql-codegen/typescript-apollo-angular': '^2.2.1',
+        '@graphql-codegen/typescript-operations': '1.17.12',
       },
       true,
     ),

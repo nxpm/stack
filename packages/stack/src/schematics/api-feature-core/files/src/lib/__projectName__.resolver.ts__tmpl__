@@ -5,7 +5,7 @@ import { <%= classify(projectName) %>Service } from './<%= projectName %>.servic
 export class <%= classify(projectName) %>Resolver {
   constructor(private readonly service: <%= classify(projectName) %>Service) {}
 
-  @Query(() => Float)
+  @Query(() => Float, { nullable: true })
   uptime() {
     return this.service.uptime()
   }
