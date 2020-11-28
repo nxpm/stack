@@ -1,6 +1,8 @@
 import { chain, externalSchematic, noop, Rule, schematic, Tree } from '@angular-devkit/schematics'
 import { addDepsToPackageJson, formatFiles, ProjectType } from '@nrwl/workspace'
 import { stringify } from 'yaml'
+import { RepositoryInitializerTask } from '@angular-devkit/schematics/tasks'
+
 import {
   addRunScript,
   configureHuskyLintStaged,
@@ -130,5 +132,10 @@ export default function (options: InitSchematicSchema): Rule {
     options?.ci === 'github' ? externalSchematic('@nxpm/ci', 'github', {}) : noop(),
     removeFiles([`apps/.gitkeep`, `libs/.gitkeep`]),
     formatFiles(),
+    () => {
+      new RepositoryInitializerTask(options.directory, {
+        message: 'Initial commit of @nxpm/stack',
+      })
+    },
   ])
 }
