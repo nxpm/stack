@@ -76,7 +76,7 @@ To do this, run the following command:
 yarn setup
 ```
 
-### Start the API
+### Start the API app
 
 You can now start the API by running the following command:
 
