@@ -3,5 +3,6 @@ export interface WebStyleSchematicSchema {
   name: string
   tags?: string
   directory?: string
+  library?: 'bootstrap' | 'tailwind'
   removeArchitects?: boolean
 }

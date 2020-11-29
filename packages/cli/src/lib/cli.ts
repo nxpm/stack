@@ -2,6 +2,7 @@ import { basename } from 'path'
 import * as yargs from 'yargs'
 import { workspaceInit } from './commands/workspace-init'
 import { workspaceLint } from './commands/workspace-lint'
+import { WebStyleLibrary } from './interfaces'
 
 yargs
   .command(
@@ -13,9 +14,18 @@ yargs
         type: 'string',
         demandOption: true,
       },
+      webStyleLibrary: {
+        type: 'string',
+        demandOption: false,
+        default: 'bootstrap',
+      },
     },
     async (args) => {
-      await workspaceInit({ dryRun: !!args.dryRun, name: args.name })
+      await workspaceInit({
+        dryRun: !!args.dryRun,
+        name: args.name,
+        webStyleLibrary: args.webStyleLibrary as WebStyleLibrary,
+      })
     },
   )
   .command(

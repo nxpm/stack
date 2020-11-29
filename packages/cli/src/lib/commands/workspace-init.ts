@@ -2,6 +2,7 @@ import { bold, gray, inverse, magentaBright, white, cyanBright } from 'chalk'
 import { execSync } from 'child_process'
 import { existsSync } from 'fs-extra'
 import { join } from 'path'
+import { WebStyleLibrary } from '../interfaces'
 
 function log(...msg) {
   console.log(magentaBright('>'), inverse(magentaBright(bold(` NXPM `))), ...msg)
@@ -16,7 +17,15 @@ function info(message: string) {
   log(inverse(cyanBright(bold(` INFO `))), white(message))
 }
 
-export async function workspaceInit({ dryRun, name }: { dryRun: boolean; name: string }) {
+export async function workspaceInit({
+  dryRun,
+  name,
+  webStyleLibrary,
+}: {
+  dryRun: boolean
+  name: string
+  webStyleLibrary: WebStyleLibrary
+}) {
   const target = join(process.cwd(), name)
   if (existsSync(target)) {
     throw new Error(`Path ${target} already exists`)
@@ -28,7 +37,12 @@ export async function workspaceInit({ dryRun, name }: { dryRun: boolean; name: s
   runCommand(createCommand)
 
   log('Install dependencies')
-  const installDeps = `yarn add -D @nxpm/stack @nrwl/angular @nrwl/nest`
+  const deps = ['@nxpm/stack', '@nrwl/angular', '@nrwl/nest']
+  if (webStyleLibrary === 'tailwind') {
+    deps.push('@ngneat/tailwind')
+  }
+
+  const installDeps = `yarn add -D ${deps.join(' ')}`
   runCommand(installDeps, target)
 
   log('Initialize @nxpm/stack')

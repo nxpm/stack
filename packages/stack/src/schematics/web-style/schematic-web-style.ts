@@ -1,10 +1,11 @@
-import { chain, Rule, schematic } from '@angular-devkit/schematics'
+import { chain, externalSchematic, noop, Rule, schematic } from '@angular-devkit/schematics'
 import { addDepsToPackageJson, ProjectType } from '@nrwl/workspace'
 import { addFiles, normalizeOptions, removeFiles, updateAppStyles, updateProjectArchitects } from '../../utils'
 import { WebStyleSchematicSchema } from './schema'
 
 export default function (options: WebStyleSchematicSchema): Rule {
   const name = options.name || 'style'
+  const library = options.library || 'bootstrap'
   const appName = options.appName
   const projectName = appName ? `${appName}-${name}` : name
   const directory = options.directory || options.name
@@ -23,7 +24,10 @@ export default function (options: WebStyleSchematicSchema): Rule {
       name,
       type: 'style',
     }),
-    addFiles(normalizedOptions),
+    library === 'tailwind'
+      ? externalSchematic('@ngneat/tailwind', 'ng-add', { project: appName, cssFlavor: 'scss' })
+      : noop(),
+    addFiles(normalizedOptions, `./files/${library}`),
     updateAppStyles(appName, [`apps/${appName}/src/styles.scss`, `libs/${appName}/${name}/src/index.scss`]),
     updateProjectArchitects(projectName),
     removeFiles(

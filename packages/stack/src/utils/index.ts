@@ -96,9 +96,9 @@ export function appendToPath(path, line: string | string[]): Rule {
   }
 }
 
-export function addFiles(options: NormalizedSchema): Rule {
+export function addFiles(options: NormalizedSchema, path = './files'): Rule {
   return mergeWith(
-    apply(url(`./files`), [
+    apply(url(path), [
       template({
         ...strings,
         ...options,
