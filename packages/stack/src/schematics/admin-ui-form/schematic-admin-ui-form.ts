@@ -20,6 +20,7 @@ export default function (options: AdminUiFormSchematicSchema): Rule {
       directory,
       name,
       type: 'ui',
+      classic: true,
     }),
     addFiles(normalizedOptions),
   ])

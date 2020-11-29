@@ -1,11 +1,11 @@
-import { ApiFeatureAuthModule } from '@<%= npmScope %>/api/feature-auth'
-import { ApiFeatureCoreModule } from '@<%= npmScope %>/api/feature-core'
+import { ApiAuthFeatureModule } from '@<%= npmScope %>/api/auth/feature'
+import { ApiCoreFeatureModule } from '@<%= npmScope %>/api/core/feature'
 import { Module } from '@nestjs/common';
 
 @Module({
   imports: [
-    ApiFeatureAuthModule,
-    ApiFeatureCoreModule,
+    ApiAuthFeatureModule,
+    ApiCoreFeatureModule,
   ],
 })
 export class AppModule {}

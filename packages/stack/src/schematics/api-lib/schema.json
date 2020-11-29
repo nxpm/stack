@@ -49,6 +49,11 @@
       "description": "Add tags to the project (used for linting)",
       "alias": "t"
     },
+    "classic": {
+      "type": "boolean",
+      "default": false,
+      "description": "Create 'classic' layout (api-{type}-{name})."
+    },
     "directory": {
       "type": "string",
       "description": "A directory where the project is placed",

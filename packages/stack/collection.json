@@ -13,40 +13,40 @@
       "schema": "./src/schematics/admin-assets/schema.json",
       "description": "admin-assets schematic"
     },
-    "admin-data-access-auth": {
-      "factory": "./src/schematics/admin-data-access-auth/schematic-admin-data-access-auth",
-      "schema": "./src/schematics/admin-data-access-auth/schema.json",
-      "description": "admin-data-access-auth schematic"
+    "admin-auth-data-access": {
+      "factory": "./src/schematics/admin-auth-data-access/schematic-admin-auth-data-access",
+      "schema": "./src/schematics/admin-auth-data-access/schema.json",
+      "description": "admin-auth-data-access schematic"
     },
-    "admin-data-access-core": {
-      "factory": "./src/schematics/admin-data-access-core/schematic-admin-data-access-core",
-      "schema": "./src/schematics/admin-data-access-core/schema.json",
-      "description": "admin-data-access-core schematic"
+    "admin-core-data-access": {
+      "factory": "./src/schematics/admin-core-data-access/schematic-admin-core-data-access",
+      "schema": "./src/schematics/admin-core-data-access/schema.json",
+      "description": "admin-core-data-access schematic"
     },
-    "admin-feature-about": {
-      "factory": "./src/schematics/admin-feature-about/schematic-admin-feature-about",
-      "schema": "./src/schematics/admin-feature-about/schema.json",
-      "description": "admin-feature-about schematic"
+    "admin-about-feature": {
+      "factory": "./src/schematics/admin-about-feature/schematic-admin-about-feature",
+      "schema": "./src/schematics/admin-about-feature/schema.json",
+      "description": "admin-about-feature schematic"
     },
-    "admin-feature-auth": {
-      "factory": "./src/schematics/admin-feature-auth/schematic-admin-feature-auth",
-      "schema": "./src/schematics/admin-feature-auth/schema.json",
-      "description": "admin-feature-auth schematic"
+    "admin-auth-feature": {
+      "factory": "./src/schematics/admin-auth-feature/schematic-admin-auth-feature",
+      "schema": "./src/schematics/admin-auth-feature/schema.json",
+      "description": "admin-auth-feature schematic"
     },
-    "admin-feature-core": {
-      "factory": "./src/schematics/admin-feature-core/schematic-admin-feature-core",
-      "schema": "./src/schematics/admin-feature-core/schema.json",
-      "description": "admin-feature-core schematic"
+    "admin-core-feature": {
+      "factory": "./src/schematics/admin-core-feature/schematic-admin-core-feature",
+      "schema": "./src/schematics/admin-core-feature/schema.json",
+      "description": "admin-core-feature schematic"
     },
-    "admin-feature-dashboard": {
-      "factory": "./src/schematics/admin-feature-dashboard/schematic-admin-feature-dashboard",
-      "schema": "./src/schematics/admin-feature-dashboard/schema.json",
-      "description": "admin-feature-dashboard schematic"
+    "admin-dashboard-feature": {
+      "factory": "./src/schematics/admin-dashboard-feature/schematic-admin-dashboard-feature",
+      "schema": "./src/schematics/admin-dashboard-feature/schema.json",
+      "description": "admin-dashboard-feature schematic"
     },
-    "admin-feature-shell": {
-      "factory": "./src/schematics/admin-feature-shell/schematic-admin-feature-shell",
-      "schema": "./src/schematics/admin-feature-shell/schema.json",
-      "description": "admin-feature-shell schematic"
+    "admin-shell-feature": {
+      "factory": "./src/schematics/admin-shell-feature/schematic-admin-shell-feature",
+      "schema": "./src/schematics/admin-shell-feature/schema.json",
+      "description": "admin-shell-feature schematic"
     },
     "admin-layout": {
       "factory": "./src/schematics/admin-layout/schematic-admin-layout",
@@ -73,30 +73,30 @@
       "schema": "./src/schematics/api/schema.json",
       "description": "api schematic"
     },
-    "api-data-access-core": {
-      "factory": "./src/schematics/api-data-access-core/schematic-api-data-access-core",
-      "schema": "./src/schematics/api-data-access-core/schema.json",
-      "description": "api-data-access-core schematic"
+    "api-core-data-access": {
+      "factory": "./src/schematics/api-core-data-access/schematic-api-core-data-access",
+      "schema": "./src/schematics/api-core-data-access/schema.json",
+      "description": "api-core-data-access schematic"
     },
-    "api-data-access-auth": {
-      "factory": "./src/schematics/api-data-access-auth/schematic-api-data-access-auth",
-      "schema": "./src/schematics/api-data-access-auth/schema.json",
-      "description": "api-data-access-auth schematic"
+    "api-auth-data-access": {
+      "factory": "./src/schematics/api-auth-data-access/schematic-api-auth-data-access",
+      "schema": "./src/schematics/api-auth-data-access/schema.json",
+      "description": "api-auth-data-access schematic"
     },
     "api-e2e": {
       "factory": "./src/schematics/api-e2e/schematic-api-e2e",
       "schema": "./src/schematics/api-e2e/schema.json",
       "description": "api e2e schematic"
     },
-    "api-feature-auth": {
-      "factory": "./src/schematics/api-feature-auth/schematic-api-feature-auth",
-      "schema": "./src/schematics/api-feature-auth/schema.json",
-      "description": "api-feature-auth schematic"
+    "api-auth-feature": {
+      "factory": "./src/schematics/api-auth-feature/schematic-api-auth-feature",
+      "schema": "./src/schematics/api-auth-feature/schema.json",
+      "description": "api-auth-feature schematic"
     },
-    "api-feature-core": {
-      "factory": "./src/schematics/api-feature-core/schematic-api-feature-core",
-      "schema": "./src/schematics/api-feature-core/schema.json",
-      "description": "api-feature-core schematic"
+    "api-core-feature": {
+      "factory": "./src/schematics/api-core-feature/schematic-api-core-feature",
+      "schema": "./src/schematics/api-core-feature/schema.json",
+      "description": "api-core-feature schematic"
     },
     "api-lib": {
       "factory": "./src/schematics/api-lib/schematic-api-lib",

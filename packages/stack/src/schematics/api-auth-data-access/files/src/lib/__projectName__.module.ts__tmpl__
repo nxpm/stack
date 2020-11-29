@@ -1,0 +1,22 @@
+import { <%= classify(appName) %>CoreDataAccessModule } from '@<%= npmScope %>/<%= appName %>/core/data-access'
+import { <%= classify(appName) %>CoreFeatureModule, } from '@<%= npmScope %>/<%= appName %>/core/feature'
+import { Module } from '@nestjs/common'
+import { JwtModule } from '@nestjs/jwt'
+import { PassportModule } from '@nestjs/passport'
+
+import { <%= classify(projectName) %>Service } from './<%= projectName %>.service'
+import { JwtStrategy } from './strategies/jwt.strategy'
+
+@Module({
+  imports: [
+    <%= classify(appName) %>CoreDataAccessModule,
+    <%= classify(appName) %>CoreFeatureModule,
+    PassportModule.register({ defaultStrategy: 'jwt' }),
+    JwtModule.register({
+      secret: '<%= jwtSecret %>',
+    }),
+  ],
+  exports: [<%= classify(projectName) %>Service],
+  providers: [<%= classify(projectName) %>Service, JwtStrategy],
+})
+export class <%= classify(projectName) %>Module {}

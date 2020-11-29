@@ -62,6 +62,11 @@
       "description": "A directory where the project is placed",
       "alias": "d"
     },
+    "classic": {
+      "type": "boolean",
+      "default": false,
+      "description": "Create 'classic' layout (admin-{type}-{name})."
+    },
     "publishable": {
       "type": "boolean",
       "default": false,

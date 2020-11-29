@@ -10,16 +10,16 @@ exports[`init schematic should run successfully 1`] = `
     \\"api-e2e\\": {
       \\"tags\\": []
     },
-    \\"api-data-access-auth\\": {
+    \\"api-auth-data-access\\": {
       \\"tags\\": [\\"scope:api\\", \\"type:data-access\\"]
     },
-    \\"api-feature-auth\\": {
+    \\"api-auth-feature\\": {
       \\"tags\\": [\\"scope:api\\", \\"type:feature\\"]
     },
-    \\"api-data-access-core\\": {
+    \\"api-core-data-access\\": {
       \\"tags\\": [\\"scope:api\\", \\"type:data-access\\"]
     },
-    \\"api-feature-core\\": {
+    \\"api-core-feature\\": {
       \\"tags\\": [\\"scope:api\\", \\"type:feature\\"]
     },
     \\"test\\": {
@@ -32,25 +32,25 @@ exports[`init schematic should run successfully 1`] = `
     \\"test-assets\\": {
       \\"tags\\": [\\"scope:test\\", \\"type:assets\\"]
     },
-    \\"test-data-access-auth\\": {
+    \\"test-auth-data-access\\": {
       \\"tags\\": [\\"scope:test\\", \\"type:data-access\\"]
     },
-    \\"test-data-access-core\\": {
+    \\"test-core-data-access\\": {
       \\"tags\\": [\\"scope:test\\", \\"type:data-access\\"]
     },
-    \\"test-feature-about\\": {
+    \\"test-about-feature\\": {
       \\"tags\\": [\\"scope:test\\", \\"type:feature\\"]
     },
-    \\"test-feature-auth\\": {
+    \\"test-auth-feature\\": {
       \\"tags\\": [\\"scope:test\\", \\"type:feature\\"]
     },
-    \\"test-feature-core\\": {
+    \\"test-core-feature\\": {
       \\"tags\\": [\\"scope:test\\", \\"type:feature\\"]
     },
-    \\"test-feature-dashboard\\": {
+    \\"test-dashboard-feature\\": {
       \\"tags\\": [\\"scope:test\\", \\"type:feature\\"]
     },
-    \\"test-feature-shell\\": {
+    \\"test-shell-feature\\": {
       \\"tags\\": [\\"scope:test\\", \\"type:feature\\"]
     },
     \\"test-layout\\": {
@@ -156,85 +156,85 @@ exports[`init schematic should run successfully 2`] = `
         }
       }
     },
-    \\"api-data-access-auth\\": {
-      \\"root\\": \\"libs/api/data-access-auth\\",
-      \\"sourceRoot\\": \\"libs/api/data-access-auth/src\\",
+    \\"api-auth-data-access\\": {
+      \\"root\\": \\"libs/api/auth/data-access\\",
+      \\"sourceRoot\\": \\"libs/api/auth/data-access/src\\",
       \\"projectType\\": \\"library\\",
       \\"schematics\\": {},
       \\"architect\\": {
         \\"lint\\": {
           \\"builder\\": \\"@nrwl/linter:eslint\\",
           \\"options\\": {
-            \\"lintFilePatterns\\": [\\"libs/api/data-access-auth/**/*.ts\\"]
+            \\"lintFilePatterns\\": [\\"libs/api/auth/data-access/**/*.ts\\"]
           }
         },
         \\"test\\": {
           \\"builder\\": \\"@nrwl/jest:jest\\",
           \\"options\\": {
-            \\"jestConfig\\": \\"libs/api/data-access-auth/jest.config.js\\",
+            \\"jestConfig\\": \\"libs/api/auth/data-access/jest.config.js\\",
             \\"passWithNoTests\\": true
           }
         }
       }
     },
-    \\"api-feature-auth\\": {
-      \\"root\\": \\"libs/api/feature-auth\\",
-      \\"sourceRoot\\": \\"libs/api/feature-auth/src\\",
+    \\"api-auth-feature\\": {
+      \\"root\\": \\"libs/api/auth/feature\\",
+      \\"sourceRoot\\": \\"libs/api/auth/feature/src\\",
       \\"projectType\\": \\"library\\",
       \\"schematics\\": {},
       \\"architect\\": {
         \\"lint\\": {
           \\"builder\\": \\"@nrwl/linter:eslint\\",
           \\"options\\": {
-            \\"lintFilePatterns\\": [\\"libs/api/feature-auth/**/*.ts\\"]
+            \\"lintFilePatterns\\": [\\"libs/api/auth/feature/**/*.ts\\"]
           }
         },
         \\"test\\": {
           \\"builder\\": \\"@nrwl/jest:jest\\",
           \\"options\\": {
-            \\"jestConfig\\": \\"libs/api/feature-auth/jest.config.js\\",
+            \\"jestConfig\\": \\"libs/api/auth/feature/jest.config.js\\",
             \\"passWithNoTests\\": true
           }
         }
       }
     },
-    \\"api-data-access-core\\": {
-      \\"root\\": \\"libs/api/data-access-core\\",
-      \\"sourceRoot\\": \\"libs/api/data-access-core/src\\",
+    \\"api-core-data-access\\": {
+      \\"root\\": \\"libs/api/core/data-access\\",
+      \\"sourceRoot\\": \\"libs/api/core/data-access/src\\",
       \\"projectType\\": \\"library\\",
       \\"schematics\\": {},
       \\"architect\\": {
         \\"lint\\": {
           \\"builder\\": \\"@nrwl/linter:eslint\\",
           \\"options\\": {
-            \\"lintFilePatterns\\": [\\"libs/api/data-access-core/**/*.ts\\"]
+            \\"lintFilePatterns\\": [\\"libs/api/core/data-access/**/*.ts\\"]
           }
         },
         \\"test\\": {
           \\"builder\\": \\"@nrwl/jest:jest\\",
           \\"options\\": {
-            \\"jestConfig\\": \\"libs/api/data-access-core/jest.config.js\\",
+            \\"jestConfig\\": \\"libs/api/core/data-access/jest.config.js\\",
             \\"passWithNoTests\\": true
           }
         }
       }
     },
-    \\"api-feature-core\\": {
-      \\"root\\": \\"libs/api/feature-core\\",
-      \\"sourceRoot\\": \\"libs/api/feature-core/src\\",
+    \\"api-core-feature\\": {
+      \\"root\\": \\"libs/api/core/feature\\",
+      \\"sourceRoot\\": \\"libs/api/core/feature/src\\",
       \\"projectType\\": \\"library\\",
       \\"schematics\\": {},
       \\"architect\\": {
         \\"lint\\": {
           \\"builder\\": \\"@nrwl/linter:eslint\\",
           \\"options\\": {
-            \\"lintFilePatterns\\": [\\"libs/api/feature-core/**/*.ts\\"]
+            \\"lintFilePatterns\\": [\\"libs/api/core/feature/**/*.ts\\"]
           }
         },
         \\"test\\": {
           \\"builder\\": \\"@nrwl/jest:jest\\",
           \\"options\\": {
-            \\"jestConfig\\": \\"libs/api/feature-core/jest.config.js\\",
+            \\"jestConfig\\": \\"libs/api/core/feature/jest.config.js\\",
             \\"passWithNoTests\\": true
           }
         }
@@ -280,8 +280,8 @@ exports[`init schematic should run successfully 2`] = `
             \\"production\\": {
               \\"fileReplacements\\": [
                 {
-                  \\"replace\\": \\"libs/test/feature-core/src/environments/environment.ts\\",
-                  \\"with\\": \\"libs/test/feature-core/src/environments/environment.prod.ts\\"
+                  \\"replace\\": \\"libs/test/core/feature/src/environments/environment.ts\\",
+                  \\"with\\": \\"libs/test/core/feature/src/environments/environment.prod.ts\\"
                 }
               ],
               \\"optimization\\": true,
@@ -384,26 +384,26 @@ exports[`init schematic should run successfully 2`] = `
         }
       }
     },
-    \\"test-data-access-auth\\": {
+    \\"test-auth-data-access\\": {
       \\"projectType\\": \\"library\\",
-      \\"root\\": \\"libs/test/data-access-auth\\",
-      \\"sourceRoot\\": \\"libs/test/data-access-auth/src\\",
+      \\"root\\": \\"libs/test/auth/data-access\\",
+      \\"sourceRoot\\": \\"libs/test/auth/data-access/src\\",
       \\"prefix\\": \\"auth\\",
       \\"architect\\": {
         \\"lint\\": {
           \\"builder\\": \\"@angular-devkit/build-angular:tslint\\",
           \\"options\\": {
             \\"tsConfig\\": [
-              \\"libs/test/data-access-auth/tsconfig.lib.json\\",
-              \\"libs/test/data-access-auth/tsconfig.spec.json\\"
+              \\"libs/test/auth/data-access/tsconfig.lib.json\\",
+              \\"libs/test/auth/data-access/tsconfig.spec.json\\"
             ],
-            \\"exclude\\": [\\"**/node_modules/**\\", \\"!libs/test/data-access-auth/**/*\\"]
+            \\"exclude\\": [\\"**/node_modules/**\\", \\"!libs/test/auth/data-access/**/*\\"]
           }
         },
         \\"test\\": {
           \\"builder\\": \\"@nrwl/jest:jest\\",
           \\"options\\": {
-            \\"jestConfig\\": \\"libs/test/data-access-auth/jest.config.js\\",
+            \\"jestConfig\\": \\"libs/test/auth/data-access/jest.config.js\\",
             \\"passWithNoTests\\": true
           }
         }
@@ -414,26 +414,26 @@ exports[`init schematic should run successfully 2`] = `
         }
       }
     },
-    \\"test-data-access-core\\": {
+    \\"test-core-data-access\\": {
       \\"projectType\\": \\"library\\",
-      \\"root\\": \\"libs/test/data-access-core\\",
-      \\"sourceRoot\\": \\"libs/test/data-access-core/src\\",
+      \\"root\\": \\"libs/test/core/data-access\\",
+      \\"sourceRoot\\": \\"libs/test/core/data-access/src\\",
       \\"prefix\\": \\"core\\",
       \\"architect\\": {
         \\"lint\\": {
           \\"builder\\": \\"@angular-devkit/build-angular:tslint\\",
           \\"options\\": {
             \\"tsConfig\\": [
-              \\"libs/test/data-access-core/tsconfig.lib.json\\",
-              \\"libs/test/data-access-core/tsconfig.spec.json\\"
+              \\"libs/test/core/data-access/tsconfig.lib.json\\",
+              \\"libs/test/core/data-access/tsconfig.spec.json\\"
             ],
-            \\"exclude\\": [\\"**/node_modules/**\\", \\"!libs/test/data-access-core/**/*\\"]
+            \\"exclude\\": [\\"**/node_modules/**\\", \\"!libs/test/core/data-access/**/*\\"]
           }
         },
         \\"test\\": {
           \\"builder\\": \\"@nrwl/jest:jest\\",
           \\"options\\": {
-            \\"jestConfig\\": \\"libs/test/data-access-core/jest.config.js\\",
+            \\"jestConfig\\": \\"libs/test/core/data-access/jest.config.js\\",
             \\"passWithNoTests\\": true
           }
         }
@@ -444,23 +444,23 @@ exports[`init schematic should run successfully 2`] = `
         }
       }
     },
-    \\"test-feature-about\\": {
+    \\"test-about-feature\\": {
       \\"projectType\\": \\"library\\",
-      \\"root\\": \\"libs/test/feature-about\\",
-      \\"sourceRoot\\": \\"libs/test/feature-about/src\\",
+      \\"root\\": \\"libs/test/about/feature\\",
+      \\"sourceRoot\\": \\"libs/test/about/feature/src\\",
       \\"prefix\\": \\"about\\",
       \\"architect\\": {
         \\"lint\\": {
           \\"builder\\": \\"@angular-devkit/build-angular:tslint\\",
           \\"options\\": {
-            \\"tsConfig\\": [\\"libs/test/feature-about/tsconfig.lib.json\\", \\"libs/test/feature-about/tsconfig.spec.json\\"],
-            \\"exclude\\": [\\"**/node_modules/**\\", \\"!libs/test/feature-about/**/*\\"]
+            \\"tsConfig\\": [\\"libs/test/about/feature/tsconfig.lib.json\\", \\"libs/test/about/feature/tsconfig.spec.json\\"],
+            \\"exclude\\": [\\"**/node_modules/**\\", \\"!libs/test/about/feature/**/*\\"]
           }
         },
         \\"test\\": {
           \\"builder\\": \\"@nrwl/jest:jest\\",
           \\"options\\": {
-            \\"jestConfig\\": \\"libs/test/feature-about/jest.config.js\\",
+            \\"jestConfig\\": \\"libs/test/about/feature/jest.config.js\\",
             \\"passWithNoTests\\": true
           }
         }
@@ -471,23 +471,23 @@ exports[`init schematic should run successfully 2`] = `
         }
       }
     },
-    \\"test-feature-auth\\": {
+    \\"test-auth-feature\\": {
       \\"projectType\\": \\"library\\",
-      \\"root\\": \\"libs/test/feature-auth\\",
-      \\"sourceRoot\\": \\"libs/test/feature-auth/src\\",
+      \\"root\\": \\"libs/test/auth/feature\\",
+      \\"sourceRoot\\": \\"libs/test/auth/feature/src\\",
       \\"prefix\\": \\"auth\\",
       \\"architect\\": {
         \\"lint\\": {
           \\"builder\\": \\"@angular-devkit/build-angular:tslint\\",
           \\"options\\": {
-            \\"tsConfig\\": [\\"libs/test/feature-auth/tsconfig.lib.json\\", \\"libs/test/feature-auth/tsconfig.spec.json\\"],
-            \\"exclude\\": [\\"**/node_modules/**\\", \\"!libs/test/feature-auth/**/*\\"]
+            \\"tsConfig\\": [\\"libs/test/auth/feature/tsconfig.lib.json\\", \\"libs/test/auth/feature/tsconfig.spec.json\\"],
+            \\"exclude\\": [\\"**/node_modules/**\\", \\"!libs/test/auth/feature/**/*\\"]
           }
         },
         \\"test\\": {
           \\"builder\\": \\"@nrwl/jest:jest\\",
           \\"options\\": {
-            \\"jestConfig\\": \\"libs/test/feature-auth/jest.config.js\\",
+            \\"jestConfig\\": \\"libs/test/auth/feature/jest.config.js\\",
             \\"passWithNoTests\\": true
           }
         }
@@ -498,23 +498,23 @@ exports[`init schematic should run successfully 2`] = `
         }
       }
     },
-    \\"test-feature-core\\": {
+    \\"test-core-feature\\": {
       \\"projectType\\": \\"library\\",
-      \\"root\\": \\"libs/test/feature-core\\",
-      \\"sourceRoot\\": \\"libs/test/feature-core/src\\",
+      \\"root\\": \\"libs/test/core/feature\\",
+      \\"sourceRoot\\": \\"libs/test/core/feature/src\\",
       \\"prefix\\": \\"core\\",
       \\"architect\\": {
         \\"lint\\": {
           \\"builder\\": \\"@angular-devkit/build-angular:tslint\\",
           \\"options\\": {
-            \\"tsConfig\\": [\\"libs/test/feature-core/tsconfig.lib.json\\", \\"libs/test/feature-core/tsconfig.spec.json\\"],
-            \\"exclude\\": [\\"**/node_modules/**\\", \\"!libs/test/feature-core/**/*\\"]
+            \\"tsConfig\\": [\\"libs/test/core/feature/tsconfig.lib.json\\", \\"libs/test/core/feature/tsconfig.spec.json\\"],
+            \\"exclude\\": [\\"**/node_modules/**\\", \\"!libs/test/core/feature/**/*\\"]
           }
         },
         \\"test\\": {
           \\"builder\\": \\"@nrwl/jest:jest\\",
           \\"options\\": {
-            \\"jestConfig\\": \\"libs/test/feature-core/jest.config.js\\",
+            \\"jestConfig\\": \\"libs/test/core/feature/jest.config.js\\",
             \\"passWithNoTests\\": true
           }
         }
@@ -525,26 +525,26 @@ exports[`init schematic should run successfully 2`] = `
         }
       }
     },
-    \\"test-feature-dashboard\\": {
+    \\"test-dashboard-feature\\": {
       \\"projectType\\": \\"library\\",
-      \\"root\\": \\"libs/test/feature-dashboard\\",
-      \\"sourceRoot\\": \\"libs/test/feature-dashboard/src\\",
+      \\"root\\": \\"libs/test/dashboard/feature\\",
+      \\"sourceRoot\\": \\"libs/test/dashboard/feature/src\\",
       \\"prefix\\": \\"dashboard\\",
       \\"architect\\": {
         \\"lint\\": {
           \\"builder\\": \\"@angular-devkit/build-angular:tslint\\",
           \\"options\\": {
             \\"tsConfig\\": [
-              \\"libs/test/feature-dashboard/tsconfig.lib.json\\",
-              \\"libs/test/feature-dashboard/tsconfig.spec.json\\"
+              \\"libs/test/dashboard/feature/tsconfig.lib.json\\",
+              \\"libs/test/dashboard/feature/tsconfig.spec.json\\"
             ],
-            \\"exclude\\": [\\"**/node_modules/**\\", \\"!libs/test/feature-dashboard/**/*\\"]
+            \\"exclude\\": [\\"**/node_modules/**\\", \\"!libs/test/dashboard/feature/**/*\\"]
           }
         },
         \\"test\\": {
           \\"builder\\": \\"@nrwl/jest:jest\\",
           \\"options\\": {
-            \\"jestConfig\\": \\"libs/test/feature-dashboard/jest.config.js\\",
+            \\"jestConfig\\": \\"libs/test/dashboard/feature/jest.config.js\\",
             \\"passWithNoTests\\": true
           }
         }
@@ -555,23 +555,23 @@ exports[`init schematic should run successfully 2`] = `
         }
       }
     },
-    \\"test-feature-shell\\": {
+    \\"test-shell-feature\\": {
       \\"projectType\\": \\"library\\",
-      \\"root\\": \\"libs/test/feature-shell\\",
-      \\"sourceRoot\\": \\"libs/test/feature-shell/src\\",
+      \\"root\\": \\"libs/test/shell/feature\\",
+      \\"sourceRoot\\": \\"libs/test/shell/feature/src\\",
       \\"prefix\\": \\"shell\\",
       \\"architect\\": {
         \\"lint\\": {
           \\"builder\\": \\"@angular-devkit/build-angular:tslint\\",
           \\"options\\": {
-            \\"tsConfig\\": [\\"libs/test/feature-shell/tsconfig.lib.json\\", \\"libs/test/feature-shell/tsconfig.spec.json\\"],
-            \\"exclude\\": [\\"**/node_modules/**\\", \\"!libs/test/feature-shell/**/*\\"]
+            \\"tsConfig\\": [\\"libs/test/shell/feature/tsconfig.lib.json\\", \\"libs/test/shell/feature/tsconfig.spec.json\\"],
+            \\"exclude\\": [\\"**/node_modules/**\\", \\"!libs/test/shell/feature/**/*\\"]
           }
         },
         \\"test\\": {
           \\"builder\\": \\"@nrwl/jest:jest\\",
           \\"options\\": {
-            \\"jestConfig\\": \\"libs/test/feature-shell/jest.config.js\\",
+            \\"jestConfig\\": \\"libs/test/shell/feature/jest.config.js\\",
             \\"passWithNoTests\\": true
           }
         }
@@ -672,18 +672,18 @@ exports[`init schematic should run successfully 3`] = `
   \\"compilerOptions\\": {
     \\"paths\\": {
       \\"@nxpm/api-app-module\\": [\\"apps/api/src/app/app.module.ts\\"],
-      \\"@proj/api/data-access-auth\\": [\\"libs/api/data-access-auth/src/index.ts\\"],
-      \\"@proj/api/feature-auth\\": [\\"libs/api/feature-auth/src/index.ts\\"],
-      \\"@proj/api/data-access-core\\": [\\"libs/api/data-access-core/src/index.ts\\"],
-      \\"@proj/api/feature-core\\": [\\"libs/api/feature-core/src/index.ts\\"],
+      \\"@proj/api/auth/data-access\\": [\\"libs/api/auth/data-access/src/index.ts\\"],
+      \\"@proj/api/auth/feature\\": [\\"libs/api/auth/feature/src/index.ts\\"],
+      \\"@proj/api/core/data-access\\": [\\"libs/api/core/data-access/src/index.ts\\"],
+      \\"@proj/api/core/feature\\": [\\"libs/api/core/feature/src/index.ts\\"],
       \\"@proj/test/assets\\": [\\"libs/test/assets/src/index.ts\\"],
-      \\"@proj/test/data-access-auth\\": [\\"libs/test/data-access-auth/src/index.ts\\"],
-      \\"@proj/test/data-access-core\\": [\\"libs/test/data-access-core/src/index.ts\\"],
-      \\"@proj/test/feature-about\\": [\\"libs/test/feature-about/src/index.ts\\"],
-      \\"@proj/test/feature-auth\\": [\\"libs/test/feature-auth/src/index.ts\\"],
-      \\"@proj/test/feature-core\\": [\\"libs/test/feature-core/src/index.ts\\"],
-      \\"@proj/test/feature-dashboard\\": [\\"libs/test/feature-dashboard/src/index.ts\\"],
-      \\"@proj/test/feature-shell\\": [\\"libs/test/feature-shell/src/index.ts\\"],
+      \\"@proj/test/auth/data-access\\": [\\"libs/test/auth/data-access/src/index.ts\\"],
+      \\"@proj/test/core/data-access\\": [\\"libs/test/core/data-access/src/index.ts\\"],
+      \\"@proj/test/about/feature\\": [\\"libs/test/about/feature/src/index.ts\\"],
+      \\"@proj/test/auth/feature\\": [\\"libs/test/auth/feature/src/index.ts\\"],
+      \\"@proj/test/core/feature\\": [\\"libs/test/core/feature/src/index.ts\\"],
+      \\"@proj/test/dashboard/feature\\": [\\"libs/test/dashboard/feature/src/index.ts\\"],
+      \\"@proj/test/shell/feature\\": [\\"libs/test/shell/feature/src/index.ts\\"],
       \\"@proj/test/layout\\": [\\"libs/test/layout/src/index.ts\\"],
       \\"@proj/test/style\\": [\\"libs/test/style/src/index.ts\\"],
       \\"@proj/test/ui-form\\": [\\"libs/test/ui-form/src/index.ts\\"]
@@ -793,7 +793,7 @@ exports[`init schematic should run successfully 4`] = `
   \\"scripts\\": {
     \\"dev:test\\": \\"nx serve test\\",
     \\"build:test\\": \\"nx build test --prod\\",
-    \\"sdk:test\\": \\"graphql-codegen --config libs/test/data-access-core/src/codegen.yml\\",
+    \\"sdk:test\\": \\"graphql-codegen --config libs/test/core/data-access/src/codegen.yml\\",
     \\"sdk:test:watch\\": \\"yarn sdk:test --watch\\",
     \\"dev:api\\": \\"yarn prisma:generate && nx serve api\\",
     \\"build:api\\": \\"nx build api --prod\\",
@@ -812,7 +812,7 @@ exports[`init schematic should run successfully 4`] = `
     \\"e2e\\": \\"ng e2e\\"
   },
   \\"prisma\\": {
-    \\"schema\\": \\"libs/api/data-access-core/src/prisma/schema.prisma\\"
+    \\"schema\\": \\"libs/api/core/data-access/src/prisma/schema.prisma\\"
   }
 }
 "
