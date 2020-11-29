@@ -32,7 +32,7 @@ export async function workspaceInit({ dryRun, name }: { dryRun: boolean; name: s
   runCommand(installDeps, target)
 
   log('Initialize @nxpm/stack')
-  const initProject = `yarn nx g @nxpm/stack:init admin`
+  const initProject = `yarn nx g @nxpm/stack:init web`
   runCommand(initProject, target)
 
   info('Installation finished')
@@ -40,5 +40,5 @@ export async function workspaceInit({ dryRun, name }: { dryRun: boolean; name: s
   info(`Start database servers : ${gray(`docker-compose up`)}`)
   info(`Run setup              : ${gray(`yarn setup`)}`)
   info(`Start API              : ${gray(`yarn dev:api`)}`)
-  info(`Start Admin            : ${gray(`yarn dev:admin`)}`)
+  info(`Start Web              : ${gray(`yarn dev:web`)}`)
 }

@@ -24,9 +24,9 @@ export class <%= classify(projectName) %>Service extends PrismaClient implements
     }
     const password = hashPassword(input.password)
 
-    // The first user will get the Admin role
-    const hasAdmin = await this.user.count({ where: { role: 'Admin' } })
-    const role = hasAdmin ? 'User' : 'Admin'
+    // The first user will get the Web role
+    const hasWeb = await this.user.count({ where: { role: 'Web' } })
+    const role = hasWeb ? 'User' : 'Web'
 
     return this.user.create({
       data: {

@@ -104,7 +104,7 @@ function addDockerCompose(): Rule {
 
 export default function (options: InitSchematicSchema): Rule {
   const normalizedOptions = normalizeOptions(options, ProjectType.Application)
-  const adminName = options.name
+  const webName = options.name
   const apiName = 'api'
   return chain([
     addDepsToPackageJson(
@@ -126,9 +126,9 @@ export default function (options: InitSchematicSchema): Rule {
     addRunScript('docker:run', `docker run -it -p 8000:3000 ${normalizedOptions.npmScope}/${apiName}`, true),
     addRunScript('docker:build', `docker build . -t ${normalizedOptions.npmScope}/${apiName}`, true),
     addRunScript('start', 'node dist/apps/api/main.js', true),
-    addRunScript('build', `yarn build:${adminName} && yarn build:${apiName}`, true),
+    addRunScript('build', `yarn build:${webName} && yarn build:${apiName}`, true),
     schematic('api', { name: apiName }),
-    schematic('admin', { name: adminName }),
+    schematic('web', { name: webName }),
     options?.ci === 'github' ? externalSchematic('@nxpm/ci', 'github', {}) : noop(),
     removeFiles([`apps/.gitkeep`, `libs/.gitkeep`]),
     formatFiles(),

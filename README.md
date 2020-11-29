@@ -42,10 +42,10 @@ Install the dependencies:
 yarn add -D @nxpm/stack @nrwl/angular @nrwl/nest
 ```
 
-Initialize a new project (where admin is the name of the Angular frontend):
+Initialize a new project (where web is the name of the Angular frontend):
 
 ```shell script
-nx g @nxpm/stack:init admin
+nx g @nxpm/stack:init web
 ```
 
 ## Running the project
@@ -96,16 +96,16 @@ Run the following command to generate the SDK:
 yarn sdk
 ```
 
-### Start the Admin
+### Start the Web app
 
-With this all done, you can now start the Admin by running the following command:
+With this all done, you can now start the Web by running the following command:
 
 ```shell script
-yarn dev:admin
+yarn dev:web
 ```
 
 You should be able to navigate to [http://localhost:4200](http://localhost:4200) and see the Angular app.
 
-You can now register a new user, the initial user will get the Admin role.
+You can now register a new user, the initial user will get the Web role.
 
 ## MIT Licensed by beeman 🐝

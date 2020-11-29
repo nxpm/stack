@@ -7,21 +7,21 @@ import {
   uniq,
 } from '@nrwl/nx-plugin/testing'
 import { runFileTests } from '../../e2e-file-utils'
-import { adminFileTests, adminProjects } from './admin-structure'
+import { webFileTests, webProjects } from './web-structure'
 import { apiFileTests, apiProjects } from './api-structure'
 
 describe('@nxpm/stack:init e2e', () => {
   const projectNameApi = 'api'
-  const projectNameAdmin = uniq('admin')
+  const projectNameWeb = uniq('web')
 
   beforeAll(async () => {
     // During this test we don't want to install the Husky hooks as it interferes with the hooks in this projects repo.
     process.env.HUSKY_SKIP_INSTALL = 'true'
     ensureNxProject('@nxpm/stack', 'dist/packages/stack')
-    await runNxCommandAsync(`generate @nxpm/stack:init ${projectNameAdmin}`)
+    await runNxCommandAsync(`generate @nxpm/stack:init ${projectNameWeb}`)
   })
 
-  runFileTests(adminFileTests(projectNameAdmin))
+  runFileTests(webFileTests(projectNameWeb))
   runFileTests(apiFileTests(projectNameApi))
 
   describe('workspace structure', () => {
@@ -29,7 +29,7 @@ describe('@nxpm/stack:init e2e', () => {
       const nxJson = readJson('nx.json')
       const projectNames = Object.keys(nxJson.projects)
 
-      expect(projectNames.sort()).toEqual([...apiProjects(projectNameApi), ...adminProjects(projectNameAdmin)].sort())
+      expect(projectNames.sort()).toEqual([...apiProjects(projectNameApi), ...webProjects(projectNameWeb)].sort())
       done()
     })
   })
@@ -58,9 +58,9 @@ describe('@nxpm/stack:init e2e', () => {
       done()
     })
 
-    it('should build the admin', async (done) => {
-      await runNxCommandAsync(`build ${projectNameAdmin}`)
-      expect(() => checkFilesExist(`dist/apps/${projectNameAdmin}/index.html`)).not.toThrow()
+    it('should build the web', async (done) => {
+      await runNxCommandAsync(`build ${projectNameWeb}`)
+      expect(() => checkFilesExist(`dist/apps/${projectNameWeb}/index.html`)).not.toThrow()
       done()
     })
   })
