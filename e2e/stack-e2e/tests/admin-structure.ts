@@ -3,15 +3,15 @@ import { FileTests } from '../../e2e-file-utils'
 export function adminProjects(project: string) {
   return [
     project,
-    `${project}-e2e`,
     `${project}-assets`,
-    `${project}-data-access-auth`,
-    `${project}-data-access-core`,
-    `${project}-feature-about`,
-    `${project}-feature-auth`,
-    `${project}-feature-dashboard`,
-    `${project}-feature-core`,
-    `${project}-feature-shell`,
+    `${project}-auth-data-access`,
+    `${project}-core-data-access`,
+    `${project}-e2e`,
+    `${project}-about-feature`,
+    `${project}-auth-feature`,
+    `${project}-core-feature`,
+    `${project}-dashboard-feature`,
+    `${project}-shell-feature`,
     `${project}-layout`,
     `${project}-style`,
     `${project}-ui-form`,
@@ -27,16 +27,16 @@ export function adminFileTests(project: string): FileTests {
       `libs/${project}/assets/src/assets/icons/.gitkeep`,
       `libs/${project}/assets/src/assets/images/logo.png`,
       `libs/${project}/assets/src/favicon.ico`,
-      `libs/${project}/data-access-core/src/lib/${project}-data-access-core.module.ts`,
-      `libs/${project}/data-access-core/src/lib/${project}-data-access-core.service.ts`,
-      `libs/${project}/data-access-core/src/generated/graphql.ts`,
-      `libs/${project}/data-access-core/src/graphql/feature-auth.graphql`,
-      `libs/${project}/data-access-core/src/graphql/feature-core.graphql`,
-      `libs/${project}/data-access-core/src/codegen.yml`,
-      `libs/${project}/feature-auth/src/lib/${project}-feature-auth.module.ts`,
-      `libs/${project}/feature-core/src/environments/environment.ts`,
-      `libs/${project}/feature-core/src/environments/environment.prod.ts`,
-      `libs/${project}/feature-shell/src/lib/${project}-feature-shell.module.ts`,
+      `libs/${project}/core/data-access/src/lib/${project}-core-data-access.module.ts`,
+      `libs/${project}/core/data-access/src/lib/${project}-core-data-access.service.ts`,
+      `libs/${project}/core/data-access/src/generated/graphql.ts`,
+      `libs/${project}/core/data-access/src/graphql/auth-feature.graphql`,
+      `libs/${project}/core/data-access/src/graphql/core-feature.graphql`,
+      `libs/${project}/core/data-access/src/codegen.yml`,
+      `libs/${project}/auth/feature/src/lib/${project}-auth-feature.module.ts`,
+      `libs/${project}/core/feature/src/environments/environment.ts`,
+      `libs/${project}/core/feature/src/environments/environment.prod.ts`,
+      `libs/${project}/shell/feature/src/lib/${project}-shell-feature.module.ts`,
       `libs/${project}/layout/src/lib/${project}-layout.module.ts`,
       `libs/${project}/layout/src/lib/${project}-layout.component.ts`,
       `libs/${project}/style/src/lib/_global.scss`,
@@ -67,8 +67,8 @@ export function adminFileTests(project: string): FileTests {
         // Registered a proxy file
         `apps/${project}/proxy.conf.js`,
         // Moved environment files in fileReplacements
-        `libs/${project}/feature-core/src/environments/environment.ts`,
-        `libs/${project}/feature-core/src/environments/environment.prod.ts`,
+        `libs/${project}/core/feature/src/environments/environment.ts`,
+        `libs/${project}/core/feature/src/environments/environment.prod.ts`,
         // Moved assets to lib
         `"input": "libs/${project}/assets/src"`,
         `"input": "libs/${project}/assets/src/assets"`,
@@ -85,67 +85,67 @@ export function adminFileTests(project: string): FileTests {
         `'/graphql': { target, secure: false, ws: true }`,
       ],
       [`apps/${project}/src/app/app.module.ts`]: [
-        `FeatureShellModule`,
-        `/${project}/feature-shell'`,
-        `FeatureCoreModule`,
-        `/${project}/feature-core'`,
+        `ShellFeatureModule`,
+        `/${project}/shell/feature'`,
+        `CoreFeatureModule`,
+        `/${project}/core/feature'`,
       ],
-      [`libs/${project}/data-access-core/src/codegen.yml`]: [
-        `libs/${project}/data-access-core/src/graphql/**/*.graphql`,
-        `libs/${project}/data-access-core/src/generated/graphql.ts:`,
+      [`libs/${project}/core/data-access/src/codegen.yml`]: [
+        `libs/${project}/core/data-access/src/graphql/**/*.graphql`,
+        `libs/${project}/core/data-access/src/generated/graphql.ts:`,
       ],
-      [`libs/${project}/data-access-core/src/index.ts`]: [
+      [`libs/${project}/core/data-access/src/index.ts`]: [
         `export * from './generated/graphql'`,
-        `export * from './lib/${project}-data-access-core.module'`,
-        `export * from './lib/${project}-data-access-core.service'`,
+        `export * from './lib/${project}-core-data-access.module'`,
+        `export * from './lib/${project}-core-data-access.service'`,
       ],
-      [`libs/${project}/feature-about/src/lib/${project}-feature-about.module.ts`]: [
-        `${project}/data-access`,
-        `${project}-feature-about.component`,
+      [`libs/${project}/about/feature/src/lib/${project}-about-feature.module.ts`]: [
+        `${project}/core/data-access`,
+        `${project}-about-feature.component`,
       ],
-      [`libs/${project}/feature-about/src/lib/${project}-feature-about.component.ts`]: [
-        `${project}/data-access`,
+      [`libs/${project}/about/feature/src/lib/${project}-about-feature.component.ts`]: [
+        `${project}/core/data-access`,
         `public environment = environment`,
       ],
-      [`libs/${project}/feature-auth/src/index.ts`]: [`export * from './lib/${project}-feature-auth.module'`],
-      [`libs/${project}/feature-core/src/environments/environment.ts`]: [
+      [`libs/${project}/auth/feature/src/index.ts`]: [`export * from './lib/${project}-auth-feature.module'`],
+      [`libs/${project}/core/feature/src/environments/environment.ts`]: [
         `api: '/api'`,
         `graphql: '/graphql'`,
         `production: false`,
       ],
-      [`libs/${project}/feature-core/src/environments/environment.prod.ts`]: [
+      [`libs/${project}/core/feature/src/environments/environment.prod.ts`]: [
         `api: '/api'`,
         `graphql: '/graphql'`,
         `production: true`,
       ],
-      [`libs/${project}/feature-core/src/lib/${project}-feature-core.module.ts`]: [
+      [`libs/${project}/core/feature/src/lib/${project}-core-feature.module.ts`]: [
         `-graphql.module`,
         'GraphQLModule',
         `import { HttpClientModule } from '@angular/common/http'`,
         'HttpClientModule',
       ],
-      [`libs/${project}/feature-core/src/lib/${project}-feature-core-graphql.module.ts`]: [
+      [`libs/${project}/core/feature/src/lib/${project}-core-feature-graphql.module.ts`]: [
         `import { environment } from '../environments/environment'`,
         `environment.graphql`,
       ],
-      [`libs/${project}/feature-dashboard/src/lib/${project}-feature-dashboard.module.ts`]: [
-        `${project}/data-access`,
-        `${project}-feature-dashboard.component`,
+      [`libs/${project}/dashboard/feature/src/lib/${project}-dashboard-feature.module.ts`]: [
+        `${project}/core/data-access`,
+        `${project}-dashboard-feature.component`,
       ],
-      [`libs/${project}/feature-dashboard/src/lib/${project}-feature-dashboard.component.ts`]: [
-        `${project}/data-access`,
+      [`libs/${project}/dashboard/feature/src/lib/${project}-dashboard-feature.component.ts`]: [
+        `${project}/core/data-access`,
       ],
-      [`libs/${project}/feature-shell/src/lib/${project}-feature-shell.module.ts`]: [
+      [`libs/${project}/shell/feature/src/lib/${project}-shell-feature.module.ts`]: [
         `RouterModule.forRoot(routes)`,
         `{ path: '', pathMatch: 'full', redirectTo: 'dashboard' }`,
         `path: 'about'`,
-        `${project}/feature-about`,
+        `${project}/about/feature`,
         `path: 'dashboard'`,
-        `${project}/feature-dashboard`,
+        `${project}/dashboard/feature`,
         `LayoutComponent`,
         `${project}/layout`,
       ],
-      [`libs/${project}/feature-shell/src/lib/not-found/not-found.component.ts`]: [`This page could not be found :(`],
+      [`libs/${project}/shell/feature/src/lib/not-found/not-found.component.ts`]: [`This page could not be found :(`],
       [`libs/${project}/layout/src/lib/${project}-layout.component.ts`]: [
         '<router-outlet></router-outlet>',
         'layout-footer',

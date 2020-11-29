@@ -1,11 +1,12 @@
 import { chain, externalSchematic, Rule } from '@angular-devkit/schematics'
 import { ProjectType } from '@nrwl/workspace'
-import { addFiles, normalizeOptions } from '../../utils'
+import { addFiles, createProjectName, normalizeOptions } from '../../utils'
 import { AdminLibSchematicSchema } from './schema'
 
 export default function (options: AdminLibSchematicSchema): Rule {
   const directory = options.directory || 'admin'
-  const name = options.name === options.type ? options.type : `${options.type}-${options.name}`
+  const name =
+    options.name === options.type ? options.type : createProjectName(options.name, options.type, options.classic)
 
   const normalizedOptions = normalizeOptions<AdminLibSchematicSchema>(
     { ...options, directory, name },

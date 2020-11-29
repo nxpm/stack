@@ -11,8 +11,8 @@ function updateEnvironment(name: string): Rule {
         updateWorkspaceInTree((json) => {
           projectConfig.architect.build.configurations.production.fileReplacements = [
             {
-              replace: `libs/${name}/feature-core/src/environments/environment.ts`,
-              with: `libs/${name}/feature-core/src/environments/environment.prod.ts`,
+              replace: `libs/${name}/core/feature/src/environments/environment.ts`,
+              with: `libs/${name}/core/feature/src/environments/environment.prod.ts`,
             },
           ]
           json.projects[name] = projectConfig
@@ -102,37 +102,37 @@ export default function (options: AdminSchematicSchema): Rule {
       directory,
       name: 'assets',
     }),
-    schematic('admin-data-access-auth', {
+    schematic('admin-auth-data-access', {
       appName: name,
       directory,
       name: 'auth',
     }),
-    schematic('admin-data-access-core', {
+    schematic('admin-core-data-access', {
       appName: name,
       directory,
       name: 'core',
     }),
-    schematic('admin-feature-about', {
+    schematic('admin-about-feature', {
       appName: name,
       directory,
       name: 'about',
     }),
-    schematic('admin-feature-auth', {
+    schematic('admin-auth-feature', {
       appName: name,
       directory,
       name: 'auth',
     }),
-    schematic('admin-feature-core', {
+    schematic('admin-core-feature', {
       appName: name,
       directory,
       name: 'core',
     }),
-    schematic('admin-feature-dashboard', {
+    schematic('admin-dashboard-feature', {
       appName: name,
       directory,
       name: 'dashboard',
     }),
-    schematic('admin-feature-shell', {
+    schematic('admin-shell-feature', {
       appName: name,
       directory,
       name: 'shell',

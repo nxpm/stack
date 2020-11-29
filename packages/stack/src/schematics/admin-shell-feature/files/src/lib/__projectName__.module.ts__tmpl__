@@ -1,0 +1,37 @@
+import { CommonModule } from '@angular/common'
+import { NgModule } from '@angular/core'
+import { RouterModule, Routes } from '@angular/router'
+import { <%= classify(appName) %>AuthDataAccessModule, IsLoggedInGuard } from '@<%= npmScope %>/<%= appName %>/auth/data-access'
+import { <%= classify(appName) %>CoreDataAccessModule } from '@<%= npmScope %>/<%= appName %>/core/data-access'
+import { <%= classify(appName) %>LayoutComponent } from '@<%= npmScope %>/<%= appName %>/layout'
+
+const routes: Routes = [
+  {
+    path: '',
+    component: <%= classify(appName) %>LayoutComponent,
+    canActivate: [IsLoggedInGuard],
+    children: [
+      // Application routes here
+      { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
+      {
+        path: 'about',
+        loadChildren: () => import('@<%= npmScope %>/<%= appName %>/about/feature').then((m) => m.<%= classify(appName) %>AboutFeatureModule),
+      },
+      {
+        path: 'dashboard',
+        loadChildren: () => import('@<%= npmScope %>/<%= appName %>/dashboard/feature').then((m) => m.<%= classify(appName) %>DashboardFeatureModule),
+      },
+    ],
+  },
+  { path: 'not-found', loadChildren: () => import('./not-found/not-found.module').then((m) => m.NotFoundModule) },
+  {
+    path: '',
+    loadChildren: () => import('@<%= npmScope %>/<%= appName %>/auth/feature').then((m) => m.<%= classify(appName) %>AuthFeatureModule),
+  },
+  { path: '**', redirectTo: '/not-found' },
+]
+
+@NgModule({
+  imports: [CommonModule, RouterModule.forRoot(routes), <%= classify(appName) %>CoreDataAccessModule, <%= classify(appName) %>AuthDataAccessModule],
+})
+export class <%= classify(projectName) %>Module {}

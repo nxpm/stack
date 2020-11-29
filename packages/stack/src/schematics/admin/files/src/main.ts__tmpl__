@@ -1,6 +1,6 @@
 import { enableProdMode } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-import { environment } from '@<%= npmScope %>/<%= name %>/feature-core'
+import { environment } from '@<%= npmScope %>/<%= name %>/core/feature'
 
 import { AppModule } from './app/app.module';
 
