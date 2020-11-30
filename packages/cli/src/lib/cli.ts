@@ -14,6 +14,11 @@ yargs
         type: 'string',
         demandOption: true,
       },
+      cli: {
+        type: 'string',
+        demandOption: false,
+        default: 'nx',
+      },
       webStyleLibrary: {
         type: 'string',
         demandOption: false,
@@ -24,6 +29,7 @@ yargs
       await workspaceInit({
         dryRun: !!args.dryRun,
         name: args.name,
+        cli: args.cli,
         webStyleLibrary: args.webStyleLibrary as WebStyleLibrary,
       })
     },

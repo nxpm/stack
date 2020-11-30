@@ -20,10 +20,12 @@ function info(message: string) {
 export async function workspaceInit({
   dryRun,
   name,
+  cli,
   webStyleLibrary,
 }: {
   dryRun: boolean
   name: string
+  cli: string
   webStyleLibrary: WebStyleLibrary
 }) {
   const target = join(process.cwd(), name)
@@ -31,7 +33,7 @@ export async function workspaceInit({
     throw new Error(`Path ${target} already exists`)
   }
   log('Creating Nx Workspace')
-  const createCommand = `yarn create nx-workspace ${name} --cli=nx --nx-cloud=false --preset=empty ${
+  const createCommand = `yarn create nx-workspace ${name} --cli=${cli} --nx-cloud=false --preset=empty ${
     dryRun ? ' --dry-run ' : ''
   }`
   runCommand(createCommand)
