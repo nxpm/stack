@@ -4,7 +4,7 @@ import { environment } from '@<%= npmScope %>/<%= appName %>/core/feature'
 
 @Component({
   template: `
-    <div class="container my-3 my-md-5">
+    <div class="container mx-auto my-3 my-md-5">
       <div class="card">
         <div class="card-header">
           About

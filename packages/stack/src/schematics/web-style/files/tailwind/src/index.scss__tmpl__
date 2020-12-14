@@ -4,3 +4,22 @@
 html, body {
   height: 100vh;
 }
+
+/* These styles are here so we can re-use parts of the the bootstrap templates */
+.card {
+  @apply shadow rounded-lg bg-gray-100 dark:bg-gray-800;
+}
+.card .card-body {
+  @apply p-6;
+}
+.card .card-footer,
+.card .card-header {
+  @apply p-3;
+  @apply bg-gray-200 dark:bg-gray-700;
+}
+.card .card-footer {
+  @apply rounded-b-lg
+}
+.card .card-header {
+  @apply rounded-t-lg
+}

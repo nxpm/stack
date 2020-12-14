@@ -5,8 +5,7 @@ import { WebLayoutSchematicSchema } from './schema'
 
 export default function (options: WebLayoutSchematicSchema): Rule {
   const name = options.name || 'layout'
-  const appName = options.appName
-  const projectName = appName ? `${appName}-${name}` : name
+  const library = options.library || 'bootstrap'
   const directory = options.directory || options.name
   const normalizedOptions = normalizeOptions({ ...options, name }, ProjectType.Library)
   return chain([
@@ -15,6 +14,6 @@ export default function (options: WebLayoutSchematicSchema): Rule {
       name,
       type: 'layout',
     }),
-    addFiles(normalizedOptions),
+    addFiles(normalizedOptions, `./files/${library}`),
   ])
 }

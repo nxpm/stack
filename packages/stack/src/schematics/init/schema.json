@@ -34,7 +34,7 @@
       "type": "string",
       "default": "bootstrap",
       "x-prompt": {
-        "message": "Which type of library would you like to ise?",
+        "message": "Which type of library would you like to use?",
         "type": "list",
         "items": [
           {
