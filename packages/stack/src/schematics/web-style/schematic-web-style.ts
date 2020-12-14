@@ -28,7 +28,7 @@ export default function (options: WebStyleSchematicSchema): Rule {
       ? externalSchematic('@ngneat/tailwind', 'ng-add', {
           project: appName,
           style: 'scss',
-          'use-custom-webpack-beta': true,
+          useCustomWebpackBeta: true,
         })
       : noop(),
     addFiles(normalizedOptions, `./files/${library}`),
