@@ -13,8 +13,8 @@ export default function (options: WebStyleSchematicSchema): Rule {
   return chain([
     addDepsToPackageJson(
       {
-        bootstrap: '^4.5.2',
-        bootswatch: '^4.5.2',
+        bootstrap: '^4.5.3',
+        bootswatch: '^4.5.3',
       },
       {},
       true,

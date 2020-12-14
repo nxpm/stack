@@ -110,7 +110,7 @@ export default function (options: InitSchematicSchema): Rule {
     addDepsToPackageJson(
       {},
       {
-        '@nxpm/cli': '^1.9.0',
+        '@nxpm/cli': '^4.1.2',
         husky: '^4.3.0',
         'lint-staged': '^10.4.0',
       },

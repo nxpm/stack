@@ -10,8 +10,8 @@ export default function (options: WebUiFormSchematicSchema): Rule {
   return chain([
     addDepsToPackageJson(
       {
-        '@ngx-formly/core': '5.10.3',
-        '@ngx-formly/bootstrap': '5.10.3',
+        '@ngx-formly/core': '^5.10.8',
+        '@ngx-formly/bootstrap': '^5.10.8',
       },
       {},
       true,
