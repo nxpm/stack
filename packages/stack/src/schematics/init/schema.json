@@ -29,8 +29,8 @@
       "description": "A directory where the project is placed",
       "alias": "d"
     },
-    "library": {
-      "description": "The UI library",
+    "webStyleLibrary": {
+      "description": "The web-style library",
       "type": "string",
       "default": "bootstrap",
       "x-prompt": {

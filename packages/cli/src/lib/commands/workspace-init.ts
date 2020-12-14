@@ -53,7 +53,7 @@ export async function workspaceInit({
   runCommand(installDeps, target)
 
   log('Initialize @nxpm/stack')
-  const initProject = `yarn nx g @nxpm/stack:init web --library ${webStyleLibrary}`
+  const initProject = `yarn nx g @nxpm/stack:init web --web-style-library ${webStyleLibrary}`
   runCommand(initProject, target)
 
   info('Installation finished')
