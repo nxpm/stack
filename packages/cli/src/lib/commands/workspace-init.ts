@@ -33,9 +33,14 @@ export async function workspaceInit({
     throw new Error(`Path ${target} already exists`)
   }
   log('Creating Nx Workspace')
-  const createCommand = `yarn create nx-workspace ${name} --cli=${cli} --nx-cloud=false --preset=empty ${
-    dryRun ? ' --dry-run ' : ''
-  }`
+  const params = [
+    `--cli=${cli}`,
+    '--nx-cloud=false',
+    '--preset=empty',
+    '--package-manager=yarn',
+    dryRun ? ' --dry-run ' : '',
+  ]
+  const createCommand = `yarn create nx-workspace ${name} ${params.join(' ')}`
   runCommand(createCommand)
 
   log('Install dependencies')
