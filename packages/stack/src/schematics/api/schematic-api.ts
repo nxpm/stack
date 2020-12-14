@@ -24,7 +24,7 @@ export default function (options: ApiSchematicSchema): Rule {
     addFiles(normalizedOptions),
     addRunScript(`setup`, `yarn prisma:apply`),
     addRunScript(`build:${name}`, `nx build ${name} --prod`),
-    addRunScript(`dev:${name}`, `yarn prisma:generate && nx serve ${name}`),
+    addRunScript(`dev:${name}`, `nx serve ${name}`),
     createDotEnv([
       `NODE_ENV=development`,
       `PORT=3000`,

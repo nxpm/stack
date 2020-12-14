@@ -795,7 +795,7 @@ exports[`init schematic should run successfully 4`] = `
     \\"build:test\\": \\"nx build test --prod\\",
     \\"sdk:test\\": \\"graphql-codegen --config libs/test/core/data-access/src/codegen.yml\\",
     \\"sdk:test:watch\\": \\"yarn sdk:test --watch\\",
-    \\"dev:api\\": \\"yarn prisma:generate && nx serve api\\",
+    \\"dev:api\\": \\"nx serve api\\",
     \\"build:api\\": \\"nx build api --prod\\",
     \\"setup\\": \\"yarn prisma:apply\\",
     \\"prisma:apply\\": \\"yarn prisma:format && yarn prisma db push --preview-feature\\",
