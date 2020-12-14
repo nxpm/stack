@@ -25,7 +25,11 @@ export default function (options: WebStyleSchematicSchema): Rule {
       type: 'style',
     }),
     library === 'tailwind'
-      ? externalSchematic('@ngneat/tailwind', 'ng-add', { project: appName, cssFlavor: 'scss' })
+      ? externalSchematic('@ngneat/tailwind', 'ng-add', {
+          project: appName,
+          style: 'scss',
+          'use-custom-webpack-beta': true,
+        })
       : noop(),
     addFiles(normalizedOptions, `./files/${library}`),
     updateAppStyles(appName, [`libs/${appName}/${name}/src/index.scss`]),
