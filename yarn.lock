@@ -67,15 +67,6 @@
     ora "4.0.3"
     rxjs "6.5.4"
 
-"@angular/cdk@10.2.5":
-  version "10.2.5"
-  resolved "https://registry.yarnpkg.com/@angular/cdk/-/cdk-10.2.5.tgz#768204ff4db1282297d15f382970f151f87434ec"
-  integrity sha512-SI/YdaxfkttG92A0uGRixyJkfTKHn0GIU+7BCSRq0d31ru3Ugfln+jr+5/xttxWr88CNPTfpGaUt0ZuSqYCzqw==
-  dependencies:
-    tslib "^2.0.0"
-  optionalDependencies:
-    parse5 "^5.0.0"
-
 "@angular/cli@^9.1.6":
   version "9.1.12"
   resolved "https://registry.yarnpkg.com/@angular/cli/-/cli-9.1.12.tgz#c6e41c80c387200766fc52a6b42fde869dcc0cef"
@@ -1215,17 +1206,10 @@
     fs-extra "9.0.1"
     pluralize "8.0.0"
 
-"@ngneat/tailwind@^1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@ngneat/tailwind/-/tailwind-1.1.0.tgz#ce082f395cc2201d212c880f4df92e8cf050d50d"
-  integrity sha512-nUQPGffa5kG47GgMljj31P9wR7/4b9YDjfqspdttydbVmUA8INhVBrh7Kkp7IGjvS8KKwp/P2EkAxiMlbfm8hA==
-  dependencies:
-    "@angular-devkit/core" "10.1.7"
-    "@angular-devkit/schematics" "10.1.7"
-    "@angular/cdk" "10.2.5"
-    "@schematics/angular" "10.1.7"
-    rxjs "6.6.3"
-    typescript "4.0.3"
+"@ngneat/tailwind@^3.0.6":
+  version "3.0.6"
+  resolved "https://registry.yarnpkg.com/@ngneat/tailwind/-/tailwind-3.0.6.tgz#6e28638fceb3f49b9273972e8399c81c654c3221"
+  integrity sha512-pT05sAhWQw1cQF8H/1MiMajqs8MqJzGKXdYltVTjfDKb+QLHUk18aBHyyJ8bgWkjouediPgl0/Nw2X3HU1LfWA==
 
 "@nodelib/fs.scandir@2.1.3":
   version "2.1.3"
@@ -1600,15 +1584,6 @@
   dependencies:
     "@types/node" ">= 8"
 
-"@schematics/angular@10.1.7", "@schematics/angular@~10.1.3":
-  version "10.1.7"
-  resolved "https://registry.yarnpkg.com/@schematics/angular/-/angular-10.1.7.tgz#f7794b8f27ae48f7fce991e289b9fec8700eae49"
-  integrity sha512-jcyLWDSbpgHvB/BNVSsV4uLJpC2qRx9Z5+rcQpBB1BerqIPS/1cTQg7TViHZtcqnZqWvzHR3jfqzDUSOCZpuJQ==
-  dependencies:
-    "@angular-devkit/core" "10.1.7"
-    "@angular-devkit/schematics" "10.1.7"
-    jsonc-parser "2.3.0"
-
 "@schematics/angular@9.1.12":
   version "9.1.12"
   resolved "https://registry.yarnpkg.com/@schematics/angular/-/angular-9.1.12.tgz#608e25dbd517d867002781f695336b51f05417a2"
@@ -1616,6 +1591,15 @@
   dependencies:
     "@angular-devkit/core" "9.1.12"
     "@angular-devkit/schematics" "9.1.12"
+
+"@schematics/angular@~10.1.3":
+  version "10.1.7"
+  resolved "https://registry.yarnpkg.com/@schematics/angular/-/angular-10.1.7.tgz#f7794b8f27ae48f7fce991e289b9fec8700eae49"
+  integrity sha512-jcyLWDSbpgHvB/BNVSsV4uLJpC2qRx9Z5+rcQpBB1BerqIPS/1cTQg7TViHZtcqnZqWvzHR3jfqzDUSOCZpuJQ==
+  dependencies:
+    "@angular-devkit/core" "10.1.7"
+    "@angular-devkit/schematics" "10.1.7"
+    jsonc-parser "2.3.0"
 
 "@schematics/update@0.901.12":
   version "0.901.12"
@@ -7895,7 +7879,7 @@ parse-url@^5.0.0:
     parse-path "^4.0.0"
     protocols "^1.4.0"
 
-parse5@5.1.1, parse5@^5.0.0:
+parse5@5.1.1:
   version "5.1.1"
   resolved "https://registry.yarnpkg.com/parse5/-/parse5-5.1.1.tgz#f68e4e5ba1852ac2cadc00f4555fff6c2abb6178"
   integrity sha512-ugq4DFI0Ptb+WWjAdOK16+u/nHfiIrcE+sh8kZMaM0WllQKLI9rOUq6c2b7cwPkXdzfQESqvoqK6ug7U/Yyzug==
@@ -8804,7 +8788,7 @@ rxjs@6.6.2:
   dependencies:
     tslib "^1.9.0"
 
-rxjs@6.6.3, rxjs@^6.4.0, rxjs@^6.5.3, rxjs@^6.5.4, rxjs@^6.6.0, rxjs@^6.6.3:
+rxjs@^6.4.0, rxjs@^6.5.3, rxjs@^6.5.4, rxjs@^6.6.0, rxjs@^6.6.3:
   version "6.6.3"
   resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-6.6.3.tgz#8ca84635c4daa900c0d3967a6ee7ac60271ee552"
   integrity sha512-trsQc+xYYXZ3urjOiJOuCOa5N3jAZ3eiSpQB5hIT8zGlL2QfnHLJ2r7GMkBGuIausdJN1OneaI6gQlsqNHHmZQ==
@@ -9972,11 +9956,6 @@ typedarray@^0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
-
-typescript@4.0.3:
-  version "4.0.3"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.0.3.tgz#153bbd468ef07725c1df9c77e8b453f8d36abba5"
-  integrity sha512-tEu6DGxGgRJPb/mVPIZ48e69xCn2yRmCgYmDugAVwmJ6o+0u1RI18eO7E7WBTLYLaEVVOhwQmcdhQHweux/WPg==
 
 typescript@~4.0.3:
   version "4.0.5"
