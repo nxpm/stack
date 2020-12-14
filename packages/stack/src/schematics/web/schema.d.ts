@@ -4,4 +4,5 @@ export interface WebSchematicSchema extends BaseSchema {
   name: string
   tags?: string
   directory?: string
+  styleLibrary?: 'bootstrap' | 'tailwind'
 }

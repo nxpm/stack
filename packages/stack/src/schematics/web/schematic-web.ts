@@ -75,6 +75,7 @@ function addProxyConfig(name: string): Rule {
 export default function (options: WebSchematicSchema): Rule {
   const name = options.name || 'web'
   const directory = options.directory || options.name
+  const styleLibrary = options.styleLibrary || 'bootstrap'
   const normalizedOptions = normalizeOptions<WebSchematicSchema>(options, ProjectType.Application)
 
   return chain([
@@ -146,6 +147,7 @@ export default function (options: WebSchematicSchema): Rule {
       appName: name,
       directory,
       name: 'style',
+      library: styleLibrary,
     }),
     schematic('web-ui-form', {
       appName: name,
