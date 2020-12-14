@@ -791,7 +791,7 @@ exports[`init schematic should run successfully 4`] = `
     ]
   },
   \\"scripts\\": {
-    \\"dev:test\\": \\"nx serve test\\",
+    \\"dev:test\\": \\"nx serve test --hmr\\",
     \\"build:test\\": \\"nx build test --prod\\",
     \\"sdk:test\\": \\"graphql-codegen --config libs/test/core/data-access/src/codegen.yml\\",
     \\"sdk:test:watch\\": \\"yarn sdk:test --watch\\",

@@ -155,7 +155,7 @@ export default function (options: WebSchematicSchema): Rule {
       name: 'form',
     }),
     addRunScript(`build:${name}`, `nx build ${name} --prod`),
-    addRunScript(`dev:${name}`, `nx serve ${name}`),
+    addRunScript(`dev:${name}`, `nx serve ${name} --hmr`),
     addFiles(normalizedOptions),
     removeFiles(
       [
