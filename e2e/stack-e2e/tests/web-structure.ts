@@ -50,6 +50,7 @@ export function webFileTests(project: string): FileTests {
       `apps/${project}/src/environments`,
       `apps/${project}/src/assets`,
       `apps/${project}/src/favicon.ico`,
+      `apps/${project}/src/styles.scss`,
       `libs/${project}/assets/src/lib/${project}-assets.module.ts`,
       `libs/${project}/assets/src/lib`,
       `libs/${project}/assets/src/index.ts`,
@@ -72,7 +73,6 @@ export function webFileTests(project: string): FileTests {
         // Moved assets to lib
         `"input": "libs/${project}/assets/src"`,
         `"input": "libs/${project}/assets/src/assets"`,
-        `"apps/${project}/src/styles.scss"`,
         `"libs/${project}/style/src/index.scss"`,
         // Add CommonJs dep list
         `allowedCommonJsDependencies`,

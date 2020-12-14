@@ -167,6 +167,7 @@ export default function (options: WebSchematicSchema): Rule {
         `assets/.gitkeep`,
         `assets/`,
         `favicon.ico`,
+        `styles.scss`,
       ],
       `${normalizedOptions.projectRoot}/src/`,
     ),
