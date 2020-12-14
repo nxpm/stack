@@ -142,6 +142,7 @@ export default function (options: WebSchematicSchema): Rule {
       appName: name,
       directory,
       name: 'layout',
+      library: styleLibrary,
     }),
     schematic('web-style', {
       appName: name,

@@ -25,14 +25,14 @@ export default function (options: WebStyleSchematicSchema): Rule {
       type: 'style',
     }),
     library === 'tailwind'
-      ? externalSchematic('@ngneat/tailwind', 'ng-add', {
+      ? externalSchematic('@ngneat/tailwind', 'nx-setup', {
           project: appName,
-          style: 'scss',
+          style: 'css',
           useCustomWebpackBeta: true,
         })
       : noop(),
     addFiles(normalizedOptions, `./files/${library}`),
-    updateAppStyles(appName, [`libs/${appName}/${name}/src/index.scss`]),
+    updateAppStyles(appName, [`libs/${appName}/${name}/src/index.${library === 'tailwind' ? 'css' : 'scss'}`]),
     updateProjectArchitects(projectName),
     removeFiles(
       [
