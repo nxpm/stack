@@ -272,7 +272,7 @@ exports[`init schematic should run successfully 2`] = `
                 \\"output\\": \\"assets\\"
               }
             ],
-            \\"styles\\": [\\"apps/test/src/styles.scss\\", \\"libs/test/style/src/index.scss\\"],
+            \\"styles\\": [\\"libs/test/style/src/index.scss\\"],
             \\"scripts\\": [],
             \\"allowedCommonJsDependencies\\": [\\"graphql-tag\\", \\"subscriptions-transport-ws\\", \\"zen-observable\\"]
           },

@@ -28,7 +28,7 @@ export default function (options: WebStyleSchematicSchema): Rule {
       ? externalSchematic('@ngneat/tailwind', 'ng-add', { project: appName, cssFlavor: 'scss' })
       : noop(),
     addFiles(normalizedOptions, `./files/${library}`),
-    updateAppStyles(appName, [`apps/${appName}/src/styles.scss`, `libs/${appName}/${name}/src/index.scss`]),
+    updateAppStyles(appName, [`libs/${appName}/${name}/src/index.scss`]),
     updateProjectArchitects(projectName),
     removeFiles(
       [
