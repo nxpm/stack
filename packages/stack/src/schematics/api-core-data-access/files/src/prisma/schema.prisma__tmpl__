@@ -9,24 +9,24 @@ generator client {
 }
 
 model User {
-  id                   String           @id @default(cuid())
-  createdAt            DateTime         @default(now())
-  updatedAt            DateTime         @default(now()) @updatedAt
-  role                 Role
-  developer            Boolean          @default(false)
-  email                String           @unique
-  username             String           @unique
-  password             String?
-  firstName            String?
-  lastName             String?
-  avatarUrl            String?
-  location             String?
-  phone                String?
-  bio                  String?
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+  role      Role
+  developer Boolean  @default(false)
+  email     String   @unique
+  username  String   @unique
+  password  String?
+  firstName String?
+  lastName  String?
+  avatarUrl String?
+  location  String?
+  phone     String?
+  bio       String?
 }
 
 enum Role {
-  Web
+  Admin
   User
 }
 

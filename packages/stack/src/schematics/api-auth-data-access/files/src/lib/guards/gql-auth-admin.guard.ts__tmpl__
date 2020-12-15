@@ -3,8 +3,8 @@ import { GqlExecutionContext } from '@nestjs/graphql'
 import { AuthGuard } from '@nestjs/passport'
 
 @Injectable()
-export class GqlAuthWebGuard extends AuthGuard('jwt') {
-  private readonly _roles: string[] = ['Web']
+export class GqlAuthAdminGuard extends AuthGuard('jwt') {
+  private readonly _roles: string[] = ['Admin']
 
   getRequest(context: ExecutionContext) {
     const ctx = GqlExecutionContext.create(context)
@@ -27,7 +27,7 @@ export class GqlAuthWebGuard extends AuthGuard('jwt') {
     const hasAccess = this.hasAccess(req.user)
 
     if (!hasAccess) {
-      throw new ForbiddenException(`You need to have Web access`)
+      throw new ForbiddenException(`You need to have Admin access`)
     }
     return req && req.user && this.hasAccess(req.user)
   }

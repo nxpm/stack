@@ -71,7 +71,7 @@ export type RegisterInput = {
 
 /** User role */
 export enum Role {
-  Web = 'Web',
+  Admin = 'Admin',
   User = 'User',
 }
 
