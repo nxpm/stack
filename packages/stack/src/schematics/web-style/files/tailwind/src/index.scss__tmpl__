@@ -14,8 +14,7 @@ html, body {
 }
 .card .card-footer,
 .card .card-header {
-  @apply p-3;
-  @apply bg-gray-200 dark:bg-gray-700;
+  @apply p-3 bg-gray-200 dark:bg-gray-700;
 }
 .card .card-footer {
   @apply rounded-b-lg

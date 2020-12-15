@@ -1,7 +1,23 @@
-import { chain, externalSchematic, noop, Rule, schematic } from '@angular-devkit/schematics'
+import { chain, externalSchematic, noop, Rule, schematic, SchematicContext, Tree } from '@angular-devkit/schematics'
 import { addDepsToPackageJson, ProjectType } from '@nrwl/workspace'
 import { addFiles, normalizeOptions, removeFiles, updateAppStyles, updateProjectArchitects } from '../../utils'
 import { WebStyleSchematicSchema } from './schema'
+
+import { RunSchematicTask } from '@angular-devkit/schematics/tasks'
+
+function dependencies(options): Rule {
+  return (_tree: Tree, context: SchematicContext) => {
+    context.logger.info('Setting up @ngneat/tailwind')
+    context.addTask(
+      new RunSchematicTask('@ngneat/tailwind', 'nx-setup', {
+        project: options.appName,
+        style: 'scss',
+        useCustomWebpackBeta: true,
+      }),
+      [],
+    )
+  }
+}
 
 export default function (options: WebStyleSchematicSchema): Rule {
   const name = options.name || 'style'
@@ -12,10 +28,12 @@ export default function (options: WebStyleSchematicSchema): Rule {
   const normalizedOptions = normalizeOptions({ ...options, name }, ProjectType.Library)
   return chain([
     addDepsToPackageJson(
-      {
-        bootstrap: '^4.5.3',
-        bootswatch: '^4.5.3',
-      },
+      library === 'bootstrap'
+        ? {
+            bootstrap: '^4.5.3',
+            bootswatch: '^4.5.3',
+          }
+        : {},
       {},
       true,
     ),
@@ -24,15 +42,8 @@ export default function (options: WebStyleSchematicSchema): Rule {
       name,
       type: 'style',
     }),
-    library === 'tailwind'
-      ? externalSchematic('@ngneat/tailwind', 'nx-setup', {
-          project: appName,
-          style: 'css',
-          useCustomWebpackBeta: true,
-        })
-      : noop(),
     addFiles(normalizedOptions, `./files/${library}`),
-    updateAppStyles(appName, [`libs/${appName}/${name}/src/index.${library === 'tailwind' ? 'css' : 'scss'}`]),
+    updateAppStyles(appName, [`libs/${appName}/${name}/src/index.scss`]),
     updateProjectArchitects(projectName),
     removeFiles(
       [
@@ -48,5 +59,6 @@ export default function (options: WebStyleSchematicSchema): Rule {
       ],
       `libs/${appName}/${name}/`,
     ),
+    library === 'tailwind' ? dependencies(options) : noop(),
   ])
 }

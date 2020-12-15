@@ -23,8 +23,6 @@ describe('web-style schematic', () => {
 
 describe('web-style schematic with tailwind', () => {
   let appTree: Tree
-  const options: WebStyleSchematicSchema = { name: 'style', appName: 'test2', library: 'tailwind' }
-
   const testRunner = new SchematicTestRunner('@nxpm/web-style', join(__dirname, '../../../collection.json'))
 
   beforeEach(() => {
@@ -32,8 +30,18 @@ describe('web-style schematic with tailwind', () => {
   })
 
   it('should add and run @ngneat/tailwind schematic', async () => {
-    const app = await testRunner.runSchematicAsync('web', { name: 'test2' }, appTree).toPromise()
-    await expect(testRunner.runSchematicAsync('web-style', options, app).toPromise()).resolves.not.toThrowError()
+    let app = await testRunner.runSchematicAsync('web', { name: 'test2' }, appTree).toPromise()
+    app = await testRunner
+      .runSchematicAsync(
+        'web-style',
+        {
+          name: 'style',
+          appName: 'test2',
+          library: 'tailwind',
+        },
+        app,
+      )
+      .toPromise()
     expect(app.exists('tailwind.config.js')).toBeDefined()
     expect(app.exists('webpack.config.js')).toBeDefined()
   })
