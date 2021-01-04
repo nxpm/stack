@@ -326,14 +326,9 @@ exports[`init schematic should run successfully 2`] = `
           }
         },
         \\"lint\\": {
-          \\"builder\\": \\"@angular-devkit/build-angular:tslint\\",
+          \\"builder\\": \\"@nrwl/linter:eslint\\",
           \\"options\\": {
-            \\"tsConfig\\": [
-              \\"apps/test/tsconfig.app.json\\",
-              \\"apps/test/tsconfig.spec.json\\",
-              \\"apps/test/tsconfig.editor.json\\"
-            ],
-            \\"exclude\\": [\\"**/node_modules/**\\", \\"!apps/test/**/*\\"]
+            \\"lintFilePatterns\\": [\\"apps/test/src/**/*.ts\\"]
           }
         },
         \\"test\\": {
@@ -364,10 +359,9 @@ exports[`init schematic should run successfully 2`] = `
           }
         },
         \\"lint\\": {
-          \\"builder\\": \\"@angular-devkit/build-angular:tslint\\",
+          \\"builder\\": \\"@nrwl/linter:eslint\\",
           \\"options\\": {
-            \\"tsConfig\\": [\\"apps/test-e2e/tsconfig.e2e.json\\"],
-            \\"exclude\\": [\\"**/node_modules/**\\", \\"!apps/test-e2e/**/*\\"]
+            \\"lintFilePatterns\\": [\\"apps/test-e2e/**/*.{js,ts}\\"]
           }
         }
       }
@@ -391,13 +385,9 @@ exports[`init schematic should run successfully 2`] = `
       \\"prefix\\": \\"auth\\",
       \\"architect\\": {
         \\"lint\\": {
-          \\"builder\\": \\"@angular-devkit/build-angular:tslint\\",
+          \\"builder\\": \\"@nrwl/linter:eslint\\",
           \\"options\\": {
-            \\"tsConfig\\": [
-              \\"libs/test/auth/data-access/tsconfig.lib.json\\",
-              \\"libs/test/auth/data-access/tsconfig.spec.json\\"
-            ],
-            \\"exclude\\": [\\"**/node_modules/**\\", \\"!libs/test/auth/data-access/**/*\\"]
+            \\"lintFilePatterns\\": [\\"libs/test/auth/data-access/src/**/*.ts\\"]
           }
         },
         \\"test\\": {
@@ -421,13 +411,9 @@ exports[`init schematic should run successfully 2`] = `
       \\"prefix\\": \\"core\\",
       \\"architect\\": {
         \\"lint\\": {
-          \\"builder\\": \\"@angular-devkit/build-angular:tslint\\",
+          \\"builder\\": \\"@nrwl/linter:eslint\\",
           \\"options\\": {
-            \\"tsConfig\\": [
-              \\"libs/test/core/data-access/tsconfig.lib.json\\",
-              \\"libs/test/core/data-access/tsconfig.spec.json\\"
-            ],
-            \\"exclude\\": [\\"**/node_modules/**\\", \\"!libs/test/core/data-access/**/*\\"]
+            \\"lintFilePatterns\\": [\\"libs/test/core/data-access/src/**/*.ts\\"]
           }
         },
         \\"test\\": {
@@ -451,10 +437,9 @@ exports[`init schematic should run successfully 2`] = `
       \\"prefix\\": \\"about\\",
       \\"architect\\": {
         \\"lint\\": {
-          \\"builder\\": \\"@angular-devkit/build-angular:tslint\\",
+          \\"builder\\": \\"@nrwl/linter:eslint\\",
           \\"options\\": {
-            \\"tsConfig\\": [\\"libs/test/about/feature/tsconfig.lib.json\\", \\"libs/test/about/feature/tsconfig.spec.json\\"],
-            \\"exclude\\": [\\"**/node_modules/**\\", \\"!libs/test/about/feature/**/*\\"]
+            \\"lintFilePatterns\\": [\\"libs/test/about/feature/src/**/*.ts\\"]
           }
         },
         \\"test\\": {
@@ -478,10 +463,9 @@ exports[`init schematic should run successfully 2`] = `
       \\"prefix\\": \\"auth\\",
       \\"architect\\": {
         \\"lint\\": {
-          \\"builder\\": \\"@angular-devkit/build-angular:tslint\\",
+          \\"builder\\": \\"@nrwl/linter:eslint\\",
           \\"options\\": {
-            \\"tsConfig\\": [\\"libs/test/auth/feature/tsconfig.lib.json\\", \\"libs/test/auth/feature/tsconfig.spec.json\\"],
-            \\"exclude\\": [\\"**/node_modules/**\\", \\"!libs/test/auth/feature/**/*\\"]
+            \\"lintFilePatterns\\": [\\"libs/test/auth/feature/src/**/*.ts\\"]
           }
         },
         \\"test\\": {
@@ -505,10 +489,9 @@ exports[`init schematic should run successfully 2`] = `
       \\"prefix\\": \\"core\\",
       \\"architect\\": {
         \\"lint\\": {
-          \\"builder\\": \\"@angular-devkit/build-angular:tslint\\",
+          \\"builder\\": \\"@nrwl/linter:eslint\\",
           \\"options\\": {
-            \\"tsConfig\\": [\\"libs/test/core/feature/tsconfig.lib.json\\", \\"libs/test/core/feature/tsconfig.spec.json\\"],
-            \\"exclude\\": [\\"**/node_modules/**\\", \\"!libs/test/core/feature/**/*\\"]
+            \\"lintFilePatterns\\": [\\"libs/test/core/feature/src/**/*.ts\\"]
           }
         },
         \\"test\\": {
@@ -532,13 +515,9 @@ exports[`init schematic should run successfully 2`] = `
       \\"prefix\\": \\"dashboard\\",
       \\"architect\\": {
         \\"lint\\": {
-          \\"builder\\": \\"@angular-devkit/build-angular:tslint\\",
+          \\"builder\\": \\"@nrwl/linter:eslint\\",
           \\"options\\": {
-            \\"tsConfig\\": [
-              \\"libs/test/dashboard/feature/tsconfig.lib.json\\",
-              \\"libs/test/dashboard/feature/tsconfig.spec.json\\"
-            ],
-            \\"exclude\\": [\\"**/node_modules/**\\", \\"!libs/test/dashboard/feature/**/*\\"]
+            \\"lintFilePatterns\\": [\\"libs/test/dashboard/feature/src/**/*.ts\\"]
           }
         },
         \\"test\\": {
@@ -562,10 +541,9 @@ exports[`init schematic should run successfully 2`] = `
       \\"prefix\\": \\"shell\\",
       \\"architect\\": {
         \\"lint\\": {
-          \\"builder\\": \\"@angular-devkit/build-angular:tslint\\",
+          \\"builder\\": \\"@nrwl/linter:eslint\\",
           \\"options\\": {
-            \\"tsConfig\\": [\\"libs/test/shell/feature/tsconfig.lib.json\\", \\"libs/test/shell/feature/tsconfig.spec.json\\"],
-            \\"exclude\\": [\\"**/node_modules/**\\", \\"!libs/test/shell/feature/**/*\\"]
+            \\"lintFilePatterns\\": [\\"libs/test/shell/feature/src/**/*.ts\\"]
           }
         },
         \\"test\\": {
@@ -589,10 +567,9 @@ exports[`init schematic should run successfully 2`] = `
       \\"prefix\\": \\"layout\\",
       \\"architect\\": {
         \\"lint\\": {
-          \\"builder\\": \\"@angular-devkit/build-angular:tslint\\",
+          \\"builder\\": \\"@nrwl/linter:eslint\\",
           \\"options\\": {
-            \\"tsConfig\\": [\\"libs/test/layout/tsconfig.lib.json\\", \\"libs/test/layout/tsconfig.spec.json\\"],
-            \\"exclude\\": [\\"**/node_modules/**\\", \\"!libs/test/layout/**/*\\"]
+            \\"lintFilePatterns\\": [\\"libs/test/layout/src/**/*.ts\\"]
           }
         },
         \\"test\\": {
@@ -628,10 +605,9 @@ exports[`init schematic should run successfully 2`] = `
       \\"prefix\\": \\"form\\",
       \\"architect\\": {
         \\"lint\\": {
-          \\"builder\\": \\"@angular-devkit/build-angular:tslint\\",
+          \\"builder\\": \\"@nrwl/linter:eslint\\",
           \\"options\\": {
-            \\"tsConfig\\": [\\"libs/test/ui-form/tsconfig.lib.json\\", \\"libs/test/ui-form/tsconfig.spec.json\\"],
-            \\"exclude\\": [\\"**/node_modules/**\\", \\"!libs/test/ui-form/**/*\\"]
+            \\"lintFilePatterns\\": [\\"libs/test/ui-form/src/**/*.ts\\"]
           }
         },
         \\"test\\": {
@@ -768,6 +744,7 @@ exports[`init schematic should run successfully 4`] = `
     \\"cypress\\": \\"^5.5.0\\",
     \\"eslint\\": \\"7.10.0\\",
     \\"eslint-config-prettier\\": \\"6.0.0\\",
+    \\"eslint-plugin-cypress\\": \\"^2.10.3\\",
     \\"husky\\": \\"^4.3.0\\",
     \\"jest\\": \\"26.2.2\\",
     \\"jest-preset-angular\\": \\"8.3.1\\",

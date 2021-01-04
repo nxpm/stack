@@ -97,6 +97,7 @@ export default function (options: WebSchematicSchema): Rule {
       name,
       style: 'scss',
       routing: true,
+      linter: 'eslint',
     }),
     schematic('web-assets', {
       appName: name,

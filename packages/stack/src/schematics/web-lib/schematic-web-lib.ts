@@ -23,6 +23,7 @@ export default function (options: WebLibSchematicSchema): Rule {
       publishable: options.publishable || false,
       routing: true,
       lazy: true,
+      linter: 'eslint',
     }),
     addFiles(normalizedOptions),
   ])
