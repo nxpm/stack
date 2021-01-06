@@ -1,37 +1,41 @@
 import { Injectable } from '@angular/core'
-import { CanActivate, UrlTree } from '@angular/router'
-import { Store } from '@ngrx/store'
+import {
+  ActivatedRouteSnapshot,
+  CanActivate,
+  CanActivateChild,
+  CanLoad,
+  Router,
+  RouterStateSnapshot,
+  UrlTree,
+} from '@angular/router'
 import { Observable } from 'rxjs'
-import { filter, switchMap, take, tap } from 'rxjs/operators'
-import { ensureLogin } from '../+state/auth/auth.actions'
-import { isLoggedIn } from '../+state/auth/auth.selectors'
+import { map } from 'rxjs/operators'
+import { <%= classify(appName) %>AuthStore } from '../<%= projectName %>.store'
 
 @Injectable()
-export class IsLoggedInGuard implements CanActivate {
-  constructor(private readonly store: Store) {}
+export class IsLoggedInGuard implements CanActivate, CanActivateChild, CanLoad {
+  constructor(private readonly store: <%= classify(appName) %>AuthStore, private readonly router: Router) {}
 
-  ensureLogin(): Observable<boolean> {
-    return this.store.select(isLoggedIn).pipe(
-      tap((loggedIn) => {
+  canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean | UrlTree> {
+    return this.isAuthenticated(state.url)
+  }
+
+  canActivateChild(): Observable<boolean | UrlTree> {
+    return this.isAuthenticated()
+  }
+
+  canLoad(): Observable<boolean | UrlTree> {
+    return this.isAuthenticated()
+  }
+
+  private isAuthenticated(url?: string): Observable<boolean | UrlTree> {
+    return this.store.loggedIn$.pipe(
+      map((loggedIn: boolean) => {
         if (!loggedIn) {
-          this.store.dispatch(ensureLogin())
+          return this.router.createUrlTree(['/login'], { queryParams: { url } })
         }
+        return true
       }),
-      filter((loggedIn) => !loggedIn),
-      take(1),
     )
-  }
-
-  isLoggedIn(): Observable<boolean> {
-    return this.store.select(isLoggedIn).pipe(
-      filter((loggedIn) => {
-        return !!loggedIn
-      }),
-      take(1),
-    )
-  }
-
-  canActivate(): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return this.ensureLogin().pipe(switchMap(() => this.isLoggedIn()))
   }
 }

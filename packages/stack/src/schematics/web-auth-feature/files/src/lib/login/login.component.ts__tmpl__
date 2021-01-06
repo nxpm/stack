@@ -1,48 +1,36 @@
 import { Component } from '@angular/core'
 import { FormGroup } from '@angular/forms'
 import { Router } from '@angular/router'
-import { Store } from '@ngrx/store'
-import { getAuthError, getAuthUser, login } from '@<%= npmScope %>/<%= appName %>/auth/data-access'
+import { <%= classify(appName) %>AuthStore } from '@<%= npmScope %>/<%= appName %>/auth/data-access'
 import { <%= classify(appName) %>UiFormField } from '@<%= npmScope %>/<%= appName %>/ui-form'
 import { filter, take } from 'rxjs/operators'
 
 @Component({
   template: `
-    <auth-page
-      #f
-      [form]="form"
-      [fields]="fields"
-      pageTitle="Login"
-      buttonTitle="Log in"
-      [model]="model"
-      (submit)="submit($event)"
-    >
-      <div class="error" *ngIf="getAuthError | async as error">
-        {{ error }}
-      </div>
-      <a routerLink="/register" class="btn btn-outline-primary">Register</a>
-    </auth-page>
+    <ng-container *ngIf="vm$ | async as vm">
+      <auth-page
+        [fields]="fields"
+        pageTitle="Login"
+        buttonTitle="Log in"
+        (submit)="submit($event)"
+      >
+        <div class="error" *ngIf="getAuthError | async as error">
+          {{ error }}
+        </div>
+        <a routerLink="/register" class="btn btn-outline-primary">Register</a>
+      </auth-page>
+    </ng-container>
   `,
 })
 export class LoginComponent {
-  getAuthError = this.store.select(getAuthError)
-  getAuthUser = this.store.select(getAuthUser)
-  form = new FormGroup({})
-  model = {}
-  fields = [
+  readonly vm$ = this.store.vm$
+  readonly fields = [
     <%= classify(appName) %>UiFormField.email('email', { label: 'Email', required: true }, { focus: true }),
     <%= classify(appName) %>UiFormField.password('password', { label: 'Password', required: true }),
   ]
-  constructor(private readonly store: Store, private readonly router: Router) {
-    this.getAuthUser
-      .pipe(
-        filter((user) => !!user),
-        take(1),
-      )
-      .subscribe(() => this.router.navigate(['/']))
-  }
+  constructor(private readonly store: <%= classify(appName) %>AuthStore) {}
 
-  public submit(input) {
-    this.store.dispatch(login({ input }))
+  submit(input) {
+    this.store.loginEffect(input)
   }
 }

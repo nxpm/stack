@@ -1,5 +1,5 @@
 import { chain, Rule, schematic } from '@angular-devkit/schematics'
-import { ProjectType } from '@nrwl/workspace'
+import { addDepsToPackageJson, ProjectType } from '@nrwl/workspace'
 import { addFiles, normalizeOptions } from '../../utils'
 import { WebAuthDataAccessSchematicSchema } from './schema'
 
@@ -9,6 +9,12 @@ export default function (options: WebAuthDataAccessSchematicSchema): Rule {
   const directory = options.directory || options.name
   const normalizedOptions = normalizeOptions({ ...options, name: `${name}/${type}` }, ProjectType.Library)
   return chain([
+    addDepsToPackageJson(
+      {
+        '@ngrx/component-store': '10.1.2',
+      },
+      {},
+    ),
     // Execute Schematic
     schematic('web-lib', { directory, name, type }),
     // Add Files

@@ -18,6 +18,11 @@
       "schema": "./src/schematics/web-auth-data-access/schema.json",
       "description": "web-auth-data-access schematic"
     },
+    "web-auth-ui": {
+      "factory": "./src/schematics/web-auth-ui/schematic-web-auth-ui",
+      "schema": "./src/schematics/web-auth-ui/schema.json",
+      "description": "web-auth-ui schematic"
+    },
     "web-core-data-access": {
       "factory": "./src/schematics/web-core-data-access/schematic-web-core-data-access",
       "schema": "./src/schematics/web-core-data-access/schema.json",
