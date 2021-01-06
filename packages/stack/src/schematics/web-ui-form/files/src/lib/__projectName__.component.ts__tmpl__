@@ -8,9 +8,7 @@ import { FormlyFieldConfig, FormlyFormBuilder, FormlyFormOptions } from '@ngx-fo
     <form [formGroup]="form" novalidate (ngSubmit)="submit()">
       <div>
         <formly-form [fields]="fields" [form]="form" [model]="model" [options]="options"></formly-form>
-        <button type="submit" style="display: none;" [disabled]="form.touched && !form.valid">
-          submit
-        </button>
+        <button type="submit" style="display: none;" [disabled]="form.touched && !form.valid">submit</button>
       </div>
       <ng-content></ng-content>
     </form>
@@ -22,7 +20,7 @@ export class <%= classify(projectName) %>Component implements OnInit {
   @Input() form = new FormGroup({})
   @Input() model: Record<string, unknown> = {}
   @Input() options: FormlyFormOptions
-  @Output() action = new EventEmitter()
+  @Output() submitForm = new EventEmitter()
 
   constructor(private builder: FormlyFormBuilder) {}
 
@@ -31,9 +29,6 @@ export class <%= classify(projectName) %>Component implements OnInit {
   }
 
   submit() {
-    this.action.emit({
-      type: 'SUBMIT',
-      payload: this.model,
-    })
+    this.submitForm.emit(this.model)
   }
 }
