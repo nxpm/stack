@@ -1,5 +1,4 @@
 import { Component } from '@angular/core'
-import { FormGroup } from '@angular/forms'
 import { <%= classify(appName) %>AuthStore } from '@<%= npmScope %>/<%= appName %>/auth/data-access'
 import { <%= classify(appName) %>UiFormField } from '@<%= npmScope %>/<%= appName %>/ui-form'
 
@@ -11,8 +10,8 @@ import { <%= classify(appName) %>UiFormField } from '@<%= npmScope %>/<%= appNam
         [errors]="vm.errors"
         [fields]="fields"
         buttonTitle="Register"
-        linkTitle="Log in"
         linkPath="/login"
+        linkTitle="Log in"
         pageTitle="Register"
       >
       </auth-page>
