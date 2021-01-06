@@ -10,3 +10,4 @@ import { AuthPageComponent } from './auth-page.component'
   exports: [AuthPageComponent],
 })
 export class AuthPageModule {}
+

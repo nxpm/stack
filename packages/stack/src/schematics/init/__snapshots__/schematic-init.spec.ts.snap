@@ -35,6 +35,9 @@ exports[`init schematic should run successfully 1`] = `
     \\"test-auth-data-access\\": {
       \\"tags\\": [\\"scope:test\\", \\"type:data-access\\"]
     },
+    \\"test-auth-ui\\": {
+      \\"tags\\": [\\"scope:test\\", \\"type:ui\\"]
+    },
     \\"test-core-data-access\\": {
       \\"tags\\": [\\"scope:test\\", \\"type:data-access\\"]
     },
@@ -404,6 +407,32 @@ exports[`init schematic should run successfully 2`] = `
         }
       }
     },
+    \\"test-auth-ui\\": {
+      \\"projectType\\": \\"library\\",
+      \\"root\\": \\"libs/test/auth/ui\\",
+      \\"sourceRoot\\": \\"libs/test/auth/ui/src\\",
+      \\"prefix\\": \\"auth\\",
+      \\"architect\\": {
+        \\"lint\\": {
+          \\"builder\\": \\"@nrwl/linter:eslint\\",
+          \\"options\\": {
+            \\"lintFilePatterns\\": [\\"libs/test/auth/ui/src/**/*.ts\\"]
+          }
+        },
+        \\"test\\": {
+          \\"builder\\": \\"@nrwl/jest:jest\\",
+          \\"options\\": {
+            \\"jestConfig\\": \\"libs/test/auth/ui/jest.config.js\\",
+            \\"passWithNoTests\\": true
+          }
+        }
+      },
+      \\"schematics\\": {
+        \\"@schematics/angular:component\\": {
+          \\"style\\": \\"scss\\"
+        }
+      }
+    },
     \\"test-core-data-access\\": {
       \\"projectType\\": \\"library\\",
       \\"root\\": \\"libs/test/core/data-access\\",
@@ -654,6 +683,7 @@ exports[`init schematic should run successfully 3`] = `
       \\"@proj/api/core/feature\\": [\\"libs/api/core/feature/src/index.ts\\"],
       \\"@proj/test/assets\\": [\\"libs/test/assets/src/index.ts\\"],
       \\"@proj/test/auth/data-access\\": [\\"libs/test/auth/data-access/src/index.ts\\"],
+      \\"@proj/test/auth/ui\\": [\\"libs/test/auth/ui/src/index.ts\\"],
       \\"@proj/test/core/data-access\\": [\\"libs/test/core/data-access/src/index.ts\\"],
       \\"@proj/test/about/feature\\": [\\"libs/test/about/feature/src/index.ts\\"],
       \\"@proj/test/auth/feature\\": [\\"libs/test/auth/feature/src/index.ts\\"],
@@ -690,10 +720,7 @@ exports[`init schematic should run successfully 4`] = `
     \\"@nestjs/jwt\\": \\"^7.1.0\\",
     \\"@nestjs/passport\\": \\"^7.1.0\\",
     \\"@nestjs/platform-express\\": \\"^7.0.0\\",
-    \\"@ngrx/effects\\": \\"10.0.0\\",
-    \\"@ngrx/entity\\": \\"10.0.0\\",
-    \\"@ngrx/router-store\\": \\"10.0.0\\",
-    \\"@ngrx/store\\": \\"10.0.0\\",
+    \\"@ngrx/component-store\\": \\"10.1.2\\",
     \\"@ngx-formly/bootstrap\\": \\"^5.10.8\\",
     \\"@ngx-formly/core\\": \\"^5.10.8\\",
     \\"@prisma/cli\\": \\"^2.13.0\\",
@@ -729,8 +756,6 @@ exports[`init schematic should run successfully 4`] = `
     \\"@graphql-codegen/typescript-operations\\": \\"1.17.12\\",
     \\"@nestjs/schematics\\": \\"^7.0.0\\",
     \\"@nestjs/testing\\": \\"^7.0.0\\",
-    \\"@ngrx/schematics\\": \\"10.0.0\\",
-    \\"@ngrx/store-devtools\\": \\"10.0.0\\",
     \\"@nrwl/cypress\\": \\"10.4.4\\",
     \\"@nrwl/eslint-plugin-nx\\": \\"10.4.4\\",
     \\"@nrwl/jest\\": \\"10.4.4\\",

@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common'
 import { Routes, RouterModule } from '@angular/router'
 import { <%= classify(appName) %>AuthDataAccessModule } from '@<%= npmScope %>/<%= appName %>/auth/data-access'
 import { <%= classify(appName) %>UiFormModule } from '@<%= npmScope %>/<%= appName %>/ui-form'
-import { AuthPageModule } from '../components/auth-page/auth-page.module'
+import { AuthPageModule } from '@<%= npmScope %>/<%= appName %>/auth/ui'
 import { LogoutComponent } from './logout.component'
 
 const routes: Routes = [{ path: '', component: LogoutComponent }]

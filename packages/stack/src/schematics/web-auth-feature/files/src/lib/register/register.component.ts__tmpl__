@@ -1,29 +1,37 @@
 import { Component } from '@angular/core'
 import { FormGroup } from '@angular/forms'
-import { Store } from '@ngrx/store'
-import { register } from '@<%= npmScope %>/<%= appName %>/auth/data-access'
+import { <%= classify(appName) %>AuthStore } from '@<%= npmScope %>/<%= appName %>/auth/data-access'
 import { <%= classify(appName) %>UiFormField } from '@<%= npmScope %>/<%= appName %>/ui-form'
 
 @Component({
   template: `
-    <auth-page #f [form]="form" [fields]="fields" pageTitle="Register" buttonTitle="Register" (submit)="submit($event)">
-      <a routerLink="/login" class="btn btn-outline-primary">Log in</a>
-    </auth-page>
+    <ng-container *ngIf="vm$ | async as vm">
+      <auth-page
+        (submitForm)="submit($event)"
+        [errors]="vm.errors"
+        [fields]="fields"
+        buttonTitle="Register"
+        linkTitle="Log in"
+        linkPath="/login"
+        pageTitle="Register"
+      >
+      </auth-page>
+    </ng-container>
   `,
 })
 export class RegisterComponent {
-  form = new FormGroup({})
-  fields = [
-    <%= classify(appName) %>UiFormField.email('email', { label: 'Email', required: true }, { focus: true }),
+  readonly vm$ = this.store.vm$
+  readonly fields = [
+    <%= classify(appName) %>UiFormField.email('email', { label: 'Email', required: true }),
     <%= classify(appName) %>UiFormField.password('password', { label: 'Password', required: true }),
     <%= classify(appName) %>UiFormField.input('username', { label: 'Username', required: false }),
     <%= classify(appName) %>UiFormField.input('firstName', { label: 'First name', required: false }),
     <%= classify(appName) %>UiFormField.input('lastName', { label: 'Last name', required: false }),
   ]
 
-  constructor(private readonly store: Store) {}
+  constructor(private readonly store: <%= classify(appName) %>AuthStore) {}
 
-  public submit(input) {
-    this.store.dispatch(register({ input }))
+  submit(input) {
+    this.store.registerEffect(input)
   }
 }

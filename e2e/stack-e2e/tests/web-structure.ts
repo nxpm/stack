@@ -5,6 +5,7 @@ export function webProjects(project: string) {
     project,
     `${project}-assets`,
     `${project}-auth-data-access`,
+    `${project}-auth-ui`,
     `${project}-core-data-access`,
     `${project}-e2e`,
     `${project}-about-feature`,

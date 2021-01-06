@@ -109,6 +109,11 @@ export default function (options: WebSchematicSchema): Rule {
       directory,
       name: 'auth',
     }),
+    schematic('web-auth-ui', {
+      appName: name,
+      directory,
+      name: 'auth',
+    }),
     schematic('web-core-data-access', {
       appName: name,
       directory,
