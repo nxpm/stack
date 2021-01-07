@@ -9,10 +9,11 @@ function dependencies(options): Rule {
   return (_tree: Tree, context: SchematicContext) => {
     context.logger.info('Setting up @ngneat/tailwind')
     context.addTask(
-      new RunSchematicTask('@ngneat/tailwind', 'nx-setup', {
+      new RunSchematicTask('@ngneat/tailwind', 'ng-add', {
         project: options.appName,
         style: 'scss',
         useCustomWebpackBeta: true,
+        darkMode: 'class',
       }),
       [],
     )
