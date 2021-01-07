@@ -1206,10 +1206,10 @@
     fs-extra "9.0.1"
     pluralize "8.0.0"
 
-"@ngneat/tailwind@^3.0.6":
-  version "3.0.6"
-  resolved "https://registry.yarnpkg.com/@ngneat/tailwind/-/tailwind-3.0.6.tgz#6e28638fceb3f49b9273972e8399c81c654c3221"
-  integrity sha512-pT05sAhWQw1cQF8H/1MiMajqs8MqJzGKXdYltVTjfDKb+QLHUk18aBHyyJ8bgWkjouediPgl0/Nw2X3HU1LfWA==
+"@ngneat/tailwind@^5.1.0":
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/@ngneat/tailwind/-/tailwind-5.1.0.tgz#fb34bc6968aa19a607f4aec615b31810db36cede"
+  integrity sha512-Pgm9DkjzrGG6OE8cBFdVEqSx49hVhJ52pCFyuSfP2nh3NUXFf76WwFaSQF3ea00qHQZlvYMwj1+Vk2A6nMSVHQ==
 
 "@nodelib/fs.scandir@2.1.3":
   version "2.1.3"
