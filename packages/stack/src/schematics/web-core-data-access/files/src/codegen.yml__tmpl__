@@ -1,5 +1,5 @@
 overwrite: true
-schema: "http://localhost:3000/graphql"
+schema: "api-schema.graphql"
 documents:
   - "libs/<%= directory %>/<%= name %>/src/graphql/**/*.graphql"
 generates:

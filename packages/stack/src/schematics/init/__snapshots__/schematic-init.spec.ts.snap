@@ -807,6 +807,7 @@ exports[`init schematic should run successfully 4`] = `
     \\"prisma:studio\\": \\"yarn prisma studio\\",
     \\"build\\": \\"yarn build:test && yarn build:api\\",
     \\"start\\": \\"node dist/apps/api/main.js\\",
+    \\"test:ci\\": \\"yarn prisma:apply && yarn e2e api-e2e\\",
     \\"docker:build\\": \\"docker build . -t nxpm/api\\",
     \\"docker:run\\": \\"docker run -it -p 8000:3000 nxpm/api\\",
     \\"docker:push\\": \\"docker push nxpm/api\\",
