@@ -1,6 +1,6 @@
 {
   "name": "@nxpm/ci",
-  "version": "4.4.3",
+  "version": "4.4.4",
   "main": "src/index.js",
   "schematics": "./collection.json",
   "homepage": "https://github.com/nxpm/stack",
