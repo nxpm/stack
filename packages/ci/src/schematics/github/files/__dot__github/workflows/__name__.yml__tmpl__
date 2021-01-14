@@ -13,6 +13,7 @@ on:
 env:
   NX_BRANCH: ${{ github.event.number }}
   NX_RUN_GROUP: ${{ github.run_id }}
+  DATABASE_URL: postgresql://prisma:prisma@localhost:5432/prisma?schema=public
 
 jobs:
   build:
