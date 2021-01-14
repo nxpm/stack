@@ -13,10 +13,19 @@ on:
 env:
   NX_BRANCH: ${{ github.event.number }}
   NX_RUN_GROUP: ${{ github.run_id }}
-  DATABASE_URL: postgresql://prisma:prisma@localhost:5432/prisma?schema=public
+  DATABASE_URL: postgresql://nxpm:nxpm@localhost:5432/nxpm?schema=public
 
 jobs:
   build:
+    services:
+      postgres:
+        image: postgres:12
+        env:
+          POSTGRES_DB: nxpm
+          POSTGRES_USER: nxpm
+          POSTGRES_PASSWORD: nxpm
+        ports: [ '5432:5432' ]
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
     runs-on: ${{ matrix.operating-system }}
     strategy:
       matrix:
