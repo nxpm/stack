@@ -1,10 +1,9 @@
 import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { UserCreateInput } from '@prisma/client';
-import { ApiCoreDataAccessService } from '@<%= npmScope %>/<%= appName %>/core/data-access';
+import { ApiCoreDataAccessService, getGravatarUrl, hashPassword, validatePassword } from '@<%= npmScope %>/<%= appName %>/core/data-access';
 import { ApiCoreFeatureService } from '@<%= npmScope %>/<%= appName %>/core/feature'
 import { Response } from 'express'
-import { getGravatarUrl, hashPassword, validatePassword } from './<%= projectName %>.helper';
 import { LoginInput } from './dto/login.input';
 import { RegisterInput } from './dto/register.input';
 import { UserToken } from './models/user-token';
@@ -73,7 +72,6 @@ export class ApiAuthDataAccessService {
 
 
   async createUser(input: Partial<UserCreateInput>) {
-    const submittedPassword = !!input.password
     const password = input.password
     const hashedPassword = hashPassword(password)
     const email = input.email.trim()
