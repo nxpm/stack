@@ -1,5 +1,6 @@
 export * from './lib/<%= projectName %>.module'
 export * from './lib/<%= projectName %>.service'
+export * from './lib/<%= projectName %>.helper'
 export * from './lib/decorators/ctx-user.decorator'
 export * from './lib/dto/jwt.dto'
 export * from './lib/dto/login.input'

@@ -18,7 +18,7 @@ export class ApiAuthDataAccessService {
   ) {}
 
   async register(payload: RegisterInput) {
-    const user = await this.createUser({
+    const user = await this.data.createUser({
       ...payload,
     });
 
@@ -28,7 +28,7 @@ export class ApiAuthDataAccessService {
   async login(input: LoginInput) {
     const email = input.email.trim();
     const password = input.password.trim();
-    const user = await this.findUserByEmail(email);
+    const user = await this.data.findUserByEmail(email);
 
     if (!user) {
       throw new NotFoundException(`No user found for email: ${email}`);
@@ -49,46 +49,13 @@ export class ApiAuthDataAccessService {
   }
 
   validateUser(userId: string) {
-    return this.findUserById(userId);
+    return this.data.findUserById(userId);
   }
 
   getUserFromToken(token: string) {
     const userId = this.jwtService.decode(token)['userId'];
 
-    return this.findUserById(userId);
-  }
-
-  public findUserByEmail(email: string) {
-    return this.data.user.findUnique({ where: { email } });
-  }
-
-  public findUserById(userId: string) {
-    return this.data.user.findUnique({ where: { id: userId } });
-  }
-
-  public findUserByUsername(username: string) {
-    return this.data.user.findUnique({ where: { username } });
-  }
-
-
-  async createUser(input: Partial<UserCreateInput>) {
-    const password = input.password
-    const hashedPassword = hashPassword(password)
-    const email = input.email.trim()
-    const username = input.username || email
-
-    return this.data.user.create({
-      data: {
-        firstName: input.firstName,
-        lastName: input.lastName,
-        email,
-        phone: input.phone,
-        username,
-        avatarUrl: input.avatarUrl || getGravatarUrl(input.email.toLowerCase()),
-        password: hashedPassword,
-        role: Role.User,
-      },
-    })
+    return this.data.findUserById(userId);
   }
 
   public setCookie(res: Response, token: string) {
