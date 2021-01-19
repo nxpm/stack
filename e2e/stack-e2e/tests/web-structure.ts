@@ -163,6 +163,7 @@ export function webFileTests(project: string): FileTests {
         `@import '~bootstrap/scss/bootstrap'`,
         `@import '~bootswatch/dist/darkly/bootswatch'`,
       ],
+      [`nx.json`]: [`"project": "${project}"`],
     },
   }
 }

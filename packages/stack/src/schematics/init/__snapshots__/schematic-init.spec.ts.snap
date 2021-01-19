@@ -76,6 +76,16 @@ exports[`init schematic should run successfully 1`] = `
         \\"cacheableOperations\\": [\\"build\\", \\"lint\\", \\"test\\", \\"e2e\\"]
       }
     }
+  },
+  \\"plugins\\": {
+    \\"@nxpm/stack\\": {
+      \\"api\\": {
+        \\"project\\": \\"api\\"
+      },
+      \\"web\\": {
+        \\"project\\": \\"test\\"
+      }
+    }
   }
 }
 "

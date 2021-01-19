@@ -4,10 +4,12 @@ import { stringify } from 'yaml'
 import { RepositoryInitializerTask } from '@angular-devkit/schematics/tasks'
 
 import {
+  addPluginToNxJson,
   addRunScript,
   configureHuskyLintStaged,
   configureNxJsonDefaultBase,
   normalizeOptions,
+  PluginForNxJson,
   removeFiles,
 } from '../../utils'
 
@@ -41,6 +43,16 @@ function updatePrettierConfig(): Rule {
       tree.create(prettierRc, prettierRcContent)
     }
   }
+}
+
+function addNxpmPluginToNxJson(apiProjectName = 'api', webProjectName = 'web'): Rule {
+  const nxPlugin: PluginForNxJson = {
+    '@nxpm/stack': {
+      api: { project: apiProjectName },
+      web: { project: webProjectName },
+    },
+  }
+  return addPluginToNxJson(nxPlugin)
 }
 
 function addDockerfile(): Rule {
@@ -123,6 +135,7 @@ export default function (options: InitSchematicSchema): Rule {
     addDockerCompose(),
     configureHuskyLintStaged(),
     configureNxJsonDefaultBase('main'),
+    addNxpmPluginToNxJson(apiName, webName),
     addRunScript('docker:push', `docker push ${normalizedOptions.npmScope}/${apiName}`, true),
     addRunScript('docker:run', `docker run -it -p 8000:3000 ${normalizedOptions.npmScope}/${apiName}`, true),
     addRunScript('docker:build', `docker build . -t ${normalizedOptions.npmScope}/${apiName}`, true),
