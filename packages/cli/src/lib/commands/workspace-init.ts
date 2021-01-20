@@ -56,6 +56,10 @@ export async function workspaceInit({
   const initProject = `yarn nx g @nxpm/stack:init web --web-style-library ${webStyleLibrary}`
   runCommand(initProject, target)
 
+  log('Rewrite git history')
+  const rewriteGitHistory = `git checkout -B main && git commit --amend -CHEAD --no-verify`
+  runCommand(rewriteGitHistory)
+
   info('Installation finished')
   info(`To get started         : ${gray(`cd ${name}`)}`)
   info(`Start database servers : ${gray(`docker-compose up`)}`)
