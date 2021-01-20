@@ -63,6 +63,17 @@ export function configureNxJsonDefaultBase(defaultBase: string) {
   })
 }
 
+export type PluginForNxJson = { [key: string]: Record<string, unknown> }
+export function addPluginToNxJson(plugin: PluginForNxJson) {
+  return updateJsonInTree(`nx.json`, (json) => {
+    if (!json['plugins']) {
+      json['plugins'] = {}
+    }
+    json['plugins'] = { ...json['plugins'], ...plugin }
+    return json
+  })
+}
+
 export function addRunScript(script: string, command: string, force = false) {
   return updateJsonInTree(`/package.json`, (json) => {
     if (!json['scripts']) {
