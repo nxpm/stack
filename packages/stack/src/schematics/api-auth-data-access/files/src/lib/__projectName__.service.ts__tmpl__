@@ -1,6 +1,5 @@
 import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common'
 import { JwtService } from '@nestjs/jwt'
-import { UserCreateInput } from '@prisma/client'
 import { ApiCoreDataAccessService, getGravatarUrl, hashPassword, validatePassword } from '@<%= npmScope %>/<%= appName %>/core/data-access'
 import { ApiCoreFeatureService } from '@<%= npmScope %>/<%= appName %>/core/feature'
 import { Response } from 'express'
