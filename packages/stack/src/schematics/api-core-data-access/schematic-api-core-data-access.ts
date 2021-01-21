@@ -10,10 +10,11 @@ export default function (options: ApiCoreDataAccessSchematicSchema): Rule {
   return chain([
     addDepsToPackageJson(
       {
-        '@prisma/cli': '^2.13.0',
-        '@prisma/client': '^2.13.0',
+        '@prisma/client': '2.15.0',
       },
-      {},
+      {
+        '@prisma/cli': '2.15.0',
+      },
       true,
     ),
     schematic('api-lib', {

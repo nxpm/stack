@@ -1,7 +1,6 @@
-import { Injectable, Logger } from '@nestjs/common'
+import { Injectable } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
 import { CookieOptions } from 'express'
-import { join } from 'path'
 
 @Injectable()
 export class <%= classify(projectName) %>Service {

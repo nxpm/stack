@@ -1,5 +1,5 @@
 import { BadRequestException, Injectable, OnModuleDestroy, OnModuleInit } from '@nestjs/common'
-import { PrismaClient, UserCreateInput } from '@prisma/client'
+import { PrismaClient, Prisma } from '@prisma/client'
 import { getGravatarUrl, hashPassword } from './api-core-data-access.helper'
 
 @Injectable()
@@ -16,7 +16,7 @@ export class <%= classify(projectName) %>Service extends PrismaClient implements
     await this.$connect()
   }
 
-  async createUser(input: Partial<UserCreateInput>) {
+  async createUser(input: Partial<Prisma.UserCreateInput>) {
     const email = input.email.trim()
     const existing = await this.findUserByEmail(email)
     if (existing) {
