@@ -58,7 +58,7 @@ export async function workspaceInit({
   runCommand(initProject, target)
 
   log('Rewrite git history')
-  const rewriteGitHistory = `git checkout -B main && git commit --amend -CHEAD --no-verify`
+  const rewriteGitHistory = `git checkout -B main && git add . && git commit -am "Initial commit of @nxpm/stack"`
   runCommand(rewriteGitHistory, target)
 
   log('Finalize package installation')
