@@ -61,6 +61,9 @@ export async function workspaceInit({
   const rewriteGitHistory = `git checkout -B main && git commit --amend -CHEAD --no-verify`
   runCommand(rewriteGitHistory, target)
 
+  log('Finalize package installation')
+  runCommand('yarn', target)
+
   info('Installation finished')
   info(`To get started         : ${gray(`cd ${name}`)}`)
   info(`Start database servers : ${gray(`docker-compose up`)}`)
