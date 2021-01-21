@@ -160,6 +160,7 @@ export default function (options: WebSchematicSchema): Rule {
       appName: name,
       directory,
       name: 'form',
+      library: styleLibrary,
     }),
     addRunScript(`build:${name}`, `nx build ${name} --prod`),
     addRunScript(`dev:${name}`, `nx serve ${name} --hmr`),
