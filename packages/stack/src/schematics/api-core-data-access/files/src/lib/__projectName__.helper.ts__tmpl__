@@ -1,23 +1,23 @@
-import { compareSync, hashSync } from 'bcryptjs';
-import { createHash } from 'crypto';
+import { compareSync, hashSync } from 'bcryptjs'
+import { createHash } from 'crypto'
 
-const getHash = (str: string) => createHash('md5').update(str).digest('hex');
+const getHash = (str: string) => createHash('md5').update(str).digest('hex')
 
-const gravatarUrl = 'https://www.gravatar.com/avatar/';
-const gravatarSize = 460;
+const gravatarUrl = 'https://www.gravatar.com/avatar/'
+const gravatarSize = 460
 
 export const getGravatarUrl = (email = '') =>
-  `${gravatarUrl}${getHash(email)}?s=${gravatarSize}&d=mp`;
+  `${gravatarUrl}${getHash(email)}?s=${gravatarSize}&d=mp`
 
 export function validatePassword(
   password: string,
   hashedPassword: string
 ): boolean {
-  return compareSync(password, hashedPassword);
+  return compareSync(password, hashedPassword)
 }
 
 export function hashPassword(password: string): string {
-  return hashSync(password, 10);
+  return hashSync(password, 10)
 }
 
 export function generateMd5Hash(input: string) {

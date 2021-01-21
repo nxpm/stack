@@ -7,8 +7,8 @@ import {
   User,
   UserToken,
 } from '@<%= npmScope %>/<%= appName %>/auth/data-access'
-import { Context, Query, Resolver, Mutation, Args, ResolveField, Parent } from '@nestjs/graphql';
-import { UseGuards } from '@nestjs/common';
+import { Context, Query, Resolver, Mutation, Args, ResolveField, Parent } from '@nestjs/graphql'
+import { UseGuards } from '@nestjs/common'
 
 @Resolver(() => UserToken)
 export class <%= classify(projectName) %>Resolver {

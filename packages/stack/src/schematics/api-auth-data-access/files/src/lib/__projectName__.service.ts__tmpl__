@@ -1,13 +1,13 @@
-import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
-import { JwtService } from '@nestjs/jwt';
-import { UserCreateInput } from '@prisma/client';
-import { ApiCoreDataAccessService, getGravatarUrl, hashPassword, validatePassword } from '@<%= npmScope %>/<%= appName %>/core/data-access';
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common'
+import { JwtService } from '@nestjs/jwt'
+import { UserCreateInput } from '@prisma/client'
+import { ApiCoreDataAccessService, getGravatarUrl, hashPassword, validatePassword } from '@<%= npmScope %>/<%= appName %>/core/data-access'
 import { ApiCoreFeatureService } from '@<%= npmScope %>/<%= appName %>/core/feature'
 import { Response } from 'express'
-import { LoginInput } from './dto/login.input';
-import { RegisterInput } from './dto/register.input';
-import { UserToken } from './models/user-token';
-import { Role } from './models/role';
+import { LoginInput } from './dto/login.input'
+import { RegisterInput } from './dto/register.input'
+import { UserToken } from './models/user-token'
+import { Role } from './models/role'
 
 @Injectable()
 export class ApiAuthDataAccessService {
@@ -20,42 +20,42 @@ export class ApiAuthDataAccessService {
   async register(payload: RegisterInput) {
     const user = await this.data.createUser({
       ...payload,
-    });
+    })
 
-    return this.signUser(user);
+    return this.signUser(user)
   }
 
   async login(input: LoginInput) {
-    const email = input.email.trim();
-    const password = input.password.trim();
-    const user = await this.data.findUserByEmail(email);
+    const email = input.email.trim()
+    const password = input.password.trim()
+    const user = await this.data.findUserByEmail(email)
 
     if (!user) {
-      throw new NotFoundException(`No user found for email: ${email}`);
+      throw new NotFoundException(`No user found for email: ${email}`)
     }
 
-    const passwordValid = await validatePassword(password, user.password);
+    const passwordValid = await validatePassword(password, user.password)
 
     if (!passwordValid) {
-      throw new BadRequestException('Invalid password');
+      throw new BadRequestException('Invalid password')
     }
 
-    return this.signUser(user);
+    return this.signUser(user)
   }
 
   signUser(user): UserToken {
-    const token = this.jwtService.sign({ userId: user?.id });
-    return { token, user };
+    const token = this.jwtService.sign({ userId: user?.id })
+    return { token, user }
   }
 
   validateUser(userId: string) {
-    return this.data.findUserById(userId);
+    return this.data.findUserById(userId)
   }
 
   getUserFromToken(token: string) {
-    const userId = this.jwtService.decode(token)['userId'];
+    const userId = this.jwtService.decode(token)['userId']
 
-    return this.data.findUserById(userId);
+    return this.data.findUserById(userId)
   }
 
   public setCookie(res: Response, token: string) {

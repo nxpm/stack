@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core'
 import { Observable } from 'rxjs'
 import { map } from 'rxjs/operators'
-import { ApolloAngularSDK, IntercomMessage } from '../generated/graphql';
+import { ApolloAngularSDK, IntercomMessage } from '../generated/graphql'
 
 @Injectable()
 export class <%= classify(projectName) %>Service {
