@@ -15,6 +15,10 @@ describe('CoreModule (e2e)', () => {
     await app.init()
   })
 
+  afterEach(async () => {
+    return app.close()
+  })
+
   it('/graphql (POST)', () => {
     return request(app.getHttpServer())
       .post('/graphql')

@@ -16,6 +16,10 @@ describe('AppController (e2e)', () => {
     await app.init()
   })
 
+  afterEach(async () => {
+    return app.close()
+  })
+
   it('/api/uptime (GET)', () => {
     return request(app.getHttpServer()).get('/api/uptime').expect(200)
   })
