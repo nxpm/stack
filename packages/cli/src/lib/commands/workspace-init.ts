@@ -59,7 +59,7 @@ export async function workspaceInit({
 
   log('Rewrite git history')
   const rewriteGitHistory = `git checkout -B main && git commit --amend -CHEAD --no-verify`
-  runCommand(rewriteGitHistory)
+  runCommand(rewriteGitHistory, target)
 
   info('Installation finished')
   info(`To get started         : ${gray(`cd ${name}`)}`)
