@@ -37,6 +37,7 @@ export async function workspaceInit({
     `--cli=${cli}`,
     '--nx-cloud=false',
     '--preset=empty',
+    '--skip-install',
     '--package-manager=yarn',
     dryRun ? ' --dry-run ' : '',
   ]
