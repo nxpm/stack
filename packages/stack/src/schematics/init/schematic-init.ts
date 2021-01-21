@@ -4,6 +4,7 @@ import { stringify } from 'yaml'
 import { RepositoryInitializerTask } from '@angular-devkit/schematics/tasks'
 
 import {
+  addFiles,
   addPluginToNxJson,
   addRunScript,
   configureHuskyLintStaged,
@@ -144,6 +145,7 @@ export default function (options: InitSchematicSchema): Rule {
     addRunScript('build', `yarn build:${webName} && yarn build:${apiName}`, true),
     schematic('api', { name: apiName }),
     schematic('web', { name: webName, styleLibrary: webStyleLibrary }),
+    addFiles({ ...normalizedOptions, projectRoot: './tools/generators/' }, './generators'),
     options?.ci === 'github' ? externalSchematic('@nxpm/ci', 'github', {}) : noop(),
     removeFiles([`apps/.gitkeep`, `libs/.gitkeep`]),
     formatFiles(),
