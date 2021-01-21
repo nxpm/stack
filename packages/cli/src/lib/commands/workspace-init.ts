@@ -57,12 +57,12 @@ export async function workspaceInit({
   const initProject = `yarn nx g @nxpm/stack:init web --web-style-library ${webStyleLibrary}`
   runCommand(initProject, target)
 
+  log('Finalize package installation')
+  runCommand('yarn', target)
+
   log('Rewrite git history')
   const rewriteGitHistory = `git checkout -B main && git add . && git commit -am "Initial commit of @nxpm/stack"`
   runCommand(rewriteGitHistory, target)
-
-  log('Finalize package installation')
-  runCommand('yarn', target)
 
   info('Installation finished')
   info(`To get started         : ${gray(`cd ${name}`)}`)
