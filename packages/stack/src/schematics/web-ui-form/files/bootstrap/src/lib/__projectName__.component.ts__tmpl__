@@ -3,7 +3,7 @@ import { FormGroup } from '@angular/forms'
 import { FormlyFieldConfig, FormlyFormBuilder, FormlyFormOptions } from '@ngx-formly/core'
 
 @Component({
-  selector: '<%= projectName %>',
+  selector: 'ui-form',
   template: `
     <form [formGroup]="form" novalidate (ngSubmit)="submit()">
       <div>

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core'
 import { <%= classify(appName) %>AuthStore } from '@<%= npmScope %>/<%= appName %>/auth/data-access'
-import { <%= classify(appName) %>UiFormField } from '@<%= npmScope %>/<%= appName %>/ui-form'
+import { <%= classify(appName) %>UiFormField } from '@<%= npmScope %>/<%= appName %>/ui/form'
 
 @Component({
   template: `

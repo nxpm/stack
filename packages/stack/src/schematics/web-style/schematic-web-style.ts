@@ -23,7 +23,7 @@ function dependencies(options): Rule {
 
 export default function (options: WebStyleSchematicSchema): Rule {
   const name = options.name || 'style'
-  const library = options.library || 'bootstrap'
+  const library = options.library || 'tailwind'
   const appName = options.appName
   const projectName = appName ? `${appName}-${name}` : name
   const directory = options.directory || options.name

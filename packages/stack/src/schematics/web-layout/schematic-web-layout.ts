@@ -5,7 +5,7 @@ import { WebLayoutSchematicSchema } from './schema'
 
 export default function (options: WebLayoutSchematicSchema): Rule {
   const name = options.name || 'layout'
-  const library = options.library || 'bootstrap'
+  const library = options.library || 'tailwind'
   const directory = options.directory || options.name
   const normalizedOptions = normalizeOptions({ ...options, name }, ProjectType.Library)
   return chain([

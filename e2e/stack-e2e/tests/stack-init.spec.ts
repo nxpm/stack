@@ -18,7 +18,9 @@ describe('@nxpm/stack:init e2e', () => {
     // During this test we don't want to install the Husky hooks as it interferes with the hooks in this projects repo.
     process.env.HUSKY_SKIP_INSTALL = 'true'
     ensureNxProject('@nxpm/stack', 'dist/packages/stack')
+    await runCommandAsync(`yarn add @nrwl/angular @nrwl/nest @ngneat/tailwind @schematics/angular @angular/cli`)
     await runNxCommandAsync(`generate @nxpm/stack:init ${projectNameWeb}`)
+    await runCommandAsync(`yarn`)
   })
 
   runFileTests(webFileTests(projectNameWeb))

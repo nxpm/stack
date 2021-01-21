@@ -265,5 +265,5 @@ export function addPrismaConfig(normalizedOptions: NormalizedSchema): Rule {
 }
 
 export function createProjectName(name: string, type: string, classic = false) {
-  return classic ? `${type}-${name}` : `${name}/${type}`
+  return classic ? `${type}/${name}` : `${name}/${type}`
 }

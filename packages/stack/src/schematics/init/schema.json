@@ -32,7 +32,7 @@
     "webStyleLibrary": {
       "description": "The web-style library",
       "type": "string",
-      "default": "bootstrap",
+      "default": "tailwind",
       "x-prompt": {
         "message": "Which type of library would you like to use?",
         "type": "list",

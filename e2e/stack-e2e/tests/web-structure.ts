@@ -40,7 +40,6 @@ export function webFileTests(project: string): FileTests {
       `libs/${project}/shell/feature/src/lib/${project}-shell-feature.module.ts`,
       `libs/${project}/layout/src/lib/${project}-layout.module.ts`,
       `libs/${project}/layout/src/lib/${project}-layout.component.ts`,
-      `libs/${project}/style/src/lib/_global.scss`,
       `libs/${project}/style/src/index.scss`,
     ],
     missing: [
@@ -157,11 +156,10 @@ export function webFileTests(project: string): FileTests {
       [`libs/${project}/layout/src/lib/components/layout-header-links/layout-header-links.component.ts`]: [
         'layout-header-links',
       ],
-      [`libs/${project}/style/src/lib/_global.scss`]: [`@import './lib/global'`],
-      [`libs/${project}/style/src/lib/_global.scss`]: [
-        `@import '~bootswatch/dist/darkly/variables'`,
-        `@import '~bootstrap/scss/bootstrap'`,
-        `@import '~bootswatch/dist/darkly/bootswatch'`,
+      [`libs/${project}/style/src/index.scss`]: [
+        `@import 'tailwindcss/base';`,
+        `@import 'tailwindcss/components';`,
+        `@import 'tailwindcss/utilities';`,
       ],
       [`nx.json`]: [`"project": "${project}"`],
     },

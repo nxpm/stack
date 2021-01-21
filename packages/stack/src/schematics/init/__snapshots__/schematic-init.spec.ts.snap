@@ -639,20 +639,20 @@ exports[`init schematic should run successfully 2`] = `
     },
     \\"test-ui-form\\": {
       \\"projectType\\": \\"library\\",
-      \\"root\\": \\"libs/test/ui-form\\",
-      \\"sourceRoot\\": \\"libs/test/ui-form/src\\",
+      \\"root\\": \\"libs/test/ui/form\\",
+      \\"sourceRoot\\": \\"libs/test/ui/form/src\\",
       \\"prefix\\": \\"form\\",
       \\"architect\\": {
         \\"lint\\": {
           \\"builder\\": \\"@nrwl/linter:eslint\\",
           \\"options\\": {
-            \\"lintFilePatterns\\": [\\"libs/test/ui-form/src/**/*.ts\\"]
+            \\"lintFilePatterns\\": [\\"libs/test/ui/form/src/**/*.ts\\"]
           }
         },
         \\"test\\": {
           \\"builder\\": \\"@nrwl/jest:jest\\",
           \\"options\\": {
-            \\"jestConfig\\": \\"libs/test/ui-form/jest.config.js\\",
+            \\"jestConfig\\": \\"libs/test/ui/form/jest.config.js\\",
             \\"passWithNoTests\\": true
           }
         }
@@ -702,7 +702,7 @@ exports[`init schematic should run successfully 3`] = `
       \\"@proj/test/shell/feature\\": [\\"libs/test/shell/feature/src/index.ts\\"],
       \\"@proj/test/layout\\": [\\"libs/test/layout/src/index.ts\\"],
       \\"@proj/test/style\\": [\\"libs/test/style/src/index.ts\\"],
-      \\"@proj/test/ui-form\\": [\\"libs/test/ui-form/src/index.ts\\"]
+      \\"@proj/test/ui/form\\": [\\"libs/test/ui/form/src/index.ts\\"]
     }
   }
 }
@@ -731,14 +731,11 @@ exports[`init schematic should run successfully 4`] = `
     \\"@nestjs/passport\\": \\"^7.1.0\\",
     \\"@nestjs/platform-express\\": \\"^7.0.0\\",
     \\"@ngrx/component-store\\": \\"10.1.2\\",
-    \\"@ngx-formly/bootstrap\\": \\"^5.10.8\\",
     \\"@ngx-formly/core\\": \\"^5.10.8\\",
     \\"@prisma/client\\": \\"2.15.0\\",
     \\"apollo-angular\\": \\"^2.1.0\\",
     \\"apollo-server-express\\": \\"^2.18.0\\",
     \\"bcryptjs\\": \\"^2.4.3\\",
-    \\"bootstrap\\": \\"^4.5.3\\",
-    \\"bootswatch\\": \\"^4.5.3\\",
     \\"class-transformer\\": \\"^0.3.1\\",
     \\"class-validator\\": \\"^0.12.2\\",
     \\"cookie-parser\\": \\"1.4.5\\",

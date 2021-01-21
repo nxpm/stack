@@ -117,7 +117,7 @@ function addDockerCompose(): Rule {
 export default function (options: InitSchematicSchema): Rule {
   const normalizedOptions = normalizeOptions(options, ProjectType.Application)
   const webName = options.name
-  const webStyleLibrary = options.webStyleLibrary || 'bootstrap'
+  const webStyleLibrary = options.webStyleLibrary || 'tailwind'
   const apiName = 'api'
   return chain([
     addDepsToPackageJson(

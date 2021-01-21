@@ -22,7 +22,7 @@ yargs
       webStyleLibrary: {
         type: 'string',
         demandOption: false,
-        default: 'bootstrap',
+        default: 'tailwind',
       },
     },
     async (args) => {
