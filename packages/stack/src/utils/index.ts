@@ -255,6 +255,7 @@ export function addPrismaConfig(normalizedOptions: NormalizedSchema): Rule {
           'prisma:generate': 'yarn prisma generate',
           'prisma:migrate': 'yarn prisma migrate save --experimental && yarn prisma migrate up --experimental',
           'prisma:studio': 'yarn prisma studio',
+          'prisma:seed': 'yarn nx workspace-generator prisma-seed',
           ...json.scripts,
         }
         return json

@@ -1,0 +1,13 @@
+{
+  "cli": "nx",
+  "id": "prisma-seed",
+  "type": "object",
+  "properties": {
+    "confirm": {
+      "type": "boolean",
+      "description": "Library confirm",
+      "x-prompt": "Are you sure you want to delete and seed the database?"
+    }
+  },
+  "required": ["confirm"]
+}
