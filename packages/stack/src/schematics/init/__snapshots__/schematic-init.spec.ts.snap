@@ -793,7 +793,7 @@ exports[`init schematic should run successfully 4`] = `
   \\"lint-staged\\": {
     \\"nx.json\\": [
       \\"yarn nxpm-stack lint\\",
-      \\"yarn format:write\\"
+      \\"yarn format --uncommitted\\"
     ],
     \\"*.{js,json,css,scss,md,ts,html,graphql}\\": [
       \\"yarn format --uncommitted\\"

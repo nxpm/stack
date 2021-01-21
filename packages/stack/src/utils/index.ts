@@ -48,7 +48,7 @@ export function configureHuskyLintStaged() {
     }
     if (!json['lint-staged']) {
       json['lint-staged'] = {
-        'nx.json': ['yarn nxpm-stack lint', 'yarn format:write'],
+        'nx.json': ['yarn nxpm-stack lint', 'yarn format --uncommitted'],
         '*.{js,json,css,scss,md,ts,html,graphql}': ['yarn format --uncommitted'],
       }
     }
