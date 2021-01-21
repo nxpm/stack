@@ -27,6 +27,25 @@
       "type": "string",
       "description": "A directory where the project is placed",
       "alias": "d"
+    },
+    "library": {
+      "description": "The UI library",
+      "type": "string",
+      "default": "bootstrap",
+      "x-prompt": {
+        "message": "Which type of library would you like to use?",
+        "type": "list",
+        "items": [
+          {
+            "value": "bootstrap",
+            "label": "Bootstrap"
+          },
+          {
+            "value": "tailwind",
+            "label": "Tailwind"
+          }
+        ]
+      }
     }
   },
   "required": ["appName", "name"]

@@ -14,6 +14,7 @@ function dependencies(options): Rule {
         style: 'scss',
         useCustomWebpackBeta: true,
         darkMode: 'class',
+        plugins: ['forms'],
       }),
       [],
     )

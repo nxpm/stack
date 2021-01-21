@@ -1,0 +1,21 @@
+<div
+  class="absolute z-10 inset-y-0 left-0 pl-3 flex items-center justify-center"
+  *ngIf="to.addonLeft"
+  [ngStyle]="{ cursor: to.addonLeft.onClick ? 'pointer' : 'inherit' }"
+  (click)="addonLeftClick($event)"
+>
+  <i class="text-gray-400" [ngClass]="to.addonLeft.class" *ngIf="to.addonLeft.class"></i>
+  <span *ngIf="to.addonLeft.text" class="text-gray-400">{{ to.addonLeft.text }}</span>
+</div>
+
+<ng-container #fieldComponent></ng-container>
+
+<div
+  class="absolute inset-y-0 right-0 pr-3 flex items-center justify-center"
+  *ngIf="to.addonRight"
+  [ngStyle]="{ cursor: to.addonRight.onClick ? 'pointer' : 'inherit' }"
+  (click)="addonRightClick($event)"
+>
+  <i class="text-gray-400" [ngClass]="to.addonRight.class" *ngIf="to.addonRight.class"></i>
+  <span *ngIf="to.addonRight.text" class="text-gray-400">{{ to.addonRight.text }}</span>
+</div>

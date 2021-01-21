@@ -5,13 +5,15 @@ import { WebUiFormSchematicSchema } from './schema'
 
 export default function (options: WebUiFormSchematicSchema): Rule {
   const name = options.name || 'form'
+  const library = options.library || 'bootstrap'
+  const deps = library === 'bootstrap' ? { '@ngx-formly/bootstrap': '^5.10.8' } : {}
   const directory = options.directory || options.name
   const normalizedOptions = normalizeOptions({ ...options, name: `ui-${name}` }, ProjectType.Library)
   return chain([
     addDepsToPackageJson(
       {
         '@ngx-formly/core': '^5.10.8',
-        '@ngx-formly/bootstrap': '^5.10.8',
+        ...deps,
       },
       {},
       true,
@@ -22,6 +24,6 @@ export default function (options: WebUiFormSchematicSchema): Rule {
       type: 'ui',
       classic: true,
     }),
-    addFiles(normalizedOptions),
+    addFiles(normalizedOptions, `./files/${library}`),
   ])
 }
