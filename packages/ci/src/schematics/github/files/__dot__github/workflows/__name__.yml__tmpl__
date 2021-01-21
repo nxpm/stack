@@ -14,6 +14,7 @@ env:
   NX_BRANCH: ${{ github.event.number }}
   NX_RUN_GROUP: ${{ github.run_id }}
   DATABASE_URL: postgresql://nxpm:nxpm@localhost:5432/nxpm?schema=public
+  JWT_SECRET: NxpmDotDevJwtSecret
 
 jobs:
   build:
@@ -30,7 +31,7 @@ jobs:
     strategy:
       matrix:
         node-version: [ 14.x ]
-        operating-system: [ubuntu-latest]
+        operating-system: [ubuntu-20.04]
     steps:
       - uses: actions/checkout@v2
       - uses: actions/cache@v2

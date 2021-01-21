@@ -13,7 +13,7 @@ import { JwtStrategy } from './strategies/jwt.strategy'
     <%= classify(appName) %>CoreFeatureModule,
     PassportModule.register({ defaultStrategy: 'jwt' }),
     JwtModule.register({
-      secret: '<%= jwtSecret %>',
+      secret: process.env.JWT_SECRET,
     }),
   ],
   exports: [<%= classify(projectName) %>Service],

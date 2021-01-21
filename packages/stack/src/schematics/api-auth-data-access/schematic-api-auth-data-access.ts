@@ -1,16 +1,12 @@
 import { chain, Rule, schematic } from '@angular-devkit/schematics'
 import { addDepsToPackageJson, ProjectType } from '@nrwl/workspace'
-import { addFiles, normalizeOptions, uniq } from '../../utils'
+import { addFiles, normalizeOptions } from '../../utils'
 import { ApiAuthDataAccessSchematicSchema } from './schema'
 
 export default function (options: ApiAuthDataAccessSchematicSchema): Rule {
   const name = options.name || 'auth'
   const directory = options.directory || options.name
-  const jwtSecret = uniq('NXPM_STACK_SECRET')
-  const normalizedOptions = normalizeOptions(
-    { ...options, jwtSecret, name: `${name}/data-access` },
-    ProjectType.Library,
-  )
+  const normalizedOptions = normalizeOptions({ ...options, name: `${name}/data-access` }, ProjectType.Library)
   return chain([
     addDepsToPackageJson(
       {

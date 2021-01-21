@@ -10,7 +10,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
   constructor(private readonly auth: <%= classify(projectName) %>Service) {
     super({
       jwtFromRequest: cookieExtractor,
-      secretOrKey: '<%= jwtSecret %>',
+      secretOrKey: process.env.JWT_SECRET,
     })
   }
 

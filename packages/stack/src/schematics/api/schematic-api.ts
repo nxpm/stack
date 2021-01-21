@@ -29,6 +29,7 @@ export default function (options: ApiSchematicSchema): Rule {
       `NODE_ENV=development`,
       `PORT=3000`,
       `DATABASE_URL=postgresql://prisma:prisma@localhost:5432/prisma?schema=${schemaName}`,
+      `JWT_SECRET=NxpmDotDevJwtSecret`,
     ]),
     removeFiles(
       [`.gitkeep`, `app.controller.ts`, `app.controller.spec.ts`, `app.service.ts`, `app.service.spec.ts`],
