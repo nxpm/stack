@@ -75,7 +75,7 @@ export class <%= classify(projectName) %>Field implements FormlyFieldConfig {
       required: true,
     }
 
-    return this.input(key, { ...templateOptions, ...defaults }, options)
+    return this.input(key, { ...defaults, ...templateOptions }, options)
   }
 
   static radio(key: string, templateOptions?: FormlyTemplateOptions, options?: any): FormlyFieldConfig {
