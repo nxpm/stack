@@ -2,13 +2,9 @@ name: <%= name %>
 
 on:
   pull_request:
-    paths-ignore:
-      - '**.md'
   push:
     branches:
       - <%= branch %>
-    paths-ignore:
-      - '**.md'
 
 env:
   NX_BRANCH: ${{ github.event.number }}
