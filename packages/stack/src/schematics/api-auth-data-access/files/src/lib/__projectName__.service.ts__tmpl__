@@ -57,11 +57,11 @@ export class ApiAuthDataAccessService {
     return this.data.findUserById(userId)
   }
 
-  public setCookie(res: Response, token: string) {
+  setCookie(res: Response, token: string) {
     return res?.cookie(this.core.cookie.name, token, this.core.cookie.options)
   }
 
-  public clearCookie(res: Response) {
+  clearCookie(res: Response) {
     return res.clearCookie(this.core.cookie.name, this.core.cookie.options)
   }
 }
