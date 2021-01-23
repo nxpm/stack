@@ -6,9 +6,10 @@ import {
   runNxCommandAsync,
   uniq,
 } from '@nrwl/nx-plugin/testing'
+import { log } from 'nxpm'
 import { runFileTests } from '../../e2e-file-utils'
-import { webFileTests, webProjects } from './web-structure'
 import { apiFileTests, apiProjects } from './api-structure'
+import { webFileTests, webProjects } from './web-structure'
 
 describe('@nxpm/stack:init e2e', () => {
   const projectNameApi = 'api'
@@ -17,9 +18,23 @@ describe('@nxpm/stack:init e2e', () => {
   beforeAll(async () => {
     // During this test we don't want to install the Husky hooks as it interferes with the hooks in this projects repo.
     process.env.HUSKY_SKIP_INSTALL = 'true'
+    log('Create workspace')
     ensureNxProject('@nxpm/stack', 'dist/packages/stack')
-    await runCommandAsync(`yarn add @nrwl/angular @nrwl/nest @ngneat/tailwind @schematics/angular @angular/cli`)
+    const packages = [
+      '@nrwl/workspace',
+      '@nrwl/cli',
+      '@nrwl/tao',
+      '@nrwl/angular',
+      '@nrwl/nest',
+      '@ngneat/tailwind',
+      '@schematics/angular',
+      '@angular/cli',
+    ]
+    log('Install packages')
+    await runCommandAsync(`yarn add ${packages.join(' ')}`)
+    log('Generate project')
     await runNxCommandAsync(`generate @nxpm/stack:init ${projectNameWeb}`)
+    log('Install packages second run')
     await runCommandAsync(`yarn`)
   })
 
