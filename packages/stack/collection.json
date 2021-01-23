@@ -68,10 +68,10 @@
       "schema": "./src/schematics/web-style/schema.json",
       "description": "web-styles schematic"
     },
-    "web-ui-form": {
-      "factory": "./src/schematics/web-ui-form/schematic-web-ui-form",
-      "schema": "./src/schematics/web-ui-form/schema.json",
-      "description": "web-ui-forms schematic"
+    "web-ui-libs": {
+      "factory": "./src/schematics/web-ui-libs/schematic-web-ui-libs",
+      "schema": "./src/schematics/web-ui-libs/schema.json",
+      "description": "web-ui-libs schematic"
     },
     "api": {
       "factory": "./src/schematics/api/schematic-api",

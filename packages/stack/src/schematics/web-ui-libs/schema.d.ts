@@ -1,4 +1,4 @@
-export interface WebUiFormSchematicSchema {
+export interface WebUiLibsSchematicSchema {
   appName: string
   name: string
   tags?: string
