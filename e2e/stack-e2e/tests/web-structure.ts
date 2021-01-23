@@ -40,17 +40,17 @@ export function webFileTests(project: string): FileTests {
       `libs/${project}/shell/feature/src/lib/${project}-shell-feature.module.ts`,
       `libs/${project}/layout/src/lib/${project}-layout.module.ts`,
       `libs/${project}/layout/src/lib/${project}-layout.component.ts`,
-      `libs/${project}/style/src/index.scss`,
+      `libs/${project}/style/src/index.css`,
     ],
     missing: [
       `apps/${project}/src/app/app.component.html`,
-      `apps/${project}/src/app/app.component.scss`,
+      `apps/${project}/src/app/app.component.css`,
       `apps/${project}/src/environments/environment.ts`,
       `apps/${project}/src/environments/environment.prod.ts`,
       `apps/${project}/src/environments`,
       `apps/${project}/src/assets`,
       `apps/${project}/src/favicon.ico`,
-      `apps/${project}/src/styles.scss`,
+      `apps/${project}/src/styles.css`,
       `libs/${project}/assets/src/lib/${project}-assets.module.ts`,
       `libs/${project}/assets/src/lib`,
       `libs/${project}/assets/src/index.ts`,
@@ -73,7 +73,7 @@ export function webFileTests(project: string): FileTests {
         // Moved assets to lib
         `"input": "libs/${project}/assets/src"`,
         `"input": "libs/${project}/assets/src/assets"`,
-        `"libs/${project}/style/src/index.scss"`,
+        `"libs/${project}/style/src/index.css"`,
         // Add CommonJs dep list
         `allowedCommonJsDependencies`,
         `graphql-tag`,
@@ -156,7 +156,7 @@ export function webFileTests(project: string): FileTests {
       [`libs/${project}/layout/src/lib/components/layout-header-links/layout-header-links.component.ts`]: [
         'layout-header-links',
       ],
-      [`libs/${project}/style/src/index.scss`]: [
+      [`libs/${project}/style/src/index.css`]: [
         `@import 'tailwindcss/base';`,
         `@import 'tailwindcss/components';`,
         `@import 'tailwindcss/utilities';`,

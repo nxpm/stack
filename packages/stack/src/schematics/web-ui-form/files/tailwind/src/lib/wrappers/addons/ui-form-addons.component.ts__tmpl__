@@ -3,7 +3,7 @@ import { FieldWrapper } from '@ngx-formly/core'
 
 @Component({
   templateUrl: './ui-form-addons.component.html',
-  styleUrls: ['./ui-form-addons.component.scss'],
+  styleUrls: ['./ui-form-addons.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UiFormAddonsComponent extends FieldWrapper {

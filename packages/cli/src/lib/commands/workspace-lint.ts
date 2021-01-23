@@ -1,3 +1,4 @@
+import { execSync } from 'child_process'
 import { existsSync, readJson, writeJson } from 'fs-extra'
 
 const projectFiles = ['angular.json', 'nx.json', 'workspace.json']
@@ -10,7 +11,7 @@ async function getFileContents(filename: string) {
   return null
 }
 
-function sortItems(items: Record<string, unknown>) {
+function sortItems(items: Record<string, unknown> = {}) {
   return Object.keys(items)
     .sort()
     .reduce((acc, curr) => ({ ...acc, [curr]: items[curr] }), {})
@@ -33,11 +34,19 @@ export function sortWorkspaceProjects(file) {
   }
 }
 
-export async function workspaceLint({ dryRun }: { dryRun: boolean }) {
+export function sortPackageJson(file) {
+  return {
+    ...file,
+    scripts: sortItems(file?.scripts),
+  }
+}
+
+export async function workspaceLint({ dryRun, skipPackageJson }: { dryRun: boolean; skipPackageJson: boolean }) {
   for (const file of projectFiles) {
     const contents = await getFileContents(file)
     if (contents && !dryRun) {
       await writeJson(file, sortWorkspaceProjects(contents), { spaces: 2 })
+      execSync('prettier --write ' + file)
     }
   }
 
@@ -45,6 +54,15 @@ export async function workspaceLint({ dryRun }: { dryRun: boolean }) {
     const contents = await getFileContents(file)
     if (contents && !dryRun) {
       await writeJson(file, sortTsConfigPaths(contents), { spaces: 2 })
+      execSync('prettier --write ' + file)
+    }
+  }
+  if (!skipPackageJson) {
+    const file = 'package.json'
+    const contents = await getFileContents(file)
+    if (contents && !dryRun) {
+      await writeJson(file, sortPackageJson(contents), { spaces: 2 })
+      execSync('prettier --write ' + file)
     }
   }
 }

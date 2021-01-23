@@ -37,9 +37,13 @@ yargs
   .command(
     'lint',
     'Run nxpm workspace linter',
-    () => null,
+    {
+      skipPackageJson: {
+        type: 'boolean',
+      },
+    },
     async (args) => {
-      await workspaceLint({ dryRun: !!args.dryRun })
+      await workspaceLint({ dryRun: !!args.dryRun, skipPackageJson: args.skipPackageJson })
     },
   )
   .command(

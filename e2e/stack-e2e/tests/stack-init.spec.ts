@@ -80,5 +80,10 @@ describe('@nxpm/stack:init e2e', () => {
       expect(() => checkFilesExist(`dist/apps/${projectNameWeb}/index.html`)).not.toThrow()
       done()
     })
+
+    it(`should run all the unit tests`, async (done) => {
+      await runNxCommandAsync(`run-many --target test --all`)
+      done()
+    })
   })
 })
