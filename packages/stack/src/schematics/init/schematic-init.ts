@@ -145,9 +145,10 @@ export default function (options: InitSchematicSchema): Rule {
     addRunScript('build', `yarn build:${webName} && yarn build:${apiName}`, true),
     schematic('api', { name: apiName }),
     schematic('web', { name: webName, styleLibrary: webStyleLibrary }),
-    addFiles({ ...normalizedOptions, projectRoot: './tools/generators/' }, './generators'),
     options?.ci === 'github' ? externalSchematic('@nxpm/ci', 'github', {}) : noop(),
-    removeFiles([`apps/.gitkeep`, `libs/.gitkeep`]),
+    removeFiles([`apps/.gitkeep`, `libs/.gitkeep`, 'README.md']),
+    addFiles({ ...normalizedOptions, projectRoot: './tools/generators/' }, './generators'),
+    addFiles({ ...normalizedOptions, apiName, webName, projectRoot: './' }, './workspace'),
     formatFiles(),
   ])
 }
