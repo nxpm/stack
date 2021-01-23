@@ -23,7 +23,6 @@ export default function (options: ApiCoreDataAccessSchematicSchema): Rule {
       type: 'data-access',
     }),
     addFiles(normalizedOptions),
-    addFiles({ ...normalizedOptions, projectRoot: './tools/generators/' }, './generators'),
     addPrismaConfig(normalizedOptions),
   ])
 }

@@ -19,7 +19,7 @@ import { <%= classify(projectName) %>Service } from './<%= projectName %>.servic
       validationSchema,
     }),
     GraphQLModule.forRoot({
-      autoSchemaFile: join(process.cwd(), 'api-schema.graphql'),
+      autoSchemaFile: join(process.cwd(), '<%= appName %>-schema.graphql'),
       context: ({ req, res }) => ({ req, res }),
       installSubscriptionHandlers: true,
       playground: {

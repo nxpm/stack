@@ -1,5 +1,5 @@
 import {
-  ApiAuthDataAccessService,
+  <%= classify(appName) %>AuthDataAccessService,
   CtxUser,
   GqlAuthGuard,
   LoginInput,

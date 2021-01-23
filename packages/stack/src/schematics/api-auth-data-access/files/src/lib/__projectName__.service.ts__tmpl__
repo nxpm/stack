@@ -1,7 +1,7 @@
 import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common'
 import { JwtService } from '@nestjs/jwt'
-import { ApiCoreDataAccessService, getGravatarUrl, hashPassword, validatePassword } from '@<%= npmScope %>/<%= appName %>/core/data-access'
-import { ApiCoreFeatureService } from '@<%= npmScope %>/<%= appName %>/core/feature'
+import { <%= classify(appName) %>CoreDataAccessService, getGravatarUrl, hashPassword, validatePassword } from '@<%= npmScope %>/<%= appName %>/core/data-access'
+import { <%= classify(appName) %>CoreFeatureService } from '@<%= npmScope %>/<%= appName %>/core/feature'
 import { Response } from 'express'
 import { LoginInput } from './dto/login.input'
 import { RegisterInput } from './dto/register.input'
@@ -9,10 +9,10 @@ import { UserToken } from './models/user-token'
 import { Role } from './models/role'
 
 @Injectable()
-export class ApiAuthDataAccessService {
+export class <%= classify(appName) %>AuthDataAccessService {
   constructor(
-    private readonly data: ApiCoreDataAccessService,
-    private readonly core: ApiCoreFeatureService,
+    private readonly data: <%= classify(appName) %>CoreDataAccessService,
+    private readonly core: <%= classify(appName) %>CoreFeatureService,
     private readonly jwtService: JwtService
   ) {}
 
