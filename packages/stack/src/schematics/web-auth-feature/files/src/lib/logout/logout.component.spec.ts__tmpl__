@@ -1,10 +1,11 @@
+import { NO_ERRORS_SCHEMA } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { <%= classify(appName) %>AuthStore } from '@<%= npmScope %>/<%= appName %>/auth/data-access'
 
 import { LogoutComponent } from './logout.component'
 
 describe('LogoutComponent', () => {
-  let component: LoginComponent
+  let component: LogoutComponent
   let fixture: ComponentFixture<LogoutComponent>
 
   beforeEach(async () => {
@@ -12,7 +13,7 @@ describe('LogoutComponent', () => {
       declarations: [LogoutComponent],
       schemas: [NO_ERRORS_SCHEMA],
       providers: [
-        { provide: WebAuthStore, useValue: { logoutEffect() {}}}
+        { provide: <%= classify(appName) %>AuthStore, useValue: { logoutEffect() {}}}
       ],
     }).compileComponents()
   })
