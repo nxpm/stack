@@ -21,9 +21,9 @@ const routes: Routes = [
         path: 'dashboard',
         loadChildren: () => import('@<%= npmScope %>/<%= appName %>/dashboard/feature').then((m) => m.<%= classify(appName) %>DashboardFeatureModule),
       },
+      { path: 'not-found', loadChildren: () => import('./not-found/not-found.module').then((m) => m.NotFoundModule) },
     ],
   },
-  { path: 'not-found', loadChildren: () => import('./not-found/not-found.module').then((m) => m.NotFoundModule) },
   {
     path: '',
     loadChildren: () => import('@<%= npmScope %>/<%= appName %>/auth/feature').then((m) => m.<%= classify(appName) %>AuthFeatureModule),
