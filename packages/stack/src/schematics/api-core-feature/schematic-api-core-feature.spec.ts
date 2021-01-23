@@ -7,7 +7,7 @@ import { ApiCoreFeatureSchematicSchema } from './schema'
 
 describe('api-core-feature schematic', () => {
   let appTree: Tree
-  const options: ApiCoreFeatureSchematicSchema = { name: 'test', type: 'feature' }
+  const options: ApiCoreFeatureSchematicSchema = { name: 'test', type: 'feature', appName: 'api' }
 
   const testRunner = new SchematicTestRunner('@nxpm/api-feature-core', join(__dirname, '../../../collection.json'))
 
