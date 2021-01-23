@@ -149,10 +149,5 @@ export default function (options: InitSchematicSchema): Rule {
     options?.ci === 'github' ? externalSchematic('@nxpm/ci', 'github', {}) : noop(),
     removeFiles([`apps/.gitkeep`, `libs/.gitkeep`]),
     formatFiles(),
-    () => {
-      new RepositoryInitializerTask(options.directory, {
-        message: 'Initial commit of @nxpm/stack',
-      })
-    },
   ])
 }
