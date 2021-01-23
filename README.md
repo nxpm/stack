@@ -93,7 +93,7 @@ Once the API is up and running, we want to make sure we can generate the SDK tha
 Run the following command to generate the SDK:
 
 ```shell script
-yarn sdk
+yarn sdk:web
 ```
 
 ### Start the Web app
