@@ -255,11 +255,7 @@ exports[`init schematic should run successfully 2`] = `
     },
     \\"test\\": {
       \\"projectType\\": \\"application\\",
-      \\"schematics\\": {
-        \\"@schematics/angular:component\\": {
-          \\"style\\": \\"scss\\"
-        }
-      },
+      \\"schematics\\": {},
       \\"root\\": \\"apps/test\\",
       \\"sourceRoot\\": \\"apps/test/src\\",
       \\"prefix\\": \\"proj\\",
@@ -285,7 +281,7 @@ exports[`init schematic should run successfully 2`] = `
                 \\"output\\": \\"assets\\"
               }
             ],
-            \\"styles\\": [\\"libs/test/style/src/index.scss\\"],
+            \\"styles\\": [\\"libs/test/style/src/index.css\\"],
             \\"scripts\\": [],
             \\"allowedCommonJsDependencies\\": [\\"graphql-tag\\", \\"subscriptions-transport-ws\\", \\"zen-observable\\"]
           },
@@ -385,11 +381,7 @@ exports[`init schematic should run successfully 2`] = `
       \\"sourceRoot\\": \\"libs/test/assets/src\\",
       \\"prefix\\": \\"assets\\",
       \\"architect\\": {},
-      \\"schematics\\": {
-        \\"@schematics/angular:component\\": {
-          \\"style\\": \\"scss\\"
-        }
-      }
+      \\"schematics\\": {}
     },
     \\"test-auth-data-access\\": {
       \\"projectType\\": \\"library\\",
@@ -411,11 +403,7 @@ exports[`init schematic should run successfully 2`] = `
           }
         }
       },
-      \\"schematics\\": {
-        \\"@schematics/angular:component\\": {
-          \\"style\\": \\"scss\\"
-        }
-      }
+      \\"schematics\\": {}
     },
     \\"test-auth-ui\\": {
       \\"projectType\\": \\"library\\",
@@ -437,11 +425,7 @@ exports[`init schematic should run successfully 2`] = `
           }
         }
       },
-      \\"schematics\\": {
-        \\"@schematics/angular:component\\": {
-          \\"style\\": \\"scss\\"
-        }
-      }
+      \\"schematics\\": {}
     },
     \\"test-core-data-access\\": {
       \\"projectType\\": \\"library\\",
@@ -463,11 +447,7 @@ exports[`init schematic should run successfully 2`] = `
           }
         }
       },
-      \\"schematics\\": {
-        \\"@schematics/angular:component\\": {
-          \\"style\\": \\"scss\\"
-        }
-      }
+      \\"schematics\\": {}
     },
     \\"test-about-feature\\": {
       \\"projectType\\": \\"library\\",
@@ -489,11 +469,7 @@ exports[`init schematic should run successfully 2`] = `
           }
         }
       },
-      \\"schematics\\": {
-        \\"@schematics/angular:component\\": {
-          \\"style\\": \\"scss\\"
-        }
-      }
+      \\"schematics\\": {}
     },
     \\"test-auth-feature\\": {
       \\"projectType\\": \\"library\\",
@@ -515,11 +491,7 @@ exports[`init schematic should run successfully 2`] = `
           }
         }
       },
-      \\"schematics\\": {
-        \\"@schematics/angular:component\\": {
-          \\"style\\": \\"scss\\"
-        }
-      }
+      \\"schematics\\": {}
     },
     \\"test-core-feature\\": {
       \\"projectType\\": \\"library\\",
@@ -541,11 +513,7 @@ exports[`init schematic should run successfully 2`] = `
           }
         }
       },
-      \\"schematics\\": {
-        \\"@schematics/angular:component\\": {
-          \\"style\\": \\"scss\\"
-        }
-      }
+      \\"schematics\\": {}
     },
     \\"test-dashboard-feature\\": {
       \\"projectType\\": \\"library\\",
@@ -567,11 +535,7 @@ exports[`init schematic should run successfully 2`] = `
           }
         }
       },
-      \\"schematics\\": {
-        \\"@schematics/angular:component\\": {
-          \\"style\\": \\"scss\\"
-        }
-      }
+      \\"schematics\\": {}
     },
     \\"test-shell-feature\\": {
       \\"projectType\\": \\"library\\",
@@ -593,11 +557,7 @@ exports[`init schematic should run successfully 2`] = `
           }
         }
       },
-      \\"schematics\\": {
-        \\"@schematics/angular:component\\": {
-          \\"style\\": \\"scss\\"
-        }
-      }
+      \\"schematics\\": {}
     },
     \\"test-layout\\": {
       \\"projectType\\": \\"library\\",
@@ -619,11 +579,7 @@ exports[`init schematic should run successfully 2`] = `
           }
         }
       },
-      \\"schematics\\": {
-        \\"@schematics/angular:component\\": {
-          \\"style\\": \\"scss\\"
-        }
-      }
+      \\"schematics\\": {}
     },
     \\"test-style\\": {
       \\"projectType\\": \\"library\\",
@@ -631,11 +587,7 @@ exports[`init schematic should run successfully 2`] = `
       \\"sourceRoot\\": \\"libs/test/style/src\\",
       \\"prefix\\": \\"style\\",
       \\"architect\\": {},
-      \\"schematics\\": {
-        \\"@schematics/angular:component\\": {
-          \\"style\\": \\"scss\\"
-        }
-      }
+      \\"schematics\\": {}
     },
     \\"test-ui-form\\": {
       \\"projectType\\": \\"library\\",
@@ -657,11 +609,7 @@ exports[`init schematic should run successfully 2`] = `
           }
         }
       },
-      \\"schematics\\": {
-        \\"@schematics/angular:component\\": {
-          \\"style\\": \\"scss\\"
-        }
-      }
+      \\"schematics\\": {}
     }
   },
   \\"newProjectRoot\\": \\"\\",
