@@ -754,7 +754,7 @@ exports[`init schematic should run successfully 4`] = `
     \\"sdk:test:watch\\": \\"yarn sdk:test --watch\\",
     \\"dev:api\\": \\"nx serve api\\",
     \\"build:api\\": \\"nx build api --prod\\",
-    \\"setup\\": \\"yarn prisma:apply\\",
+    \\"setup\\": \\"yarn nx workspace-generator workspace-setup\\",
     \\"prisma:apply\\": \\"yarn prisma:format && yarn prisma:db-push\\",
     \\"prisma:db-push\\": \\"yarn prisma db push --preview-feature\\",
     \\"prisma:format\\": \\"yarn prisma format\\",

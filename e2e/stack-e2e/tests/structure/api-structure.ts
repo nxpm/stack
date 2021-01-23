@@ -1,4 +1,4 @@
-import { FileTests } from '../../e2e-file-utils'
+import { FileTests } from '../../../e2e-file-utils'
 
 export function apiProjects(project: string) {
   return [

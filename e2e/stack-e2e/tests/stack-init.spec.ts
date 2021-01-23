@@ -8,8 +8,9 @@ import {
 } from '@nrwl/nx-plugin/testing'
 import { log } from 'nxpm'
 import { runFileTests } from '../../e2e-file-utils'
-import { apiFileTests, apiProjects } from './api-structure'
-import { webFileTests, webProjects } from './web-structure'
+import { apiFileTests, apiProjects } from './structure/api-structure'
+import { initFileTests } from './structure/init-structure'
+import { webFileTests, webProjects } from './structure/web-structure'
 
 describe('@nxpm/stack:init e2e', () => {
   const projectNameApi = 'api'
@@ -40,6 +41,7 @@ describe('@nxpm/stack:init e2e', () => {
 
   runFileTests(webFileTests(projectNameWeb))
   runFileTests(apiFileTests(projectNameApi))
+  runFileTests(initFileTests())
 
   describe('workspace structure', () => {
     it('check if project names exist', (done) => {
@@ -58,8 +60,8 @@ describe('@nxpm/stack:init e2e', () => {
       done()
     })
 
-    it('should run the setup', async (done) => {
-      await runCommandAsync(`yarn setup`)
+    it('should run the db setup command', async (done) => {
+      await runCommandAsync(`yarn prisma:db-push`)
       done()
     })
 

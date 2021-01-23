@@ -1,7 +1,6 @@
 import { chain, externalSchematic, noop, Rule, schematic, Tree } from '@angular-devkit/schematics'
 import { addDepsToPackageJson, formatFiles, ProjectType } from '@nrwl/workspace'
 import { stringify } from 'yaml'
-import { RepositoryInitializerTask } from '@angular-devkit/schematics/tasks'
 
 import {
   addFiles,

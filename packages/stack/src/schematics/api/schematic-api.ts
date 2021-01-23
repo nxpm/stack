@@ -22,7 +22,7 @@ export default function (options: ApiSchematicSchema): Rule {
     schematic('api-core-data-access', { directory, name: 'core', appName: name }),
     schematic('api-core-feature', { directory, name: 'core', appName: name }),
     addFiles({ ...normalizedOptions, appName: name }),
-    addRunScript(`setup`, `yarn prisma:apply`),
+    addRunScript(`setup`, `yarn nx workspace-generator workspace-setup`),
     addRunScript(`build:${name}`, `nx build ${name} --prod`),
     addRunScript(`dev:${name}`, `nx serve ${name}`),
     createDotEnv([
