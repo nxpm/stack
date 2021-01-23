@@ -157,10 +157,9 @@ export default function (options: WebSchematicSchema): Rule {
       name: 'style',
       library: styleLibrary,
     }),
-    schematic('web-ui-form', {
+    schematic('web-ui-libs', {
       appName: name,
       directory,
-      name: 'form',
       library: styleLibrary,
     }),
     addRunScript(`build:${name}`, `nx build ${name} --prod`),
