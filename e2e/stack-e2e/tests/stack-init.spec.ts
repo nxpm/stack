@@ -82,7 +82,7 @@ describe('@nxpm/stack:init e2e', () => {
     })
 
     it(`should run all the unit tests`, async (done) => {
-      await runNxCommandAsync(`yarn nx run-many --target test --all`)
+      await runNxCommandAsync(`run-many --target test --all`)
       done()
     })
   })
