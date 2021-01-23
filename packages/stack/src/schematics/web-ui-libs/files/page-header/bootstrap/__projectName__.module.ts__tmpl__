@@ -1,0 +1,9 @@
+import { NgModule } from '@angular/core'
+import { <%= classify(projectName) %>Directive } from './<%= projectName %>.directive.ts__tmpl__'
+
+@NgModule({
+  declarations: [<%= classify(projectName) %>Directive],
+  imports: [],
+  exports: [<%= classify(projectName) %>Directive],
+})
+export class <%= classify(projectName) %>Module {}

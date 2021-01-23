@@ -1,0 +1,21 @@
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core'
+
+@Component({
+  selector: 'ui-loader',
+  template: `
+    <div class="d-flex align-items-center justify-content-center p-4 mb-2 rounded" *ngIf="loading">
+      Loading...
+    </div>
+  `,
+  styles: [
+    `
+      :host {
+        display: block;
+      }
+    `,
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class <%= classify(projectName) %>Component {
+  @Input() loading = true
+}

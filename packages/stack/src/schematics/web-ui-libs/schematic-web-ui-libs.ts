@@ -1,47 +1,26 @@
-import { chain, Rule, schematic } from '@angular-devkit/schematics'
-import { addDepsToPackageJson, ProjectType } from '@nrwl/workspace'
-import { addFiles, normalizeOptions } from '../../utils'
+import { chain, Rule } from '@angular-devkit/schematics'
+import {
+  createUiLibForm,
+  createUiLibIcon,
+  createUiLibLoader,
+  createUiLibPage,
+  createUiLibPageHeader,
+  createUiLibSidebarPage,
+} from './libs'
 import { WebUiLibsSchematicSchema } from './schema'
 
 export default function (options: WebUiLibsSchematicSchema): Rule {
-  return chain([
-    createUiFormLib(options),
-    // createUiLoadingLib
-    // createUiIconLib
-    // createUiPageLib
-    // createUiPageHeaderLib
-    // createUiSidebarPageLib
-  ])
-}
-
-function createUiFormLib(options: WebUiLibsSchematicSchema): Rule {
-  const name = 'form'
   const library = options.library || 'tailwind'
   const directory = options.directory || options.name
-  const normalizedOptions = normalizeOptions({ ...options, name: `ui/${name}` }, ProjectType.Library)
-  const deps = library === 'bootstrap' ? { '@ngx-formly/bootstrap': '^5.10.8' } : {}
 
-  return createUiLib(
-    directory,
-    name,
-    `./files/${name}/${library}`,
-    {
-      '@ngx-formly/core': '^5.10.8',
-      ...deps,
-    },
-    normalizedOptions,
-  )
-}
+  options = { ...options, directory, library }
 
-function createUiLib(directory: string, name: string, path: string, deps: any, normalizedOptions): Rule {
   return chain([
-    addDepsToPackageJson(deps, {}, true),
-    schematic('web-lib', {
-      directory,
-      name,
-      type: 'ui',
-      classic: true,
-    }),
-    addFiles(normalizedOptions, path),
+    createUiLibForm(options),
+    createUiLibLoader(options),
+    createUiLibIcon(options),
+    createUiLibPage(options),
+    createUiLibPageHeader(options),
+    createUiLibSidebarPage(options),
   ])
 }
