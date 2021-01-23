@@ -8,11 +8,11 @@ export class <%= classify(projectName) %>Service extends PrismaClient implements
     super()
   }
 
-  public async onModuleDestroy() {
+  async onModuleDestroy() {
     await this.$disconnect()
   }
 
-  public async onModuleInit() {
+  async onModuleInit() {
     await this.$connect()
   }
 
@@ -41,15 +41,15 @@ export class <%= classify(projectName) %>Service extends PrismaClient implements
     })
   }
 
-  public findUserByEmail(email: string) {
+  findUserByEmail(email: string) {
     return this.user.findUnique({ where: { email } })
   }
 
-  public findUserById(userId: string) {
+  findUserById(userId: string) {
     return this.user.findUnique({ where: { id: userId } })
   }
 
-  public findUserByUsername(username: string) {
+  findUserByUsername(username: string) {
     return this.user.findUnique({ where: { username } })
   }
 }

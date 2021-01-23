@@ -78,9 +78,9 @@ export function apiFileTests(project: string): FileTests {
       [`libs/${project}/core/data-access/src/lib/${project}-core-data-access.service.ts`]: [
         `extends PrismaClient`,
         `implements OnModuleInit, OnModuleDestroy`,
-        `public findUserByEmail(email: string) {`,
-        `public findUserById(userId: string) {`,
-        `public findUserByUsername(username: string) {`,
+        `findUserByEmail(email: string) {`,
+        `findUserById(userId: string) {`,
+        `findUserByUsername(username: string) {`,
       ],
       [`libs/${project}/core/data-access/src/prisma/schema.prisma`]: [`env("DATABASE_URL")`, `"prisma-client-js"`],
       [`apps/${project}/src/main.ts`]: [`Logger.log('Listening at http://localhost:' + port + '/graphql')`],

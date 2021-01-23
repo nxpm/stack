@@ -105,7 +105,7 @@ export function webFileTests(project: string): FileTests {
       ],
       [`libs/${project}/about/feature/src/lib/${project}-about-feature.component.ts`]: [
         `${project}/core/data-access`,
-        `public environment = environment`,
+        `environment = environment`,
       ],
       [`libs/${project}/auth/feature/src/index.ts`]: [`export * from './lib/${project}-auth-feature.module'`],
       [`libs/${project}/core/feature/src/environments/environment.ts`]: [

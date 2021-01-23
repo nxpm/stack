@@ -1,7 +1,7 @@
 import { FormlyFieldConfig, FormlyTemplateOptions } from '@ngx-formly/core'
 
 export class <%= classify(projectName) %>Field implements FormlyFieldConfig {
-  public static map(f: string) {
+  static map(f: string) {
     const map = {
       input: <%= classify(projectName) %>Field.input,
       email: <%= classify(projectName) %>Field.email,
@@ -19,7 +19,7 @@ export class <%= classify(projectName) %>Field implements FormlyFieldConfig {
     return map[f] ? map[f] : <%= classify(projectName) %>Field.input
   }
 
-  public static field(
+  static field(
     type: string,
     key: string,
     templateOptions?: FormlyTemplateOptions,
@@ -33,21 +33,21 @@ export class <%= classify(projectName) %>Field implements FormlyFieldConfig {
     }
   }
 
-  public static input(key: string, templateOptions?: FormlyTemplateOptions, options?: any): FormlyFieldConfig {
-    return <%= classify(projectName) %>Field.field('input', key, templateOptions, options)
+  static input(key: string, templateOptions?: FormlyTemplateOptions, options?: any): FormlyFieldConfig {
+    return this.field('input', key, templateOptions, options)
   }
 
-  public static email(key: string, templateOptions?: FormlyTemplateOptions, options?: any): FormlyFieldConfig {
+  static email(key: string, templateOptions?: FormlyTemplateOptions, options?: any): FormlyFieldConfig {
     const defaults = {
       type: 'email',
       label: 'Email',
     }
     const defaultOptions = { validators: { validation: ['email'] } }
 
-    return <%= classify(projectName) %>Field.input(key, { ...templateOptions, ...defaults }, { ...options, ...defaultOptions })
+    return this.input(key, { ...templateOptions, ...defaults }, { ...options, ...defaultOptions })
   }
 
-  public static password(key: string, templateOptions?: FormlyTemplateOptions, options?: any): FormlyFieldConfig {
+  static password(key: string, templateOptions?: FormlyTemplateOptions, options?: any): FormlyFieldConfig {
     const defaults = {
       label: 'Password',
       type: 'password',
@@ -55,56 +55,56 @@ export class <%= classify(projectName) %>Field implements FormlyFieldConfig {
       required: true,
     }
 
-    return <%= classify(projectName) %>Field.input(key, { ...templateOptions, ...defaults }, options)
+    return this.input(key, { ...templateOptions, ...defaults }, options)
   }
 
-  public static number(key: string, templateOptions?: FormlyTemplateOptions, options?: any): FormlyFieldConfig {
-    return <%= classify(projectName) %>Field.input(key, { ...templateOptions, type: 'number' }, { ...options })
+  static number(key: string, templateOptions?: FormlyTemplateOptions, options?: any): FormlyFieldConfig {
+    return this.input(key, { ...templateOptions, type: 'number' }, { ...options })
   }
 
-  public static checkbox(key: string, templateOptions?: FormlyTemplateOptions, options?: any): FormlyFieldConfig {
-    return <%= classify(projectName) %>Field.field('checkbox', key, templateOptions, options)
+  static checkbox(key: string, templateOptions?: FormlyTemplateOptions, options?: any): FormlyFieldConfig {
+    return this.field('checkbox', key, templateOptions, options)
   }
 
-  public static radio(key: string, templateOptions?: FormlyTemplateOptions, options?: any): FormlyFieldConfig {
-    return <%= classify(projectName) %>Field.field('radio', key, templateOptions, options)
+  static radio(key: string, templateOptions?: FormlyTemplateOptions, options?: any): FormlyFieldConfig {
+    return this.field('radio', key, templateOptions, options)
   }
 
-  public static select(key: string, templateOptions?: FormlyTemplateOptions, options?: any): FormlyFieldConfig {
-    return <%= classify(projectName) %>Field.field('select', key, templateOptions, options)
+  static select(key: string, templateOptions?: FormlyTemplateOptions, options?: any): FormlyFieldConfig {
+    return this.field('select', key, templateOptions, options)
   }
 
-  public static typeahead(key: string, templateOptions?: FormlyTemplateOptions, options?: any): FormlyFieldConfig {
-    return <%= classify(projectName) %>Field.field('typeahead', key, templateOptions, options)
+  static typeahead(key: string, templateOptions?: FormlyTemplateOptions, options?: any): FormlyFieldConfig {
+    return this.field('typeahead', key, templateOptions, options)
   }
 
-  public static textarea(key: string, templateOptions?: FormlyTemplateOptions, options?: any): FormlyFieldConfig {
+  static textarea(key: string, templateOptions?: FormlyTemplateOptions, options?: any): FormlyFieldConfig {
     const defaultTemplateOptions = { rows: 5 }
 
-    return <%= classify(projectName) %>Field.field('textarea', key, { ...defaultTemplateOptions, ...templateOptions }, options)
+    return this.field('textarea', key, { ...defaultTemplateOptions, ...templateOptions }, options)
   }
 
-  public static group(fieldGroupClassName: string, fieldGroup: FormlyFieldConfig[]): FormlyFieldConfig {
+  static group(fieldGroupClassName: string, fieldGroup: FormlyFieldConfig[]): FormlyFieldConfig {
     return { fieldGroupClassName, fieldGroup }
   }
 
-  public static template(template: string): FormlyFieldConfig {
+  static template(template: string): FormlyFieldConfig {
     return { type: 'formly-template', template }
   }
 
-  public static date(key: string, templateOptions?: FormlyTemplateOptions, options?: any): FormlyFieldConfig {
-    return <%= classify(projectName) %>Field.input(key, { ...templateOptions, type: 'date' }, { ...options })
+  static date(key: string, templateOptions?: FormlyTemplateOptions, options?: any): FormlyFieldConfig {
+    return this.input(key, { ...templateOptions, type: 'date' }, { ...options })
   }
 
-  public static time(key: string, templateOptions?: FormlyTemplateOptions, options?: any): FormlyFieldConfig {
-    return <%= classify(projectName) %>Field.input(key, { ...templateOptions, type: 'time' }, { ...options })
+  static time(key: string, templateOptions?: FormlyTemplateOptions, options?: any): FormlyFieldConfig {
+    return this.input(key, { ...templateOptions, type: 'time' }, { ...options })
   }
 
-  public static datetime(key: string, templateOptions?: FormlyTemplateOptions, options?: any): FormlyFieldConfig {
-    return <%= classify(projectName) %>Field.field('datetime', key, { ...templateOptions }, { ...options })
+  static datetime(key: string, templateOptions?: FormlyTemplateOptions, options?: any): FormlyFieldConfig {
+    return this.field('datetime', key, { ...templateOptions }, { ...options })
   }
 
-  public static rating(key: string, templateOptions?: FormlyTemplateOptions, options?: any): FormlyFieldConfig {
-    return <%= classify(projectName) %>Field.field('rating', key, { ...templateOptions }, { ...options })
+  static rating(key: string, templateOptions?: FormlyTemplateOptions, options?: any): FormlyFieldConfig {
+    return this.field('rating', key, { ...templateOptions }, { ...options })
   }
 }

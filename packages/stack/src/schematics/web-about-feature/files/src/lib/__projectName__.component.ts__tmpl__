@@ -16,7 +16,7 @@ import { environment } from '@<%= npmScope %>/<%= appName %>/core/feature'
   `,
 })
 export class <%= classify(projectName) %>Component {
-  public environment = environment
-  public uptime$ = this.data.uptimeWatch()
+  environment = environment
+  uptime$ = this.data.uptimeWatch()
   constructor(private readonly data: <%= classify(appName) %>CoreDataAccessService) {}
 }

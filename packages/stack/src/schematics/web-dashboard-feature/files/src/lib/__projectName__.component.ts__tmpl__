@@ -17,7 +17,7 @@ import { <%= classify(appName) %>CoreDataAccessService } from '@<%= npmScope %>/
   `,
 })
 export class <%= classify(projectName) %>Component {
-  public uptime$ = this.data.uptimeWatch()
-  public me$ = this.data.me()
+  uptime$ = this.data.uptimeWatch()
+  me$ = this.data.me()
   constructor(private readonly data: <%= classify(appName) %>CoreDataAccessService) {}
 }
