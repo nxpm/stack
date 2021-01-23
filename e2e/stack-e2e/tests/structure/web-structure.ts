@@ -16,6 +16,11 @@ export function webProjects(project: string) {
     `${project}-layout`,
     `${project}-style`,
     `${project}-ui-form`,
+    `${project}-ui-icon`,
+    `${project}-ui-loader`,
+    `${project}-ui-page`,
+    `${project}-ui-page-header`,
+    `${project}-ui-sidebar-page`,
   ]
 }
 

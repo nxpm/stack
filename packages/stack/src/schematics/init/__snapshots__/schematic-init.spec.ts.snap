@@ -64,6 +64,21 @@ exports[`init schematic should run successfully 1`] = `
     },
     \\"test-ui-form\\": {
       \\"tags\\": [\\"scope:test\\", \\"type:ui\\"]
+    },
+    \\"test-ui-loader\\": {
+      \\"tags\\": [\\"scope:test\\", \\"type:ui\\"]
+    },
+    \\"test-ui-icon\\": {
+      \\"tags\\": [\\"scope:test\\", \\"type:ui\\"]
+    },
+    \\"test-ui-page\\": {
+      \\"tags\\": [\\"scope:test\\", \\"type:ui\\"]
+    },
+    \\"test-ui-page-header\\": {
+      \\"tags\\": [\\"scope:test\\", \\"type:ui\\"]
+    },
+    \\"test-ui-sidebar-page\\": {
+      \\"tags\\": [\\"scope:test\\", \\"type:ui\\"]
     }
   },
   \\"affected\\": {
@@ -610,6 +625,116 @@ exports[`init schematic should run successfully 2`] = `
         }
       },
       \\"schematics\\": {}
+    },
+    \\"test-ui-loader\\": {
+      \\"projectType\\": \\"library\\",
+      \\"root\\": \\"libs/test/ui/loader\\",
+      \\"sourceRoot\\": \\"libs/test/ui/loader/src\\",
+      \\"prefix\\": \\"loader\\",
+      \\"architect\\": {
+        \\"lint\\": {
+          \\"builder\\": \\"@nrwl/linter:eslint\\",
+          \\"options\\": {
+            \\"lintFilePatterns\\": [\\"libs/test/ui/loader/src/**/*.ts\\"]
+          }
+        },
+        \\"test\\": {
+          \\"builder\\": \\"@nrwl/jest:jest\\",
+          \\"options\\": {
+            \\"jestConfig\\": \\"libs/test/ui/loader/jest.config.js\\",
+            \\"passWithNoTests\\": true
+          }
+        }
+      },
+      \\"schematics\\": {}
+    },
+    \\"test-ui-icon\\": {
+      \\"projectType\\": \\"library\\",
+      \\"root\\": \\"libs/test/ui/icon\\",
+      \\"sourceRoot\\": \\"libs/test/ui/icon/src\\",
+      \\"prefix\\": \\"icon\\",
+      \\"architect\\": {
+        \\"lint\\": {
+          \\"builder\\": \\"@nrwl/linter:eslint\\",
+          \\"options\\": {
+            \\"lintFilePatterns\\": [\\"libs/test/ui/icon/src/**/*.ts\\"]
+          }
+        },
+        \\"test\\": {
+          \\"builder\\": \\"@nrwl/jest:jest\\",
+          \\"options\\": {
+            \\"jestConfig\\": \\"libs/test/ui/icon/jest.config.js\\",
+            \\"passWithNoTests\\": true
+          }
+        }
+      },
+      \\"schematics\\": {}
+    },
+    \\"test-ui-page\\": {
+      \\"projectType\\": \\"library\\",
+      \\"root\\": \\"libs/test/ui/page\\",
+      \\"sourceRoot\\": \\"libs/test/ui/page/src\\",
+      \\"prefix\\": \\"page\\",
+      \\"architect\\": {
+        \\"lint\\": {
+          \\"builder\\": \\"@nrwl/linter:eslint\\",
+          \\"options\\": {
+            \\"lintFilePatterns\\": [\\"libs/test/ui/page/src/**/*.ts\\"]
+          }
+        },
+        \\"test\\": {
+          \\"builder\\": \\"@nrwl/jest:jest\\",
+          \\"options\\": {
+            \\"jestConfig\\": \\"libs/test/ui/page/jest.config.js\\",
+            \\"passWithNoTests\\": true
+          }
+        }
+      },
+      \\"schematics\\": {}
+    },
+    \\"test-ui-page-header\\": {
+      \\"projectType\\": \\"library\\",
+      \\"root\\": \\"libs/test/ui/page-header\\",
+      \\"sourceRoot\\": \\"libs/test/ui/page-header/src\\",
+      \\"prefix\\": \\"page-header\\",
+      \\"architect\\": {
+        \\"lint\\": {
+          \\"builder\\": \\"@nrwl/linter:eslint\\",
+          \\"options\\": {
+            \\"lintFilePatterns\\": [\\"libs/test/ui/page-header/src/**/*.ts\\"]
+          }
+        },
+        \\"test\\": {
+          \\"builder\\": \\"@nrwl/jest:jest\\",
+          \\"options\\": {
+            \\"jestConfig\\": \\"libs/test/ui/page-header/jest.config.js\\",
+            \\"passWithNoTests\\": true
+          }
+        }
+      },
+      \\"schematics\\": {}
+    },
+    \\"test-ui-sidebar-page\\": {
+      \\"projectType\\": \\"library\\",
+      \\"root\\": \\"libs/test/ui/sidebar-page\\",
+      \\"sourceRoot\\": \\"libs/test/ui/sidebar-page/src\\",
+      \\"prefix\\": \\"sidebar-page\\",
+      \\"architect\\": {
+        \\"lint\\": {
+          \\"builder\\": \\"@nrwl/linter:eslint\\",
+          \\"options\\": {
+            \\"lintFilePatterns\\": [\\"libs/test/ui/sidebar-page/src/**/*.ts\\"]
+          }
+        },
+        \\"test\\": {
+          \\"builder\\": \\"@nrwl/jest:jest\\",
+          \\"options\\": {
+            \\"jestConfig\\": \\"libs/test/ui/sidebar-page/jest.config.js\\",
+            \\"passWithNoTests\\": true
+          }
+        }
+      },
+      \\"schematics\\": {}
     }
   },
   \\"newProjectRoot\\": \\"\\",
@@ -650,7 +775,12 @@ exports[`init schematic should run successfully 3`] = `
       \\"@proj/test/shell/feature\\": [\\"libs/test/shell/feature/src/index.ts\\"],
       \\"@proj/test/layout\\": [\\"libs/test/layout/src/index.ts\\"],
       \\"@proj/test/style\\": [\\"libs/test/style/src/index.ts\\"],
-      \\"@proj/test/ui/form\\": [\\"libs/test/ui/form/src/index.ts\\"]
+      \\"@proj/test/ui/form\\": [\\"libs/test/ui/form/src/index.ts\\"],
+      \\"@proj/test/ui/loader\\": [\\"libs/test/ui/loader/src/index.ts\\"],
+      \\"@proj/test/ui/icon\\": [\\"libs/test/ui/icon/src/index.ts\\"],
+      \\"@proj/test/ui/page\\": [\\"libs/test/ui/page/src/index.ts\\"],
+      \\"@proj/test/ui/page-header\\": [\\"libs/test/ui/page-header/src/index.ts\\"],
+      \\"@proj/test/ui/sidebar-page\\": [\\"libs/test/ui/sidebar-page/src/index.ts\\"]
     }
   }
 }
@@ -678,6 +808,7 @@ exports[`init schematic should run successfully 4`] = `
     \\"@nestjs/jwt\\": \\"^7.1.0\\",
     \\"@nestjs/passport\\": \\"^7.1.0\\",
     \\"@nestjs/platform-express\\": \\"^7.0.0\\",
+    \\"@ngneat/svg-icon\\": \\"2.2.2\\",
     \\"@ngrx/component-store\\": \\"10.1.2\\",
     \\"@ngx-formly/core\\": \\"^5.10.8\\",
     \\"@prisma/client\\": \\"2.15.0\\",
@@ -710,6 +841,7 @@ exports[`init schematic should run successfully 4`] = `
     \\"@graphql-codegen/typescript-operations\\": \\"1.17.12\\",
     \\"@nestjs/schematics\\": \\"^7.0.0\\",
     \\"@nestjs/testing\\": \\"^7.0.0\\",
+    \\"@ngneat/spectator\\": \\"6.1.3\\",
     \\"@nrwl/cypress\\": \\"10.4.4\\",
     \\"@nrwl/eslint-plugin-nx\\": \\"10.4.4\\",
     \\"@nrwl/jest\\": \\"10.4.4\\",

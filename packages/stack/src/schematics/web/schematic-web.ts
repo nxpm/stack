@@ -91,6 +91,7 @@ export default function (options: WebSchematicSchema): Rule {
         '@graphql-codegen/typescript': '1.18.1',
         '@graphql-codegen/typescript-apollo-angular': '^2.2.1',
         '@graphql-codegen/typescript-operations': '1.17.12',
+        '@ngneat/spectator': '6.1.3',
       },
       true,
     ),
