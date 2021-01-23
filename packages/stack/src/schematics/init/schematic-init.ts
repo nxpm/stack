@@ -141,7 +141,7 @@ export default function (options: InitSchematicSchema): Rule {
     addRunScript('docker:run', `docker run -it -p 8000:3000 ${normalizedOptions.npmScope}/${apiName}`, true),
     addRunScript('docker:build', `docker build . -t ${normalizedOptions.npmScope}/${apiName}`, true),
     addRunScript('test:ci', `yarn prisma:apply && yarn e2e api-e2e`, true),
-    addRunScript('start', 'node dist/apps/api/main.js', true),
+    addRunScript('start', 'yarn prisma:db-push && node dist/apps/api/main.js', true),
     addRunScript('build', `yarn build:${webName} && yarn build:${apiName}`, true),
     schematic('api', { name: apiName }),
     schematic('web', { name: webName, styleLibrary: webStyleLibrary }),

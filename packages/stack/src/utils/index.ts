@@ -250,7 +250,8 @@ export function addPrismaConfig(normalizedOptions: NormalizedSchema): Rule {
       updateJsonInTree('package.json', (json) => {
         json.prisma = { schema: prismaFile }
         json.scripts = {
-          'prisma:apply': 'yarn prisma:format && yarn prisma db push --preview-feature',
+          'prisma:apply': 'yarn prisma:format && yarn prisma:db-push',
+          'prisma:db-push': 'yarn prisma db push --preview-feature',
           'prisma:format': 'yarn prisma format',
           'prisma:generate': 'yarn prisma generate',
           'prisma:migrate': 'yarn prisma migrate save --experimental && yarn prisma migrate up --experimental',
