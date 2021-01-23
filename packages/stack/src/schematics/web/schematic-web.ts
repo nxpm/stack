@@ -76,6 +76,7 @@ export default function (options: WebSchematicSchema): Rule {
   const name = options.name || 'web'
   const directory = options.directory || options.name
   const styleLibrary = options.styleLibrary || 'tailwind'
+  const style = styleLibrary === 'bootstrap' ? 'scss' : 'css'
   const normalizedOptions = normalizeOptions<WebSchematicSchema>(options, ProjectType.Application)
 
   return chain([
@@ -95,7 +96,7 @@ export default function (options: WebSchematicSchema): Rule {
     ),
     externalSchematic('@nrwl/angular', 'application', {
       name,
-      style: 'scss',
+      style,
       routing: true,
       linter: 'eslint',
     }),
@@ -168,7 +169,7 @@ export default function (options: WebSchematicSchema): Rule {
     removeFiles(
       [
         `app/app.component.css`,
-        `app/app.component.scss`,
+        `app/app.component.${style}`,
         `app/app.component.html`,
         `app/app.component.spec.ts`,
         `environments/environment.ts`,
@@ -177,7 +178,7 @@ export default function (options: WebSchematicSchema): Rule {
         `assets/.gitkeep`,
         `assets/`,
         `favicon.ico`,
-        `styles.scss`,
+        `styles.${style}`,
       ],
       `${normalizedOptions.projectRoot}/src/`,
     ),

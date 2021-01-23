@@ -1,9 +1,9 @@
-import { chain, externalSchematic, noop, Rule, schematic, SchematicContext, Tree } from '@angular-devkit/schematics'
+import { chain, noop, Rule, schematic, SchematicContext, Tree } from '@angular-devkit/schematics'
+
+import { RunSchematicTask } from '@angular-devkit/schematics/tasks'
 import { addDepsToPackageJson, ProjectType } from '@nrwl/workspace'
 import { addFiles, normalizeOptions, removeFiles, updateAppStyles, updateProjectArchitects } from '../../utils'
 import { WebStyleSchematicSchema } from './schema'
-
-import { RunSchematicTask } from '@angular-devkit/schematics/tasks'
 
 function dependencies(options): Rule {
   return (_tree: Tree, context: SchematicContext) => {
@@ -11,7 +11,7 @@ function dependencies(options): Rule {
     context.addTask(
       new RunSchematicTask('@ngneat/tailwind', 'ng-add', {
         project: options.appName,
-        style: 'scss',
+        style: 'css',
         useCustomWebpackBeta: true,
         darkMode: 'class',
         plugins: ['forms'],
@@ -24,6 +24,7 @@ function dependencies(options): Rule {
 export default function (options: WebStyleSchematicSchema): Rule {
   const name = options.name || 'style'
   const library = options.library || 'tailwind'
+  const style = library === 'bootstrap' ? 'scss' : 'css'
   const appName = options.appName
   const projectName = appName ? `${appName}-${name}` : name
   const directory = options.directory || options.name
@@ -45,7 +46,7 @@ export default function (options: WebStyleSchematicSchema): Rule {
       type: 'style',
     }),
     addFiles(normalizedOptions, `./files/${library}`),
-    updateAppStyles(appName, [`libs/${appName}/${name}/src/index.scss`]),
+    updateAppStyles(appName, [`libs/${appName}/${name}/src/index.${style}`]),
     updateProjectArchitects(projectName),
     removeFiles(
       [

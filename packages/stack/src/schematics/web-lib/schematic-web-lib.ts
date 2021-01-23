@@ -7,6 +7,7 @@ export default function (options: WebLibSchematicSchema): Rule {
   const directory = options.directory || 'web'
   const name =
     options.name === options.type ? options.type : createProjectName(options.name, options.type, options.classic)
+  const style = options.style || 'css'
 
   const normalizedOptions = normalizeOptions<WebLibSchematicSchema>(
     { ...options, directory, name },
@@ -17,7 +18,7 @@ export default function (options: WebLibSchematicSchema): Rule {
       name,
       directory,
       tags: `scope:${directory},type:${options.type}`,
-      style: 'scss',
+      style,
       prefix: options.prefix || options.name,
       buildable: options.buildable || false,
       publishable: options.publishable || false,
