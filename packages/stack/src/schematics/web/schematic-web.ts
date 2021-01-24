@@ -101,12 +101,22 @@ export default function (options: WebSchematicSchema): Rule {
       routing: true,
       linter: 'eslint',
     }),
+    schematic('web-about-feature', {
+      appName: name,
+      directory,
+      name: 'about',
+    }),
     schematic('web-assets', {
       appName: name,
       directory,
       name: 'assets',
     }),
     schematic('web-auth-data-access', {
+      appName: name,
+      directory,
+      name: 'auth',
+    }),
+    schematic('web-auth-feature', {
       appName: name,
       directory,
       name: 'auth',
@@ -121,16 +131,6 @@ export default function (options: WebSchematicSchema): Rule {
       directory,
       name: 'core',
     }),
-    schematic('web-about-feature', {
-      appName: name,
-      directory,
-      name: 'about',
-    }),
-    schematic('web-auth-feature', {
-      appName: name,
-      directory,
-      name: 'auth',
-    }),
     schematic('web-core-feature', {
       appName: name,
       directory,
@@ -141,16 +141,16 @@ export default function (options: WebSchematicSchema): Rule {
       directory,
       name: 'dashboard',
     }),
-    schematic('web-shell-feature', {
-      appName: name,
-      directory,
-      name: 'shell',
-    }),
     schematic('web-layout', {
       appName: name,
       directory,
       name: 'layout',
       library: styleLibrary,
+    }),
+    schematic('web-shell-feature', {
+      appName: name,
+      directory,
+      name: 'shell',
     }),
     schematic('web-style', {
       appName: name,
