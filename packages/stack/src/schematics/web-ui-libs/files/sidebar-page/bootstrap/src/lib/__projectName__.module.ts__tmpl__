@@ -1,0 +1,12 @@
+import { CommonModule } from '@angular/common'
+import { NgModule } from '@angular/core'
+import { RouterModule } from '@angular/router'
+import { <%= classify(projectName) %>Module } from '@<%= npmScope %>/<%= appName %>/ui/page'
+import { <%= classify(projectName) %>Component } from './web-ui-sidebar-page.component'
+
+@NgModule({
+  declarations: [<%= classify(projectName) %>Component],
+  exports: [<%= classify(projectName) %>Component],
+  imports: [CommonModule, RouterModule, <%= classify(projectName) %>Module],
+})
+export class <%= classify(projectName) %>Module {}

@@ -27,7 +27,7 @@ describe('@nxpm/stack:init e2e', () => {
       '@nrwl/tao',
       '@nrwl/angular',
       '@nrwl/nest',
-      '@ngneat/tailwind',
+      '@ngneat/tailwind@5.2.4',
       '@schematics/angular',
       '@angular/cli',
     ]

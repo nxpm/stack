@@ -1,12 +1,11 @@
-import { CommonModule } from '@angular/common'
 import { NgModule } from '@angular/core'
+import { CommonModule } from '@angular/common'
 import { RouterModule } from '@angular/router'
-import { WebUiPageModule } from '@kikstart/web/ui/page'
-import { <%= classify(projectName) %>Component } from './web-ui-sidebar-page.component'
+import { <%= classify(projectName) %>Component } from './<%= projectName %>.component'
 
 @NgModule({
   declarations: [<%= classify(projectName) %>Component],
   exports: [<%= classify(projectName) %>Component],
-  imports: [CommonModule, RouterModule, WebUiPageModule],
+  imports: [CommonModule, RouterModule],
 })
 export class <%= classify(projectName) %>Module {}

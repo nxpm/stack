@@ -32,7 +32,7 @@
     "yaml": "^1.10.0"
   },
   "devDependencies": {
-    "@ngneat/tailwind": "^5.1.0",
+    "@ngneat/tailwind": "5.2.4",
     "@nrwl/angular": "10.4.4",
     "@nrwl/cli": "10.4.4",
     "@nrwl/eslint-plugin-nx": "10.4.4",

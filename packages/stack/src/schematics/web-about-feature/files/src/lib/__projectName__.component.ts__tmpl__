@@ -4,7 +4,7 @@ import { environment } from '@<%= npmScope %>/<%= appName %>/core/feature'
 
 @Component({
   template: `
-    <div class="container mx-auto my-3 my-md-5">
+    <ui-page headerTitle="Dashboard">
       <div class="card">
         <div class="card-header">
           About
@@ -12,7 +12,7 @@ import { environment } from '@<%= npmScope %>/<%= appName %>/core/feature'
         <pre>{{ environment | json }}</pre>
         <div class="card-footer">Server uptime: {{ uptime$ | async }}</div>
       </div>
-    </div>
+    </ui-page>
   `,
 })
 export class <%= classify(projectName) %>Component {
