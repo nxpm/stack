@@ -13,14 +13,11 @@ export default function (options: ApiSchematicSchema): Rule {
     externalSchematic('@nrwl/nest', 'application', {
       name,
     }),
-    schematic('api-e2e', {
-      appName: name,
-      name: 'e2e',
-    }),
     schematic('api-auth-data-access', { directory, name: 'auth', appName: name }),
     schematic('api-auth-feature', { directory, name: 'auth', appName: name }),
     schematic('api-core-data-access', { directory, name: 'core', appName: name }),
     schematic('api-core-feature', { directory, name: 'core', appName: name }),
+    schematic('api-e2e', { appName: name, name: 'e2e' }),
     addFiles({ ...normalizedOptions, appName: name }),
     addRunScript(`setup`, `yarn nx workspace-generator workspace-setup`),
     addRunScript(`build:${name}`, `nx build ${name} --prod`),
