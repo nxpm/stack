@@ -1,3 +1,5 @@
 export * from './lib/<%= projectName %>.helper'
 export * from './lib/<%= projectName %>.module'
 export * from './lib/<%= projectName %>.service'
+export * from './lib/dto/core-paging.input'
+export * from './lib/models/core-paging.model'

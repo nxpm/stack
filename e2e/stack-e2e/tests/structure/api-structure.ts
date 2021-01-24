@@ -31,6 +31,8 @@ export function apiFileTests(project: string): FileTests {
       ...apiCrudFiles(project, 'core/feature'),
       `libs/${project}/core/data-access/src/lib/${project}-core-data-access.module.ts`,
       `libs/${project}/core/data-access/src/lib/${project}-core-data-access.service.ts`,
+      `libs/${project}/core/data-access/src/lib/dto/core-paging.input.ts`,
+      `libs/${project}/core/data-access/src/lib/models/core-paging.model.ts`,
       `libs/${project}/core/data-access/src/prisma/schema.prisma`,
       `libs/${project}/core/feature/src/lib/${project}-core-feature.module.ts`,
       `libs/${project}/core/feature/src/lib/config/configuration.ts`,
