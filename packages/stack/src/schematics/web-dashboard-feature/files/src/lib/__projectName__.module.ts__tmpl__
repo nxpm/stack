@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { RouterModule } from '@angular/router'
 import { <%= classify(appName) %>CoreDataAccessModule } from '@<%= npmScope %>/<%= appName %>/core/data-access'
+import { <%= classify(appName) %>UiPageModule } from '@<%= npmScope %>/<%= appName %>/ui/page'
 import { <%= classify(projectName) %>Component } from './<%= projectName %>.component'
 
 @NgModule({
@@ -9,6 +10,7 @@ import { <%= classify(projectName) %>Component } from './<%= projectName %>.comp
   imports: [
     CommonModule,
     <%= classify(appName) %>CoreDataAccessModule,
+    <%= classify(appName) %>UiPageModule,
     RouterModule.forChild([{ path: '', pathMatch: 'full', component: <%= classify(projectName) %>Component }]),
   ],
 })

@@ -8,4 +8,4 @@ import { <%= classify(projectName) %>Component } from './<%= projectName %>.comp
   exports: [<%= classify(projectName) %>Component],
   imports: [CommonModule],
 })
-export class WebUiPageModule {}
+export class <%= classify(projectName) %>Module {}
