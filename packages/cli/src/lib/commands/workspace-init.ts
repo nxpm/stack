@@ -47,7 +47,7 @@ export async function workspaceInit({
   log('Install dependencies')
   const deps = ['@nxpm/stack', '@nrwl/angular', '@nrwl/nest']
   if (webStyleLibrary === 'tailwind') {
-    deps.push('@ngneat/tailwind')
+    deps.push('@ngneat/tailwind@5.2.4')
   }
 
   const installDeps = `yarn add -D ${deps.join(' ')}`
