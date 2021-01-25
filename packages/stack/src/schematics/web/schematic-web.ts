@@ -84,6 +84,7 @@ export default function (options: WebSchematicSchema): Rule {
       {
         '@apollo/client': '^3.2.9',
         'apollo-angular': '^2.1.0',
+        '@ngrx/component-store': '10.1.2',
       },
       {
         '@graphql-codegen/cli': '1.19.3',
@@ -101,11 +102,7 @@ export default function (options: WebSchematicSchema): Rule {
       routing: true,
       linter: 'eslint',
     }),
-    schematic('web-about-feature', {
-      appName: name,
-      directory,
-      name: 'about',
-    }),
+    schematic('web-feature-about', { appName: name, directory }),
     schematic('web-feature-account', { appName: name, directory }),
     schematic('web-feature-admin', { appName: name, directory }),
     schematic('web-assets', {
@@ -113,21 +110,7 @@ export default function (options: WebSchematicSchema): Rule {
       directory,
       name: 'assets',
     }),
-    schematic('web-auth-data-access', {
-      appName: name,
-      directory,
-      name: 'auth',
-    }),
-    schematic('web-auth-feature', {
-      appName: name,
-      directory,
-      name: 'auth',
-    }),
-    schematic('web-auth-ui', {
-      appName: name,
-      directory,
-      name: 'auth',
-    }),
+    schematic('web-feature-auth', { appName: name, directory }),
     schematic('web-core-data-access', {
       appName: name,
       directory,

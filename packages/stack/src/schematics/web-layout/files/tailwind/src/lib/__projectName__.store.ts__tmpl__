@@ -30,7 +30,7 @@ export class <%= classify(projectName) %>Store extends ComponentStore<<%= classi
       ],
       profileLinks: [
         { label: 'Dashboard', route: '/dashboard' },
-        { label: 'You Account', route: '/account' },
+        { label: 'Your Account', route: '/account' },
         { label: 'Admin', route: '/admin', role: Role.Admin },
         { label: 'About', route: '/about' },
         { label: 'Logout', route: '/logout' },
