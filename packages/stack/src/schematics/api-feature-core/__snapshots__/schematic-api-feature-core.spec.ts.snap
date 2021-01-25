@@ -75,24 +75,16 @@ export class TestCoreDataAccessService extends PrismaClient implements OnModuleI
 exports[`api-feature-core schematic should run successfully 3`] = `
 "import { GraphQLIntercomModule } from '@kikstart-playground/graphql-intercom'
 import { Module } from '@nestjs/common'
-import { ConfigModule } from '@nestjs/config'
 import { GraphQLModule } from '@nestjs/graphql'
 import { PubSub } from 'graphql-subscriptions'
 import { join } from 'path'
 
-import { configuration } from './config/configuration'
-import { validationSchema } from './config/validation'
 import { TestCoreFeatureController } from './test-core-feature.controller'
 import { TestCoreFeatureResolver } from './test-core-feature.resolver'
 import { TestCoreFeatureService } from './test-core-feature.service'
 
 @Module({
   imports: [
-    ConfigModule.forRoot({
-      isGlobal: true,
-      load: [configuration],
-      validationSchema,
-    }),
     GraphQLModule.forRoot({
       autoSchemaFile: join(process.cwd(), 'test-schema.graphql'),
       context: ({ req, res }) => ({ req, res }),

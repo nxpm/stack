@@ -6,11 +6,18 @@ import {
   runNxCommandAsync,
   uniq,
 } from '@nrwl/nx-plugin/testing'
+import { readFileSync, writeFileSync } from 'fs'
 import { log } from 'nxpm'
 import { runFileTests } from '../../e2e-file-utils'
 import { apiFileTests, apiProjects } from './structure/api-structure'
 import { initFileTests } from './structure/init-structure'
 import { webFileTests, webProjects } from './structure/web-structure'
+
+async function patchNrwlNest() {
+  const lib = 'tmp/nx-e2e/proj/node_modules/@nrwl/nest/src/schematics/library/library.js'
+  const content = readFileSync(lib).toString()
+  await writeFileSync(lib, content.split('workspace_1.deleteFile').join('//workspace_1.deleteFile'))
+}
 
 describe('@nxpm/stack:init e2e', () => {
   const projectNameApi = 'api'
@@ -33,10 +40,13 @@ describe('@nxpm/stack:init e2e', () => {
     ]
     log('Install packages')
     await runCommandAsync(`yarn add ${packages.join(' ')}`)
+    await patchNrwlNest()
     log('Generate project')
     await runNxCommandAsync(`generate @nxpm/stack:init ${projectNameWeb}`)
+    await patchNrwlNest()
     log('Install packages second run')
     await runCommandAsync(`yarn`)
+    await patchNrwlNest()
   })
 
   runFileTests(webFileTests(projectNameWeb))

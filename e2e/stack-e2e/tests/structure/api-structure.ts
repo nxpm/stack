@@ -39,8 +39,10 @@ export function apiFileTests(project: string): FileTests {
       `libs/${project}/core/data-access/src/lib/models/core-paging.model.ts`,
       `libs/${project}/core/data-access/src/prisma/schema.prisma`,
       `libs/${project}/core/feature/src/lib/${project}-core-feature.module.ts`,
-      `libs/${project}/core/feature/src/lib/config/configuration.ts`,
-      `libs/${project}/core/feature/src/lib/config/validation.ts`,
+      `libs/${project}/core/util/src/lib/${project}-core-util.module.ts`,
+      `libs/${project}/core/util/src/lib/${project}-core-util.service.ts`,
+      `libs/${project}/core/util/src/lib/config/configuration.ts`,
+      `libs/${project}/core/util/src/lib/config/validation.ts`,
       `apps/${project}-e2e/jest.config.js`,
       `apps/${project}-e2e/src/integration/app.spec.ts`,
       `apps/${project}-e2e/src/integration/core.spec.ts`,
@@ -90,10 +92,8 @@ export function apiFileTests(project: string): FileTests {
       ],
       [`libs/${project}/core/data-access/src/prisma/schema.prisma`]: [`env("DATABASE_URL")`, `"prisma-client-js"`],
       [`apps/${project}/src/main.ts`]: [`Logger.log('Listening at http://localhost:' + port + '/graphql')`],
-      [`libs/${project}/core/feature/src/lib/${project}-core-feature.module.ts`]: [
-        `ConfigModule.forRoot`,
-        `GraphQLModule.forRoot`,
-      ],
+      [`libs/${project}/core/feature/src/lib/${project}-core-feature.module.ts`]: [`GraphQLModule.forRoot`],
+      [`libs/${project}/core/util/src/lib/${project}-core-util.module.ts`]: [`ConfigModule.forRoot`],
     },
   }
 }

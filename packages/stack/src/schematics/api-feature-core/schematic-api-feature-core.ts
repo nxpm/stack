@@ -75,7 +75,6 @@ export function createLibCoreUtil(
 
   return createApiLib(directory, name, `./files/${type}`, type, normalizedOptions, [
     `${options.appName}-${name}-${type}.controller.ts`,
-    `${options.appName}-${name}-${type}.service.ts`,
     `${options.appName}-${name}-${type}.resolver.ts`,
     `${options.appName}-${name}-${type}.ts`,
     `${options.appName}-${name}-${type}.spec.ts`,
