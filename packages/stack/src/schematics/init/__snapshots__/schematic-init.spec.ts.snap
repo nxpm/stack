@@ -1038,6 +1038,9 @@ exports[`init schematic should run successfully 4`] = `
   },
   \\"devDependencies\\": {
     \\"@angular-devkit/build-angular\\": \\"~0.1001.3\\",
+    \\"@angular-eslint/eslint-plugin\\": \\"^1.1.0\\",
+    \\"@angular-eslint/eslint-plugin-template\\": \\"^1.1.0\\",
+    \\"@angular-eslint/template-parser\\": \\"^1.1.0\\",
     \\"@angular/compiler-cli\\": \\"^10.1.0\\",
     \\"@angular/language-service\\": \\"^10.1.0\\",
     \\"@graphql-codegen/cli\\": \\"1.19.3\\",
