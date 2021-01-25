@@ -101,11 +101,7 @@ export default function (options: WebSchematicSchema): Rule {
       routing: true,
       linter: 'eslint',
     }),
-    schematic('web-about-feature', {
-      appName: name,
-      directory,
-      name: 'about',
-    }),
+    schematic('web-feature-about', { appName: name, directory }),
     schematic('web-feature-account', { appName: name, directory }),
     schematic('web-feature-admin', { appName: name, directory }),
     schematic('web-assets', {

@@ -28,11 +28,6 @@
       "schema": "./src/schematics/web-core-data-access/schema.json",
       "description": "web-core-data-access schematic"
     },
-    "web-about-feature": {
-      "factory": "./src/schematics/web-about-feature/schematic-web-about-feature",
-      "schema": "./src/schematics/web-about-feature/schema.json",
-      "description": "web-about-feature schematic"
-    },
     "web-auth-feature": {
       "factory": "./src/schematics/web-auth-feature/schematic-web-auth-feature",
       "schema": "./src/schematics/web-auth-feature/schema.json",
@@ -52,6 +47,11 @@
       "factory": "./src/schematics/web-shell-feature/schematic-web-shell-feature",
       "schema": "./src/schematics/web-shell-feature/schema.json",
       "description": "web-shell-feature schematic"
+    },
+    "web-feature-about": {
+      "factory": "./src/schematics/web-feature-about/schematic-web-feature-about",
+      "schema": "./src/schematics/web-feature-about/schema.json",
+      "description": "web-feature-about schematic"
     },
     "web-feature-account": {
       "factory": "./src/schematics/web-feature-account/schematic-web-feature-account",
