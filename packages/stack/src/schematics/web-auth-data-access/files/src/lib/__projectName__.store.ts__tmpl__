@@ -42,15 +42,28 @@ export class <%= classify(appName) %>AuthStore extends ComponentStore<<%= classi
     ),
   )
 
+  readonly meEffect = this.effect(($) =>
+    $.pipe(
+      switchMap(() =>
+        this.sdk.me().pipe(
+          tapResponse(
+            (res) => {
+              this.setState({ user: res.data.me, errors: res.errors })
+              this.router.navigate(['/'])
+            },
+            (errors) => this.setState({ errors }),
+          ),
+        ),
+      ),
+    ),
+  )
+
   readonly loginEffect = this.effect<LoginInput>((input$) =>
     input$.pipe(
       switchMap((input: LoginInput) =>
         this.sdk.login({ input }).pipe(
           tapResponse(
-            (res) => {
-              this.setState({ user: res.data.login.user, errors: res.errors })
-              this.router.navigate(['/'])
-            },
+            () => this.meEffect(),
             (errors) => this.setState({ errors }),
           ),
         ),
@@ -79,10 +92,7 @@ export class <%= classify(appName) %>AuthStore extends ComponentStore<<%= classi
       switchMap((input: RegisterInput) =>
         this.sdk.register({ input }).pipe(
           tapResponse(
-            (res) => {
-              this.setState({ user: res.data.register.user, errors: res.errors })
-              this.router.navigate(['/'])
-            },
+            () => this.meEffect(),
             (errors) => this.setState({ errors }),
           ),
         ),

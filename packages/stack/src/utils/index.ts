@@ -277,12 +277,13 @@ export function createApiLib(
   name: string,
   path: string,
   type: 'data-access' | 'feature' | 'util',
-  deps: Record<string, string>,
   normalizedOptions: NormalizedSchema,
   filesToRemove: string[] = [],
+  deps: Record<string, string> = {},
+  devDeps: Record<string, string> = {},
 ): Rule {
   return chain([
-    addDepsToPackageJson(deps, {}, true),
+    addDepsToPackageJson(deps, devDeps, true),
     schematic('api-lib', { directory, name, type }),
     addFiles(normalizedOptions, path),
     removeFiles(filesToRemove, `${normalizedOptions.projectRoot}/src/lib/`),

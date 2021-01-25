@@ -8,6 +8,7 @@ export function apiProjects(project: string) {
     `${project}-auth-util`,
     `${project}-core-data-access`,
     `${project}-core-feature`,
+    `${project}-core-util`,
     `${project}-e2e`,
     `${project}-user-data-access`,
     `${project}-user-feature`,

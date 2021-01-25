@@ -19,6 +19,12 @@ export type Scalars = {
   JSON: any
 }
 
+export type AuthToken = {
+  __typename?: 'AuthToken'
+  /** JWT Bearer token */
+  token: Scalars['String']
+}
+
 export type IntercomMessage = {
   __typename?: 'IntercomMessage'
   payload?: Maybe<Scalars['JSON']>
@@ -55,8 +61,14 @@ export type MutationRegisterArgs = {
 
 export type Query = {
   __typename?: 'Query'
+  adminUser?: Maybe<Array<User>>
+  adminUsers?: Maybe<Array<User>>
   me?: Maybe<User>
   uptime?: Maybe<Scalars['Float']>
+}
+
+export type QueryAdminUserArgs = {
+  userId: Scalars['String']
 }
 
 export type RegisterInput = {
@@ -69,7 +81,6 @@ export type RegisterInput = {
   username?: Maybe<Scalars['String']>
 }
 
-/** User role */
 export enum Role {
   Admin = 'Admin',
   User = 'User',
@@ -101,16 +112,7 @@ export type User = {
   username?: Maybe<Scalars['String']>
 }
 
-export type AuthToken = {
-  __typename?: 'AuthToken'
-  /** JWT Bearer token */
-  token: Scalars['String']
-  user: User
-}
-
-export type AuthTokenDetailsFragment = { __typename?: 'AuthToken' } & Pick<AuthToken, 'token'> & {
-    user: { __typename?: 'User' } & UserDetailsFragment
-  }
+export type AuthTokenDetailsFragment = { __typename?: 'AuthToken' } & Pick<AuthToken, 'token'>
 
 export type UserDetailsFragment = { __typename?: 'User' } & Pick<
   User,
@@ -166,6 +168,11 @@ export type IntercomSubSubscription = { __typename?: 'Subscription' } & {
   intercomSub?: Maybe<{ __typename?: 'IntercomMessage' } & IntercomDetailsFragment>
 }
 
+export const AuthTokenDetailsFragmentDoc = gql`
+  fragment AuthTokenDetails on AuthToken {
+    token
+  }
+`
 export const UserDetailsFragmentDoc = gql`
   fragment UserDetails on User {
     id
@@ -176,15 +183,6 @@ export const UserDetailsFragmentDoc = gql`
     email
     role
   }
-`
-export const AuthTokenDetailsFragmentDoc = gql`
-  fragment AuthTokenDetails on AuthToken {
-    token
-    user {
-      ...UserDetails
-    }
-  }
-  ${UserDetailsFragmentDoc}
 `
 export const IntercomDetailsFragmentDoc = gql`
   fragment IntercomDetails on IntercomMessage {

@@ -1,0 +1,131 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`api-feature-core schematic should run successfully 1`] = `
+"import { Module } from '@nestjs/common'
+
+import { TestCoreDataAccessService } from './test-core-data-access.service'
+
+@Module({
+  providers: [TestCoreDataAccessService],
+  exports: [TestCoreDataAccessService],
+})
+export class TestCoreDataAccessModule {}
+"
+`;
+
+exports[`api-feature-core schematic should run successfully 2`] = `
+"import { BadRequestException, Injectable, OnModuleDestroy, OnModuleInit } from '@nestjs/common'
+import { PrismaClient, Prisma } from '@prisma/client'
+import { getGravatarUrl, hashPassword } from './test-core-data-access.helper'
+
+@Injectable()
+export class TestCoreDataAccessService extends PrismaClient implements OnModuleInit, OnModuleDestroy {
+  constructor() {
+    super()
+  }
+
+  async onModuleDestroy() {
+    await this.$disconnect()
+  }
+
+  async onModuleInit() {
+    await this.$connect()
+  }
+
+  async createUser(input: Partial<Prisma.UserCreateInput>) {
+    const email = input.email.trim()
+    const existing = await this.findUserByEmail(email)
+    if (existing) {
+      throw new BadRequestException(\`Can't create user with email \${email}\`)
+    }
+    const password = hashPassword(input.password)
+
+    // The first user will get the Admin role
+    const hasAdmin = await this.user.count({ where: { role: 'Admin' } })
+    const role = hasAdmin ? 'User' : 'Admin'
+
+    return this.user.create({
+      data: {
+        firstName: input.firstName,
+        lastName: input.lastName,
+        email,
+        username: email,
+        avatarUrl: input.avatarUrl || getGravatarUrl(input.email.toLowerCase()),
+        password,
+        role,
+      },
+    })
+  }
+
+  findUserByEmail(email: string) {
+    return this.user.findUnique({ where: { email } })
+  }
+
+  findUserById(userId: string) {
+    return this.user.findUnique({ where: { id: userId } })
+  }
+
+  findUserByUsername(username: string) {
+    return this.user.findUnique({ where: { username } })
+  }
+}
+"
+`;
+
+exports[`api-feature-core schematic should run successfully 3`] = `
+"import { GraphQLIntercomModule } from '@kikstart-playground/graphql-intercom'
+import { Module } from '@nestjs/common'
+import { ConfigModule } from '@nestjs/config'
+import { GraphQLModule } from '@nestjs/graphql'
+import { PubSub } from 'graphql-subscriptions'
+import { join } from 'path'
+
+import { configuration } from './config/configuration'
+import { validationSchema } from './config/validation'
+import { TestCoreFeatureController } from './test-core-feature.controller'
+import { TestCoreFeatureResolver } from './test-core-feature.resolver'
+import { TestCoreFeatureService } from './test-core-feature.service'
+
+@Module({
+  imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+      load: [configuration],
+      validationSchema,
+    }),
+    GraphQLModule.forRoot({
+      autoSchemaFile: join(process.cwd(), 'test-schema.graphql'),
+      context: ({ req, res }) => ({ req, res }),
+      installSubscriptionHandlers: true,
+      playground: {
+        settings: {
+          'request.credentials': 'include',
+        },
+      },
+      sortSchema: true,
+    }),
+    GraphQLIntercomModule.forRoot({ pubSub: new PubSub() }),
+  ],
+  controllers: [TestCoreFeatureController],
+  providers: [TestCoreFeatureResolver, TestCoreFeatureService],
+  exports: [TestCoreFeatureService],
+})
+export class TestCoreFeatureModule {}
+"
+`;
+
+exports[`api-feature-core schematic should run successfully 4`] = `
+"import { Float, Query, Resolver } from '@nestjs/graphql'
+import { TestCoreFeatureService } from './test-core-feature.service'
+
+@Resolver()
+export class TestCoreFeatureResolver {
+  constructor(private readonly service: TestCoreFeatureService) {}
+
+  @Query(() => Float, { nullable: true })
+  uptime() {
+    return this.service.uptime()
+  }
+}
+"
+`;

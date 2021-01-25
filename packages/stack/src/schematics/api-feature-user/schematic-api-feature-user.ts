@@ -10,7 +10,7 @@ export function createLibUserDataAccess(options: ApiFeatureUserSchematicSchema):
   const normalizedOptions = normalizeOptions({ ...options, name: `${name}/${type}`, directory }, ProjectType.Library)
 
   return chain([
-    createApiLib(directory, name, `./files/${type}`, type, {}, normalizedOptions),
+    createApiLib(directory, name, `./files/${type}`, type, normalizedOptions),
     removeFiles(
       [
         `${options.appName}-${name}-${type}.controller.ts`,
@@ -30,7 +30,7 @@ export function createLibUserFeature(options: ApiFeatureUserSchematicSchema): Ru
   const normalizedOptions = normalizeOptions({ ...options, name: `${name}/${type}`, directory }, ProjectType.Library)
 
   return chain([
-    createApiLib(directory, name, `./files/${type}`, type, {}, normalizedOptions),
+    createApiLib(directory, name, `./files/${type}`, type, normalizedOptions),
     removeFiles(
       [
         `${options.appName}-${name}-${type}.controller.ts`,
