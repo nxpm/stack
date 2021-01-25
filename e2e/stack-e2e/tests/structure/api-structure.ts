@@ -8,6 +8,8 @@ export function apiProjects(project: string) {
     `${project}-core-data-access`,
     `${project}-core-feature`,
     `${project}-e2e`,
+    `${project}-user-data-access`,
+    `${project}-user-feature`,
   ]
 }
 

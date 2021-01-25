@@ -13,12 +13,14 @@ import {
   mergeWith,
   move,
   Rule,
+  schematic,
   SchematicContext,
   template,
   Tree,
   url,
 } from '@angular-devkit/schematics'
 import {
+  addDepsToPackageJson,
   getProjectConfig,
   insert,
   names,
@@ -267,4 +269,19 @@ export function addPrismaConfig(normalizedOptions: NormalizedSchema): Rule {
 
 export function createProjectName(name: string, type: string, classic = false) {
   return classic ? `${type}/${name}` : `${name}/${type}`
+}
+
+export function createApiLib(
+  directory: string,
+  name: string,
+  path: string,
+  type: 'data-access' | 'feature' | 'util',
+  deps: Record<string, string>,
+  normalizedOptions: NormalizedSchema,
+): Rule {
+  return chain([
+    addDepsToPackageJson(deps, {}, true),
+    schematic('api-lib', { directory, name, type }),
+    addFiles(normalizedOptions, path),
+  ])
 }
