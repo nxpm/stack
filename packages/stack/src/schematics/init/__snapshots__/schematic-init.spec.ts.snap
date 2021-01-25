@@ -1098,7 +1098,7 @@ exports[`init schematic should run successfully 4`] = `
     \\"prisma:migrate\\": \\"yarn prisma migrate save --experimental && yarn prisma migrate up --experimental\\",
     \\"prisma:studio\\": \\"yarn prisma studio\\",
     \\"prisma:seed\\": \\"yarn nx workspace-generator prisma-seed\\",
-    \\"build\\": \\"yarn build:test && yarn build:api\\",
+    \\"build\\": \\"yarn build:test && yarn prisma:generate && yarn build:api\\",
     \\"start\\": \\"yarn prisma:db-push && node dist/apps/api/main.js\\",
     \\"test:ci\\": \\"yarn prisma:apply && yarn e2e api-e2e\\",
     \\"docker:build\\": \\"docker build . -t nxpm/api\\",
