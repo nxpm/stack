@@ -64,8 +64,6 @@ To start the server, run the following command:
 docker-compose up
 ```
 
-> Currently, the database connection string is defined in `libs/api/data-access-core/src/prisma/.env`. When [this issue](https://github.com/prisma/prisma/issues/3720) is closed it will be defined in `.env`.
-
 ### Seed the database
 
 When starting with an empty database, you need to make sure the table structure gets created.
@@ -105,7 +103,3 @@ yarn dev:web
 ```
 
 You should be able to navigate to [http://localhost:4200](http://localhost:4200) and see the Angular app.
-
-You can now register a new user, the initial user will get the Web role.
-
-## MIT Licensed by beeman 🐝

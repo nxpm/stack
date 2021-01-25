@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`web-feature-account schematic should run successfully 1`] = `
+"import { CommonModule } from '@angular/common'
+import { NgModule } from '@angular/core'
+import { RouterModule } from '@angular/router'
+import { TestUiSidebarPageModule } from '@nxpm/test/ui/sidebar-page'
+import { TestAccountFeatureComponent } from './test-account-feature.component'
+
+@NgModule({
+  declarations: [TestAccountFeatureComponent],
+  imports: [
+    CommonModule,
+    RouterModule.forChild([
+      {
+        path: '',
+        component: TestAccountFeatureComponent,
+        children: [
+          { path: '', pathMatch: 'full', redirectTo: 'profile' },
+          {
+            path: 'profile',
+            loadChildren: () => import('./account-profile/account-profile.module').then((m) => m.AccountProfileModule),
+          },
+        ],
+      },
+    ]),
+    TestUiSidebarPageModule,
+  ],
+})
+export class TestAccountFeatureModule {}
+"
+`;

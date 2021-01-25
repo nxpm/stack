@@ -1,0 +1,27 @@
+import { CommonModule } from '@angular/common'
+import { NgModule } from '@angular/core'
+import { RouterModule } from '@angular/router'
+import { <%= classify(appName) %>UiSidebarPageModule } from '@<%= npmScope %>/<%= appName %>/ui/sidebar-page'
+import { <%= classify(projectName) %>Component } from './<%= projectName %>.component'
+
+@NgModule({
+  declarations: [<%= classify(projectName) %>Component],
+  imports: [
+    CommonModule,
+    RouterModule.forChild([
+      {
+        path: '',
+        component: <%= classify(projectName) %>Component,
+        children: [
+          { path: '', pathMatch: 'full', redirectTo: 'profile' },
+          {
+            path: 'profile',
+            loadChildren: () => import('./account-profile/account-profile.module').then((m) => m.AccountProfileModule),
+          },
+        ],
+      },
+    ]),
+    <%= classify(appName) %>UiSidebarPageModule,
+  ],
+})
+export class <%= classify(projectName) %>Module {}

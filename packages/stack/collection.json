@@ -53,6 +53,11 @@
       "schema": "./src/schematics/web-shell-feature/schema.json",
       "description": "web-shell-feature schematic"
     },
+    "web-feature-account": {
+      "factory": "./src/schematics/web-feature-account/schematic-web-feature-account",
+      "schema": "./src/schematics/web-feature-account/schema.json",
+      "description": "web-feature-account schematic"
+    },
     "web-feature-admin": {
       "factory": "./src/schematics/web-feature-admin/schematic-web-feature-admin",
       "schema": "./src/schematics/web-feature-admin/schema.json",
