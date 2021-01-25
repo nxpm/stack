@@ -13,25 +13,10 @@
       "schema": "./src/schematics/web-assets/schema.json",
       "description": "web-assets schematic"
     },
-    "web-auth-data-access": {
-      "factory": "./src/schematics/web-auth-data-access/schematic-web-auth-data-access",
-      "schema": "./src/schematics/web-auth-data-access/schema.json",
-      "description": "web-auth-data-access schematic"
-    },
-    "web-auth-ui": {
-      "factory": "./src/schematics/web-auth-ui/schematic-web-auth-ui",
-      "schema": "./src/schematics/web-auth-ui/schema.json",
-      "description": "web-auth-ui schematic"
-    },
     "web-core-data-access": {
       "factory": "./src/schematics/web-core-data-access/schematic-web-core-data-access",
       "schema": "./src/schematics/web-core-data-access/schema.json",
       "description": "web-core-data-access schematic"
-    },
-    "web-auth-feature": {
-      "factory": "./src/schematics/web-auth-feature/schematic-web-auth-feature",
-      "schema": "./src/schematics/web-auth-feature/schema.json",
-      "description": "web-auth-feature schematic"
     },
     "web-core-feature": {
       "factory": "./src/schematics/web-core-feature/schematic-web-core-feature",
@@ -62,6 +47,11 @@
       "factory": "./src/schematics/web-feature-admin/schematic-web-feature-admin",
       "schema": "./src/schematics/web-feature-admin/schema.json",
       "description": "web-feature-admin schematic"
+    },
+    "web-feature-auth": {
+      "factory": "./src/schematics/web-feature-auth/schematic-web-feature-auth",
+      "schema": "./src/schematics/web-feature-auth/schema.json",
+      "description": "web-feature-auth schematic"
     },
     "web-layout": {
       "factory": "./src/schematics/web-layout/schematic-web-layout",
