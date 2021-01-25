@@ -2,15 +2,9 @@ name: build-test
 
 on:
   pull_request:
-    paths-ignore:
-      - '**.md'
-  push:
-    branches:
-      - main
-    paths-ignore:
-      - '**.md'
 
 env:
+  BEFORE_SHA: ${{ github.event.before }}
   NX_BRANCH: ${{ github.event.number }}
   NX_RUN_GROUP: ${{ github.run_id }}
 
@@ -45,4 +39,5 @@ jobs:
       - run: yarn install --frozen-lockfile
       - run: yarn build
       - run: yarn format:check
-      - run: yarn test:ci
+      - run: yarn affected:test --base=remotes/origin/main
+      - run: yarn affected:e2e --base=remotes/origin/main
