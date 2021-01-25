@@ -271,6 +271,7 @@ export function createProjectName(name: string, type: string, classic = false) {
   return classic ? `${type}/${name}` : `${name}/${type}`
 }
 
+export type ApiLibType = 'data-access' | 'feature' | 'util'
 export function createApiLib(
   directory: string,
   name: string,
@@ -278,10 +279,12 @@ export function createApiLib(
   type: 'data-access' | 'feature' | 'util',
   deps: Record<string, string>,
   normalizedOptions: NormalizedSchema,
+  filesToRemove: string[] = [],
 ): Rule {
   return chain([
     addDepsToPackageJson(deps, {}, true),
     schematic('api-lib', { directory, name, type }),
     addFiles(normalizedOptions, path),
+    removeFiles(filesToRemove, `${normalizedOptions.projectRoot}/src/lib/`),
   ])
 }

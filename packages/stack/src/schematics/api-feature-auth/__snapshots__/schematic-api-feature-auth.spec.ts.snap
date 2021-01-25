@@ -1,0 +1,150 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`api-feature-auth schematic should run successfully 1`] = `
+"import { TestCoreDataAccessModule } from '@nxpm/test/core/data-access'
+import { TestCoreFeatureModule } from '@nxpm/test/core/feature'
+import { Module } from '@nestjs/common'
+import { JwtModule } from '@nestjs/jwt'
+import { PassportModule } from '@nestjs/passport'
+
+import { TestAuthDataAccessService } from './test-auth-data-access.service'
+import { JwtStrategy } from './strategies/jwt.strategy'
+
+@Module({
+  imports: [
+    TestCoreDataAccessModule,
+    TestCoreFeatureModule,
+    PassportModule.register({ defaultStrategy: 'jwt' }),
+    JwtModule.register({
+      secret: process.env.JWT_SECRET,
+    }),
+  ],
+  exports: [TestAuthDataAccessService],
+  providers: [TestAuthDataAccessService, JwtStrategy],
+})
+export class TestAuthDataAccessModule {}
+"
+`;
+
+exports[`api-feature-auth schematic should run successfully 2`] = `
+"import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common'
+import { JwtService } from '@nestjs/jwt'
+import { TestCoreDataAccessService, getGravatarUrl, hashPassword, validatePassword } from '@nxpm/test/core/data-access'
+import { TestCoreFeatureService } from '@nxpm/test/core/feature'
+import { Response } from 'express'
+import { LoginInput } from './dto/login.input'
+import { RegisterInput } from './dto/register.input'
+import { AuthToken } from './models/auth-token.model'
+
+@Injectable()
+export class TestAuthDataAccessService {
+  constructor(
+    private readonly data: TestCoreDataAccessService,
+    private readonly core: TestCoreFeatureService,
+    private readonly jwtService: JwtService,
+  ) {}
+
+  async register(payload: RegisterInput) {
+    const user = await this.data.createUser({
+      ...payload,
+    })
+
+    return this.signUser(user)
+  }
+
+  async login(input: LoginInput) {
+    const email = input.email.trim()
+    const password = input.password.trim()
+    const user = await this.data.findUserByEmail(email)
+
+    if (!user) {
+      throw new NotFoundException(\`No user found for email: \${email}\`)
+    }
+
+    const passwordValid = await validatePassword(password, user.password)
+
+    if (!passwordValid) {
+      throw new BadRequestException('Invalid password')
+    }
+
+    return this.signUser(user)
+  }
+
+  signUser(user): AuthToken {
+    const token = this.jwtService.sign({ userId: user?.id })
+    return { token }
+  }
+
+  validateUser(userId: string) {
+    return this.data.findUserById(userId)
+  }
+
+  getUserFromToken(token: string) {
+    const userId = this.jwtService.decode(token)['userId']
+
+    return this.data.findUserById(userId)
+  }
+
+  setCookie(res: Response, token: string) {
+    return res?.cookie(this.core.cookie.name, token, this.core.cookie.options)
+  }
+
+  clearCookie(res: Response) {
+    return res.clearCookie(this.core.cookie.name, this.core.cookie.options)
+  }
+}
+"
+`;
+
+exports[`api-feature-auth schematic should run successfully 3`] = `
+"import { Module } from '@nestjs/common'
+import { TestAuthDataAccessModule } from '@nxpm/test/auth/data-access'
+import { TestAuthFeatureResolver } from './test-auth-feature.resolver'
+
+@Module({
+  imports: [TestAuthDataAccessModule],
+  providers: [TestAuthFeatureResolver],
+})
+export class TestAuthFeatureModule {}
+"
+`;
+
+exports[`api-feature-auth schematic should run successfully 4`] = `
+"import { TestAuthDataAccessService, LoginInput, RegisterInput, AuthToken } from '@nxpm/test/auth/data-access'
+import { CtxUser, GqlAuthGuard } from '@nxpm/test/auth/util'
+import { User } from '@nxpm/test/user/data-access'
+import { Context, Query, Resolver, Mutation, Args } from '@nestjs/graphql'
+import { UseGuards } from '@nestjs/common'
+
+@Resolver()
+export class TestAuthFeatureResolver {
+  constructor(private readonly service: TestAuthDataAccessService) {}
+
+  @Query(() => User, { nullable: true })
+  @UseGuards(GqlAuthGuard)
+  async me(@CtxUser() user: User) {
+    return user
+  }
+
+  @Mutation(() => AuthToken, { nullable: true })
+  async login(@Context() context, @Args('input') input: LoginInput) {
+    const authToken = await this.service.login(input)
+    this.service.setCookie(context.res, authToken.token)
+    return authToken
+  }
+
+  @Mutation(() => Boolean, { nullable: true })
+  async logout(@Context() context) {
+    this.service.clearCookie(context.res)
+    return true
+  }
+
+  @Mutation(() => AuthToken, { nullable: true })
+  async register(@Context() context, @Args('input') input: RegisterInput) {
+    const authToken = await this.service.register(input)
+    this.service.setCookie(context.res, authToken.token)
+    return authToken
+  }
+}
+"
+`;

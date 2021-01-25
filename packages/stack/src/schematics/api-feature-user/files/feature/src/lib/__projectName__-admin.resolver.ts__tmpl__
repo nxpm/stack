@@ -1,11 +1,10 @@
-import { @Args, Query, Resolver } from '@nestjs/graphql'
+import { Args, Query, Resolver } from '@nestjs/graphql'
 import { UseGuards } from '@nestjs/common'
 import { <%= classify(appName) %>UserDataAccessService, User } from '@<%= npmScope %>/<%= appName %>/user/data-access'
-import { <%= classify(projectName) %>Service } from './<%= projectName %>.service'
 import {
   CtxUser,
   GqlAuthAdminGuard,
-} from '@<%= npmScope %>/<%= appName %>/auth/data-access'
+} from '@<%= npmScope %>/<%= appName %>/auth/util'
 
 @Resolver()
 @UseGuards(GqlAuthAdminGuard)

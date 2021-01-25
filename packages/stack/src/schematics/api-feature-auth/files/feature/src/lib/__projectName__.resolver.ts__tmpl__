@@ -1,16 +1,20 @@
 import {
   <%= classify(appName) %>AuthDataAccessService,
-  CtxUser,
-  GqlAuthGuard,
   LoginInput,
   RegisterInput,
-  User,
-  UserToken,
+  AuthToken,
 } from '@<%= npmScope %>/<%= appName %>/auth/data-access'
-import { Context, Query, Resolver, Mutation, Args, ResolveField, Parent } from '@nestjs/graphql'
+import {
+  CtxUser,
+  GqlAuthGuard,
+} from '@<%= npmScope %>/<%= appName %>/auth/util'
+import {
+  User,
+} from '@<%= npmScope %>/<%= appName %>/user/data-access'
+import { Context, Query, Resolver, Mutation, Args } from '@nestjs/graphql'
 import { UseGuards } from '@nestjs/common'
 
-@Resolver(() => UserToken)
+@Resolver()
 export class <%= classify(projectName) %>Resolver {
   constructor(private readonly service: <%= classify(appName) %>AuthDataAccessService) {}
 
@@ -20,11 +24,11 @@ export class <%= classify(projectName) %>Resolver {
     return user
   }
 
-  @Mutation(() => UserToken, { nullable: true })
+  @Mutation(() => AuthToken, { nullable: true })
   async login(@Context() context, @Args('input') input: LoginInput) {
-    const userToken = await this.service.login(input)
-    this.service.setCookie(context.res, userToken.token)
-    return userToken
+    const authToken = await this.service.login(input)
+    this.service.setCookie(context.res, authToken.token)
+    return authToken
   }
 
   @Mutation(() => Boolean, { nullable: true })
@@ -33,15 +37,10 @@ export class <%= classify(projectName) %>Resolver {
     return true
   }
 
-  @Mutation(() => UserToken, { nullable: true })
+  @Mutation(() => AuthToken, { nullable: true })
   async register(@Context() context, @Args('input') input: RegisterInput) {
-    const userToken = await this.service.register(input)
-    this.service.setCookie(context.res, userToken.token)
-    return userToken
-  }
-
-  @ResolveField('user')
-  user(@Parent() auth: UserToken) {
-    return this.service.getUserFromToken(auth.token)
+    const authToken = await this.service.register(input)
+    this.service.setCookie(context.res, authToken.token)
+    return authToken
   }
 }

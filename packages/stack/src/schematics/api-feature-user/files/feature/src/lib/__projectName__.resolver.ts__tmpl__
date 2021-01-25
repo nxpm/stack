@@ -1,4 +1,4 @@
-import { @Args, Query, Resolver } from '@nestjs/graphql'
+import { Args, Query, Resolver } from '@nestjs/graphql'
 import { <%= classify(appName) %>UserDataAccessService, User } from '@<%= npmScope %>/<%= appName %>/user/data-access'
 import { <%= classify(projectName) %>Service } from './<%= projectName %>.service'
 

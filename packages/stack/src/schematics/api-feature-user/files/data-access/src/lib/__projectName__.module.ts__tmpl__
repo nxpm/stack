@@ -6,5 +6,6 @@ import { <%= classify(projectName) %>Service } from './<%= projectName %>.servic
 @Module({
   imports: [<%= classify(appName) %>CoreDataAccessModule],
   providers: [<%= classify(projectName) %>Service],
+  exports: [<%= classify(projectName) %>Service],
 })
 export class <%= classify(projectName) %>Module {}

@@ -13,6 +13,9 @@ exports[`init schematic should run successfully 1`] = `
     \\"api-auth-feature\\": {
       \\"tags\\": [\\"scope:api\\", \\"type:feature\\"]
     },
+    \\"api-auth-util\\": {
+      \\"tags\\": [\\"scope:api\\", \\"type:util\\"]
+    },
     \\"api-core-data-access\\": {
       \\"tags\\": [\\"scope:api\\", \\"type:data-access\\"]
     },
@@ -203,6 +206,27 @@ exports[`init schematic should run successfully 2`] = `
           \\"builder\\": \\"@nrwl/jest:jest\\",
           \\"options\\": {
             \\"jestConfig\\": \\"libs/api/auth/feature/jest.config.js\\",
+            \\"passWithNoTests\\": true
+          }
+        }
+      }
+    },
+    \\"api-auth-util\\": {
+      \\"root\\": \\"libs/api/auth/util\\",
+      \\"sourceRoot\\": \\"libs/api/auth/util/src\\",
+      \\"projectType\\": \\"library\\",
+      \\"schematics\\": {},
+      \\"architect\\": {
+        \\"lint\\": {
+          \\"builder\\": \\"@nrwl/linter:eslint\\",
+          \\"options\\": {
+            \\"lintFilePatterns\\": [\\"libs/api/auth/util/**/*.ts\\"]
+          }
+        },
+        \\"test\\": {
+          \\"builder\\": \\"@nrwl/jest:jest\\",
+          \\"options\\": {
+            \\"jestConfig\\": \\"libs/api/auth/util/jest.config.js\\",
             \\"passWithNoTests\\": true
           }
         }
@@ -810,6 +834,7 @@ exports[`init schematic should run successfully 3`] = `
       \\"@nxpm/api-app-module\\": [\\"apps/api/src/app/app.module.ts\\"],
       \\"@proj/api/auth/data-access\\": [\\"libs/api/auth/data-access/src/index.ts\\"],
       \\"@proj/api/auth/feature\\": [\\"libs/api/auth/feature/src/index.ts\\"],
+      \\"@proj/api/auth/util\\": [\\"libs/api/auth/util/src/index.ts\\"],
       \\"@proj/api/core/data-access\\": [\\"libs/api/core/data-access/src/index.ts\\"],
       \\"@proj/api/core/feature\\": [\\"libs/api/core/feature/src/index.ts\\"],
       \\"@proj/api/user/data-access\\": [\\"libs/api/user/data-access/src/index.ts\\"],
@@ -855,8 +880,8 @@ exports[`init schematic should run successfully 4`] = `
     \\"@nestjs/config\\": \\"^0.5.0\\",
     \\"@nestjs/core\\": \\"^7.0.0\\",
     \\"@nestjs/graphql\\": \\"^7.7.0\\",
-    \\"@nestjs/jwt\\": \\"^7.1.0\\",
-    \\"@nestjs/passport\\": \\"^7.1.0\\",
+    \\"@nestjs/jwt\\": \\"^7.2.0\\",
+    \\"@nestjs/passport\\": \\"^7.1.5\\",
     \\"@nestjs/platform-express\\": \\"^7.0.0\\",
     \\"@ngneat/svg-icon\\": \\"2.2.2\\",
     \\"@ngrx/component-store\\": \\"10.1.2\\",

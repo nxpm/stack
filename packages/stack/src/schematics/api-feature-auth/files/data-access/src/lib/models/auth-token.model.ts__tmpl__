@@ -1,11 +1,7 @@
 import { Field, ObjectType } from '@nestjs/graphql'
-import { User } from './user'
 
 @ObjectType()
-export class UserToken {
+export class AuthToken {
   @Field({ description: 'JWT Bearer token' })
   token: string
-
-  @Field(() => User)
-  user: User
 }

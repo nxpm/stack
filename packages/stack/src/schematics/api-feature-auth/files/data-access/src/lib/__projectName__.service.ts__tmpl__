@@ -5,8 +5,7 @@ import { <%= classify(appName) %>CoreFeatureService } from '@<%= npmScope %>/<%=
 import { Response } from 'express'
 import { LoginInput } from './dto/login.input'
 import { RegisterInput } from './dto/register.input'
-import { UserToken } from './models/user-token'
-import { Role } from './models/role'
+import { AuthToken } from './models/auth-token.model'
 
 @Injectable()
 export class <%= classify(appName) %>AuthDataAccessService {
@@ -42,9 +41,9 @@ export class <%= classify(appName) %>AuthDataAccessService {
     return this.signUser(user)
   }
 
-  signUser(user): UserToken {
+  signUser(user): AuthToken {
     const token = this.jwtService.sign({ userId: user?.id })
-    return { token, user }
+    return { token }
   }
 
   validateUser(userId: string) {
