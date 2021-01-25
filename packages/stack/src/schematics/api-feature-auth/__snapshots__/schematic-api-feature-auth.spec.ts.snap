@@ -2,7 +2,7 @@
 
 exports[`api-feature-auth schematic should run successfully 1`] = `
 "import { TestCoreDataAccessModule } from '@nxpm/test/core/data-access'
-import { TestCoreFeatureModule } from '@nxpm/test/core/feature'
+import { TestCoreUtilModule } from '@nxpm/test/core/util'
 import { Module } from '@nestjs/common'
 import { JwtModule } from '@nestjs/jwt'
 import { PassportModule } from '@nestjs/passport'
@@ -13,7 +13,7 @@ import { JwtStrategy } from './strategies/jwt.strategy'
 @Module({
   imports: [
     TestCoreDataAccessModule,
-    TestCoreFeatureModule,
+    TestCoreUtilModule,
     PassportModule.register({ defaultStrategy: 'jwt' }),
     JwtModule.register({
       secret: process.env.JWT_SECRET,
@@ -30,7 +30,7 @@ exports[`api-feature-auth schematic should run successfully 2`] = `
 "import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common'
 import { JwtService } from '@nestjs/jwt'
 import { TestCoreDataAccessService, getGravatarUrl, hashPassword, validatePassword } from '@nxpm/test/core/data-access'
-import { TestCoreFeatureService } from '@nxpm/test/core/feature'
+import { TestCoreUtilService } from '@nxpm/test/core/util'
 import { Response } from 'express'
 import { LoginInput } from './dto/login.input'
 import { RegisterInput } from './dto/register.input'
@@ -40,7 +40,7 @@ import { AuthToken } from './models/auth-token.model'
 export class TestAuthDataAccessService {
   constructor(
     private readonly data: TestCoreDataAccessService,
-    private readonly core: TestCoreFeatureService,
+    private readonly core: TestCoreUtilService,
     private readonly jwtService: JwtService,
   ) {}
 

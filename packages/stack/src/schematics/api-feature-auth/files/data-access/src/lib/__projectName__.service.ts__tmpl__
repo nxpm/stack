@@ -1,7 +1,7 @@
 import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common'
 import { JwtService } from '@nestjs/jwt'
 import { <%= classify(appName) %>CoreDataAccessService, getGravatarUrl, hashPassword, validatePassword } from '@<%= npmScope %>/<%= appName %>/core/data-access'
-import { <%= classify(appName) %>CoreFeatureService } from '@<%= npmScope %>/<%= appName %>/core/feature'
+import { <%= classify(appName) %>CoreUtilService } from '@<%= npmScope %>/<%= appName %>/core/util'
 import { Response } from 'express'
 import { LoginInput } from './dto/login.input'
 import { RegisterInput } from './dto/register.input'
@@ -11,7 +11,7 @@ import { AuthToken } from './models/auth-token.model'
 export class <%= classify(appName) %>AuthDataAccessService {
   constructor(
     private readonly data: <%= classify(appName) %>CoreDataAccessService,
-    private readonly core: <%= classify(appName) %>CoreFeatureService,
+    private readonly core: <%= classify(appName) %>CoreUtilService,
     private readonly jwtService: JwtService
   ) {}
 

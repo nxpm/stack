@@ -12,7 +12,7 @@ const routes: Routes = [
     canActivate: [IsLoggedInGuard],
     children: [
       // Application routes here
-      { path: '', pathMatch: 'full', redirectTo: 'shell' },
+      { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
       {
         path: 'about',
         loadChildren: () => import('@<%= npmScope %>/<%= appName %>/about/feature').then((m) => m.<%= classify(appName) %>AboutFeatureModule),
@@ -26,8 +26,8 @@ const routes: Routes = [
         loadChildren: () => import('@<%= npmScope %>/<%= appName %>/admin/feature').then((m) => m.<%= classify(appName) %>AdminFeatureModule),
       },
       {
-        path: 'shell',
-        loadChildren: () => import('@<%= npmScope %>/<%= appName %>/shell/feature').then((m) => m.<%= classify(appName) %>ShellFeatureModule),
+        path: 'dashboard',
+        loadChildren: () => import('@<%= npmScope %>/<%= appName %>/dashboard/feature').then((m) => m.<%= classify(appName) %>DashboardFeatureModule),
       },
       { path: 'not-found', loadChildren: () => import('./not-found/not-found.module').then((m) => m.NotFoundModule) },
     ],

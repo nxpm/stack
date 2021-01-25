@@ -15,7 +15,7 @@ const routes: Routes = [
     canActivate: [IsLoggedInGuard],
     children: [
       // Application routes here
-      { path: '', pathMatch: 'full', redirectTo: 'shell' },
+      { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
       {
         path: 'about',
         loadChildren: () => import('@nxpm/test/about/feature').then((m) => m.TestAboutFeatureModule),
@@ -29,8 +29,8 @@ const routes: Routes = [
         loadChildren: () => import('@nxpm/test/admin/feature').then((m) => m.TestAdminFeatureModule),
       },
       {
-        path: 'shell',
-        loadChildren: () => import('@nxpm/test/shell/feature').then((m) => m.TestShellFeatureModule),
+        path: 'dashboard',
+        loadChildren: () => import('@nxpm/test/dashboard/feature').then((m) => m.TestDashboardFeatureModule),
       },
       { path: 'not-found', loadChildren: () => import('./not-found/not-found.module').then((m) => m.NotFoundModule) },
     ],
