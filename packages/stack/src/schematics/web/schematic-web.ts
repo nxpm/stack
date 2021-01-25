@@ -112,11 +112,7 @@ export default function (options: WebSchematicSchema): Rule {
     }),
     schematic('web-feature-auth', { appName: name, directory }),
     schematic('web-feature-core', { appName: name, directory }),
-    schematic('web-dashboard-feature', {
-      appName: name,
-      directory,
-      name: 'dashboard',
-    }),
+    schematic('web-feature-dashboard', { appName: name, directory }),
     schematic('web-layout', {
       appName: name,
       directory,
