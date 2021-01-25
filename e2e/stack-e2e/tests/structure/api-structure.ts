@@ -3,20 +3,23 @@ import { FileTests } from '../../../e2e-file-utils'
 export function apiProjects(project: string) {
   return [
     project,
-    `${project}-e2e`,
     `${project}-auth-data-access`,
-    `${project}-core-data-access`,
     `${project}-auth-feature`,
+    `${project}-auth-util`,
+    `${project}-core-data-access`,
     `${project}-core-feature`,
+    `${project}-e2e`,
+    `${project}-user-data-access`,
+    `${project}-user-feature`,
   ]
 }
 
 export function apiCrudFiles(project: string, name: string) {
   return [
-    `libs/${project}/${name}/src/lib/${project}-${name.replace('/', '-')}.controller.ts`,
-    `libs/${project}/${name}/src/lib/${project}-${name.replace('/', '-')}.module.ts`,
-    `libs/${project}/${name}/src/lib/${project}-${name.replace('/', '-')}.service.ts`,
-    `libs/${project}/${name}/src/lib/${project}-${name.replace('/', '-')}.resolver.ts`,
+    `libs/${project}/${name}/data-access/src/lib/${project}-${name}-data-access.module.ts`,
+    `libs/${project}/${name}/data-access/src/lib/${project}-${name}-data-access.service.ts`,
+    `libs/${project}/${name}/feature/src/lib/${project}-${name}-feature.module.ts`,
+    `libs/${project}/${name}/feature/src/lib/${project}-${name}-feature.resolver.ts`,
   ]
 }
 
@@ -27,8 +30,8 @@ export function apiFileTests(project: string): FileTests {
       `.env.example`,
       `apps/${project}/src/main.ts`,
       `apps/${project}/src/app/app.module.ts`,
-      ...apiCrudFiles(project, 'auth/feature'),
-      ...apiCrudFiles(project, 'core/feature'),
+      ...apiCrudFiles(project, 'auth'),
+      ...apiCrudFiles(project, 'core'),
       `libs/${project}/core/data-access/src/lib/${project}-core-data-access.module.ts`,
       `libs/${project}/core/data-access/src/lib/${project}-core-data-access.service.ts`,
       `libs/${project}/core/data-access/src/lib/dto/core-paging.input.ts`,

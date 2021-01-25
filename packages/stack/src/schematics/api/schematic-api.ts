@@ -10,17 +10,14 @@ export default function (options: ApiSchematicSchema): Rule {
   const schemaName = uniq(`${normalizedOptions.npmScope}-${normalizedOptions.name}`)
   return chain([
     addDepsToPackageJson({ 'cookie-parser': '1.4.5' }, {}, true),
-    externalSchematic('@nrwl/nest', 'application', {
-      name,
-    }),
-    schematic('api-e2e', {
-      appName: name,
-      name: 'e2e',
-    }),
-    schematic('api-auth-data-access', { directory, name: 'auth', appName: name }),
-    schematic('api-auth-feature', { directory, name: 'auth', appName: name }),
+    externalSchematic('@nrwl/nest', 'application', { name }),
+    schematic('api-feature-auth', { directory, appName: name }),
+    // TODO: Merge into api-feature-core
     schematic('api-core-data-access', { directory, name: 'core', appName: name }),
+    // TODO: Merge into api-feature-core
     schematic('api-core-feature', { directory, name: 'core', appName: name }),
+    schematic('api-feature-user', { directory, appName: name }),
+    schematic('api-e2e', { appName: name, name: 'e2e' }),
     addFiles({ ...normalizedOptions, appName: name }),
     addRunScript(`setup`, `yarn nx workspace-generator workspace-setup`),
     addRunScript(`build:${name}`, `nx build ${name} --prod`),

@@ -34,9 +34,9 @@ export type LoginInput = {
 export type Mutation = {
   __typename?: 'Mutation'
   intercomPub?: Maybe<IntercomMessage>
-  login?: Maybe<UserToken>
+  login?: Maybe<AuthToken>
   logout?: Maybe<Scalars['Boolean']>
-  register?: Maybe<UserToken>
+  register?: Maybe<AuthToken>
 }
 
 export type MutationIntercomPubArgs = {
@@ -101,14 +101,14 @@ export type User = {
   username?: Maybe<Scalars['String']>
 }
 
-export type UserToken = {
-  __typename?: 'UserToken'
+export type AuthToken = {
+  __typename?: 'AuthToken'
   /** JWT Bearer token */
   token: Scalars['String']
   user: User
 }
 
-export type UserTokenDetailsFragment = { __typename?: 'UserToken' } & Pick<UserToken, 'token'> & {
+export type AuthTokenDetailsFragment = { __typename?: 'AuthToken' } & Pick<AuthToken, 'token'> & {
     user: { __typename?: 'User' } & UserDetailsFragment
   }
 
@@ -130,7 +130,7 @@ export type LoginMutationVariables = Exact<{
 }>
 
 export type LoginMutation = { __typename?: 'Mutation' } & {
-  login?: Maybe<{ __typename?: 'UserToken' } & UserTokenDetailsFragment>
+  login?: Maybe<{ __typename?: 'AuthToken' } & AuthTokenDetailsFragment>
 }
 
 export type RegisterMutationVariables = Exact<{
@@ -138,7 +138,7 @@ export type RegisterMutationVariables = Exact<{
 }>
 
 export type RegisterMutation = { __typename?: 'Mutation' } & {
-  register?: Maybe<{ __typename?: 'UserToken' } & UserTokenDetailsFragment>
+  register?: Maybe<{ __typename?: 'AuthToken' } & AuthTokenDetailsFragment>
 }
 
 export type UptimeQueryVariables = Exact<{ [key: string]: never }>
@@ -177,8 +177,8 @@ export const UserDetailsFragmentDoc = gql`
     role
   }
 `
-export const UserTokenDetailsFragmentDoc = gql`
-  fragment UserTokenDetails on UserToken {
+export const AuthTokenDetailsFragmentDoc = gql`
+  fragment AuthTokenDetails on AuthToken {
     token
     user {
       ...UserDetails
@@ -231,10 +231,10 @@ export class LogoutGQL extends Apollo.Mutation<LogoutMutation, LogoutMutationVar
 export const LoginDocument = gql`
   mutation Login($input: LoginInput!) {
     login(input: $input) {
-      ...UserTokenDetails
+      ...AuthTokenDetails
     }
   }
-  ${UserTokenDetailsFragmentDoc}
+  ${AuthTokenDetailsFragmentDoc}
 `
 
 @Injectable({
@@ -250,10 +250,10 @@ export class LoginGQL extends Apollo.Mutation<LoginMutation, LoginMutationVariab
 export const RegisterDocument = gql`
   mutation Register($input: RegisterInput!) {
     register(input: $input) {
-      ...UserTokenDetails
+      ...AuthTokenDetails
     }
   }
-  ${UserTokenDetailsFragmentDoc}
+  ${AuthTokenDetailsFragmentDoc}
 `
 
 @Injectable({

@@ -3,23 +3,23 @@ import { FileTests } from '../../../e2e-file-utils'
 export function webProjects(project: string) {
   return [
     project,
+    `${project}-about-feature`,
     `${project}-assets`,
     `${project}-auth-data-access`,
+    `${project}-auth-feature`,
     `${project}-auth-ui`,
     `${project}-core-data-access`,
-    `${project}-e2e`,
-    `${project}-about-feature`,
-    `${project}-auth-feature`,
     `${project}-core-feature`,
     `${project}-dashboard-feature`,
-    `${project}-shell-feature`,
+    `${project}-e2e`,
     `${project}-layout`,
+    `${project}-shell-feature`,
     `${project}-style`,
     `${project}-ui-form`,
     `${project}-ui-icon`,
     `${project}-ui-loader`,
-    `${project}-ui-page`,
     `${project}-ui-page-header`,
+    `${project}-ui-page`,
     `${project}-ui-sidebar-page`,
   ]
 }

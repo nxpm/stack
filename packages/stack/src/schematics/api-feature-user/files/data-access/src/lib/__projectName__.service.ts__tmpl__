@@ -1,0 +1,15 @@
+import { Float, Query, Resolver } from '@nestjs/graphql'
+import { <%= classify(appName) %>CoreDataAccessService } from '@<%= npmScope %>/<%= appName %>/core/data-access'
+
+@Resolver()
+export class <%= classify(projectName) %>Service {
+  constructor(private readonly data: <%= classify(appName) %>CoreDataAccessService) {}
+
+  adminUsers() {
+    return this.data.user.findMany()
+  }
+
+  adminUser(userId: string) {
+    return this.data.user.findUnique({ where: { id: userId }})
+  }
+}

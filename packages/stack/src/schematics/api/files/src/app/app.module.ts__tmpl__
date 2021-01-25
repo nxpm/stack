@@ -1,11 +1,13 @@
 import { <%= classify(appName) %>AuthFeatureModule } from '@<%= npmScope %>/<%= appName %>/auth/feature'
 import { <%= classify(appName) %>CoreFeatureModule } from '@<%= npmScope %>/<%= appName %>/core/feature'
+import { <%= classify(appName) %>UserFeatureModule } from '@<%= npmScope %>/<%= appName %>/user/feature'
 import { Module } from '@nestjs/common'
 
 @Module({
   imports: [
     <%= classify(appName) %>AuthFeatureModule,
     <%= classify(appName) %>CoreFeatureModule,
+    <%= classify(appName) %>UserFeatureModule,
   ],
 })
 export class AppModule {}

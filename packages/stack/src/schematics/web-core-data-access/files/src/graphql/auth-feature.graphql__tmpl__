@@ -1,8 +1,5 @@
-fragment UserTokenDetails on UserToken {
+fragment AuthTokenDetails on AuthToken {
   token
-  user {
-    ...UserDetails
-  }
 }
 
 fragment UserDetails on User {
@@ -27,12 +24,12 @@ mutation Logout {
 
 mutation Login($input: LoginInput!) {
   login(input: $input) {
-    ...UserTokenDetails
+    ...AuthTokenDetails
   }
 }
 
 mutation Register($input: RegisterInput!) {
   register(input: $input) {
-    ...UserTokenDetails
+    ...AuthTokenDetails
   }
 }
