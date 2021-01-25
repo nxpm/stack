@@ -22,6 +22,9 @@ exports[`init schematic should run successfully 1`] = `
     \\"api-core-feature\\": {
       \\"tags\\": [\\"scope:api\\", \\"type:feature\\"]
     },
+    \\"api-core-util\\": {
+      \\"tags\\": [\\"scope:api\\", \\"type:util\\"]
+    },
     \\"api-user-data-access\\": {
       \\"tags\\": [\\"scope:api\\", \\"type:data-access\\"]
     },
@@ -269,6 +272,27 @@ exports[`init schematic should run successfully 2`] = `
           \\"builder\\": \\"@nrwl/jest:jest\\",
           \\"options\\": {
             \\"jestConfig\\": \\"libs/api/core/feature/jest.config.js\\",
+            \\"passWithNoTests\\": true
+          }
+        }
+      }
+    },
+    \\"api-core-util\\": {
+      \\"root\\": \\"libs/api/core/util\\",
+      \\"sourceRoot\\": \\"libs/api/core/util/src\\",
+      \\"projectType\\": \\"library\\",
+      \\"schematics\\": {},
+      \\"architect\\": {
+        \\"lint\\": {
+          \\"builder\\": \\"@nrwl/linter:eslint\\",
+          \\"options\\": {
+            \\"lintFilePatterns\\": [\\"libs/api/core/util/**/*.ts\\"]
+          }
+        },
+        \\"test\\": {
+          \\"builder\\": \\"@nrwl/jest:jest\\",
+          \\"options\\": {
+            \\"jestConfig\\": \\"libs/api/core/util/jest.config.js\\",
             \\"passWithNoTests\\": true
           }
         }
@@ -837,6 +861,7 @@ exports[`init schematic should run successfully 3`] = `
       \\"@proj/api/auth/util\\": [\\"libs/api/auth/util/src/index.ts\\"],
       \\"@proj/api/core/data-access\\": [\\"libs/api/core/data-access/src/index.ts\\"],
       \\"@proj/api/core/feature\\": [\\"libs/api/core/feature/src/index.ts\\"],
+      \\"@proj/api/core/util\\": [\\"libs/api/core/util/src/index.ts\\"],
       \\"@proj/api/user/data-access\\": [\\"libs/api/user/data-access/src/index.ts\\"],
       \\"@proj/api/user/feature\\": [\\"libs/api/user/feature/src/index.ts\\"],
       \\"@proj/test/about/feature\\": [\\"libs/test/about/feature/src/index.ts\\"],

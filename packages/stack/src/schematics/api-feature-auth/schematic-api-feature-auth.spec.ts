@@ -16,7 +16,6 @@ describe('api-feature-auth schematic', () => {
   })
 
   it('should run successfully', async () => {
-    console.log(options)
     await expect(
       testRunner.runSchematicAsync('api-feature-auth', options, appTree).toPromise(),
     ).resolves.not.toThrowError()

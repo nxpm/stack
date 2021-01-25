@@ -12,20 +12,13 @@ export function createLibAuthDataAccess(
   const normalizedOptions = normalizeOptions({ ...options, name: `${name}/${type}`, directory }, ProjectType.Library)
 
   return chain([
-    createApiLib(
-      directory,
-      name,
-      `./files/${type}`,
-      type,
-      {
-        '@nestjs/jwt': '^7.2.0',
-        '@nestjs/passport': '^7.1.5',
-        bcryptjs: '^2.4.3',
-        passport: '^0.4.1',
-        'passport-jwt': '^4.0.0',
-      },
-      normalizedOptions,
-    ),
+    createApiLib(directory, name, `./files/${type}`, type, normalizedOptions, [], {
+      '@nestjs/jwt': '^7.2.0',
+      '@nestjs/passport': '^7.1.5',
+      bcryptjs: '^2.4.3',
+      passport: '^0.4.1',
+      'passport-jwt': '^4.0.0',
+    }),
     removeFiles(
       [
         `${options.appName}-${name}-${type}.controller.ts`,
@@ -46,7 +39,7 @@ export function createLibAuthFeature(
 ): Rule {
   const normalizedOptions = normalizeOptions({ ...options, name: `${name}/${type}`, directory }, ProjectType.Library)
 
-  return createApiLib(directory, name, `./files/${type}`, type, {}, normalizedOptions, [
+  return createApiLib(directory, name, `./files/${type}`, type, normalizedOptions, [
     `${options.appName}-${name}-${type}.controller.ts`,
     `${options.appName}-${name}-${type}.service.ts`,
     `${options.appName}-${name}-${type}.ts`,
@@ -62,7 +55,7 @@ export function createLibAuthUtil(
 ): Rule {
   const normalizedOptions = normalizeOptions({ ...options, name: `${name}/${type}`, directory }, ProjectType.Library)
 
-  return createApiLib(directory, name, `./files/${type}`, type, {}, normalizedOptions, [
+  return createApiLib(directory, name, `./files/${type}`, type, normalizedOptions, [
     `${options.appName}-${name}-${type}.controller.ts`,
     `${options.appName}-${name}-${type}.service.ts`,
     `${options.appName}-${name}-${type}.resolver.ts`,

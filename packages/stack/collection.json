@@ -78,25 +78,20 @@
       "schema": "./src/schematics/api/schema.json",
       "description": "api schematic"
     },
-    "api-core-data-access": {
-      "factory": "./src/schematics/api-core-data-access/schematic-api-core-data-access",
-      "schema": "./src/schematics/api-core-data-access/schema.json",
-      "description": "api-core-data-access schematic"
-    },
     "api-e2e": {
       "factory": "./src/schematics/api-e2e/schematic-api-e2e",
       "schema": "./src/schematics/api-e2e/schema.json",
       "description": "api e2e schematic"
     },
-    "api-core-feature": {
-      "factory": "./src/schematics/api-core-feature/schematic-api-core-feature",
-      "schema": "./src/schematics/api-core-feature/schema.json",
-      "description": "api-core-feature schematic"
-    },
     "api-feature-auth": {
       "factory": "./src/schematics/api-feature-auth/schematic-api-feature-auth",
       "schema": "./src/schematics/api-feature-auth/schema.json",
       "description": "api-feature-auth schematic"
+    },
+    "api-feature-core": {
+      "factory": "./src/schematics/api-feature-core/schematic-api-feature-core",
+      "schema": "./src/schematics/api-feature-core/schema.json",
+      "description": "api-feature-core schematic"
     },
     "api-feature-user": {
       "factory": "./src/schematics/api-feature-user/schematic-api-feature-user",

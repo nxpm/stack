@@ -12,10 +12,7 @@ export default function (options: ApiSchematicSchema): Rule {
     addDepsToPackageJson({ 'cookie-parser': '1.4.5' }, {}, true),
     externalSchematic('@nrwl/nest', 'application', { name }),
     schematic('api-feature-auth', { directory, appName: name }),
-    // TODO: Merge into api-feature-core
-    schematic('api-core-data-access', { directory, name: 'core', appName: name }),
-    // TODO: Merge into api-feature-core
-    schematic('api-core-feature', { directory, name: 'core', appName: name }),
+    schematic('api-feature-core', { directory, appName: name }),
     schematic('api-feature-user', { directory, appName: name }),
     schematic('api-e2e', { appName: name, name: 'e2e' }),
     addFiles({ ...normalizedOptions, appName: name }),
