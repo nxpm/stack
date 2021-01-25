@@ -804,7 +804,7 @@ exports[`init schematic should run successfully 2`] = `
       \\"projectType\\": \\"library\\",
       \\"root\\": \\"libs/test/ui/form\\",
       \\"sourceRoot\\": \\"libs/test/ui/form/src\\",
-      \\"prefix\\": \\"form\\",
+      \\"prefix\\": \\"ui\\",
       \\"architect\\": {
         \\"lint\\": {
           \\"builder\\": \\"@nrwl/linter:eslint\\",
@@ -826,7 +826,7 @@ exports[`init schematic should run successfully 2`] = `
       \\"projectType\\": \\"library\\",
       \\"root\\": \\"libs/test/ui/loader\\",
       \\"sourceRoot\\": \\"libs/test/ui/loader/src\\",
-      \\"prefix\\": \\"loader\\",
+      \\"prefix\\": \\"ui\\",
       \\"architect\\": {
         \\"lint\\": {
           \\"builder\\": \\"@nrwl/linter:eslint\\",
@@ -848,7 +848,7 @@ exports[`init schematic should run successfully 2`] = `
       \\"projectType\\": \\"library\\",
       \\"root\\": \\"libs/test/ui/icon\\",
       \\"sourceRoot\\": \\"libs/test/ui/icon/src\\",
-      \\"prefix\\": \\"icon\\",
+      \\"prefix\\": \\"ui\\",
       \\"architect\\": {
         \\"lint\\": {
           \\"builder\\": \\"@nrwl/linter:eslint\\",
@@ -870,7 +870,7 @@ exports[`init schematic should run successfully 2`] = `
       \\"projectType\\": \\"library\\",
       \\"root\\": \\"libs/test/ui/page\\",
       \\"sourceRoot\\": \\"libs/test/ui/page/src\\",
-      \\"prefix\\": \\"page\\",
+      \\"prefix\\": \\"ui\\",
       \\"architect\\": {
         \\"lint\\": {
           \\"builder\\": \\"@nrwl/linter:eslint\\",
@@ -892,7 +892,7 @@ exports[`init schematic should run successfully 2`] = `
       \\"projectType\\": \\"library\\",
       \\"root\\": \\"libs/test/ui/page-header\\",
       \\"sourceRoot\\": \\"libs/test/ui/page-header/src\\",
-      \\"prefix\\": \\"page-header\\",
+      \\"prefix\\": \\"ui\\",
       \\"architect\\": {
         \\"lint\\": {
           \\"builder\\": \\"@nrwl/linter:eslint\\",
@@ -914,7 +914,7 @@ exports[`init schematic should run successfully 2`] = `
       \\"projectType\\": \\"library\\",
       \\"root\\": \\"libs/test/ui/sidebar-page\\",
       \\"sourceRoot\\": \\"libs/test/ui/sidebar-page/src\\",
-      \\"prefix\\": \\"sidebar-page\\",
+      \\"prefix\\": \\"ui\\",
       \\"architect\\": {
         \\"lint\\": {
           \\"builder\\": \\"@nrwl/linter:eslint\\",

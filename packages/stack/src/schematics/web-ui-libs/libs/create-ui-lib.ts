@@ -15,6 +15,7 @@ export function createUiLib(
       directory,
       name,
       type: 'ui',
+      prefix: 'ui',
       classic: true,
     }),
     addFiles(normalizedOptions, path),
