@@ -13,21 +13,6 @@
       "schema": "./src/schematics/web-assets/schema.json",
       "description": "web-assets schematic"
     },
-    "web-core-data-access": {
-      "factory": "./src/schematics/web-core-data-access/schematic-web-core-data-access",
-      "schema": "./src/schematics/web-core-data-access/schema.json",
-      "description": "web-core-data-access schematic"
-    },
-    "web-core-feature": {
-      "factory": "./src/schematics/web-core-feature/schematic-web-core-feature",
-      "schema": "./src/schematics/web-core-feature/schema.json",
-      "description": "web-core-feature schematic"
-    },
-    "web-dashboard-feature": {
-      "factory": "./src/schematics/web-dashboard-feature/schematic-web-dashboard-feature",
-      "schema": "./src/schematics/web-dashboard-feature/schema.json",
-      "description": "web-dashboard-feature schematic"
-    },
     "web-shell-feature": {
       "factory": "./src/schematics/web-shell-feature/schematic-web-shell-feature",
       "schema": "./src/schematics/web-shell-feature/schema.json",
@@ -52,6 +37,16 @@
       "factory": "./src/schematics/web-feature-auth/schematic-web-feature-auth",
       "schema": "./src/schematics/web-feature-auth/schema.json",
       "description": "web-feature-auth schematic"
+    },
+    "web-feature-core": {
+      "factory": "./src/schematics/web-feature-core/schematic-web-feature-core",
+      "schema": "./src/schematics/web-feature-core/schema.json",
+      "description": "web-feature-core schematic"
+    },
+    "web-feature-dashboard": {
+      "factory": "./src/schematics/web-feature-dashboard/schematic-web-feature-dashboard",
+      "schema": "./src/schematics/web-feature-dashboard/schema.json",
+      "description": "web-feature-dashboard schematic"
     },
     "web-layout": {
       "factory": "./src/schematics/web-layout/schematic-web-layout",

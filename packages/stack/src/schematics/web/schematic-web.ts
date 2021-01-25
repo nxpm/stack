@@ -111,21 +111,8 @@ export default function (options: WebSchematicSchema): Rule {
       name: 'assets',
     }),
     schematic('web-feature-auth', { appName: name, directory }),
-    schematic('web-core-data-access', {
-      appName: name,
-      directory,
-      name: 'core',
-    }),
-    schematic('web-core-feature', {
-      appName: name,
-      directory,
-      name: 'core',
-    }),
-    schematic('web-dashboard-feature', {
-      appName: name,
-      directory,
-      name: 'dashboard',
-    }),
+    schematic('web-feature-core', { appName: name, directory }),
+    schematic('web-feature-dashboard', { appName: name, directory }),
     schematic('web-layout', {
       appName: name,
       directory,

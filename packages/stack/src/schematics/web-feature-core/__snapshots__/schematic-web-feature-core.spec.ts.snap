@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`web-feature-core schematic should run successfully 1`] = `
+"import { NgModule } from '@angular/core'
+import { HttpClientModule } from '@angular/common/http'
+
+import { TestCoreFeatureGraphQLModule  } from './test-core-feature-graphql.module'
+
+@NgModule({
+  imports: [HttpClientModule, TestCoreFeatureGraphQLModule],
+})
+export class TestCoreFeatureModule {}
+"
+`;
