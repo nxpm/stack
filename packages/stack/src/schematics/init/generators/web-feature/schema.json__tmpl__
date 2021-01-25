@@ -1,6 +1,6 @@
 {
   "cli": "nx",
-  "id": "api-feature",
+  "id": "web-feature",
   "type": "object",
   "properties": {
     "name": {
