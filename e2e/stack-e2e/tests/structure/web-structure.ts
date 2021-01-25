@@ -4,6 +4,8 @@ export function webProjects(project: string) {
   return [
     project,
     `${project}-about-feature`,
+    `${project}-admin-feature`,
+    `${project}-admin-ui`,
     `${project}-assets`,
     `${project}-auth-data-access`,
     `${project}-auth-feature`,
