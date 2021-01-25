@@ -44,6 +44,12 @@ exports[`init schematic should run successfully 1`] = `
     \\"test-about-feature\\": {
       \\"tags\\": [\\"scope:test\\", \\"type:feature\\"]
     },
+    \\"test-admin-feature\\": {
+      \\"tags\\": [\\"scope:test\\", \\"type:feature\\"]
+    },
+    \\"test-admin-ui\\": {
+      \\"tags\\": [\\"scope:test\\", \\"type:ui\\"]
+    },
     \\"test-assets\\": {
       \\"tags\\": [\\"scope:test\\", \\"type:assets\\"]
     },
@@ -508,6 +514,50 @@ exports[`init schematic should run successfully 2`] = `
       },
       \\"schematics\\": {}
     },
+    \\"test-admin-feature\\": {
+      \\"projectType\\": \\"library\\",
+      \\"root\\": \\"libs/test/admin/feature\\",
+      \\"sourceRoot\\": \\"libs/test/admin/feature/src\\",
+      \\"prefix\\": \\"admin\\",
+      \\"architect\\": {
+        \\"lint\\": {
+          \\"builder\\": \\"@nrwl/linter:eslint\\",
+          \\"options\\": {
+            \\"lintFilePatterns\\": [\\"libs/test/admin/feature/src/**/*.ts\\"]
+          }
+        },
+        \\"test\\": {
+          \\"builder\\": \\"@nrwl/jest:jest\\",
+          \\"options\\": {
+            \\"jestConfig\\": \\"libs/test/admin/feature/jest.config.js\\",
+            \\"passWithNoTests\\": true
+          }
+        }
+      },
+      \\"schematics\\": {}
+    },
+    \\"test-admin-ui\\": {
+      \\"projectType\\": \\"library\\",
+      \\"root\\": \\"libs/test/admin/ui\\",
+      \\"sourceRoot\\": \\"libs/test/admin/ui/src\\",
+      \\"prefix\\": \\"admin\\",
+      \\"architect\\": {
+        \\"lint\\": {
+          \\"builder\\": \\"@nrwl/linter:eslint\\",
+          \\"options\\": {
+            \\"lintFilePatterns\\": [\\"libs/test/admin/ui/src/**/*.ts\\"]
+          }
+        },
+        \\"test\\": {
+          \\"builder\\": \\"@nrwl/jest:jest\\",
+          \\"options\\": {
+            \\"jestConfig\\": \\"libs/test/admin/ui/jest.config.js\\",
+            \\"passWithNoTests\\": true
+          }
+        }
+      },
+      \\"schematics\\": {}
+    },
     \\"test-assets\\": {
       \\"projectType\\": \\"library\\",
       \\"root\\": \\"libs/test/assets\\",
@@ -865,6 +915,8 @@ exports[`init schematic should run successfully 3`] = `
       \\"@proj/api/user/data-access\\": [\\"libs/api/user/data-access/src/index.ts\\"],
       \\"@proj/api/user/feature\\": [\\"libs/api/user/feature/src/index.ts\\"],
       \\"@proj/test/about/feature\\": [\\"libs/test/about/feature/src/index.ts\\"],
+      \\"@proj/test/admin/feature\\": [\\"libs/test/admin/feature/src/index.ts\\"],
+      \\"@proj/test/admin/ui\\": [\\"libs/test/admin/ui/src/index.ts\\"],
       \\"@proj/test/assets\\": [\\"libs/test/assets/src/index.ts\\"],
       \\"@proj/test/auth/data-access\\": [\\"libs/test/auth/data-access/src/index.ts\\"],
       \\"@proj/test/auth/feature\\": [\\"libs/test/auth/feature/src/index.ts\\"],

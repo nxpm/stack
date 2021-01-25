@@ -53,6 +53,11 @@
       "schema": "./src/schematics/web-shell-feature/schema.json",
       "description": "web-shell-feature schematic"
     },
+    "web-feature-admin": {
+      "factory": "./src/schematics/web-feature-admin/schematic-web-feature-admin",
+      "schema": "./src/schematics/web-feature-admin/schema.json",
+      "description": "web-feature-admin schematic"
+    },
     "web-layout": {
       "factory": "./src/schematics/web-layout/schematic-web-layout",
       "schema": "./src/schematics/web-layout/schema.json",
