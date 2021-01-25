@@ -106,6 +106,7 @@ export default function (options: WebSchematicSchema): Rule {
       directory,
       name: 'about',
     }),
+    schematic('web-feature-account', { appName: name, directory }),
     schematic('web-feature-admin', { appName: name, directory }),
     schematic('web-assets', {
       appName: name,

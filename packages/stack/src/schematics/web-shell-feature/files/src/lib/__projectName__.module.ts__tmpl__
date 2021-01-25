@@ -18,6 +18,10 @@ const routes: Routes = [
         loadChildren: () => import('@<%= npmScope %>/<%= appName %>/about/feature').then((m) => m.<%= classify(appName) %>AboutFeatureModule),
       },
       {
+        path: 'account',
+        loadChildren: () => import('@<%= npmScope %>/<%= appName %>/account/feature').then((m) => m.<%= classify(appName) %>AccountFeatureModule),
+      },
+      {
         path: 'admin',
         loadChildren: () => import('@<%= npmScope %>/<%= appName %>/admin/feature').then((m) => m.<%= classify(appName) %>AdminFeatureModule),
       },
