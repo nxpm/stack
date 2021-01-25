@@ -9,7 +9,7 @@ export default function (options: ApiSchematicSchema): Rule {
   const normalizedOptions = normalizeOptions<ApiSchematicSchema>({ ...options }, ProjectType.Application)
   const schemaName = uniq(`${normalizedOptions.npmScope}-${normalizedOptions.name}`)
   return chain([
-    addDepsToPackageJson({ 'cookie-parser': '1.4.5' }, {}, true),
+    addDepsToPackageJson({ 'cookie-parser': '1.4.5', 'fs-extra': '9.1.0', '@nestjs/serve-static': '2.1.4' }, {}, true),
     externalSchematic('@nrwl/nest', 'application', { name }),
     schematic('api-feature-auth', { directory, appName: name }),
     schematic('api-feature-core', { directory, appName: name }),

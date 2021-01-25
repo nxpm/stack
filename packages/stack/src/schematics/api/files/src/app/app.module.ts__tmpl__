@@ -1,13 +1,26 @@
-import { <%= classify(appName) %>AuthFeatureModule } from '@<%= npmScope %>/<%= appName %>/auth/feature'
+import { Logger, Module } from '@nestjs/common'
+import { ServeStaticModule } from '@nestjs/serve-static'
 import { <%= classify(appName) %>CoreFeatureModule } from '@<%= npmScope %>/<%= appName %>/core/feature'
-import { <%= classify(appName) %>UserFeatureModule } from '@<%= npmScope %>/<%= appName %>/user/feature'
-import { Module } from '@nestjs/common'
+import { ensureDirSync, existsSync, writeFileSync } from 'fs-extra'
+import { join } from 'path'
+
+const rootPath = join(__dirname, '..', '<%= webName %>')
 
 @Module({
   imports: [
-    <%= classify(appName) %>AuthFeatureModule,
-    <%= classify(appName) %>CoreFeatureModule,
-    <%= classify(appName) %>UserFeatureModule,
+    ApiCoreFeatureModule,
+    ServeStaticModule.forRoot({
+      rootPath,
+      exclude: ['/api/*', '/graphql'],
+    }),
   ],
 })
-export class AppModule {}
+export class AppModule {
+  constructor() {
+    if (!existsSync(rootPath)) {
+      ensureDirSync(rootPath)
+      writeFileSync(join(rootPath, 'index.html'), `<pre>@nxpm/stack api</pre>`)
+      Logger.verbose(`Created static root path ${rootPath}`)
+    }
+  }
+}

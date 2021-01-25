@@ -142,7 +142,7 @@ export default function (options: InitSchematicSchema): Rule {
     addRunScript('test:ci', `yarn prisma:apply && yarn e2e api-e2e`, true),
     addRunScript('start', 'yarn prisma:db-push && node dist/apps/api/main.js', true),
     addRunScript('build', `yarn build:${webName} && yarn prisma:generate && yarn build:${apiName}`, true),
-    schematic('api', { name: apiName }),
+    schematic('api', { name: apiName, webName }),
     schematic('web', { name: webName, styleLibrary: webStyleLibrary }),
     options?.ci === 'github' ? externalSchematic('@nxpm/ci', 'github', {}) : noop(),
     removeFiles([`apps/.gitkeep`, `libs/.gitkeep`, 'README.md']),
