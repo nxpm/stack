@@ -119,11 +119,7 @@ export default function (options: WebSchematicSchema): Rule {
       name: 'layout',
       library: styleLibrary,
     }),
-    schematic('web-shell-feature', {
-      appName: name,
-      directory,
-      name: 'shell',
-    }),
+    schematic('web-feature-shell', { appName: name, directory }),
     schematic('web-style', {
       appName: name,
       directory,

@@ -13,11 +13,6 @@
       "schema": "./src/schematics/web-assets/schema.json",
       "description": "web-assets schematic"
     },
-    "web-shell-feature": {
-      "factory": "./src/schematics/web-shell-feature/schematic-web-shell-feature",
-      "schema": "./src/schematics/web-shell-feature/schema.json",
-      "description": "web-shell-feature schematic"
-    },
     "web-feature-about": {
       "factory": "./src/schematics/web-feature-about/schematic-web-feature-about",
       "schema": "./src/schematics/web-feature-about/schema.json",
@@ -47,6 +42,11 @@
       "factory": "./src/schematics/web-feature-dashboard/schematic-web-feature-dashboard",
       "schema": "./src/schematics/web-feature-dashboard/schema.json",
       "description": "web-feature-dashboard schematic"
+    },
+    "web-feature-shell": {
+      "factory": "./src/schematics/web-feature-shell/schematic-web-feature-shell",
+      "schema": "./src/schematics/web-feature-shell/schema.json",
+      "description": "web-feature-shell schematic"
     },
     "web-layout": {
       "factory": "./src/schematics/web-layout/schematic-web-layout",
