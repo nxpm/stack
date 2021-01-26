@@ -86,6 +86,9 @@ exports[`init schematic should run successfully 1`] = `
     \\"test-style\\": {
       \\"tags\\": [\\"scope:test\\", \\"type:style\\"]
     },
+    \\"test-ui-button\\": {
+      \\"tags\\": [\\"scope:test\\", \\"type:ui\\"]
+    },
     \\"test-ui-form\\": {
       \\"tags\\": [\\"scope:test\\", \\"type:ui\\"]
     },
@@ -800,6 +803,28 @@ exports[`init schematic should run successfully 2`] = `
       \\"architect\\": {},
       \\"schematics\\": {}
     },
+    \\"test-ui-button\\": {
+      \\"projectType\\": \\"library\\",
+      \\"root\\": \\"libs/test/ui/button\\",
+      \\"sourceRoot\\": \\"libs/test/ui/button/src\\",
+      \\"prefix\\": \\"ui\\",
+      \\"architect\\": {
+        \\"lint\\": {
+          \\"builder\\": \\"@nrwl/linter:eslint\\",
+          \\"options\\": {
+            \\"lintFilePatterns\\": [\\"libs/test/ui/button/src/**/*.ts\\"]
+          }
+        },
+        \\"test\\": {
+          \\"builder\\": \\"@nrwl/jest:jest\\",
+          \\"options\\": {
+            \\"jestConfig\\": \\"libs/test/ui/button/jest.config.js\\",
+            \\"passWithNoTests\\": true
+          }
+        }
+      },
+      \\"schematics\\": {}
+    },
     \\"test-ui-form\\": {
       \\"projectType\\": \\"library\\",
       \\"root\\": \\"libs/test/ui/form\\",
@@ -979,6 +1004,7 @@ exports[`init schematic should run successfully 3`] = `
       \\"@proj/test/layout\\": [\\"libs/test/layout/src/index.ts\\"],
       \\"@proj/test/shell/feature\\": [\\"libs/test/shell/feature/src/index.ts\\"],
       \\"@proj/test/style\\": [\\"libs/test/style/src/index.ts\\"],
+      \\"@proj/test/ui/button\\": [\\"libs/test/ui/button/src/index.ts\\"],
       \\"@proj/test/ui/form\\": [\\"libs/test/ui/form/src/index.ts\\"],
       \\"@proj/test/ui/loader\\": [\\"libs/test/ui/loader/src/index.ts\\"],
       \\"@proj/test/ui/icon\\": [\\"libs/test/ui/icon/src/index.ts\\"],

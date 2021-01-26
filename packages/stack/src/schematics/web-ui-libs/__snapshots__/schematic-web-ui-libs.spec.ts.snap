@@ -1,0 +1,538 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`web-ui-libs schematic should run successfully 1`] = `
+"import { CommonModule } from '@angular/common'
+import { NgModule } from '@angular/core'
+import { RouterModule } from '@angular/router'
+import { TestUiButtonComponent } from './test-ui-button.component'
+
+@NgModule({
+  declarations: [TestUiButtonComponent],
+  exports: [TestUiButtonComponent],
+  imports: [CommonModule, RouterModule],
+})
+export class TestUiButtonModule {}
+"
+`;
+
+exports[`web-ui-libs schematic should run successfully 2`] = `
+"import { Component, EventEmitter, Input } from '@angular/core'
+
+@Component({
+  selector: 'ui-button',
+  template: \`
+    <ng-container *ngIf=\\"routerLink\\">
+      <a [routerLink]=\\"routerLink\\" [class]=\\"classes\\">
+        {{ label }}
+      </a>
+    </ng-container>
+    <ng-container *ngIf=\\"!routerLink\\">
+      <button (click)=\\"click.emit($event)\\" [class]=\\"classes\\" [disabled]=\\"disabled\\" [type]=\\"type\\">
+        {{ label }}
+      </button>
+    </ng-container>
+  \`,
+})
+export class TestUiButtonComponent {
+  @Input() routerLink?: string
+  @Input() disabled?: boolean
+  @Input() label: string
+  @Input() type = 'button'
+  @Input() click = new EventEmitter()
+
+  get classes(): string {
+    return 'inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-indigo-300 bg-indigo-900 border-indigo-600 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-indigo-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
+  }
+}
+"
+`;
+
+exports[`web-ui-libs schematic should run successfully 3`] = `
+"import { AbstractControl, ValidationErrors, Validators } from '@angular/forms'
+import { FormlyFieldConfig } from '@ngx-formly/core'
+
+export function minlengthValidationMessage(err, field: FormlyFieldConfig): string {
+  return \`Should have at least \${field.templateOptions?.minLength} characters\`
+}
+
+export function maxlengthValidationMessage(err, field: FormlyFieldConfig): string {
+  return \`This value should be less than \${field.templateOptions?.maxLength} characters\`
+}
+
+export function minValidationMessage(err, field: FormlyFieldConfig): string {
+  return \`This value should be more than \${field.templateOptions?.min}\`
+}
+
+export function maxValidationMessage(err, field: FormlyFieldConfig): string {
+  return \`This value should be less than \${field.templateOptions?.max}\`
+}
+
+export function emailValidatorMessage(err, field: FormlyFieldConfig): string {
+  return \`\\"\${field.formControl?.value}\\" is not a valid email address\`
+}
+
+export function emailValidator(control: AbstractControl): ValidationErrors {
+  return Validators.email(control) as ValidationErrors
+}
+"
+`;
+
+exports[`web-ui-libs schematic should run successfully 4`] = `
+"import { CommonModule } from '@angular/common'
+import { NgModule } from '@angular/core'
+import { ReactiveFormsModule } from '@angular/forms'
+import { FormlyModule } from '@ngx-formly/core'
+
+import {
+  emailValidator,
+  emailValidatorMessage,
+  maxlengthValidationMessage,
+  maxValidationMessage,
+  minlengthValidationMessage,
+  minValidationMessage,
+} from './index'
+
+@NgModule({
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    FormlyModule.forChild({
+      validationMessages: [
+        { name: 'required', message: 'This field is required' },
+        { name: 'minlength', message: minlengthValidationMessage },
+        { name: 'maxlength', message: maxlengthValidationMessage },
+        { name: 'min', message: minValidationMessage },
+        { name: 'max', message: maxValidationMessage },
+        { name: 'email', message: emailValidatorMessage },
+      ],
+      validators: [{ name: 'email', validation: emailValidator }],
+    }),
+  ],
+})
+export class UiFormValidatorsModule {}
+"
+`;
+
+exports[`web-ui-libs schematic should run successfully 5`] = `
+"import { NgModule } from '@angular/core'
+import { ReactiveFormsModule } from '@angular/forms'
+import { FormlyModule } from '@ngx-formly/core'
+
+// Types
+import { UiFormCheckboxModule } from './types/checkbox/ui-form-checkbox.module'
+import { UiFormInputModule } from './types/input/ui-form-input.module'
+import { UiFormMulticheckboxModule } from './types/multicheckbox/ui-form-multicheckbox.module'
+import { UiFormRadioModule } from './types/radio/ui-form-radio.module'
+import { UiFormSelectModule } from './types/select/ui-form-select.module'
+import { UiFormTextareaModule } from './types/textarea/ui-form-textarea.module'
+
+import { TestUiFormComponent } from './test-ui-form.component'
+
+// Validators
+import { UiFormValidatorsModule } from './validators/ui-form-validators.module'
+
+// Wrappers
+import { UiFormAddonsModule } from './wrappers/addons/ui-form-addons.module'
+import { UiFormFieldModule } from './wrappers/form-field/ui-form-field.module'
+
+@NgModule({
+  declarations: [TestUiFormComponent],
+  exports: [TestUiFormComponent],
+  imports: [
+    ReactiveFormsModule,
+    FormlyModule.forRoot(),
+    // Types
+    UiFormCheckboxModule,
+    UiFormInputModule,
+    UiFormMulticheckboxModule,
+    UiFormRadioModule,
+    UiFormSelectModule,
+    UiFormTextareaModule,
+    // Validators
+    UiFormValidatorsModule,
+    // Wrappers
+    UiFormAddonsModule,
+    UiFormFieldModule,
+  ],
+})
+export class TestUiFormModule {}
+"
+`;
+
+exports[`web-ui-libs schematic should run successfully 6`] = `
+"import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
+import { FormGroup } from '@angular/forms'
+import { FormlyFieldConfig, FormlyFormBuilder, FormlyFormOptions } from '@ngx-formly/core'
+
+@Component({
+  selector: 'ui-form',
+  template: \`
+    <form [formGroup]=\\"form\\" novalidate (ngSubmit)=\\"submitForm.emit(model)\\">
+      <div>
+        <formly-form [fields]=\\"fields\\" [form]=\\"form\\" [model]=\\"model\\" [options]=\\"options\\"></formly-form>
+        <button type=\\"submit\\" style=\\"display: none;\\" [disabled]=\\"form.touched && !form.valid\\">submit</button>
+      </div>
+      <ng-content></ng-content>
+    </form>
+  \`,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class TestUiFormComponent implements OnInit {
+  @Input() fields: FormlyFieldConfig[] = []
+  @Input() form = new FormGroup({})
+  @Input() model?: any = {}
+  @Input() options: FormlyFormOptions = {}
+  @Output() submitForm = new EventEmitter()
+
+  constructor(private builder: FormlyFormBuilder) {}
+
+  ngOnInit(): void {
+    this.builder.buildForm(this.form, this.fields, this.model, this.options)
+  }
+
+  submit() {
+    this.submitForm.emit(this.model)
+  }
+}
+"
+`;
+
+exports[`web-ui-libs schematic should run successfully 7`] = `
+"import { FormlyFieldConfig, FormlyTemplateOptions } from '@ngx-formly/core'
+
+export class TestUiFormField implements FormlyFieldConfig {
+  static checkbox(key: string, templateOptions?: FormlyTemplateOptions, options?: any): FormlyFieldConfig {
+    return this.field(key, 'checkbox', templateOptions, options)
+  }
+
+  static date(key: string, templateOptions?: FormlyTemplateOptions, options?: any): FormlyFieldConfig {
+    return this.input(key, { ...templateOptions, type: 'date' }, { ...options })
+  }
+
+  static datetime(key: string, templateOptions?: FormlyTemplateOptions, options?: any): FormlyFieldConfig {
+    return this.input(key, { ...templateOptions, type: 'datetime-local' }, { ...options })
+  }
+
+  static email(key: string, templateOptions?: FormlyTemplateOptions, options?: any): FormlyFieldConfig {
+    const defaults = {
+      type: 'email',
+      label: 'Email',
+    }
+    const defaultOptions = { validators: { validation: ['email'] } }
+
+    return this.input(key, { ...defaults, ...templateOptions }, { ...defaultOptions, ...options })
+  }
+
+  static fieldRow(
+    fieldGroup: FormlyFieldConfig[] = [],
+    fieldGroupClassName: string = 'flex',
+    options?: any,
+  ): FormlyFieldConfig {
+    return {
+      fieldGroup,
+      fieldGroupClassName,
+      ...options,
+    }
+  }
+
+  static field(
+    key: string,
+    type?: string,
+    templateOptions: FormlyTemplateOptions = {},
+    config: FormlyFieldConfig = {},
+  ): FormlyFieldConfig {
+    return {
+      key,
+      type,
+      templateOptions: {
+        ...templateOptions,
+      },
+      ...config,
+    }
+  }
+
+  static input(
+    key: string,
+    templateOptions: FormlyTemplateOptions = {},
+    config: FormlyFieldConfig = {},
+  ): FormlyFieldConfig {
+    return this.field(key, 'input', templateOptions, config)
+  }
+
+  static multicheckbox(key: string, templateOptions?: FormlyTemplateOptions, options?: any): FormlyFieldConfig {
+    return this.field(key, 'multicheckbox', templateOptions, options)
+  }
+
+  static number(key: string, templateOptions?: FormlyTemplateOptions, options?: any): FormlyFieldConfig {
+    return this.input(key, { ...templateOptions, type: 'number' }, { ...options })
+  }
+
+  static password(key: string, templateOptions?: FormlyTemplateOptions, options?: any): FormlyFieldConfig {
+    const defaults = {
+      label: 'Password',
+      type: 'password',
+      minLength: 8,
+      required: true,
+    }
+
+    return this.input(key, { ...defaults, ...templateOptions }, options)
+  }
+
+  static radio(key: string, templateOptions?: FormlyTemplateOptions, options?: any): FormlyFieldConfig {
+    return this.field(key, 'radio', templateOptions, options)
+  }
+
+  static select(key: string, templateOptions?: FormlyTemplateOptions, options?: any): FormlyFieldConfig {
+    return this.field(key, 'select', templateOptions, options)
+  }
+  static textarea(key: string, templateOptions?: FormlyTemplateOptions, options?: any): FormlyFieldConfig {
+    const defaultTemplateOptions = { rows: 5 }
+
+    return this.field(key, 'textarea', { ...defaultTemplateOptions, ...templateOptions }, options)
+  }
+
+  static template(template: string): FormlyFieldConfig {
+    return { type: 'formly-template', template }
+  }
+
+  static time(key: string, templateOptions?: FormlyTemplateOptions, options?: any): FormlyFieldConfig {
+    return this.input(key, { ...templateOptions, type: 'time' }, { ...options })
+  }
+}
+"
+`;
+
+exports[`web-ui-libs schematic should run successfully 8`] = `
+"import { NgModule } from '@angular/core'
+import { SvgIconRegistry, SvgIconsModule } from '@ngneat/svg-icon'
+import { uiIconMap } from './constants/ui-icon.map'
+import { TestUiIconComponent } from './test-ui-icon.component'
+
+@NgModule({
+  imports: [SvgIconsModule.forRoot()],
+  declarations: [TestUiIconComponent],
+  exports: [TestUiIconComponent],
+})
+export class SharedUiIconModule {
+  constructor(readonly registry: SvgIconRegistry) {
+    uiIconMap.forEach((data, name) => this.registry.register({ name, data }))
+  }
+}
+"
+`;
+
+exports[`web-ui-libs schematic should run successfully 9`] = `
+"import { ChangeDetectionStrategy, Component, Input } from '@angular/core'
+import { UiIcon } from './enums/ui-icon.enum'
+
+@Component({
+  selector: 'ui-icon',
+  templateUrl: './test-ui-icon.component.html',
+  styles: [
+    \`
+      :host {
+        display: block;
+      }
+    \`,
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class TestUiIconComponent {
+  @Input() icon!: UiIcon | string
+  @Input() size: 'lg' | 'md' | 'sm' | 'xs' = 'md'
+}
+"
+`;
+
+exports[`web-ui-libs schematic should run successfully 10`] = `
+"import { NgModule } from '@angular/core'
+import { CommonModule } from '@angular/common'
+import { RouterModule } from '@angular/router'
+import { TestUiLoaderComponent } from './test-ui-loader.component'
+
+@NgModule({
+  declarations: [TestUiLoaderComponent],
+  exports: [TestUiLoaderComponent],
+  imports: [CommonModule],
+})
+export class TestUiLoaderModule {}
+"
+`;
+
+exports[`web-ui-libs schematic should run successfully 11`] = `
+"import { ChangeDetectionStrategy, Component, Input } from '@angular/core'
+
+@Component({
+  selector: 'ui-loader',
+  template: \`
+    <div class=\\"flex items-center justify-center p-4 mb-2 rounded\\" *ngIf=\\"loading\\">
+      <div class=\\"flex space-x-3 animate-pulse mb-1\\">
+        <div class=\\"w-2 h-2 bg-gray-500 rounded-full\\"></div>
+        <div class=\\"w-2 h-2 bg-gray-500 rounded-full\\"></div>
+        <div class=\\"w-2 h-2 bg-gray-500 rounded-full\\"></div>
+      </div>
+    </div>
+  \`,
+  styles: [
+    \`
+      :host {
+        display: block;
+      }
+    \`,
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class TestUiLoaderComponent {
+  @Input() loading = true
+}
+"
+`;
+
+exports[`web-ui-libs schematic should run successfully 12`] = `
+"import { NgModule } from '@angular/core'
+import { CommonModule } from '@angular/common'
+import { RouterModule } from '@angular/router'
+import { TestUiPageComponent } from './test-ui-page.component'
+
+@NgModule({
+  declarations: [TestUiPageComponent],
+  exports: [TestUiPageComponent],
+  imports: [CommonModule, RouterModule],
+})
+export class TestUiPageModule {}
+"
+`;
+
+exports[`web-ui-libs schematic should run successfully 13`] = `
+"import { Component, Input } from '@angular/core'
+
+@Component({
+  selector: 'ui-page',
+  template: \`
+    <div class=\\"h-full flex flex-col justify-between\\">
+      <header class=\\"bg-gray-800 text-gray-300 shadow\\" *ngIf=\\"headerTitle\\">
+        <div class=\\"max-w-7xl mx-auto py-4 sm:py-6 px-4 sm:px-6 lg:px-8 flex justify-between items-center\\">
+          <h1 class=\\"text-2xl md:text-3xl font-bold leading-tight \\">
+            {{ headerTitle }}
+          </h1>
+          <div class=\\"mt-0\\">
+            <ng-content select=\\"ui-page-header\\"></ng-content>
+          </div>
+        </div>
+      </header>
+      <div class=\\"flex-grow h-full  overflow-auto\\">
+        <div class=\\"max-w-7xl mx-auto py-3 md:py-6 lg:py-12 px-3 md:px-6 lg:px-8 h-full overflow-auto\\">
+          <ng-content></ng-content>
+        </div>
+      </div>
+    </div>
+  \`,
+})
+export class TestUiPageComponent {
+  @Input() headerTitle?: string
+}
+"
+`;
+
+exports[`web-ui-libs schematic should run successfully 14`] = `
+"import { NgModule } from '@angular/core'
+import { TestUiPageHeaderDirective } from './test-ui-page-header.directive'
+
+@NgModule({
+  declarations: [TestUiPageHeaderDirective],
+  imports: [],
+  exports: [TestUiPageHeaderDirective],
+})
+export class TestUiPageHeaderModule {}
+"
+`;
+
+exports[`web-ui-libs schematic should run successfully 15`] = `
+"import { Component, Input } from '@angular/core'
+
+@Component({
+  selector: 'ui-page-header',
+  template: \`
+    <div class=\\"flex justify-between items-center  px-6 py-3 mb-3 md:mb-6 bg-gray-800 text-gray-300 shadow rounded-md\\">
+      <div class=\\"text-lg font-semibold\\">
+        {{ title }}
+      </div>
+      <a
+        [routerLink]=\\"linkPath\\"
+        *ngIf=\\"linkPath && linkTitle\\"
+        type=\\"button\\"
+        class=\\"inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-pink-700 hover:bg-pink-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500\\"
+      >
+        {{ linkTitle }}
+      </a>
+    </div>
+  \`,
+})
+export class TestUiPageHeaderComponent {
+  @Input() title?: string
+  @Input() linkPath?: string
+  @Input() linkTitle?: string
+}
+"
+`;
+
+exports[`web-ui-libs schematic should run successfully 16`] = `
+"import { CommonModule } from '@angular/common'
+import { NgModule } from '@angular/core'
+import { RouterModule } from '@angular/router'
+import { WebUiPageModule } from '@nxpm/web/ui/page'
+import { TestUiSidebarPageComponent } from './test-ui-sidebar-page.component'
+
+@NgModule({
+  declarations: [TestUiSidebarPageComponent],
+  exports: [TestUiSidebarPageComponent],
+  imports: [CommonModule, RouterModule, WebUiPageModule],
+})
+export class TestUiSidebarPageModule {}
+"
+`;
+
+exports[`web-ui-libs schematic should run successfully 17`] = `
+"import { Component, Input } from '@angular/core'
+
+export interface TestUiSidebarPageLink {
+  label: string
+  icon: string
+  path: string
+}
+
+@Component({
+  selector: 'ui-sidebar-page',
+  template: \`
+    <ui-page [headerTitle]=\\"headerTitle\\">
+      <div class=\\"lg:grid lg:grid-cols-12 lg:gap-x-5\\">
+        <aside class=\\"py-6 px-2 sm:px-6 lg:py-0 lg:px-0 lg:col-span-3\\">
+          <nav class=\\"space-y-1\\">
+            <ng-container *ngFor=\\"let link of links\\">
+              <a
+                routerLinkActive=\\"bg-gray-50 dark:bg-gray-700 text-pink-600 dark:text-pink-600 hover:bg-white\\"
+                [routerLink]=\\"link.path\\"
+                class=\\"dark:bg-gray-800 dark:text-gray-400 text-gray-900 hover:text-gray-900 hover:bg-gray-50 group rounded-md px-3 py-2 flex items-center text-sm font-medium\\"
+              >
+                <i class=\\"mr-2 text-gray-900 fa fa-fw {{ link.icon || 'fa-cube ' }}\\"></i>
+                <span class=\\"truncate\\">
+                  {{ link.label }}
+                </span>
+              </a>
+            </ng-container>
+          </nav>
+        </aside>
+
+        <div class=\\"space-y-6 sm:px-6 lg:px-0 lg:col-span-9\\">
+          <ng-content></ng-content>
+        </div>
+      </div>
+    </ui-page>
+  \`,
+})
+export class TestUiSidebarPageComponent {
+  @Input() headerTitle: string
+  @Input() links: TestUiSidebarPageLink[] = []
+}
+"
+`;
