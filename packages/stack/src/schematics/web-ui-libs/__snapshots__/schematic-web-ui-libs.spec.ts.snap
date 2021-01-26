@@ -435,12 +435,15 @@ export class TestUiPageComponent {
 `;
 
 exports[`web-ui-libs schematic should run successfully 14`] = `
-"import { NgModule } from '@angular/core'
+"import { CommonModule } from '@angular/common'
+import { NgModule } from '@angular/core'
+import { RouterModule } from '@angular/router'
+import { WebUiButtonModule } from '@nxpm/web/ui/button'
 import { TestUiPageHeaderComponent } from './test-ui-page-header.component'
 
 @NgModule({
   declarations: [TestUiPageHeaderComponent],
-  imports: [],
+  imports: [CommonModule, RouterModule, WebUiButtonModule],
   exports: [TestUiPageHeaderComponent],
 })
 export class TestUiPageHeaderModule {}
@@ -457,14 +460,7 @@ exports[`web-ui-libs schematic should run successfully 15`] = `
       <div class=\\"text-lg font-semibold\\">
         {{ title }}
       </div>
-      <a
-        [routerLink]=\\"linkPath\\"
-        *ngIf=\\"linkPath && linkTitle\\"
-        type=\\"button\\"
-        class=\\"inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-pink-700 hover:bg-pink-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500\\"
-      >
-        {{ linkTitle }}
-      </a>
+      <ui-button [label]=\\"linkTitle\\" [routerLink]=\\"linkPath\\"></ui-button>
     </div>
   \`,
 })
