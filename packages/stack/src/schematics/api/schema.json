@@ -22,6 +22,11 @@
       "type": "string",
       "description": "A directory where the project is placed",
       "alias": "d"
+    },
+    "webName": {
+      "type": "string",
+      "description": "Name of the web project to connect to",
+      "default": "web"
     }
   },
   "required": ["name"]

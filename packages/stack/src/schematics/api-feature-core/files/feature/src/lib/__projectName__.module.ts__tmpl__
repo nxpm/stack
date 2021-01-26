@@ -3,6 +3,8 @@ import { Module } from '@nestjs/common'
 import { GraphQLModule } from '@nestjs/graphql'
 import { PubSub } from 'graphql-subscriptions'
 import { join } from 'path'
+import { <%= classify(appName) %>AuthFeatureModule } from '@<%= npmScope %>/<%= appName %>/auth/feature'
+import { <%= classify(appName) %>UserFeatureModule } from '@<%= npmScope %>/<%= appName %>/user/feature'
 
 import { <%= classify(projectName) %>Controller } from './<%= projectName %>.controller'
 import { <%= classify(projectName) %>Resolver } from './<%= projectName %>.resolver'
@@ -22,6 +24,8 @@ import { <%= classify(projectName) %>Service } from './<%= projectName %>.servic
       sortSchema: true,
     }),
     GraphQLIntercomModule.forRoot({ pubSub: new PubSub() }),
+    <%= classify(appName) %>AuthFeatureModule,
+    <%= classify(appName) %>UserFeatureModule,
   ],
   controllers: [<%= classify(projectName) %>Controller],
   providers: [<%= classify(projectName) %>Resolver, <%= classify(projectName) %>Service],

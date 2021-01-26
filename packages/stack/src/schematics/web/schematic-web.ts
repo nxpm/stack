@@ -87,6 +87,9 @@ export default function (options: WebSchematicSchema): Rule {
         '@ngrx/component-store': '10.1.2',
       },
       {
+        '@angular-eslint/eslint-plugin': '^1.1.0',
+        '@angular-eslint/eslint-plugin-template': '^1.1.0',
+        '@angular-eslint/template-parser': '^1.1.0',
         '@graphql-codegen/cli': '1.19.3',
         '@graphql-codegen/introspection': '1.18.1',
         '@graphql-codegen/typescript': '1.18.1',

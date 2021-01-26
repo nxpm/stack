@@ -78,6 +78,8 @@ import { Module } from '@nestjs/common'
 import { GraphQLModule } from '@nestjs/graphql'
 import { PubSub } from 'graphql-subscriptions'
 import { join } from 'path'
+import { TestAuthFeatureModule } from '@nxpm/test/auth/feature'
+import { TestUserFeatureModule } from '@nxpm/test/user/feature'
 
 import { TestCoreFeatureController } from './test-core-feature.controller'
 import { TestCoreFeatureResolver } from './test-core-feature.resolver'
@@ -97,6 +99,8 @@ import { TestCoreFeatureService } from './test-core-feature.service'
       sortSchema: true,
     }),
     GraphQLIntercomModule.forRoot({ pubSub: new PubSub() }),
+    TestAuthFeatureModule,
+    TestUserFeatureModule,
   ],
   controllers: [TestCoreFeatureController],
   providers: [TestCoreFeatureResolver, TestCoreFeatureService],
