@@ -123,9 +123,11 @@ export default function (options: InitSchematicSchema): Rule {
     addDepsToPackageJson(
       {},
       {
+        '@types/pg': '7.14.9',
         '@nxpm/cli': '^4.1.2',
         husky: '^4.3.0',
         'lint-staged': '^10.4.0',
+        pg: '8.5.1',
       },
       true,
     ),
