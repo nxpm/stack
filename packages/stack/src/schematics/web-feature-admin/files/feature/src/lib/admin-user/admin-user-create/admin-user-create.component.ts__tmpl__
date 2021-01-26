@@ -1,0 +1,33 @@
+import { Component } from '@angular/core'
+import { AdminCreateUserInput, Role } from '@<%= npmScope %>/<%= appName %>/core/data-access'
+import { <%= classify(appName) %>UiFormField } from '@<%= npmScope %>/<%= appName %>/ui/form'
+import { AdminUserCreateStore } from './admin-user-create.store'
+
+@Component({
+  template: `
+    <ng-container *ngIf="vm$ | async as vm">
+      <ui-page-header title="Create User" linkPath=".." linkTitle="Back"></ui-page-header>
+      <user-form [fields]="fields" [user]="{}" (submitForm)="createUser($event)"></user-form>
+    </ng-container>
+  `,
+  providers: [AdminUserCreateStore],
+})
+export class AdminUserCreateComponent {
+  readonly vm$ = this.store.vm$
+  fields = [
+    <%= classify(appName) %>UiFormField.radio('role', {
+      label: 'Role',
+      required: true,
+      options: Object.keys(Role).map((value) => ({ value, label: value })),
+    }),
+    <%= classify(appName) %>UiFormField.input('email', { label: 'Email', required: true }),
+    <%= classify(appName) %>UiFormField.input('username', { label: 'Username' }),
+    <%= classify(appName) %>UiFormField.input('firstName', { label: 'First name' }),
+    <%= classify(appName) %>UiFormField.input('lastName', { label: 'Last name' }),
+  ]
+  constructor(private readonly store: AdminUserCreateStore) {}
+
+  createUser(input: AdminCreateUserInput) {
+    this.store.createUserEffect(input)
+  }
+}

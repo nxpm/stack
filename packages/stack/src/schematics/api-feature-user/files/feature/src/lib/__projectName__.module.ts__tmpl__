@@ -1,10 +1,11 @@
 import { Module } from '@nestjs/common'
 import { <%= classify(appName) %>UserDataAccessModule } from '@<%= npmScope %>/<%= appName %>/user/data-access'
 
+import { <%= classify(projectName) %>Resolver } from './<%= projectName %>.resolver'
 import { <%= classify(projectName) %>AdminResolver } from './<%= projectName %>-admin.resolver'
 
 @Module({
   imports: [<%= classify(appName) %>UserDataAccessModule],
-  providers: [<%= classify(projectName) %>AdminResolver],
+  providers: [<%= classify(projectName) %>Resolver, <%= classify(projectName) %>AdminResolver],
 })
 export class <%= classify(projectName) %>Module {}

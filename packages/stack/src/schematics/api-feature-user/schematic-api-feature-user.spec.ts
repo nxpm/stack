@@ -20,14 +20,10 @@ describe('api-feature-user schematic', () => {
       testRunner.runSchematicAsync('api-feature-user', options, appTree).toPromise(),
     ).resolves.not.toThrowError()
 
-    expect(appTree.read('libs/test/user/feature/src/lib/test-user-feature.module.ts').toString()).toContain(
-      'TestUserFeatureAdminResolver',
-    )
-    expect(appTree.read('libs/test/user/feature/src/lib/test-user-feature.resolver.ts').toString()).toContain(
-      'TestUserDataAccessService',
-    )
-    expect(appTree.read('libs/test/user/feature/src/lib/test-user-feature-admin.resolver.ts').toString()).toContain(
-      'TestUserDataAccessService',
-    )
+    expect(appTree.read('libs/test/user/feature/src/lib/test-user-feature.module.ts').toString()).toMatchSnapshot()
+    expect(appTree.read('libs/test/user/feature/src/lib/test-user-feature.resolver.ts').toString()).toMatchSnapshot()
+    expect(
+      appTree.read('libs/test/user/feature/src/lib/test-user-feature-admin.resolver.ts').toString(),
+    ).toMatchSnapshot()
   })
 })

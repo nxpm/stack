@@ -1,0 +1,43 @@
+import { Component } from '@angular/core'
+import { FormGroup } from '@angular/forms'
+import { AdminUpdateUserInput, Role } from '@<%= npmScope %>/<%= appName %>/core/data-access'
+import { <%= classify(appName) %>UiFormField } from '@<%= npmScope %>/<%= appName %>/ui/form'
+import { AdminUserEditStore } from './admin-user-edit.store'
+
+@Component({
+  template: `
+    <ng-container *ngIf="vm$ | async as vm">
+      <ui-page-header [title]="'Edit user ' + vm.user?.username" linkPath=".." linkTitle="Back"></ui-page-header>
+      <ng-container *ngIf="vm.user">
+        <user-form [form]="form" [fields]="fields" [user]="vm.user" (submitForm)="updateUser($event)"></user-form>
+      </ng-container>
+    </ng-container>
+  `,
+  providers: [AdminUserEditStore],
+})
+export class AdminUserEditComponent {
+  readonly vm$ = this.store.vm$
+  readonly form = new FormGroup({})
+  fields = [
+    <%= classify(appName) %>UiFormField.radio('role', {
+      label: 'Role',
+      required: true,
+      options: Object.keys(Role).map((value) => ({ value, label: value })),
+    }),
+    <%= classify(appName) %>UiFormField.input('email', { label: 'Email', required: true }),
+    <%= classify(appName) %>UiFormField.input('username', { label: 'Username' }),
+    <%= classify(appName) %>UiFormField.input('firstName', { label: 'First name' }),
+    <%= classify(appName) %>UiFormField.input('lastName', { label: 'Last name' }),
+    <%= classify(appName) %>UiFormField.input('phone', { label: 'Phone' }),
+    <%= classify(appName) %>UiFormField.input('avatarUrl', { label: 'Avatar Url' }),
+    <%= classify(appName) %>UiFormField.input('location', { label: 'Location' }),
+    <%= classify(appName) %>UiFormField.textarea('bio', { label: 'Bio' }),
+  ]
+
+  constructor(private readonly store: AdminUserEditStore) {}
+
+  updateUser(input: AdminUpdateUserInput) {
+    const { role, email, username, firstName, lastName, phone, avatarUrl, location, bio } = input
+    this.store.updateUserEffect({ role, email, username, firstName, lastName, phone, avatarUrl, location, bio })
+  }
+}

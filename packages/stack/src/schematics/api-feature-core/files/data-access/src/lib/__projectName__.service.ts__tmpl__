@@ -1,5 +1,5 @@
 import { BadRequestException, Injectable, OnModuleDestroy, OnModuleInit } from '@nestjs/common'
-import { PrismaClient, Prisma } from '@prisma/client'
+import { PrismaClient, Prisma, Role } from '@prisma/client'
 import { getGravatarUrl, hashPassword } from './<%= appName %>-core-data-access.helper'
 
 @Injectable()
@@ -51,5 +51,13 @@ export class <%= classify(projectName) %>Service extends PrismaClient implements
 
   findUserByUsername(username: string) {
     return this.user.findUnique({ where: { username } })
+  }
+
+  async ensureAdminUser(adminId: string): Promise<boolean> {
+    const tenant = await this.findUserById(adminId)
+    if (tenant.role !== Role.Admin) {
+      throw new Error(`This operation needs Admin access`)
+    }
+    return true
   }
 }

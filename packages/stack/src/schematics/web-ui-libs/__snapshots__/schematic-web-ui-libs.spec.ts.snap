@@ -436,12 +436,12 @@ export class TestUiPageComponent {
 
 exports[`web-ui-libs schematic should run successfully 14`] = `
 "import { NgModule } from '@angular/core'
-import { TestUiPageHeaderDirective } from './test-ui-page-header.directive'
+import { TestUiPageHeaderComponent } from './test-ui-page-header.component'
 
 @NgModule({
-  declarations: [TestUiPageHeaderDirective],
+  declarations: [TestUiPageHeaderComponent],
   imports: [],
-  exports: [TestUiPageHeaderDirective],
+  exports: [TestUiPageHeaderComponent],
 })
 export class TestUiPageHeaderModule {}
 "
@@ -506,8 +506,8 @@ export interface TestUiSidebarPageLink {
   template: \`
     <ui-page [headerTitle]=\\"headerTitle\\">
       <div class=\\"lg:grid lg:grid-cols-12 lg:gap-x-5\\">
-        <aside class=\\"py-6 px-2 sm:px-6 lg:py-0 lg:px-0 lg:col-span-3\\">
-          <nav class=\\"space-y-1\\">
+        <aside class=\\"py-3 md:py-6 md:px-2 sm:px-6 lg:py-0 lg:px-0 lg:col-span-3\\">
+          <nav class=\\"space-y-1 md:space-y-3\\">
             <ng-container *ngFor=\\"let link of links\\">
               <a
                 routerLinkActive=\\"bg-gray-50 dark:bg-gray-700 text-pink-600 dark:text-pink-600 hover:bg-white\\"

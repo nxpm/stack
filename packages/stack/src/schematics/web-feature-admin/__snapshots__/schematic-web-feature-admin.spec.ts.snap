@@ -21,6 +21,10 @@ import { TestAdminFeatureComponent } from './test-admin-feature.component'
             path: 'dashboard',
             loadChildren: () => import('./admin-dashboard/admin-dashboard.module').then((m) => m.AdminDashboardModule),
           },
+          {
+            path: 'users',
+            loadChildren: () => import('./admin-user/admin-user-feature.module').then((m) => m.AdminUserFeatureModule),
+          },
         ],
       },
     ]),
