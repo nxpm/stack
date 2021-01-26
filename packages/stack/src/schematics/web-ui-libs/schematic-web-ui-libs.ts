@@ -1,5 +1,6 @@
 import { chain, Rule } from '@angular-devkit/schematics'
 import {
+  createUiLibButton,
   createUiLibForm,
   createUiLibIcon,
   createUiLibLoader,
@@ -16,6 +17,7 @@ export default function (options: WebUiLibsSchematicSchema): Rule {
   options = { ...options, directory, library }
 
   return chain([
+    createUiLibButton(options),
     createUiLibForm(options),
     createUiLibLoader(options),
     createUiLibIcon(options),

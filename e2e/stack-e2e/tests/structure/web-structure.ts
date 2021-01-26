@@ -19,6 +19,7 @@ export function webProjects(project: string) {
     `${project}-layout`,
     `${project}-shell-feature`,
     `${project}-style`,
+    `${project}-ui-button`,
     `${project}-ui-form`,
     `${project}-ui-icon`,
     `${project}-ui-loader`,
