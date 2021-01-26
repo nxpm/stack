@@ -1,21 +1,54 @@
-import { Args, Mutation, Query, Resolver } from '@nestjs/graphql'
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`api-feature-user schematic should run successfully 1`] = `
+"import { Module } from '@nestjs/common'
+import { TestUserDataAccessModule } from '@nxpm/test/user/data-access'
+
+import { TestUserFeatureResolver } from './test-user-feature.resolver'
+import { TestUserFeatureAdminResolver } from './test-user-feature-admin.resolver'
+
+@Module({
+  imports: [TestUserDataAccessModule],
+  providers: [TestUserFeatureResolver, TestUserFeatureAdminResolver],
+})
+export class TestUserFeatureModule {}
+"
+`;
+
+exports[`api-feature-user schematic should run successfully 2`] = `
+"import { Parent, ResolveField, Resolver } from '@nestjs/graphql'
+import { User } from '@nxpm/test/user/data-access'
+
+@Resolver(() => User)
+export class TestUserFeatureResolver {
+  @ResolveField(() => String, { nullable: true })
+  name(@Parent() user: User) {
+    const name = [user?.firstName, user?.lastName].join(' ').trim()
+    return name.length ? name : user?.username
+  }
+}
+"
+`;
+
+exports[`api-feature-user schematic should run successfully 3`] = `
+"import { Args, Mutation, Query, Resolver } from '@nestjs/graphql'
 import { UseGuards } from '@nestjs/common'
 import {
   AdminCreateUserInput,
   AdminUpdateUserInput,
   ApiUserDataAccessService,
   User,
-} from '@<%= npmScope %>/<%= appName %>/user/data-access'
-import { CorePaging, CorePagingInput } from '@<%= npmScope %>/<%= appName %>/core/data-access'
+} from '@nxpm/test/user/data-access'
+import { CorePaging, CorePagingInput } from '@nxpm/test/core/data-access'
 import {
   CtxUser,
   GqlAuthAdminGuard,
-} from '@<%= npmScope %>/<%= appName %>/auth/util'
+} from '@nxpm/test/auth/util'
 
 @Resolver()
 @UseGuards(GqlAuthAdminGuard)
-export class <%= classify(projectName) %>AdminResolver {
-  constructor(private readonly service: <%= classify(appName) %>UserDataAccessService) {}
+export class TestUserFeatureAdminResolver {
+  constructor(private readonly service: TestUserDataAccessService) {}
 
   @Query(() => [User], { nullable: true })
   adminUsers(
@@ -58,3 +91,5 @@ export class <%= classify(projectName) %>AdminResolver {
     return this.service.adminDeleteUser(admin.id, userId)
   }
 }
+"
+`;

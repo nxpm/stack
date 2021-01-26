@@ -1,8 +1,11 @@
-import { Args, Query, Resolver } from '@nestjs/graphql'
-import { <%= classify(appName) %>UserDataAccessService, User } from '@<%= npmScope %>/<%= appName %>/user/data-access'
-import { <%= classify(projectName) %>Service } from './<%= projectName %>.service'
+import { Parent, ResolveField, Resolver } from '@nestjs/graphql'
+import { User } from '@<%= npmScope %>/<%= appName %>/user/data-access'
 
-@Resolver()
+@Resolver(() => User)
 export class <%= classify(projectName) %>Resolver {
-  constructor(private readonly service: <%= classify(appName) %>UserDataAccessService) {}
+  @ResolveField(() => String, { nullable: true })
+  name(@Parent() user: User) {
+    const name = [user?.firstName, user?.lastName].join(' ').trim()
+    return name.length ? name : user?.username
+  }
 }

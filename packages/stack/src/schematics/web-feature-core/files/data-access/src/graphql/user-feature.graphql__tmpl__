@@ -1,0 +1,38 @@
+query AdminUsers($paging: CorePagingInput) {
+  users: adminUsers(paging: $paging) {
+    ...UserDetails
+  }
+  count: adminCountUsers(paging: $paging) {
+    ...CorePagingDetails
+  }
+}
+
+query AdminUser($userId: String!) {
+  adminUser(userId: $userId) {
+    ...UserDetails
+  }
+}
+
+mutation AdminCreateUser($input: AdminCreateUserInput!) {
+  adminCreateUser(input: $input) {
+    ...UserDetails
+  }
+}
+
+mutation AdminUpdateUser($userId: String!, $input: AdminUpdateUserInput!) {
+  adminUpdateUser(userId: $userId, input: $input) {
+    ...UserDetails
+  }
+}
+
+mutation AdminSetUserPassword($userId: String!, $password: String!) {
+  adminSetUserPassword(userId: $userId, password: $password) {
+    ...UserDetails
+  }
+}
+
+mutation AdminDeleteUser($userId: String!) {
+  adminDeleteUser(userId: $userId) {
+    ...UserDetails
+  }
+}

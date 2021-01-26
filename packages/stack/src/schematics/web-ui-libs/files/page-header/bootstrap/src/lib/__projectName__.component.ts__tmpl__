@@ -1,0 +1,6 @@
+import { Component } from '@angular/core'
+
+@Component({
+  selector: 'ui-page-header',
+})
+export class <%= classify(projectName) %>Component {}

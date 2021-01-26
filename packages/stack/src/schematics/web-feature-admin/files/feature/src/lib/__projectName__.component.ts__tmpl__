@@ -10,5 +10,6 @@ import { Component } from '@angular/core'
 export class <%= classify(projectName) %>Component {
   links = [
     { label: 'Dashboard', path: 'dashboard', icon: '' },
+    { label: 'Users', path: 'users', icon: '' },
   ]
 }
