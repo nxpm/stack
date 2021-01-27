@@ -3,6 +3,8 @@ import { FileTests } from '../../../e2e-file-utils'
 export function apiProjects(project: string) {
   return [
     project,
+    `${project}-account-data-access`,
+    `${project}-account-feature`,
     `${project}-auth-data-access`,
     `${project}-auth-feature`,
     `${project}-auth-util`,
