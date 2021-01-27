@@ -29,8 +29,8 @@ export class TestAuthDataAccessModule {}
 exports[`api-feature-auth schematic should run successfully 2`] = `
 "import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common'
 import { JwtService } from '@nestjs/jwt'
-import { TestCoreDataAccessService, validatePassword } from '@nxpm/test/core/data-access'
-import { TestCoreUtilService } from '@nxpm/test/core/util'
+import { TestCoreDataAccessService } from '@nxpm/test/core/data-access'
+import { TestCoreUtilService, validatePassword } from '@nxpm/test/core/util'
 import { Response } from 'express'
 import { LoginInput } from './dto/login.input'
 import { RegisterInput } from './dto/register.input'

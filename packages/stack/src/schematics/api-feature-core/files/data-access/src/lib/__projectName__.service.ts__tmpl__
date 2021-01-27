@@ -1,6 +1,6 @@
 import { BadRequestException, Injectable, OnModuleDestroy, OnModuleInit } from '@nestjs/common'
 import { PrismaClient, Prisma, Role } from '@prisma/client'
-import { getGravatarUrl, hashPassword } from './<%= appName %>-core-data-access.helper'
+import { getGravatarUrl, hashPassword } from '@<%= npmScope %>/<%= appName %>/core/util'
 
 @Injectable()
 export class <%= classify(projectName) %>Service extends PrismaClient implements OnModuleInit, OnModuleDestroy {

@@ -1,12 +1,6 @@
 import { Injectable } from '@nestjs/common'
-import {
-  <%= classify(appName) %>CoreDataAccessService,
-  CorePaging,
-  CorePagingInput,
-  getGravatarUrl,
-  hashPassword,
-  uniqueSuffix,
-} from '@<%= npmScope %>/<%= appName %>/core/data-access'
+import { <%= classify(appName) %>CoreDataAccessService, CorePaging, CorePagingInput } from '@<%= npmScope %>/<%= appName %>/core/data-access'
+import { getGravatarUrl, hashPassword, uniqueSuffix } from '@<%= npmScope %>/<%= appName %>/core/util'
 import { AdminCreateUserInput } from './dto/admin-create-user.input'
 import { AdminUpdateUserInput } from './dto/admin-update-user.input'
 

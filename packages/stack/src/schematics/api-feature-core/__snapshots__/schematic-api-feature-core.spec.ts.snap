@@ -16,7 +16,7 @@ export class TestCoreDataAccessModule {}
 exports[`api-feature-core schematic should run successfully 2`] = `
 "import { BadRequestException, Injectable, OnModuleDestroy, OnModuleInit } from '@nestjs/common'
 import { PrismaClient, Prisma, Role } from '@prisma/client'
-import { getGravatarUrl, hashPassword } from './test-core-data-access.helper'
+import { getGravatarUrl, hashPassword } from '@nxpm/test/core/util'
 
 @Injectable()
 export class TestCoreDataAccessService extends PrismaClient implements OnModuleInit, OnModuleDestroy {
