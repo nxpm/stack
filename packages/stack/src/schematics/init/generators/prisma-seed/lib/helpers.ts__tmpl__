@@ -10,7 +10,7 @@ export function createUser(
   return {
     id,
     username,
-    email,
+    emails: { create: { email, primary: true } },
     role,
     password,
     avatarUrl: 'https://www.gravatar.com/avatar?d=mp',
