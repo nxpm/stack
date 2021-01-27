@@ -16,7 +16,6 @@ describe('web-layout schematic', () => {
   })
 
   it('should run successfully', async () => {
-    const app = await testRunner.runSchematicAsync('web', { name: 'test' }, appTree).toPromise()
-    await expect(testRunner.runSchematicAsync('web-layout', options, app).toPromise()).resolves.not.toThrowError()
+    await expect(testRunner.runSchematicAsync('web-layout', options, appTree).toPromise()).resolves.not.toThrowError()
   })
 })
