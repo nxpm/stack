@@ -9,7 +9,7 @@ import { User } from '@<%= npmScope %>/<%= appName %>/core/data-access'
       <div class="bg-gray-50 dark:bg-gray-800 px-6 py-4">
         <ui-form [form]="form" [model]="user" [fields]="fields" (submitForm)="submitForm.emit($event)">
           <div class="text-center">
-            <ui-button [disabled]="!form?.valid" label="Reset Password" type="submit"></ui-button>
+            <ui-button [disabled]="!form?.valid" label="Save" type="submit"></ui-button>
           </div>
         </ui-form>
       </div>

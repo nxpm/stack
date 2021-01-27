@@ -13,6 +13,7 @@ export class <%= classify(projectName) %>Service {
     return this.data.user.findMany({
       take: paging.limit,
       skip: paging.skip,
+      include: { emails: true },
     })
   }
 
@@ -28,7 +29,7 @@ export class <%= classify(projectName) %>Service {
 
   async adminUser(adminId: string, userId: string) {
     await this.data.ensureAdminUser(adminId)
-    return this.data.user.findUnique({ where: { id: userId } })
+    return this.data.user.findUnique({ where: { id: userId }, include: { emails: true } })
   }
 
   async adminCreateUser(adminId: string, input: AdminCreateUserInput) {
@@ -40,10 +41,14 @@ export class <%= classify(projectName) %>Service {
 
     return this.data.user.create({
       data: {
-        ...input,
+        emails: { create: { email, primary: true } },
+        role: input.role,
+        firstName: input.firstName,
+        lastName: input.lastName,
         avatarUrl,
         username,
       },
+      include: { emails: true },
     })
   }
 
@@ -52,6 +57,7 @@ export class <%= classify(projectName) %>Service {
     return this.data.user.update({
       where: { id: userId },
       data: { ...input },
+      include: { emails: true },
     })
   }
 
