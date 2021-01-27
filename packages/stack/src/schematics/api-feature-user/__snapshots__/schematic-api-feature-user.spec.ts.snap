@@ -26,6 +26,13 @@ export class TestUserFeatureResolver {
     const name = [user?.firstName, user?.lastName].join(' ').trim()
     return name.length ? name : user?.username
   }
+
+  @ResolveField(() => String, { nullable: true })
+  email(@Parent() user: User) {
+    const hasPrimary = user.emails?.find((email) => email.primary)
+
+    return hasPrimary ? hasPrimary.email : user.emails?.find((e) => e).email
+  }
 }
 "
 `;

@@ -29,7 +29,7 @@ export class TestAuthDataAccessModule {}
 exports[`api-feature-auth schematic should run successfully 2`] = `
 "import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common'
 import { JwtService } from '@nestjs/jwt'
-import { TestCoreDataAccessService, getGravatarUrl, hashPassword, validatePassword } from '@nxpm/test/core/data-access'
+import { TestCoreDataAccessService, validatePassword } from '@nxpm/test/core/data-access'
 import { TestCoreUtilService } from '@nxpm/test/core/util'
 import { Response } from 'express'
 import { LoginInput } from './dto/login.input'
@@ -45,9 +45,7 @@ export class TestAuthDataAccessService {
   ) {}
 
   async register(payload: RegisterInput) {
-    const user = await this.data.createUser({
-      ...payload,
-    })
+    const user = await this.data.createUser(payload, { email: payload.email })
 
     return this.signUser(user)
   }
@@ -59,6 +57,10 @@ export class TestAuthDataAccessService {
 
     if (!user) {
       throw new NotFoundException(\`No user found for email: \${email}\`)
+    }
+
+    if (!user?.password) {
+      throw new NotFoundException(\`Can't log in with email: \${email}\`)
     }
 
     const passwordValid = await validatePassword(password, user.password)
