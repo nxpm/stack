@@ -15,7 +15,7 @@ export class TestAccountFeatureModule {}
 `;
 
 exports[`api-feature-account schematic should run successfully 2`] = `
-"import { ValidationPipe } from '@nestjs/common'
+"import { UseGuards, ValidationPipe } from '@nestjs/common'
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql'
 import {
   AccountCreateEmailInput,
@@ -23,10 +23,11 @@ import {
   AccountUpdateProfileInput,
   TestAccountDataAccessService,
 } from '@nxpm/test/account/data-access'
-import { CtxUser } from '@nxpm/test/auth/util'
+import { CtxUser, GqlAuthGuard } from '@nxpm/test/auth/util'
 import { Email, User } from '@nxpm/test/user/data-access'
 
 @Resolver()
+@UseGuards(GqlAuthGuard)
 export class TestAccountFeatureResolver {
   constructor(private readonly service: TestAccountDataAccessService) {}
 
