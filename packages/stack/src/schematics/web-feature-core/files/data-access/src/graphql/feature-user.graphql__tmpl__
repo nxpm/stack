@@ -1,3 +1,24 @@
+fragment UserDetails on User {
+  id
+  firstName
+  lastName
+  name
+  username
+  avatarUrl
+  email
+  role
+}
+
+fragment EmailDetails on Email {
+  id
+  createdAt
+  updatedAt
+  email
+  public
+  primary
+  verified
+}
+
 query AdminUsers($paging: CorePagingInput) {
   users: adminUsers(paging: $paging) {
     ...UserDetails
@@ -10,6 +31,9 @@ query AdminUsers($paging: CorePagingInput) {
 query AdminUser($userId: String!) {
   adminUser(userId: $userId) {
     ...UserDetails
+    emails {
+      ...EmailDetails
+    }
   }
 }
 
