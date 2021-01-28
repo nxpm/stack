@@ -1,10 +1,23 @@
 import { CommonModule } from '@angular/common'
 import { NgModule } from '@angular/core'
 import { RouterModule } from '@angular/router'
+import { AccountUiProfileFormModule, AccountUiUsernameFormModule } from '@<%= npmScope %>/<%= appName %>/account/ui'
+import { <%= classify(appName) %>UiLoaderModule } from '@<%= npmScope %>/<%= appName %>/ui/loader'
 import { AccountProfileComponent } from './account-profile.component'
 
 @NgModule({
   declarations: [AccountProfileComponent],
-  imports: [CommonModule, RouterModule.forChild([{ path: '', component: AccountProfileComponent }])],
+  imports: [
+    CommonModule,
+    RouterModule.forChild([
+      {
+        path: '',
+        component: AccountProfileComponent,
+      },
+    ]),
+    <%= classify(appName) %>UiLoaderModule,
+    AccountUiProfileFormModule,
+    AccountUiUsernameFormModule,
+  ],
 })
 export class AccountProfileModule {}
