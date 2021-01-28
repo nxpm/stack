@@ -2,17 +2,6 @@ fragment AuthTokenDetails on AuthToken {
   token
 }
 
-fragment UserDetails on User {
-  id
-  firstName
-  lastName
-  name
-  username
-  avatarUrl
-  email
-  role
-}
-
 query me {
   me {
     ...UserDetails

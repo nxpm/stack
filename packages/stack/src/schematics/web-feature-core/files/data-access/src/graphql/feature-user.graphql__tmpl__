@@ -6,6 +6,9 @@ fragment UserDetails on User {
   username
   avatarUrl
   email
+  location
+  phone
+  bio
   role
 }
 
