@@ -50,7 +50,6 @@ export type AdminCreateUserInput = {
 export type AdminUpdateUserInput = {
   avatarUrl?: Maybe<Scalars['String']>
   bio?: Maybe<Scalars['String']>
-  email?: Maybe<Scalars['String']>
   firstName?: Maybe<Scalars['String']>
   lastName?: Maybe<Scalars['String']>
   location?: Maybe<Scalars['String']>

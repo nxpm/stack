@@ -37,7 +37,7 @@ export class AdminUserEditComponent {
   constructor(private readonly store: AdminUserEditStore) {}
 
   updateUser(input: AdminUpdateUserInput) {
-    const { role, email, username, firstName, lastName, phone, avatarUrl, location, bio } = input
-    this.store.updateUserEffect({ role, email, username, firstName, lastName, phone, avatarUrl, location, bio })
+    const { role, username, firstName, lastName, phone, avatarUrl, location, bio } = input
+    this.store.updateUserEffect({ role, username, firstName, lastName, phone, avatarUrl, location, bio })
   }
 }
