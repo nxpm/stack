@@ -112,13 +112,9 @@ export function webFileTests(project: string): FileTests {
         `export * from './lib/${project}-core-data-access.service'`,
       ],
       [`libs/${project}/about/feature/src/lib/${project}-about-feature.module.ts`]: [
-        `${project}/core/data-access`,
         `${project}-about-feature.component`,
       ],
-      [`libs/${project}/about/feature/src/lib/${project}-about-feature.component.ts`]: [
-        `${project}/core/data-access`,
-        `environment = environment`,
-      ],
+      [`libs/${project}/about/feature/src/lib/${project}-about-feature.component.ts`]: [`environment = environment`],
       [`libs/${project}/auth/feature/src/index.ts`]: [`export * from './lib/${project}-auth-feature.module'`],
       [`libs/${project}/core/feature/src/environments/environment.ts`]: [
         `api: '/api'`,
@@ -141,14 +137,10 @@ export function webFileTests(project: string): FileTests {
         `environment.graphql`,
       ],
       [`libs/${project}/dashboard/feature/src/lib/${project}-dashboard-feature.module.ts`]: [
-        `${project}/core/data-access`,
         `${project}-dashboard-feature.component`,
       ],
-      [`libs/${project}/dashboard/feature/src/lib/${project}-dashboard-feature.component.ts`]: [
-        `${project}/core/data-access`,
-      ],
       [`libs/${project}/shell/feature/src/lib/${project}-shell-feature.module.ts`]: [
-        `RouterModule.forRoot(routes)`,
+        `RouterModule.forRoot(routes, { paramsInheritanceStrategy: 'always' })`,
         `{ path: '', pathMatch: 'full', redirectTo: 'dashboard' }`,
         `path: 'about'`,
         `${project}/about/feature`,
