@@ -1,0 +1,94 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`api-feature-account schematic should run successfully 1`] = `
+"import { Module } from '@nestjs/common'
+import { TestAccountDataAccessModule } from '@nxpm/test/account/data-access'
+
+import { TestAccountFeatureResolver } from './test-account-feature.resolver'
+
+@Module({
+  imports: [TestAccountDataAccessModule],
+  providers: [TestAccountFeatureResolver],
+})
+export class TestAccountFeatureModule {}
+"
+`;
+
+exports[`api-feature-account schematic should run successfully 2`] = `
+"import { ValidationPipe } from '@nestjs/common'
+import { Args, Mutation, Query, Resolver } from '@nestjs/graphql'
+import {
+  AccountCreateEmailInput,
+  AccountUpdatePasswordInput,
+  AccountUpdateProfileInput,
+  TestAccountDataAccessService,
+} from '@nxpm/test/account/data-access'
+import { CtxUser } from '@nxpm/test/auth/util'
+import { Email, User } from '@nxpm/test/user/data-access'
+
+@Resolver()
+export class TestAccountFeatureResolver {
+  constructor(private readonly service: TestAccountDataAccessService) {}
+
+  @Query(() => [Email], { nullable: true })
+  accountEmails(@CtxUser() user: User) {
+    return this.service.accountEmails(user.id)
+  }
+
+  @Query(() => User, { nullable: true })
+  accountProfile(@CtxUser() user: User) {
+    return this.service.accountProfile(user.id)
+  }
+
+  @Query(() => Boolean, { nullable: true })
+  accountUsernameAvailable(@CtxUser() user: User, @Args('username') username: string) {
+    return this.service.accountUsernameAvailable(user.id, username)
+  }
+
+  @Mutation(() => Email, { nullable: true })
+  accountCreateEmail(@CtxUser() user: User, @Args('input', new ValidationPipe()) input: AccountCreateEmailInput) {
+    return this.service.accountCreateEmail(user.id, input)
+  }
+
+  @Mutation(() => Email, { nullable: true })
+  accountDeleteEmail(@CtxUser() user: User, @Args('emailId') emailId: string) {
+    return this.service.accountDeleteEmail(user.id, emailId)
+  }
+
+  @Mutation(() => Email, { nullable: true })
+  accountMarkEmailPrimary(@CtxUser() user: User, @Args('emailId') emailId: string) {
+    return this.service.accountMarkEmailPrimary(user.id, emailId)
+  }
+
+  @Mutation(() => Email, { nullable: true })
+  accountMarkEmailPrivate(@CtxUser() user: User, @Args('emailId') emailId: string) {
+    return this.service.accountMarkEmailPrivate(user.id, emailId)
+  }
+
+  @Mutation(() => Email, { nullable: true })
+  accountMarkEmailPublic(@CtxUser() user: User, @Args('emailId') emailId: string) {
+    return this.service.accountMarkEmailPublic(user.id, emailId)
+  }
+
+  @Mutation(() => User, { nullable: true })
+  accountUpdateProfile(@CtxUser() user: User, @Args('input', new ValidationPipe()) input: AccountUpdateProfileInput) {
+    return this.service.accountUpdateProfile(user.id, input)
+  }
+
+  @Mutation(() => User, { nullable: true })
+  accountUpdateUsername(@CtxUser() user: User, @Args('username') username: string) {
+    return this.service.accountUpdateUsername(user.id, username)
+  }
+
+  @Mutation(() => Boolean, { nullable: true })
+  accountResetPassword(@CtxUser() user: User) {
+    return this.service.accountResetPassword(user.id)
+  }
+
+  @Mutation(() => Boolean, { nullable: true })
+  accountUpdatePassword(@CtxUser() user: User, @Args('input', new ValidationPipe()) input: AccountUpdatePasswordInput) {
+    return this.service.accountUpdatePassword(user.id, input)
+  }
+}
+"
+`;

@@ -7,6 +7,12 @@ exports[`init schematic should run successfully 1`] = `
     \\"api\\": {
       \\"tags\\": []
     },
+    \\"api-account-data-access\\": {
+      \\"tags\\": [\\"scope:api\\", \\"type:data-access\\"]
+    },
+    \\"api-account-feature\\": {
+      \\"tags\\": [\\"scope:api\\", \\"type:feature\\"]
+    },
     \\"api-auth-data-access\\": {
       \\"tags\\": [\\"scope:api\\", \\"type:data-access\\"]
     },
@@ -182,6 +188,48 @@ exports[`init schematic should run successfully 2`] = `
           \\"builder\\": \\"@nrwl/jest:jest\\",
           \\"options\\": {
             \\"jestConfig\\": \\"apps/api/jest.config.js\\",
+            \\"passWithNoTests\\": true
+          }
+        }
+      }
+    },
+    \\"api-account-data-access\\": {
+      \\"root\\": \\"libs/api/account/data-access\\",
+      \\"sourceRoot\\": \\"libs/api/account/data-access/src\\",
+      \\"projectType\\": \\"library\\",
+      \\"schematics\\": {},
+      \\"architect\\": {
+        \\"lint\\": {
+          \\"builder\\": \\"@nrwl/linter:eslint\\",
+          \\"options\\": {
+            \\"lintFilePatterns\\": [\\"libs/api/account/data-access/**/*.ts\\"]
+          }
+        },
+        \\"test\\": {
+          \\"builder\\": \\"@nrwl/jest:jest\\",
+          \\"options\\": {
+            \\"jestConfig\\": \\"libs/api/account/data-access/jest.config.js\\",
+            \\"passWithNoTests\\": true
+          }
+        }
+      }
+    },
+    \\"api-account-feature\\": {
+      \\"root\\": \\"libs/api/account/feature\\",
+      \\"sourceRoot\\": \\"libs/api/account/feature/src\\",
+      \\"projectType\\": \\"library\\",
+      \\"schematics\\": {},
+      \\"architect\\": {
+        \\"lint\\": {
+          \\"builder\\": \\"@nrwl/linter:eslint\\",
+          \\"options\\": {
+            \\"lintFilePatterns\\": [\\"libs/api/account/feature/**/*.ts\\"]
+          }
+        },
+        \\"test\\": {
+          \\"builder\\": \\"@nrwl/jest:jest\\",
+          \\"options\\": {
+            \\"jestConfig\\": \\"libs/api/account/feature/jest.config.js\\",
             \\"passWithNoTests\\": true
           }
         }
@@ -981,6 +1029,8 @@ exports[`init schematic should run successfully 3`] = `
   \\"compilerOptions\\": {
     \\"paths\\": {
       \\"@nxpm/api-app-module\\": [\\"apps/api/src/app/app.module.ts\\"],
+      \\"@proj/api/account/data-access\\": [\\"libs/api/account/data-access/src/index.ts\\"],
+      \\"@proj/api/account/feature\\": [\\"libs/api/account/feature/src/index.ts\\"],
       \\"@proj/api/auth/data-access\\": [\\"libs/api/auth/data-access/src/index.ts\\"],
       \\"@proj/api/auth/feature\\": [\\"libs/api/auth/feature/src/index.ts\\"],
       \\"@proj/api/auth/util\\": [\\"libs/api/auth/util/src/index.ts\\"],

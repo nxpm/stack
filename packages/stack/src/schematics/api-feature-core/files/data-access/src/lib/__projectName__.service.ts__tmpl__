@@ -60,4 +60,17 @@ export class <%= classify(projectName) %>Service extends PrismaClient implements
     }
     return true
   }
+
+  async usernameDenyList(username: string) {
+    const denied = [
+      // Add usernames you want to deny
+      'admin',
+      'administrator',
+      'system',
+      'owner',
+      'info',
+      'webmaster',
+    ]
+    return denied.includes(username)
+  }
 }
