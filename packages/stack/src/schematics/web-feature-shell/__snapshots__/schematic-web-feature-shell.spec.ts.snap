@@ -43,7 +43,12 @@ const routes: Routes = [
 ]
 
 @NgModule({
-  imports: [CommonModule, RouterModule.forRoot(routes), TestCoreDataAccessModule, TestAuthDataAccessModule],
+  imports: [
+    CommonModule,
+    RouterModule.forRoot(routes, { paramsInheritanceStrategy: 'always' }),
+    TestCoreDataAccessModule,
+    TestAuthDataAccessModule,
+  ],
 })
 export class TestShellFeatureModule {}
 "
