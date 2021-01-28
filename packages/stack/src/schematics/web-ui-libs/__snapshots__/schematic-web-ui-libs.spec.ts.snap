@@ -313,7 +313,7 @@ import { TestUiIconComponent } from './test-ui-icon.component'
   declarations: [TestUiIconComponent],
   exports: [TestUiIconComponent],
 })
-export class SharedUiIconModule {
+export class TestUiIconModule {
   constructor(readonly registry: SvgIconRegistry) {
     uiIconMap.forEach((data, name) => this.registry.register({ name, data }))
   }

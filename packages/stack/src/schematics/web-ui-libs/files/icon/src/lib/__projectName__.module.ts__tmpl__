@@ -8,7 +8,7 @@ import { <%= classify(projectName) %>Component } from './<%= projectName %>.comp
   declarations: [<%= classify(projectName) %>Component],
   exports: [<%= classify(projectName) %>Component],
 })
-export class SharedUiIconModule {
+export class <%= classify(projectName) %>Module {
   constructor(readonly registry: SvgIconRegistry) {
     uiIconMap.forEach((data, name) => this.registry.register({ name, data }))
   }
