@@ -1,9 +1,10 @@
-import { NgModule } from '@angular/core'
 import { HttpClientModule } from '@angular/common/http'
+import { NgModule } from '@angular/core'
+import { SvgIconsModule } from '@ngneat/svg-icon'
 
 import { <%= classify(projectName) %>GraphQLModule  } from './<%= projectName %>-graphql.module'
 
 @NgModule({
-  imports: [HttpClientModule, <%= classify(projectName) %>GraphQLModule],
+  imports: [HttpClientModule, <%= classify(projectName) %>GraphQLModule, SvgIconsModule.forRoot()],
 })
 export class <%= classify(projectName) %>Module {}
