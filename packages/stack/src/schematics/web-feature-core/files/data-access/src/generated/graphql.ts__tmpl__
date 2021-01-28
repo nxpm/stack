@@ -342,6 +342,11 @@ export type AccountUpdatePasswordMutation = { __typename?: 'Mutation' } & Pick<M
 
 export type AuthTokenDetailsFragment = { __typename?: 'AuthToken' } & Pick<AuthToken, 'token'>
 
+export type UserDetailsFragment = { __typename?: 'User' } & Pick<
+  User,
+  'id' | 'firstName' | 'lastName' | 'name' | 'username' | 'avatarUrl' | 'email' | 'role'
+>
+
 export type MeQueryVariables = Exact<{ [key: string]: never }>
 
 export type MeQuery = { __typename?: 'Query' } & { me?: Maybe<{ __typename?: 'User' } & UserDetailsFragment> }
@@ -392,11 +397,6 @@ export type IntercomSubSubscriptionVariables = Exact<{ [key: string]: never }>
 export type IntercomSubSubscription = { __typename?: 'Subscription' } & {
   intercomSub?: Maybe<{ __typename?: 'IntercomMessage' } & IntercomDetailsFragment>
 }
-
-export type UserDetailsFragment = { __typename?: 'User' } & Pick<
-  User,
-  'id' | 'firstName' | 'lastName' | 'name' | 'username' | 'avatarUrl' | 'email' | 'role'
->
 
 export type EmailDetailsFragment = { __typename?: 'Email' } & Pick<
   Email,
@@ -463,6 +463,18 @@ export const AuthTokenDetailsFragmentDoc = gql`
     token
   }
 `
+export const UserDetailsFragmentDoc = gql`
+  fragment UserDetails on User {
+    id
+    firstName
+    lastName
+    name
+    username
+    avatarUrl
+    email
+    role
+  }
+`
 export const CorePagingDetailsFragmentDoc = gql`
   fragment CorePagingDetails on CorePaging {
     limit
@@ -475,18 +487,6 @@ export const IntercomDetailsFragmentDoc = gql`
     type
     scope
     payload
-  }
-`
-export const UserDetailsFragmentDoc = gql`
-  fragment UserDetails on User {
-    id
-    firstName
-    lastName
-    name
-    username
-    avatarUrl
-    email
-    role
   }
 `
 export const EmailDetailsFragmentDoc = gql`
