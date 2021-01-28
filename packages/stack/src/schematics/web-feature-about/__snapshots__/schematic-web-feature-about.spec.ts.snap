@@ -4,7 +4,6 @@ exports[`web-feature-about schematic should run successfully 1`] = `
 "import { NgModule } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { RouterModule } from '@angular/router'
-import { TestCoreDataAccessModule } from '@nxpm/test/core/data-access'
 import { TestUiPageModule } from '@nxpm/test/ui/page'
 import { TestAboutFeatureComponent } from './test-about-feature.component'
 
@@ -12,9 +11,8 @@ import { TestAboutFeatureComponent } from './test-about-feature.component'
   declarations: [TestAboutFeatureComponent],
   imports: [
     CommonModule,
-    TestCoreDataAccessModule,
-    TestUiPageModule,
     RouterModule.forChild([{ path: '', pathMatch: 'full', component: TestAboutFeatureComponent }]),
+    TestUiPageModule,
   ],
 })
 export class TestAboutFeatureModule {}
