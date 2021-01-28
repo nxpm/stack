@@ -39,7 +39,6 @@ export function webFileTests(project: string): FileTests {
       `libs/${project}/assets/src/assets/images/logo.png`,
       `libs/${project}/assets/src/favicon.ico`,
       `libs/${project}/core/data-access/src/lib/${project}-core-data-access.module.ts`,
-      `libs/${project}/core/data-access/src/lib/${project}-core-data-access.service.ts`,
       `libs/${project}/core/data-access/src/generated/graphql.ts`,
       `libs/${project}/core/data-access/src/graphql/feature-account.graphql`,
       `libs/${project}/core/data-access/src/graphql/feature-auth.graphql`,
@@ -106,11 +105,7 @@ export function webFileTests(project: string): FileTests {
         `libs/${project}/core/data-access/src/graphql/**/*.graphql`,
         `libs/${project}/core/data-access/src/generated/graphql.ts:`,
       ],
-      [`libs/${project}/core/data-access/src/index.ts`]: [
-        `export * from './generated/graphql'`,
-        `export * from './lib/${project}-core-data-access.module'`,
-        `export * from './lib/${project}-core-data-access.service'`,
-      ],
+      [`libs/${project}/core/data-access/src/index.ts`]: [`export * from './generated/graphql'`],
       [`libs/${project}/about/feature/src/lib/${project}-about-feature.module.ts`]: [
         `${project}-about-feature.component`,
       ],

@@ -1,9 +1,0 @@
-import { NgModule } from '@angular/core'
-
-import { <%= classify(projectName) %>Service  } from './<%= projectName %>.service'
-
-@NgModule({
-  imports: [],
-  providers: [ <%= classify(projectName) %>Service ],
-})
-export class <%= classify(projectName) %>Module {}

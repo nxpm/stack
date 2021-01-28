@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common'
 import { NgModule } from '@angular/core'
 import { RouterModule, Routes } from '@angular/router'
 import { <%= classify(appName) %>AuthDataAccessModule, IsLoggedInGuard } from '@<%= npmScope %>/<%= appName %>/auth/data-access'
-import { <%= classify(appName) %>CoreDataAccessModule } from '@<%= npmScope %>/<%= appName %>/core/data-access'
 import { <%= classify(appName) %>LayoutComponent } from '@<%= npmScope %>/<%= appName %>/layout'
 
 const routes: Routes = [
@@ -43,7 +42,6 @@ const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forRoot(routes, { paramsInheritanceStrategy: 'always' }),
-    <%= classify(appName) %>CoreDataAccessModule,
     <%= classify(appName) %>AuthDataAccessModule,
   ],
 })

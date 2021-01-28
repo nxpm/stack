@@ -5,7 +5,6 @@ exports[`web-feature-shell schematic should run successfully 1`] = `
 import { NgModule } from '@angular/core'
 import { RouterModule, Routes } from '@angular/router'
 import { TestAuthDataAccessModule, IsLoggedInGuard } from '@nxpm/test/auth/data-access'
-import { TestCoreDataAccessModule } from '@nxpm/test/core/data-access'
 import { TestLayoutComponent } from '@nxpm/test/layout'
 
 const routes: Routes = [
@@ -46,7 +45,6 @@ const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forRoot(routes, { paramsInheritanceStrategy: 'always' }),
-    TestCoreDataAccessModule,
     TestAuthDataAccessModule,
   ],
 })
