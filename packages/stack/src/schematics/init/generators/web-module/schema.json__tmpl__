@@ -1,0 +1,24 @@
+{
+  "cli": "nx",
+  "id": "web-module",
+  "type": "object",
+  "properties": {
+    "target": {
+      "type": "string",
+      "description": "Target folder to create the module",
+      "$default": {
+        "$source": "argv",
+        "index": 0
+      }
+    },
+    "name": {
+      "type": "string",
+      "description": "Name of the module (in kebab-case)",
+      "$default": {
+        "$source": "argv",
+        "index": 1
+      }
+    }
+  },
+  "required": ["target", "name"]
+}
