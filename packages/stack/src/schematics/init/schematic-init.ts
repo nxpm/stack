@@ -114,6 +114,22 @@ function addDockerCompose(): Rule {
   }
 }
 
+function addWorkspaceGenerators(name, normalizedOptions): Rule {
+  return chain([
+    addFiles({ ...normalizedOptions, projectRoot: './tools/generators/' }, './generators', {
+      tmplEnd: '%>',
+      tmplStart: '<%=',
+    }),
+    (host) => {
+      const base = `tools/generators/web-module/files`
+      const files = ['component', 'module', 'store']
+      for (const file of files) {
+        host.rename(`${base}/${name}.${file}.ts`, `${base}/__name__.${file}.ts__tmpl__`)
+      }
+    },
+  ])
+}
+
 export default function (options: InitSchematicSchema): Rule {
   const normalizedOptions = normalizeOptions(options, ProjectType.Application)
   const webName = options.name
@@ -148,7 +164,7 @@ export default function (options: InitSchematicSchema): Rule {
     schematic('web', { name: webName, styleLibrary: webStyleLibrary }),
     options?.ci === 'github' ? externalSchematic('@nxpm/ci', 'github', {}) : noop(),
     removeFiles([`apps/.gitkeep`, `libs/.gitkeep`, 'README.md']),
-    addFiles({ ...normalizedOptions, projectRoot: './tools/generators/' }, './generators'),
+    addWorkspaceGenerators(webName, normalizedOptions),
     addFiles({ ...normalizedOptions, apiName, webName, projectRoot: './' }, './workspace'),
     formatFiles(),
   ])

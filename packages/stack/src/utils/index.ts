@@ -109,7 +109,7 @@ export function appendToPath(path, line: string | string[]): Rule {
   }
 }
 
-export function addFiles(options: NormalizedSchema, path = './files'): Rule {
+export function addFiles(options: NormalizedSchema, path = './files', vars = {}): Rule {
   return mergeWith(
     apply(url(path), [
       template({
@@ -118,9 +118,11 @@ export function addFiles(options: NormalizedSchema, path = './files'): Rule {
         tmpl: '',
         dot: '.',
         '.': '.',
+        ...vars,
       }),
       applyTemplates({
         ...options,
+        ...vars,
         ...names(options.name),
         offsetFromRoot: offsetFromRoot(options.projectRoot),
       }),
