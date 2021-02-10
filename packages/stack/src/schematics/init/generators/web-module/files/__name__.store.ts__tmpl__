@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core'
 import { ComponentStore, tapResponse } from '@ngrx/component-store'
-import { ApolloAngularSDK } from '@<%= tmplStart %> npmScope <%= tmplEnd %>/web/core/data-access'
+import { <%= classify(webName) %>UtilSdkService } from '@<%= tmplStart %> npmScope <%= tmplEnd %>/web/util/sdk'
 import { of } from 'rxjs'
 import { switchMap, tap } from 'rxjs/operators'
 
@@ -16,7 +16,7 @@ interface <%= tmplStart %> className <%= tmplEnd %>State {
 
 @Injectable()
 export class <%= tmplStart %> className <%= tmplEnd %>Store extends ComponentStore<<%= tmplStart %> className <%= tmplEnd %>State> {
-  constructor(private readonly sdk: ApolloAngularSDK) {
+  constructor(private readonly data: <%= classify(webName) %>UtilSdkService) {
     super({})
     this.loadItemsEffect()
   }

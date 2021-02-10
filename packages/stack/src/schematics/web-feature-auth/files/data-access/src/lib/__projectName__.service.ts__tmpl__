@@ -1,23 +1,23 @@
 import { Injectable } from '@angular/core'
-import { ApolloAngularSDK, LoginInput, RegisterInput } from '@<%= npmScope %>/<%= appName %>/core/data-access'
+import { <%= classify(appName) %>UtilSdkService, LoginInput, RegisterInput } from '@<%= npmScope %>/<%= appName %>/util/sdk'
 
 @Injectable()
 export class <%= classify(projectName) %>Service {
-  constructor(public readonly sdk: ApolloAngularSDK) {}
+  constructor(public readonly data: <%= classify(appName) %>UtilSdkService) {}
 
   me() {
-    return this.sdk.me()
+    return this.data.me()
   }
 
   login(input: LoginInput) {
-    return this.sdk.login({ input })
+    return this.data.login({ input })
   }
 
   logout() {
-    return this.sdk.logout()
+    return this.data.logout()
   }
 
   register(input: RegisterInput) {
-    return this.sdk.register({ input })
+    return this.data.register({ input })
   }
 }

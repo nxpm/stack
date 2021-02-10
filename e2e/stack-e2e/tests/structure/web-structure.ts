@@ -12,7 +12,6 @@ export function webProjects(project: string) {
     `${project}-auth-data-access`,
     `${project}-auth-feature`,
     `${project}-auth-ui`,
-    `${project}-core-data-access`,
     `${project}-core-feature`,
     `${project}-dashboard-feature`,
     `${project}-e2e`,
@@ -26,6 +25,7 @@ export function webProjects(project: string) {
     `${project}-ui-page-header`,
     `${project}-ui-page`,
     `${project}-ui-sidebar-page`,
+    `${project}-util-sdk`,
   ]
 }
 
@@ -38,13 +38,6 @@ export function webFileTests(project: string): FileTests {
       `libs/${project}/assets/src/assets/icons/.gitkeep`,
       `libs/${project}/assets/src/assets/images/logo.png`,
       `libs/${project}/assets/src/favicon.ico`,
-      `libs/${project}/core/data-access/src/lib/${project}-core-data-access.module.ts`,
-      `libs/${project}/core/data-access/src/generated/graphql.ts`,
-      `libs/${project}/core/data-access/src/graphql/feature-account.graphql`,
-      `libs/${project}/core/data-access/src/graphql/feature-auth.graphql`,
-      `libs/${project}/core/data-access/src/graphql/feature-core.graphql`,
-      `libs/${project}/core/data-access/src/graphql/feature-user.graphql`,
-      `libs/${project}/core/data-access/src/codegen.yml`,
       `libs/${project}/auth/feature/src/lib/${project}-auth-feature.module.ts`,
       `libs/${project}/core/feature/src/environments/environment.ts`,
       `libs/${project}/core/feature/src/environments/environment.prod.ts`,
@@ -52,6 +45,12 @@ export function webFileTests(project: string): FileTests {
       `libs/${project}/layout/src/lib/${project}-layout.module.ts`,
       `libs/${project}/layout/src/lib/${project}-layout.component.ts`,
       `libs/${project}/style/src/index.css`,
+      `libs/${project}/util/sdk/src/codegen.yml`,
+      `libs/${project}/util/sdk/src/generated/graphql.ts`,
+      `libs/${project}/util/sdk/src/graphql/feature-account.graphql`,
+      `libs/${project}/util/sdk/src/graphql/feature-auth.graphql`,
+      `libs/${project}/util/sdk/src/graphql/feature-core.graphql`,
+      `libs/${project}/util/sdk/src/graphql/feature-user.graphql`,
     ],
     missing: [
       `apps/${project}/src/app/app.component.html`,
@@ -101,11 +100,11 @@ export function webFileTests(project: string): FileTests {
         `CoreFeatureModule`,
         `/${project}/core/feature'`,
       ],
-      [`libs/${project}/core/data-access/src/codegen.yml`]: [
-        `libs/${project}/core/data-access/src/graphql/**/*.graphql`,
-        `libs/${project}/core/data-access/src/generated/graphql.ts:`,
+      [`libs/${project}/util/sdk/src/codegen.yml`]: [
+        `libs/${project}/util/sdk/src/graphql/**/*.graphql`,
+        `libs/${project}/util/sdk/src/generated/graphql.ts:`,
       ],
-      [`libs/${project}/core/data-access/src/index.ts`]: [`export * from './generated/graphql'`],
+      [`libs/${project}/util/sdk/src/index.ts`]: [`export * from './generated/graphql'`],
       [`libs/${project}/about/feature/src/lib/${project}-about-feature.module.ts`]: [
         `${project}-about-feature.component`,
       ],

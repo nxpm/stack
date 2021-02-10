@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core'
 import { Router } from '@angular/router'
-import { ApolloAngularSDK, LoginInput, RegisterInput, User } from '@<%= npmScope %>/<%= appName %>/core/data-access'
+import { <%= classify(appName) %>UtilSdkService, LoginInput, RegisterInput, User } from '@<%= npmScope %>/<%= appName %>/util/sdk'
 import { ComponentStore, tapResponse } from '@ngrx/component-store'
 import { Observable } from 'rxjs'
 import { switchMap } from 'rxjs/operators'
@@ -24,7 +24,7 @@ export class <%= classify(appName) %>AuthStore extends ComponentStore<<%= classi
     errors,
   }))
 
-  constructor(public readonly sdk: ApolloAngularSDK, private readonly router: Router) {
+  constructor(public readonly data: <%= classify(appName) %>UtilSdkService, private readonly router: Router) {
     super()
     this.initializeEffect()
   }
@@ -32,7 +32,7 @@ export class <%= classify(appName) %>AuthStore extends ComponentStore<<%= classi
   readonly initializeEffect = this.effect(($) =>
     $.pipe(
       switchMap(() =>
-        this.sdk.me().pipe(
+        this.data.me().pipe(
           tapResponse(
             (res) => this.setState({ user: res.data.me }),
             () => this.setState({ errors: null }),
@@ -45,7 +45,7 @@ export class <%= classify(appName) %>AuthStore extends ComponentStore<<%= classi
   readonly meEffect = this.effect(($) =>
     $.pipe(
       switchMap(() =>
-        this.sdk.me().pipe(
+        this.data.me().pipe(
           tapResponse(
             (res) => {
               this.setState({ user: res.data.me, errors: res.errors })
@@ -61,7 +61,7 @@ export class <%= classify(appName) %>AuthStore extends ComponentStore<<%= classi
   readonly loginEffect = this.effect<LoginInput>((input$) =>
     input$.pipe(
       switchMap((input: LoginInput) =>
-        this.sdk.login({ input }).pipe(
+        this.data.login({ input }).pipe(
           tapResponse(
             () => this.meEffect(),
             (errors) => this.setState({ errors }),
@@ -74,7 +74,7 @@ export class <%= classify(appName) %>AuthStore extends ComponentStore<<%= classi
   readonly logoutEffect = this.effect(($) =>
     $.pipe(
       switchMap(() =>
-        this.sdk.logout().pipe(
+        this.data.logout().pipe(
           tapResponse(
             () => {
               this.setState({ user: null, errors: null })
@@ -90,7 +90,7 @@ export class <%= classify(appName) %>AuthStore extends ComponentStore<<%= classi
   readonly registerEffect = this.effect<RegisterInput>((input$) =>
     input$.pipe(
       switchMap((input: RegisterInput) =>
-        this.sdk.register({ input }).pipe(
+        this.data.register({ input }).pipe(
           tapResponse(
             () => this.meEffect(),
             (errors) => this.setState({ errors }),

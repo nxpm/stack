@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core'
 
 import { ComponentStore, tapResponse } from '@ngrx/component-store'
-import { AccountUpdateProfileInput, ApolloAngularSDK, User } from '@<%= npmScope %>/<%= appName %>/core/data-access'
+import { AccountUpdateProfileInput, <%= classify(appName) %>UtilSdkService, User } from '@<%= npmScope %>/<%= appName %>/util/sdk'
 import { mergeMap, switchMap, tap } from 'rxjs/operators'
 
 interface AccountProfileState {
@@ -12,7 +12,7 @@ interface AccountProfileState {
 
 @Injectable()
 export class AccountProfileStore extends ComponentStore<AccountProfileState> {
-  constructor(private readonly sdk: ApolloAngularSDK) {
+  constructor(private readonly data: <%= classify(appName) %>UtilSdkService) {
     super({ loading: false })
   }
 
@@ -21,7 +21,7 @@ export class AccountProfileStore extends ComponentStore<AccountProfileState> {
   readonly updateProfileEffect = this.effect<AccountUpdateProfileInput>((input$) =>
     input$.pipe(
       mergeMap((input) =>
-        this.sdk.accountUpdateProfile({ input }).pipe(
+        this.data.accountUpdateProfile({ input }).pipe(
           tapResponse(
             ({ errors }) => {
               this.patchState({ errors })
@@ -37,7 +37,7 @@ export class AccountProfileStore extends ComponentStore<AccountProfileState> {
   readonly updateUsernameEffect = this.effect<string>((username$) =>
     username$.pipe(
       mergeMap((username) =>
-        this.sdk.accountUpdateUsername({ username }).pipe(
+        this.data.accountUpdateUsername({ username }).pipe(
           tapResponse(
             ({ errors }) => {
               this.patchState({ errors })
@@ -54,7 +54,7 @@ export class AccountProfileStore extends ComponentStore<AccountProfileState> {
     return $.pipe(
       tap(() => this.setLoading(true)),
       switchMap(() =>
-        this.sdk.accountProfile({}, { fetchPolicy: 'no-cache' }).pipe(
+        this.data.accountProfile({}, { fetchPolicy: 'no-cache' }).pipe(
           tapResponse(
             ({ data, errors }) => {
               this.patchState({ profile: data?.accountProfile, loading: false, errors })

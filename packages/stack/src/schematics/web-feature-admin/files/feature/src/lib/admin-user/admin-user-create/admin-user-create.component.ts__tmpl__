@@ -1,5 +1,5 @@
 import { Component } from '@angular/core'
-import { AdminCreateUserInput, Role } from '@<%= npmScope %>/<%= appName %>/core/data-access'
+import { AdminCreateUserInput, Role } from '@<%= npmScope %>/<%= appName %>/util/sdk'
 import { <%= classify(appName) %>UiFormField } from '@<%= npmScope %>/<%= appName %>/ui/form'
 import { AdminUserCreateStore } from './admin-user-create.store'
 

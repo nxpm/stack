@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core'
-import { ApolloAngularSDK, CorePagingInput, User } from '@<%= npmScope %>/<%= appName %>/core/data-access'
+import { <%= classify(appName) %>UtilSdkService, CorePagingInput, User } from '@<%= npmScope %>/<%= appName %>/util/sdk'
 import { ComponentStore, tapResponse } from '@ngrx/component-store'
 import { switchMap, tap, withLatestFrom } from 'rxjs/operators'
 
@@ -12,7 +12,7 @@ export interface UserListState {
 
 @Injectable()
 export class AdminUserListStore extends ComponentStore<UserListState> {
-  constructor(private readonly sdk: ApolloAngularSDK) {
+  constructor(private readonly data: <%= classify(appName) %>UtilSdkService) {
     super({ paging: { skip: 0, limit: 10 } })
   }
 
@@ -38,7 +38,7 @@ export class AdminUserListStore extends ComponentStore<UserListState> {
       tap(() => this.patchState({ loading: true })),
       withLatestFrom(this.paging$),
       switchMap(([_, paging]) =>
-        this.sdk.adminUsers({ paging }).pipe(
+        this.data.adminUsers({ paging }).pipe(
           tapResponse(
             (res) => this.patchState({ users: res.data.users, errors: res.errors, loading: false }),
             (errors: any) =>
