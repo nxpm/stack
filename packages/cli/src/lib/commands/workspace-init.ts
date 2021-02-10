@@ -66,7 +66,6 @@ export async function workspaceInit({
 
   info('Installation finished')
   info(`To get started         : ${gray(`cd ${name}`)}`)
-  info(`Start database servers : ${gray(`docker-compose up`)}`)
   info(`Run setup              : ${gray(`yarn setup`)}`)
   info(`Start API              : ${gray(`yarn dev:api`)}`)
   info(`Start Web              : ${gray(`yarn dev:web`)}`)
