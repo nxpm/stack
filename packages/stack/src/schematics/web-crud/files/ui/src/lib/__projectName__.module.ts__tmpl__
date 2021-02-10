@@ -1,0 +1,11 @@
+import { Module } from '@nestjs/common'
+import { <%= classify(apiAppName) %>CoreDataAccessModule } from '@<%= npmScope %>/<%= apiAppName %>/core/data-access'
+
+import { <%= classify(projectName) %>Service } from './<%= projectName %>.service'
+
+@Module({
+  imports: [<%= classify(apiAppName) %>CoreDataAccessModule],
+  providers: [<%= classify(projectName) %>Service],
+  exports: [<%= classify(projectName) %>Service],
+})
+export class <%= classify(projectName) %>Module {}

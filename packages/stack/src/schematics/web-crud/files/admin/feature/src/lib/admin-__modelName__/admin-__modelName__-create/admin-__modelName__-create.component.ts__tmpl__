@@ -1,0 +1,24 @@
+import { Component } from '@angular/core'
+import { <%= classify(webAppName) %>UiFormField } from '@<%= npmScope %>/<%= webAppName %>/ui/form'
+import { Admin<%= classify(modelName) %>CreateStore } from './admin-<%= dasherize(modelName) %>-create.store'
+
+@Component({
+  template: `
+    <ng-container *ngIf="vm$ | async as vm">
+      <ui-page-header title="Create <%= classify(modelName) %>" linkPath=".." linkTitle="Back"></ui-page-header>
+      <ui-form [fields]="fields" [model]="{}" (submitForm)="create<%= classify(modelName) %>($event)"></ui-form>
+    </ng-container>
+  `,
+  providers: [Admin<%= classify(modelName) %>CreateStore],
+})
+export class Admin<%= classify(modelName) %>CreateComponent {
+  readonly vm$ = this.store.vm$
+  fields = [
+    <%= classify(webAppName) %>UiFormField.input('<%= classify(nameField) %>', { label: '<%= classify(nameField) %>' }),
+  ]
+  constructor(private readonly store: Admin<%= classify(modelName) %>CreateStore) {}
+
+  create<%= classify(modelName) %>(input) {
+    this.store.create<%= classify(modelName) %>Effect(input)
+  }
+}

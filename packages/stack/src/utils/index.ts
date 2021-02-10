@@ -166,7 +166,7 @@ export function normalizeOptions<T extends BaseSchema>(options: T, projectType: 
   const projectDirectory = options.directory ? `${toFileName(options.directory)}/${name}` : name
   const projectName = projectDirectory.replace(new RegExp('/', 'g'), '-')
   const projectRoot = `${projectRootDir(projectType)}/${projectDirectory}`
-  const parsedTags = options.tags ? options.tags.split(',').map((s) => s.trim()) : []
+  const parsedTags = options.tags ? options.tags?.split(',').map((s) => s.trim()) : []
   const plugin = nxJson?.plugins && nxJson?.plugins['@nxpm/stack']
   const apiAppName = options.apiAppName || plugin?.api?.project || 'api'
   const webAppName = options.webAppName || plugin?.web?.project || 'web'
@@ -178,6 +178,18 @@ export function normalizeOptions<T extends BaseSchema>(options: T, projectType: 
     projectRoot,
     projectDirectory,
     parsedTags,
+    apiAppName,
+    webAppName,
+  }
+}
+
+export function getPluginConfig<T extends BaseSchema>(options: T): { apiAppName; webAppName } {
+  const nxJson = readJSONSync(join(process.cwd(), 'nx.json')) || {}
+  const plugin = nxJson?.plugins && nxJson?.plugins['@nxpm/stack']
+  const apiAppName = options.apiAppName || plugin?.api?.project || 'api'
+  const webAppName = options.webAppName || plugin?.web?.project || 'web'
+
+  return {
     apiAppName,
     webAppName,
   }

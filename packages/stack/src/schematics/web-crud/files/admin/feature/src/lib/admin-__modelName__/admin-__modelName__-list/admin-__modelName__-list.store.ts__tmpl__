@@ -1,0 +1,54 @@
+import { Injectable } from '@angular/core'
+import { <%= classify(webAppName) %>UtilSdkService, CorePagingInput, <%= classify(modelName) %> } from '@<%= npmScope %>/<%= webAppName %>/util/sdk'
+import { ComponentStore, tapResponse } from '@ngrx/component-store'
+import { switchMap, tap, withLatestFrom } from 'rxjs/operators'
+
+export interface <%= classify(modelName) %>ListState {
+  paging: CorePagingInput
+  errors?: any
+  loading?: boolean
+  items?: <%= classify(modelName) %>[]
+}
+
+@Injectable()
+export class Admin<%= classify(modelName) %>ListStore extends ComponentStore<<%= classify(modelName) %>ListState> {
+  constructor(private readonly data: <%= classify(webAppName) %>UtilSdkService) {
+    super({ paging: { skip: 0, limit: 10 } })
+  }
+
+  readonly errors$ = this.select((s) => s.errors)
+  readonly loading$ = this.select((s) => s.loading)
+  readonly paging$ = this.select((s) => s.paging)
+  readonly items$ = this.select((s) => s.items)
+  readonly vm$ = this.select(
+    this.errors$,
+    this.loading$,
+    this.paging$,
+    this.items$,
+    (errors, loading, paging, items) => ({
+      errors,
+      loading,
+      paging,
+      items,
+    }),
+  )
+
+  readonly load<%= classify(modelName) %>sEffect = this.effect(($) =>
+    $.pipe(
+      tap(() => this.patchState({ loading: true })),
+      withLatestFrom(this.paging$),
+      switchMap(([_, paging]) =>
+        this.data.admin<%= classify(modelName) %>s({ paging }).pipe(
+          tapResponse(
+            (res) => this.patchState({ items: res.data.items, errors: res.errors, loading: false }),
+            (errors: any) =>
+              this.patchState({
+                loading: false,
+                errors: errors.graphQLErrors ? errors.graphQLErrors : errors,
+              }),
+          ),
+        ),
+      ),
+    ),
+  )
+}

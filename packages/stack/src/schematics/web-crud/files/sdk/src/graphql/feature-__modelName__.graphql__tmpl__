@@ -1,0 +1,48 @@
+fragment <%= classify(modelName) %>Details on <%= classify(modelName) %> {
+  id
+  createdAt
+  updateAt
+  <%= nameField %>
+}
+
+query Admin<%= classify(pluralModelName) %>($input: AdminList<%= classify(modelName) %>Input) {
+  items: admin<%= classify(pluralModelName) %>(input: $input) {
+    ...<%= classify(modelName) %>Details
+  }
+  count: adminCount<%= classify(modelName) %>(input: $input) {
+    ...CorePagingDetails
+  }
+}
+
+query AdminCount<%= classify(pluralModelName) %>($input: AdminList<%= classify(modelName) %>Input) {
+  count: adminCount<%= classify(pluralModelName) %>(input: $input) {
+    ...CorePagingDetails
+  }
+}
+
+query Admin<%= classify(modelName) %>($<%= modelName %>Id: String!) {
+  item: admin<%= classify(modelName) %>(<%= modelName %>Id: $<%= modelName %>Id) {
+    ...<%= classify(modelName) %>Details
+    emails {
+      ...EmailDetails
+    }
+  }
+}
+
+mutation AdminCreate<%= classify(modelName) %>($input: AdminCreate<%= classify(modelName) %>Input!) {
+  created: adminCreate<%= classify(modelName) %>(input: $input) {
+    ...<%= classify(modelName) %>Details
+  }
+}
+
+mutation AdminUpdate<%= classify(modelName) %>($<%= modelName %>Id: String!, $input: AdminUpdate<%= classify(modelName) %>Input!) {
+  updated: adminUpdate<%= classify(modelName) %>(<%= modelName %>Id: $<%= modelName %>Id, input: $input) {
+    ...<%= classify(modelName) %>Details
+  }
+}
+o
+mutation AdminDelete<%= classify(modelName) %>($<%= modelName %>Id: String!) {
+  deleted: adminDelete<%= classify(modelName) %>(<%= modelName %>Id: $<%= modelName %>Id) {
+    ...<%= classify(modelName) %>Details
+  }
+}
