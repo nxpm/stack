@@ -1,0 +1,10 @@
+import { Module } from '@nestjs/common'
+import { <%= classify(apiAppName) %><%= classify(modelName) %>DataAccessModule } from '@<%= npmScope %>/<%= apiAppName %>/<%= dasherize(modelName) %>/data-access'
+
+import { <%= classify(projectName) %>AdminResolver } from './<%= projectName %>-admin.resolver'
+
+@Module({
+  imports: [<%= classify(apiAppName) %><%= classify(modelName) %>DataAccessModule],
+  providers: [<%= classify(projectName) %>AdminResolver],
+})
+export class <%= classify(projectName) %>Module {}
