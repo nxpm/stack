@@ -163,11 +163,14 @@ export function createRunCommand(name, commands: string | string[]) {
 
 export function normalizeOptions<T extends BaseSchema>(options: T, projectType: ProjectType): NormalizedSchema {
   const name = toFileName(options.name)
-  const nxJson = readJSONSync(join(process.cwd(), 'nx.json'))
+  const nxJson = readJSONSync(join(process.cwd(), 'nx.json')) || {}
   const projectDirectory = options.directory ? `${toFileName(options.directory)}/${name}` : name
   const projectName = projectDirectory.replace(new RegExp('/', 'g'), '-')
   const projectRoot = `${projectRootDir(projectType)}/${projectDirectory}`
   const parsedTags = options.tags ? options.tags.split(',').map((s) => s.trim()) : []
+  const plugin = nxJson?.plugins && nxJson?.plugins['@nxpm/stack']
+  const apiAppName = options.apiAppName || plugin?.api?.project || 'api'
+  const webAppName = options.webAppName || plugin?.web?.project || 'web'
 
   return {
     ...options,
@@ -176,6 +179,8 @@ export function normalizeOptions<T extends BaseSchema>(options: T, projectType: 
     projectRoot,
     projectDirectory,
     parsedTags,
+    apiAppName,
+    webAppName,
   }
 }
 

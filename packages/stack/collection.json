@@ -78,6 +78,11 @@
       "schema": "./src/schematics/api/schema.json",
       "description": "api schematic"
     },
+    "api-crud": {
+      "factory": "./src/schematics/api-crud/schematic-api-crud",
+      "schema": "./src/schematics/api-crud/schema.json",
+      "description": "api-crud schematic"
+    },
     "api-e2e": {
       "factory": "./src/schematics/api-e2e/schematic-api-e2e",
       "schema": "./src/schematics/api-e2e/schema.json",

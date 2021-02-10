@@ -97,5 +97,12 @@ describe('@nxpm/stack:init e2e', () => {
       await runNxCommandAsync(`run-many --target test --all`)
       done()
     })
+
+    it(`should add a api-crud and still build`, async (done) => {
+      await runNxCommandAsync(`generate @nxpm/stack:api-crud company --plural companies`)
+      await runCommandAsync(`yarn prisma:db-push`)
+      await runNxCommandAsync(`build ${projectNameApi}`)
+      done()
+    })
   })
 })
