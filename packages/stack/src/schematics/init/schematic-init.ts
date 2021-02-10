@@ -164,7 +164,7 @@ export default function (options: InitSchematicSchema): Rule {
     schematic('web', { name: webName, styleLibrary: webStyleLibrary }),
     options?.ci === 'github' ? externalSchematic('@nxpm/ci', 'github', {}) : noop(),
     removeFiles([`apps/.gitkeep`, `libs/.gitkeep`, 'README.md']),
-    addWorkspaceGenerators(webName, normalizedOptions),
+    addWorkspaceGenerators(webName, { ...normalizedOptions, webName }),
     addFiles({ ...normalizedOptions, apiName, webName, projectRoot: './' }, './workspace'),
     formatFiles(),
   ])

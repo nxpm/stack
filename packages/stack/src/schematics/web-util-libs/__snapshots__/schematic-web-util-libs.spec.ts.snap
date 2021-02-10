@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`web-util-libs schematic should run successfully 1`] = `
+"export * from './generated/graphql'
+export * from './lib/test-util-sdk.service'
+"
+`;

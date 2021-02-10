@@ -74,9 +74,6 @@ exports[`init schematic should run successfully 1`] = `
     \\"test-auth-ui\\": {
       \\"tags\\": [\\"scope:test\\", \\"type:ui\\"]
     },
-    \\"test-core-data-access\\": {
-      \\"tags\\": [\\"scope:test\\", \\"type:data-access\\"]
-    },
     \\"test-core-feature\\": {
       \\"tags\\": [\\"scope:test\\", \\"type:feature\\"]
     },
@@ -112,6 +109,9 @@ exports[`init schematic should run successfully 1`] = `
     },
     \\"test-ui-sidebar-page\\": {
       \\"tags\\": [\\"scope:test\\", \\"type:ui\\"]
+    },
+    \\"test-util-sdk\\": {
+      \\"tags\\": [\\"scope:test\\", \\"type:util\\"]
     }
   },
   \\"affected\\": {
@@ -733,28 +733,6 @@ exports[`init schematic should run successfully 2`] = `
       },
       \\"schematics\\": {}
     },
-    \\"test-core-data-access\\": {
-      \\"projectType\\": \\"library\\",
-      \\"root\\": \\"libs/test/core/data-access\\",
-      \\"sourceRoot\\": \\"libs/test/core/data-access/src\\",
-      \\"prefix\\": \\"core\\",
-      \\"architect\\": {
-        \\"lint\\": {
-          \\"builder\\": \\"@nrwl/linter:eslint\\",
-          \\"options\\": {
-            \\"lintFilePatterns\\": [\\"libs/test/core/data-access/src/**/*.ts\\"]
-          }
-        },
-        \\"test\\": {
-          \\"builder\\": \\"@nrwl/jest:jest\\",
-          \\"options\\": {
-            \\"jestConfig\\": \\"libs/test/core/data-access/jest.config.js\\",
-            \\"passWithNoTests\\": true
-          }
-        }
-      },
-      \\"schematics\\": {}
-    },
     \\"test-core-feature\\": {
       \\"projectType\\": \\"library\\",
       \\"root\\": \\"libs/test/core/feature\\",
@@ -1004,6 +982,28 @@ exports[`init schematic should run successfully 2`] = `
         }
       },
       \\"schematics\\": {}
+    },
+    \\"test-util-sdk\\": {
+      \\"projectType\\": \\"library\\",
+      \\"root\\": \\"libs/test/util/sdk\\",
+      \\"sourceRoot\\": \\"libs/test/util/sdk/src\\",
+      \\"prefix\\": \\"sdk\\",
+      \\"architect\\": {
+        \\"lint\\": {
+          \\"builder\\": \\"@nrwl/linter:eslint\\",
+          \\"options\\": {
+            \\"lintFilePatterns\\": [\\"libs/test/util/sdk/src/**/*.ts\\"]
+          }
+        },
+        \\"test\\": {
+          \\"builder\\": \\"@nrwl/jest:jest\\",
+          \\"options\\": {
+            \\"jestConfig\\": \\"libs/test/util/sdk/jest.config.js\\",
+            \\"passWithNoTests\\": true
+          }
+        }
+      },
+      \\"schematics\\": {}
     }
   },
   \\"newProjectRoot\\": \\"\\",
@@ -1048,7 +1048,6 @@ exports[`init schematic should run successfully 3`] = `
       \\"@proj/test/auth/data-access\\": [\\"libs/test/auth/data-access/src/index.ts\\"],
       \\"@proj/test/auth/feature\\": [\\"libs/test/auth/feature/src/index.ts\\"],
       \\"@proj/test/auth/ui\\": [\\"libs/test/auth/ui/src/index.ts\\"],
-      \\"@proj/test/core/data-access\\": [\\"libs/test/core/data-access/src/index.ts\\"],
       \\"@proj/test/core/feature\\": [\\"libs/test/core/feature/src/index.ts\\"],
       \\"@proj/test/dashboard/feature\\": [\\"libs/test/dashboard/feature/src/index.ts\\"],
       \\"@proj/test/shell/feature\\": [\\"libs/test/shell/feature/src/index.ts\\"],
@@ -1060,7 +1059,8 @@ exports[`init schematic should run successfully 3`] = `
       \\"@proj/test/ui/icon\\": [\\"libs/test/ui/icon/src/index.ts\\"],
       \\"@proj/test/ui/page\\": [\\"libs/test/ui/page/src/index.ts\\"],
       \\"@proj/test/ui/page-header\\": [\\"libs/test/ui/page-header/src/index.ts\\"],
-      \\"@proj/test/ui/sidebar-page\\": [\\"libs/test/ui/sidebar-page/src/index.ts\\"]
+      \\"@proj/test/ui/sidebar-page\\": [\\"libs/test/ui/sidebar-page/src/index.ts\\"],
+      \\"@proj/test/util/sdk\\": [\\"libs/test/util/sdk/src/index.ts\\"]
     }
   }
 }
@@ -1169,7 +1169,7 @@ exports[`init schematic should run successfully 4`] = `
   \\"scripts\\": {
     \\"dev:test\\": \\"nx serve test --hmr\\",
     \\"build:test\\": \\"nx build test --prod\\",
-    \\"sdk:test\\": \\"graphql-codegen --config libs/test/core/data-access/src/codegen.yml\\",
+    \\"sdk:test\\": \\"graphql-codegen --config libs/test/util/sdk/src/codegen.yml\\",
     \\"sdk:test:watch\\": \\"yarn sdk:test --watch\\",
     \\"dev:api\\": \\"nx serve api\\",
     \\"build:api\\": \\"nx build api --prod\\",

@@ -303,10 +303,11 @@ export function createWebLib(
   filesToRemove: string[] = [],
   deps: Record<string, string> = {},
   devDeps: Record<string, string> = {},
+  classic = false,
 ): Rule {
   return chain([
     addDepsToPackageJson(deps, devDeps, true),
-    schematic('web-lib', { directory, name, type }),
+    schematic('web-lib', { directory, name, type, classic }),
     addFiles(normalizedOptions, path),
     removeFiles(filesToRemove, `${normalizedOptions.projectRoot}/src/lib/`),
   ])

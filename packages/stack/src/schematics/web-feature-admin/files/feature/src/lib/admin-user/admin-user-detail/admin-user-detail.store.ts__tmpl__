@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core'
 import { ActivatedRoute } from '@angular/router'
 import { ComponentStore, tapResponse } from '@ngrx/component-store'
-import { ApolloAngularSDK, User } from '@<%= npmScope %>/<%= appName %>/core/data-access'
+import { <%= classify(appName) %>UtilSdkService, User } from '@<%= npmScope %>/<%= appName %>/util/sdk'
 import { pluck, switchMap, tap } from 'rxjs/operators'
 
 export interface UserDetailState {
@@ -12,7 +12,7 @@ export interface UserDetailState {
 
 @Injectable()
 export class AdminUserDetailStore extends ComponentStore<UserDetailState> {
-  constructor(private readonly sdk: ApolloAngularSDK, route: ActivatedRoute) {
+  constructor(private readonly data: <%= classify(appName) %>UtilSdkService, route: ActivatedRoute) {
     super({ loading: false })
     this.loadUserEffect(route.params.pipe(pluck('userId')))
   }
@@ -30,7 +30,7 @@ export class AdminUserDetailStore extends ComponentStore<UserDetailState> {
     userId$.pipe(
       tap(() => this.setState({ loading: true })),
       switchMap((userId) =>
-        this.sdk.adminUser({ userId }).pipe(
+        this.data.adminUser({ userId }).pipe(
           tapResponse(
             (res) => this.patchState({ user: res.data.adminUser, errors: res.errors, loading: false }),
             (errors: any) =>

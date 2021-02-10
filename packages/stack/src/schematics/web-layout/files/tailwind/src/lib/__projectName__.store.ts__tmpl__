@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core'
 import { <%= classify(appName) %>AuthStore } from '@<%= npmScope %>/<%= appName %>/auth/data-access'
-import { Role } from '@<%= npmScope %>/<%= appName %>/core/data-access'
+import { Role } from '@<%= npmScope %>/<%= appName %>/util/sdk'
 import { ComponentStore } from '@ngrx/component-store'
 
 export interface <%= classify(projectName) %>Link {

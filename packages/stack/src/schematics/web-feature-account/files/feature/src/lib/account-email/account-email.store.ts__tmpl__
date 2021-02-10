@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core'
 
 import { ComponentStore, tapResponse } from '@ngrx/component-store'
-import { AccountCreateEmailInput, ApolloAngularSDK, Email } from '@<%= npmScope %>/<%= appName %>/core/data-access'
+import { AccountCreateEmailInput, <%= classify(appName) %>UtilSdkService, Email } from '@<%= npmScope %>/<%= appName %>/util/sdk'
 import { delay, mergeMap, switchMap, tap } from 'rxjs/operators'
 
 interface AccountEmailState {
@@ -12,7 +12,7 @@ interface AccountEmailState {
 
 @Injectable()
 export class AccountEmailStore extends ComponentStore<AccountEmailState> {
-  constructor(private readonly sdk: ApolloAngularSDK) {
+  constructor(private readonly data: <%= classify(appName) %>UtilSdkService) {
     super({ loading: false })
   }
 
@@ -21,7 +21,7 @@ export class AccountEmailStore extends ComponentStore<AccountEmailState> {
   readonly addEmail = this.effect<AccountCreateEmailInput>((input$) =>
     input$.pipe(
       mergeMap((input) =>
-        this.sdk.accountCreateEmail({ input }).pipe(
+        this.data.accountCreateEmail({ input }).pipe(
           tapResponse(
             ({ errors }) => {
               this.patchState({ errors })
@@ -37,7 +37,7 @@ export class AccountEmailStore extends ComponentStore<AccountEmailState> {
   readonly deleteEmail = this.effect<Email>((email$) =>
     email$.pipe(
       mergeMap((email) =>
-        this.sdk.accountDeleteEmail({ emailId: email.id }).pipe(
+        this.data.accountDeleteEmail({ emailId: email.id }).pipe(
           tapResponse(
             ({ errors }) => {
               this.patchState({ errors })
@@ -54,7 +54,7 @@ export class AccountEmailStore extends ComponentStore<AccountEmailState> {
     return trigger$.pipe(
       tap(() => this.setLoading(true)),
       switchMap(() =>
-        this.sdk.accountEmails({}, { fetchPolicy: 'no-cache' }).pipe(
+        this.data.accountEmails({}, { fetchPolicy: 'no-cache' }).pipe(
           tapResponse(
             ({ data, errors }) => {
               this.patchState({ emails: data?.accountEmails, loading: false, errors })
@@ -69,7 +69,7 @@ export class AccountEmailStore extends ComponentStore<AccountEmailState> {
   readonly setPrimaryEmail = this.effect<Email>((email$) =>
     email$.pipe(
       mergeMap((email) =>
-        this.sdk.accountMarkEmailPrimary({ emailId: email.id }).pipe(
+        this.data.accountMarkEmailPrimary({ emailId: email.id }).pipe(
           tapResponse(
             ({ errors }) => {
               this.patchState({ errors })

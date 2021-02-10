@@ -40,7 +40,7 @@ yarn dev:<%= webName %>
 
 # Generate GraphQL SDK
 
-The queries for the GraphQL SDK are stored in `libs/<%= webName %>/core/data-access/src/graphql`.
+The queries for the GraphQL SDK are stored in `libs/<%= webName %>/util/sdk/src/graphql`.
 
 After updating the queries you can re-generate the SDK:
 
