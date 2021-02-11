@@ -32,8 +32,8 @@ export class Admin<%= classify(modelName) %>CreateStore extends ComponentStore<<
         this.data.adminCreate<%= classify(modelName) %>({ input }).pipe(
           tapResponse(
             (res) => {
-              this.patchState({ item: res.data.adminCreate<%= classify(modelName) %>, errors: res.errors, loading: false })
-              return this.router.navigate(['/admin/<%= dasherize(modelName) %>s', res.data?.adminCreate<%= classify(modelName) %>?.id])
+              this.patchState({ item: res.data.created, errors: res.errors, loading: false })
+              return this.router.navigate(['/admin/<%= dasherize(modelName) %>s', res.data?.created?.id])
             },
             (errors: any) =>
               this.patchState({

@@ -32,7 +32,7 @@ export class Admin<%= classify(modelName) %>DetailStore extends ComponentStore<<
       switchMap((<%= modelName %>Id) =>
         this.data.admin<%= classify(modelName) %>({ <%= modelName %>Id }).pipe(
           tapResponse(
-            (res) => this.patchState({ <%= modelName %>: res.data.admin<%= classify(modelName) %>, errors: res.errors, loading: false }),
+            (res) => this.patchState({ item: res.data.item, errors: res.errors, loading: false }),
             (errors: any) =>
               this.patchState({
                 loading: false,

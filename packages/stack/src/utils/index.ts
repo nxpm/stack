@@ -164,7 +164,7 @@ export function normalizeOptions<T extends BaseSchema>(options: T, projectType: 
   const name = toFileName(options.name)
   const nxJson = readJSONSync(join(process.cwd(), 'nx.json')) || {}
   const projectDirectory = options.directory ? `${toFileName(options.directory)}/${name}` : name
-  const projectName = projectDirectory.replace(new RegExp('/', 'g'), '-')
+  const projectName = projectDirectory?.replace(new RegExp('/', 'g'), '-')
   const projectRoot = `${projectRootDir(projectType)}/${projectDirectory}`
   const parsedTags = options.tags ? options.tags?.split(',').map((s) => s.trim()) : []
   const plugin = nxJson?.plugins && nxJson?.plugins['@nxpm/stack']

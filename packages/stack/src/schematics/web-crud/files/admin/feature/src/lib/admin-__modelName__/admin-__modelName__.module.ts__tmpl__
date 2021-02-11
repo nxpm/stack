@@ -2,43 +2,35 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core'
 
-import { Admin<%= classify(modelName) %>Component } from './admin-<%= dasherize(modelName) %>.component'
-
 @NgModule({
   imports: [
     CommonModule,
     RouterModule.forChild([
       {
         path: '',
+        loadChildren: () => import('./admin-<%= dasherize(modelName) %>-list/admin-<%= dasherize(modelName) %>-list.module').then((m) => m.Admin<%= classify(modelName) %>ListModule),
+      },
+      {
+        path: 'create',
+        loadChildren: () =>
+        import('./admin-<%= dasherize(modelName) %>-create/admin-<%= dasherize(modelName) %>-create.module').then((m) => m.Admin<%= classify(modelName) %>CreateModule),
+      },
+      {
+        path: ':<%= modelName %>Id',
         children: [
           {
             path: '',
-            loadChildren: () => import('./admin-<%= dasherize(modelName) %>-list/admin-<%= dasherize(modelName) %>-list.module').then((m) => m.Admin<%= classify(modelName) %>ListModule),
-          },
-          {
-            path: 'create',
             loadChildren: () =>
-            import('./admin-<%= dasherize(modelName) %>-create/admin-<%= dasherize(modelName) %>-create.module').then((m) => m.Admin<%= classify(modelName) %>CreateModule),
+            import('./admin-<%= dasherize(modelName) %>-detail/admin-<%= dasherize(modelName) %>-detail.module').then((m) => m.Admin<%= classify(modelName) %>DetailModule),
           },
           {
-          path: ':<%= modelName %>Id',
-          children: [
-            {
-              path: '',
-              loadChildren: () =>
-              import('./admin-<%= dasherize(modelName) %>-detail/admin-<%= dasherize(modelName) %>-detail.module').then((m) => m.Admin<%= classify(modelName) %>DetailModule),
-            },
-            {
-              path: 'edit',
-              loadChildren: () =>
-              import('./admin-<%= dasherize(modelName) %>-edit/admin-<%= dasherize(modelName) %>-edit.module').then((m) => m.Admin<%= classify(modelName) %>EditModule),
-            },
-          ],
-        },
+            path: 'edit',
+            loadChildren: () =>
+            import('./admin-<%= dasherize(modelName) %>-edit/admin-<%= dasherize(modelName) %>-edit.module').then((m) => m.Admin<%= classify(modelName) %>EditModule),
+          },
         ],
       },
     ]),
   ],
-  declarations: [Admin<%= classify(modelName) %>Component],
 })
 export class Admin<%= classify(modelName) %>Module {}

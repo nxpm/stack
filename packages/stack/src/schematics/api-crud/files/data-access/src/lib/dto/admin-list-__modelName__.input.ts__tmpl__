@@ -3,7 +3,7 @@ import { CorePagingInput } from '@<%= npmScope %>/<%= apiAppName %>/core/data-ac
 
 @InputType()
 export class AdminList<%= classify(modelName) %>Input extends CorePagingInput {
-  @Field()
-  <%= nameField %>: string
+  @Field({ nullable: true })
+  <%= nameField %>?: string
 }
 

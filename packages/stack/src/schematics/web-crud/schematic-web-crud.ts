@@ -5,98 +5,84 @@ import { addFiles, createProjectName, getPluginConfig, normalizeOptions } from '
 import { ApiCrudSchematicSchema } from './schema'
 import { strings } from '@angular-devkit/core'
 
-function webCrudLibrary(type: 'ui' | 'feature', options: ApiCrudSchematicSchema): Rule {
-  const name = createProjectName(options.name, type)
+function getTemplateOptions(options: ApiCrudSchematicSchema) {
   const { webAppName } = getPluginConfig(options)
+  const modelName = options.model || options.name
+  const pluralModelName = options?.plural || modelName + 's'
   const directory = options.directory || webAppName
   const normalizedOptions = normalizeOptions<ApiCrudSchematicSchema>(
-    { ...options, directory, name },
+    { ...options, directory, name: options.name },
     ProjectType.Library,
   )
-  const modelName = options.model || options.name
-  const pluralModelName = options.plural || modelName + 's'
+
   const nameField = options.nameField || 'name'
-  const templateOptions = {
+  return {
     ...normalizedOptions,
     directory,
     modelName,
     pluralModelName,
     nameField,
-    type,
   }
+}
 
+function webCrudLibrary(type: 'ui' | 'feature', options: ApiCrudSchematicSchema): Rule {
+  const name = createProjectName(options.name, type)
+  const templateOptions = getTemplateOptions(options)
   return chain([
     externalSchematic('@nrwl/angular', 'library', {
       name,
-      directory,
-      tags: `scope:${directory},type:${type}`,
+      directory: templateOptions.directory,
+      tags: `scope:${templateOptions.directory},type:${type}`,
       style: 'css',
       prefix: options.name,
       linter: 'eslint',
       skipInstal: true,
     }),
-    addFiles(templateOptions, `./files/${type}`),
+    addFiles({ ...templateOptions, type } as any, `./files/${type}`),
   ])
 }
 
 function updateGraphQLSDK(options: ApiCrudSchematicSchema): Rule {
-  const normalizedOptions = normalizeOptions<ApiCrudSchematicSchema>(
-    { ...options, directory: options.directory, name: options.name },
-    ProjectType.Library,
-  )
-
-  const modelName = options.model || options.name
-  const pluralModelName = options.plural || modelName + 's'
-  const nameField = options.nameField || 'name'
-  const projectRoot = `libs/${normalizedOptions.webAppName}/util/sdk`
+  const templateOptions = getTemplateOptions(options)
+  const projectRoot = `libs/${templateOptions.webAppName}/util/sdk`
 
   const params: any = {
-    ...normalizedOptions,
-    modelName,
-    pluralModelName,
-    nameField,
+    ...templateOptions,
     projectRoot,
   }
   return chain([addFiles(params, './files/sdk')])
 }
 
 function addAdminRoutes(options: ApiCrudSchematicSchema): Rule {
+  const templateOptions = getTemplateOptions(options)
   return function (host: Tree, ctx: SchematicContext) {
-    const normalizedOptions = normalizeOptions<ApiCrudSchematicSchema>(
-      { ...options, directory: options.directory || 'web', name: options.name },
-      ProjectType.Library,
-    )
-
-    const modelName = options.model || options.name
-    const pluralModelName = options?.plural || modelName + 's'
-    const modulePath = `admin-${strings.dasherize(modelName)}`
-
-    const adminComponent = `libs/${normalizedOptions.webAppName}/admin/feature/src/lib/${normalizedOptions.webAppName}-admin-feature.component.ts`
+    const modulePath = `admin-${strings.dasherize(templateOptions.modelName)}`
+    const adminComponent = `libs/${templateOptions.webAppName}/admin/feature/src/lib/${templateOptions.webAppName}-admin-feature.component.ts`
     ctx.logger.info(`Updating ${adminComponent}`)
     searchAppend(
       host,
       adminComponent,
       `{ label: 'Dashboard', path: 'dashboard', icon: '' },`,
-      `{ label: '${strings.classify(pluralModelName)}', path: '${strings.dasherize(modelName)}', icon: '' },`,
+      `{ label: '${strings.classify(templateOptions.pluralModelName)}', path: '${strings.dasherize(
+        templateOptions.modelName,
+      )}', icon: '' },`,
     )
 
-    const adminModule = `libs/${normalizedOptions.webAppName}/admin/feature/src/lib/${normalizedOptions.webAppName}-admin-feature.module.ts`
+    const adminModule = `libs/${templateOptions.webAppName}/admin/feature/src/lib/${templateOptions.webAppName}-admin-feature.module.ts`
     ctx.logger.info(`Updating ${adminModule}`)
     searchAppend(
       host,
       adminModule,
       `{ path: '', pathMatch: 'full', redirectTo: 'dashboard' },`,
-      `{ path: '${strings.dasherize(
-        modelName,
-      )}', loadChildren: () => import('./${modulePath}/${modulePath}.module').then((m) => m.Admin${strings.classify(
-        modelName,
-      )}Module) },`,
+      `{ path: '${strings.dasherize(templateOptions.modelName)}',
+                  loadChildren: () => import('./${modulePath}/${modulePath}.module')
+                    .then((m) => m.Admin${strings.classify(templateOptions.modelName)}Module) },
+        `,
     )
 
     const params: any = {
-      ...normalizedOptions,
-      modelName,
-      projectRoot: `libs/${normalizedOptions.webAppName}/admin/feature`,
+      ...templateOptions,
+      projectRoot: `libs/${templateOptions.webAppName}/admin/feature`,
     }
 
     return addFiles(params, './files/admin/feature')
@@ -104,41 +90,34 @@ function addAdminRoutes(options: ApiCrudSchematicSchema): Rule {
 }
 
 function addShellRoutes(options: ApiCrudSchematicSchema): Rule {
-  return function (host: Tree, ctx: SchematicContext) {
-    const normalizedOptions = normalizeOptions<ApiCrudSchematicSchema>(
-      { ...options, directory: options.directory || 'web', name: options.name },
-      ProjectType.Library,
-    )
-
-    const modelName = options.model || options.name
-    const pluralModelName = options?.plural || modelName + 's'
+  const templateOptions = getTemplateOptions(options)
+  return function (host: Tree) {
     const modulePath = [
-      `@${normalizedOptions?.npmScope}`,
-      strings.dasherize(normalizedOptions?.webAppName),
-      strings.dasherize(modelName),
+      `@${templateOptions?.npmScope}`,
+      strings.dasherize(templateOptions?.webAppName),
+      strings.dasherize(templateOptions.modelName),
       'feature',
     ].join('/')
-
     searchAppend(
       host,
-      `libs/${normalizedOptions.webAppName}/shell/feature/src/lib/${normalizedOptions.webAppName}-shell-feature.module.ts`,
+      `libs/${templateOptions.webAppName}/shell/feature/src/lib/${templateOptions.webAppName}-shell-feature.module.ts`,
       `{ path: '', pathMatch: 'full', redirectTo: 'dashboard' },`,
       `{
-        path: '${strings.dasherize(pluralModelName)}',
+        path: '${strings.dasherize(templateOptions.pluralModelName)}',
         loadChildren: () =>
-          import('${modulePath}').then((m) => m.${strings.classify(normalizedOptions.webAppName)}${strings.classify(
-        modelName,
+          import('${modulePath}').then((m) => m.${strings.classify(templateOptions.webAppName)}${strings.classify(
+        templateOptions.modelName,
       )}FeatureModule)
         },`,
     )
-
     searchAppend(
       host,
-      `libs/${normalizedOptions.webAppName}/layout/src/lib/${normalizedOptions.webAppName}-layout.store.ts`,
+      `libs/${templateOptions.webAppName}/layout/src/lib/${templateOptions.webAppName}-layout.store.ts`,
       `{ label: 'Dashboard', route: '/dashboard' },`,
-      `{ label: '${strings.capitalize(pluralModelName)}', route: '${strings.dasherize(pluralModelName)}' },`,
+      `{ label: '${strings.capitalize(templateOptions.pluralModelName)}', route: '${strings.dasherize(
+        templateOptions.pluralModelName,
+      )}' },`,
     )
-
     return host
   }
 }

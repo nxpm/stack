@@ -1,7 +1,7 @@
 fragment <%= classify(modelName) %>Details on <%= classify(modelName) %> {
   id
   createdAt
-  updateAt
+  updatedAt
   <%= nameField %>
 }
 
@@ -9,7 +9,7 @@ query Admin<%= classify(pluralModelName) %>($input: AdminList<%= classify(modelN
   items: admin<%= classify(pluralModelName) %>(input: $input) {
     ...<%= classify(modelName) %>Details
   }
-  count: adminCount<%= classify(modelName) %>(input: $input) {
+  count: adminCount<%= classify(pluralModelName) %>(input: $input) {
     ...CorePagingDetails
   }
 }
@@ -23,9 +23,6 @@ query AdminCount<%= classify(pluralModelName) %>($input: AdminList<%= classify(m
 query Admin<%= classify(modelName) %>($<%= modelName %>Id: String!) {
   item: admin<%= classify(modelName) %>(<%= modelName %>Id: $<%= modelName %>Id) {
     ...<%= classify(modelName) %>Details
-    emails {
-      ...EmailDetails
-    }
   }
 }
 
@@ -40,7 +37,7 @@ mutation AdminUpdate<%= classify(modelName) %>($<%= modelName %>Id: String!, $in
     ...<%= classify(modelName) %>Details
   }
 }
-o
+
 mutation AdminDelete<%= classify(modelName) %>($<%= modelName %>Id: String!) {
   deleted: adminDelete<%= classify(modelName) %>(<%= modelName %>Id: $<%= modelName %>Id) {
     ...<%= classify(modelName) %>Details

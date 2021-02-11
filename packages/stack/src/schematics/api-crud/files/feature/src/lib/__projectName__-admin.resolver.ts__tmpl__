@@ -7,7 +7,7 @@ import {
   <%= classify(apiAppName) %><%= classify(modelName) %>DataAccessService,
   <%= classify(modelName) %>,
 } from '@<%= npmScope %>/<%= apiAppName %>/<%= dasherize(modelName) %>/data-access'
-import { CorePaging, CorePagingInput } from '@<%= npmScope %>/<%= apiAppName %>/core/data-access'
+import { CorePaging } from '@<%= npmScope %>/<%= apiAppName %>/core/data-access'
 import {
   CtxUser,
   GqlAuthAdminGuard,
@@ -22,7 +22,7 @@ export class <%= classify(projectName) %>AdminResolver {
   @Query(() => [<%= classify(modelName) %>], { nullable: true })
   admin<%= classify(pluralModelName) %>(
     @CtxUser() admin: User,
-    @Args({ name: 'input', type: () => CorePagingInput, nullable: true }) input?: AdminList<%= classify(modelName) %>Input,
+    @Args({ name: 'input', type: () => AdminList<%= classify(modelName) %>Input, nullable: true }) input?: AdminList<%= classify(modelName) %>Input,
   ) {
     return this.service.admin<%= classify(pluralModelName) %>(admin.id, input)
   }
@@ -30,7 +30,7 @@ export class <%= classify(projectName) %>AdminResolver {
   @Query(() => CorePaging, { nullable: true })
   adminCount<%= classify(pluralModelName) %>(
     @CtxUser() admin: User,
-    @Args({ name: 'input', type: () => CorePagingInput, nullable: true }) input?: AdminList<%= classify(modelName) %>Input,
+    @Args({ name: 'input', type: () => AdminList<%= classify(modelName) %>Input, nullable: true }) input?: AdminList<%= classify(modelName) %>Input,
   ) {
     return this.service.adminCount<%= classify(pluralModelName) %>(admin.id, input)
   }

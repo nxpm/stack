@@ -25,7 +25,7 @@ export class Admin<%= classify(modelName) %>EditComponent {
   constructor(private readonly store: Admin<%= classify(modelName) %>EditStore) {}
 
   update<%= classify(modelName) %>(input: AdminUpdate<%= classify(modelName) %>Input) {
-    const { role, <%= classify(nameField) %>, firstName, lastName, phone, avatarUrl, location, bio } = input
-    this.store.update<%= classify(modelName) %>Effect({ role, <%= classify(nameField) %>, firstName, lastName, phone, avatarUrl, location, bio })
+    const { <%= nameField %> } = input
+    this.store.update<%= classify(modelName) %>Effect({ <%= nameField %> })
   }
 }

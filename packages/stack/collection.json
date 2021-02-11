@@ -118,6 +118,11 @@
       "schema": "./src/schematics/api-lib/schema.json",
       "description": "api-lib schematic"
     },
+    "generators": {
+      "factory": "./src/schematics/generators/schematic-generators",
+      "schema": "./src/schematics/generators/schema.json",
+      "description": "generators schematic"
+    },
     "init": {
       "factory": "./src/schematics/init/schematic-init",
       "schema": "./src/schematics/init/schema.json",

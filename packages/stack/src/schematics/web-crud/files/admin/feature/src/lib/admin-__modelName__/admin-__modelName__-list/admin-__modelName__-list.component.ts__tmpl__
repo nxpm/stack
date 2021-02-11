@@ -4,12 +4,12 @@ import { Admin<%= classify(modelName) %>ListStore } from './admin-<%= modelName 
 @Component({
   template: `
     <ng-container *ngIf="vm$ | async as vm">
-      <ui-page-header title="<%= classify(modelName) %>s" linkPath="create" linkTitle="Create <%= classify(modelName) %>"></ui-page-header>
+      <ui-page-header title="<%= classify(pluralModelName) %>" linkPath="create" linkTitle="Create <%= classify(modelName) %>"></ui-page-header>
       <ng-container *ngIf="vm.loading">
         <div class="flex py-36 animate-pulse justify-center align-center">LOADING...</div>
       </ng-container>
       <ng-container *ngIf="!vm.loading">
-        <<%= modelName %>-table [items]="vm.items"></item-table>
+        <pre>{{vm.items | json}}</pre>
       </ng-container>
     </ng-container>
   `,
@@ -20,6 +20,6 @@ export class Admin<%= classify(modelName) %>ListComponent implements OnInit {
   constructor(private readonly store: Admin<%= classify(modelName) %>ListStore) {}
 
   ngOnInit(): void {
-    this.store.load<%= classify(modelName) %>sEffect()
+    this.store.load<%= classify(pluralModelName) %>Effect()
   }
 }
