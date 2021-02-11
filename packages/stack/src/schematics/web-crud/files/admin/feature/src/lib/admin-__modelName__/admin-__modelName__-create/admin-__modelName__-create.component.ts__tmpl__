@@ -6,7 +6,11 @@ import { Admin<%= classify(modelName) %>CreateStore } from './admin-<%= dasheriz
   template: `
     <ng-container *ngIf="vm$ | async as vm">
       <ui-page-header title="Create <%= classify(modelName) %>" linkPath=".." linkTitle="Back"></ui-page-header>
-      <ui-form [fields]="fields" [model]="{}" (submitForm)="create<%= classify(modelName) %>($event)"></ui-form>
+      <div class="dark:bg-gray-800 px-6 py-4 rounded-md">
+        <ui-form [fields]="fields" [model]="{}" (submitForm)="create<%= classify(modelName) %>($event)">
+          <ui-button label="Submit" type="submit"></ui-button>
+        </ui-form>
+      </div>
     </ng-container>
   `,
   providers: [Admin<%= classify(modelName) %>CreateStore],
@@ -14,7 +18,7 @@ import { Admin<%= classify(modelName) %>CreateStore } from './admin-<%= dasheriz
 export class Admin<%= classify(modelName) %>CreateComponent {
   readonly vm$ = this.store.vm$
   fields = [
-    <%= classify(webAppName) %>UiFormField.input('<%= classify(nameField) %>', { label: '<%= classify(nameField) %>' }),
+    <%= classify(webAppName) %>UiFormField.input('<%= nameField %>', { label: '<%= classify(nameField) %>' }),
   ]
   constructor(private readonly store: Admin<%= classify(modelName) %>CreateStore) {}
 
