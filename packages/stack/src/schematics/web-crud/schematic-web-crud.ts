@@ -18,6 +18,7 @@ function getTemplateOptions(options: ApiCrudSchematicSchema) {
   const nameField = options.nameField || 'name'
   return {
     ...normalizedOptions,
+    prefix: strings.dasherize(modelName),
     directory,
     modelName,
     pluralModelName,
@@ -27,7 +28,8 @@ function getTemplateOptions(options: ApiCrudSchematicSchema) {
 
 function webCrudLibrary(type: 'ui' | 'feature', options: ApiCrudSchematicSchema): Rule {
   const name = createProjectName(options.name, type)
-  const templateOptions = getTemplateOptions(options)
+  const templateOptions = getTemplateOptions({ ...options })
+  console.log('webCrudLibrary', type, { templateOptions })
   return chain([
     externalSchematic('@nrwl/angular', 'library', {
       name,
@@ -38,7 +40,10 @@ function webCrudLibrary(type: 'ui' | 'feature', options: ApiCrudSchematicSchema)
       linter: 'eslint',
       skipInstal: true,
     }),
-    addFiles({ ...templateOptions, type } as any, `./files/${type}`),
+    addFiles(
+      { ...templateOptions, projectRoot: templateOptions.projectRoot + '/' + type, type } as any,
+      `./files/${type}`,
+    ),
   ])
 }
 
@@ -64,7 +69,7 @@ function addAdminRoutes(options: ApiCrudSchematicSchema): Rule {
       adminComponent,
       `{ label: 'Dashboard', path: 'dashboard', icon: '' },`,
       `{ label: '${strings.classify(templateOptions.pluralModelName)}', path: '${strings.dasherize(
-        templateOptions.modelName,
+        templateOptions.pluralModelName,
       )}', icon: '' },`,
     )
 
@@ -74,7 +79,7 @@ function addAdminRoutes(options: ApiCrudSchematicSchema): Rule {
       host,
       adminModule,
       `{ path: '', pathMatch: 'full', redirectTo: 'dashboard' },`,
-      `{ path: '${strings.dasherize(templateOptions.modelName)}',
+      `{ path: '${strings.dasherize(templateOptions.pluralModelName)}',
                   loadChildren: () => import('./${modulePath}/${modulePath}.module')
                     .then((m) => m.Admin${strings.classify(templateOptions.modelName)}Module) },
         `,

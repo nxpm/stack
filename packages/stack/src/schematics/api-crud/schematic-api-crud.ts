@@ -4,7 +4,6 @@ import { ProjectType } from '@nrwl/workspace'
 import { addFiles, createProjectName, normalizeOptions } from '../../utils'
 import { ApiCrudSchematicSchema } from './schema'
 import { strings } from '@angular-devkit/core'
-import { execSync } from 'child_process'
 
 function apiCrudDataAccess(type: 'data-access' | 'feature', options: ApiCrudSchematicSchema): Rule {
   const directory = options.directory || 'api'
@@ -14,7 +13,7 @@ function apiCrudDataAccess(type: 'data-access' | 'feature', options: ApiCrudSche
     ProjectType.Library,
   )
   const modelName = options.model || options.name
-  const pluralModelName = options.plural || options.model + 's'
+  const pluralModelName = options.plural || modelName + 's'
   const nameField = options.nameField || 'name'
   const templateOptions = {
     ...normalizedOptions,
@@ -44,11 +43,11 @@ function updatePrisma(options: ApiCrudSchematicSchema): Rule {
     const schema = host.read(prismaPath)?.toString()
     const modelName = options.model || options.name
     const nameField = options.nameField || 'name'
-    const modelIdenitier = `model ${strings.classify(modelName)}`
+    const modelIdentifier = `model ${strings.classify(modelName)}`
 
-    if (schema && !schema.includes(modelIdenitier)) {
+    if (schema && !schema.includes(modelIdentifier)) {
       const model = [
-        `${modelIdenitier} {`,
+        `${modelIdentifier} {`,
         `  id        String   @id @default(cuid())`,
         `  createdAt DateTime @default(now())`,
         `  updatedAt DateTime @updatedAt`,
@@ -56,7 +55,7 @@ function updatePrisma(options: ApiCrudSchematicSchema): Rule {
         '}',
       ].join('\n')
       host.overwrite(prismaPath, [schema, model, ''].join('\n\n'))
-      ctx.logger.info(`Add ${modelIdenitier} to ${prismaPath}`)
+      ctx.logger.info(`Add ${modelIdentifier} to ${prismaPath}`)
     }
 
     return host

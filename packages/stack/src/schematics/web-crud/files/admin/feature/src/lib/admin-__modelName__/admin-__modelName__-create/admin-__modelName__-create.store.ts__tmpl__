@@ -33,7 +33,7 @@ export class Admin<%= classify(modelName) %>CreateStore extends ComponentStore<<
           tapResponse(
             (res) => {
               this.patchState({ item: res.data.created, errors: res.errors, loading: false })
-              return this.router.navigate(['/admin/<%= dasherize(modelName) %>s', res.data?.created?.id])
+              return this.router.navigate(['/admin/<%= dasherize(pluralModelName) %>', res.data?.created?.id])
             },
             (errors: any) =>
               this.patchState({

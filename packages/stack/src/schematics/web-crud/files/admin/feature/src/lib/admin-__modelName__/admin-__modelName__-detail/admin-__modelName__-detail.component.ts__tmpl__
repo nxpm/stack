@@ -4,27 +4,21 @@ import { Admin<%= classify(modelName) %>DetailStore } from './admin-<%= dasheriz
 @Component({
   template: `
     <ng-container *ngIf="vm$ | async as vm">
-      <ui-page-header [title]="'<%= classify(modelName) %> ' + vm.item?.<%= classify(nameField) %>" linkPath=".." linkTitle="Back"></ui-page-header>
+      <ui-page-header [title]="'<%= classify(modelName) %> ' + vm.item?.<%= nameField %>" linkPath=".." linkTitle="Back"></ui-page-header>
       <ng-container *ngIf="vm.item">
         <div class="dark:bg-gray-800 px-6 py-4 rounded-md">
           <div class="flex items-center justify-between">
             <div class="flex items-center">
-              <div class="flex-shrink-0 h-20 w-20">
-                <img class="h-20 w-20 rounded-full" [attr.src]="vm.item?.avatarUrl" alt="" />
-              </div>
               <div class="ml-4">
                 <div class="text-lg font-medium text-gray-900 dark:text-gray-200">
-                  <a [routerLink]="vm.item?.id">
-                    {{ vm.item?.name }}
-                  </a>
+                  {{ vm.item?.<%= nameField %> }}
                 </div>
                 <div class="text-lg text-gray-500">
-                  {{ vm.item?.email }}
+                  {{ vm.item?.updatedAt | date: 'short' }}
                 </div>
               </div>
             </div>
             <div class="flex space-x-2">
-              <ui-button routerLink="password" label="Change Password"></ui-button>
               <ui-button routerLink="edit" label="Edit"></ui-button>
             </div>
           </div>

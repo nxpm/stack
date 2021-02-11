@@ -3,17 +3,17 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { <%= classify(webAppName) %>UiPageModule } from '@<%= npmScope %>/<%= webAppName %>/ui/page'
 
-import { <%= classify(projectName) %>Component } from './<%= projectName %>.component'
+import { <%= classify(projectName) %>FeatureComponent } from './<%= projectName %>-feature.component'
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule<% if (type === 'feature') { %>.forChild([
-     { path: '', component: <%= classify(projectName) %>Component }
+     { path: '', component: <%= classify(projectName) %>FeatureComponent }
     ])  <% } %>,
     <%= classify(webAppName) %>UiPageModule,
   ],
-  declarations: [<%= classify(projectName) %>Component],
-  <% if (type === 'ui') { %>exports: [<%= classify(projectName) %>Component ]<% } %>
+  declarations: [<%= classify(projectName) %>FeatureComponent],
+  <% if (type === 'ui') { %>exports: [<%= classify(projectName) %>FeatureComponent ]<% } %>
 })
-export class <%= classify(projectName) %>Module {}
+export class <%= classify(projectName) %>FeatureModule {}

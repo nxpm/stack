@@ -1,0 +1,2 @@
+export * from './lib/<%= projectName %>.component'
+export * from './lib/<%= projectName %>.module'

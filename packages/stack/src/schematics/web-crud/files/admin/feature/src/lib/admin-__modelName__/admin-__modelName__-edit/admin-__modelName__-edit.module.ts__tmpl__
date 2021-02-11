@@ -1,6 +1,8 @@
 import { CommonModule } from '@angular/common'
 import { NgModule } from '@angular/core'
 import { RouterModule } from '@angular/router'
+import { <%= classify(webAppName) %>UiButtonModule } from '@<%= npmScope %>/<%= webAppName %>/ui/button'
+import { <%= classify(webAppName) %>UiFormModule } from '@<%= npmScope %>/<%= webAppName %>/ui/form'
 import { <%= classify(webAppName) %>UiPageHeaderModule } from '@<%= npmScope %>/<%= webAppName %>/ui/page-header'
 
 import { Admin<%= classify(modelName) %>EditComponent } from './admin-<%= dasherize(modelName) %>-edit.component'
@@ -10,6 +12,8 @@ import { Admin<%= classify(modelName) %>EditComponent } from './admin-<%= dasher
   imports: [
     CommonModule,
     RouterModule.forChild([{ path: '', component: Admin<%= classify(modelName) %>EditComponent }]),
+    <%= classify(webAppName) %>UiButtonModule,
+    <%= classify(webAppName) %>UiFormModule,
     <%= classify(webAppName) %>UiPageHeaderModule,
   ],
 })
