@@ -68,6 +68,11 @@
       "schema": "./src/schematics/web-style/schema.json",
       "description": "web-styles schematic"
     },
+    "web-ui": {
+      "factory": "./src/schematics/web-ui/schematic-web-ui",
+      "schema": "./src/schematics/web-ui/schema.json",
+      "description": "web-ui schematic"
+    },
     "web-ui-libs": {
       "factory": "./src/schematics/web-ui-libs/schematic-web-ui-libs",
       "schema": "./src/schematics/web-ui-libs/schema.json",

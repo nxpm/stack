@@ -180,6 +180,7 @@ export function normalizeOptions<T extends BaseSchema>(options: T, projectType: 
     parsedTags,
     apiAppName,
     webAppName,
+    name,
   }
 }
 

@@ -1,3 +1,2 @@
+export * from './lib/<%= projectName %>.component'
 export * from './lib/<%= projectName %>.module'
-<% if (type === 'data-access') { %>
-export * from './lib/<%= projectName %>.service'<% } %>
