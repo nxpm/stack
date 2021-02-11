@@ -28,7 +28,7 @@ function getTemplateOptions(options: ApiCrudSchematicSchema) {
 
 function webCrudLibrary(type: 'ui' | 'feature', options: ApiCrudSchematicSchema): Rule {
   const name = createProjectName(options.name, type)
-  const templateOptions = getTemplateOptions(options)
+  const templateOptions = getTemplateOptions({ ...options })
   console.log('webCrudLibrary', type, { templateOptions })
   return chain([
     externalSchematic('@nrwl/angular', 'library', {
@@ -40,7 +40,10 @@ function webCrudLibrary(type: 'ui' | 'feature', options: ApiCrudSchematicSchema)
       linter: 'eslint',
       skipInstal: true,
     }),
-    addFiles({ ...templateOptions, type } as any, `./files/${type}`),
+    addFiles(
+      { ...templateOptions, projectRoot: templateOptions.projectRoot + '/' + type, type } as any,
+      `./files/${type}`,
+    ),
   ])
 }
 

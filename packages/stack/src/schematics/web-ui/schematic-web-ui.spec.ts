@@ -7,7 +7,7 @@ import { WebUiSchematicSchema } from './schema'
 
 describe('web-ui schematic', () => {
   let appTree: Tree
-  const options: WebUiSchematicSchema = { name: 'test', type: 'feature' }
+  const options: WebUiSchematicSchema = { name: 'test' }
 
   const testRunner = new SchematicTestRunner('@nxpm/web-ui', join(__dirname, '../../../collection.json'))
 

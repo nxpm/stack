@@ -6,10 +6,10 @@ import { Component } from '@angular/core'
     <ui-page headerTitle="<%= classify(pluralModelName) %>">
        <div class="dark:bg-gray-800 px-6 py-4 mb-3 md:mb-6 rounded-lg shadow">
           <div>
-            <%= classify(projectName) %>Component
+            <%= classify(projectName) %>FeatureComponent
           </div>
        </div>
     </ui-page>
   `
 })
-export class <%= classify(projectName) %>Component {}
+export class <%= classify(projectName) %>FeatureComponent {}
