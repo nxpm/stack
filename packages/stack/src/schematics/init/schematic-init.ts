@@ -9,7 +9,6 @@ import {
   configureHuskyLintStaged,
   configureNxJsonDefaultBase,
   normalizeOptions,
-  PluginForNxJson,
   removeFiles,
 } from '../../utils'
 
@@ -43,16 +42,6 @@ function updatePrettierConfig(): Rule {
       tree.create(prettierRc, prettierRcContent)
     }
   }
-}
-
-function addNxpmPluginToNxJson(apiProjectName = 'api', webProjectName = 'web'): Rule {
-  const nxPlugin: PluginForNxJson = {
-    '@nxpm/stack': {
-      api: { project: apiProjectName },
-      web: { project: webProjectName },
-    },
-  }
-  return addPluginToNxJson(nxPlugin)
 }
 
 function addDockerfile(): Rule {
@@ -132,9 +121,11 @@ function addWorkspaceGenerators(name, normalizedOptions): Rule {
 
 export default function (options: InitSchematicSchema): Rule {
   const normalizedOptions = normalizeOptions(options, ProjectType.Application)
-  const webName = options.name
-  const webStyleLibrary = options.webStyleLibrary || 'tailwind'
   const apiName = 'api'
+  const apiTech = '@nrwl/nest'
+  const webName = options.name
+  const webTech = '@nrwl/angular'
+  const webStyleLibrary = options.webStyleLibrary || 'tailwind'
   return chain([
     addDepsToPackageJson(
       {},
@@ -153,7 +144,10 @@ export default function (options: InitSchematicSchema): Rule {
     addDockerCompose(),
     configureHuskyLintStaged(),
     configureNxJsonDefaultBase('main'),
-    addNxpmPluginToNxJson(apiName, webName),
+    addPluginToNxJson('@nxpm/stack', {
+      api: { tech: apiTech, project: apiName },
+      web: { tech: webTech, project: webName },
+    }),
     addRunScript('docker:push', `docker push ${normalizedOptions.npmScope}/${apiName}`, true),
     addRunScript('docker:run', `docker run -it -p 8000:3000 ${normalizedOptions.npmScope}/${apiName}`, true),
     addRunScript('docker:build', `docker build . -t ${normalizedOptions.npmScope}/${apiName}`, true),
@@ -164,7 +158,7 @@ export default function (options: InitSchematicSchema): Rule {
     schematic('web', { name: webName, styleLibrary: webStyleLibrary }),
     options?.ci === 'github' ? externalSchematic('@nxpm/ci', 'github', {}) : noop(),
     removeFiles([`apps/.gitkeep`, `libs/.gitkeep`, 'README.md']),
-    addWorkspaceGenerators(webName, { ...normalizedOptions, webName }),
+    schematic('generators', { name: '' }),
     addFiles({ ...normalizedOptions, apiName, webName, projectRoot: './' }, './workspace'),
     formatFiles(),
   ])

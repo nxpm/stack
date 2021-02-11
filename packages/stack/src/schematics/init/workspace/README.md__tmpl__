@@ -6,19 +6,9 @@ This project was generated using [@nxpm/stack](https://github.com/nxpm/stack) wh
 
 # Setup
 
-Start the database server (add `-d` to run it in the background):
+After download this project, you first need to run the setup.
 
-```shell
-docker-compose up
-```
-
-Copy the `.env.example` file to `.env`:
-
-```shell
-cp .env.example .env
-```
-
-Create the database schema:
+Make sure to have Docker running, it will use `docker-compose` to start the database server.
 
 ```shell
 yarn setup
@@ -84,6 +74,5 @@ yarn build:<%= webName %>
 
 ```markdown
 Api: <%= apiName %>
-Web: <%= webName %>
 Web: <%= webName %>
 ```

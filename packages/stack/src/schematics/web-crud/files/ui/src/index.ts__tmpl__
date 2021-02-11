@@ -1,0 +1,6 @@
+export * from './lib/dto/admin-create-<%= dasherize(modelName) %>.input'
+export * from './lib/dto/admin-list-<%= dasherize(modelName) %>.input'
+export * from './lib/dto/admin-update-<%= dasherize(modelName) %>.input'
+export * from './lib/models/<%= dasherize(modelName) %>.model'
+export * from './lib/<%= projectName %>.module'
+export * from './lib/<%= projectName %>.service'

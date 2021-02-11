@@ -128,9 +128,11 @@ exports[`init schematic should run successfully 1`] = `
   \\"plugins\\": {
     \\"@nxpm/stack\\": {
       \\"api\\": {
+        \\"tech\\": \\"@nrwl/nest\\",
         \\"project\\": \\"api\\"
       },
       \\"web\\": {
+        \\"tech\\": \\"@nrwl/angular\\",
         \\"project\\": \\"test\\"
       }
     }

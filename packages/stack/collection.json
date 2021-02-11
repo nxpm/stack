@@ -13,6 +13,11 @@
       "schema": "./src/schematics/web-assets/schema.json",
       "description": "web-assets schematic"
     },
+    "web-crud": {
+      "factory": "./src/schematics/web-crud/schematic-web-crud",
+      "schema": "./src/schematics/web-crud/schema.json",
+      "description": "web-crud schematic"
+    },
     "web-feature-about": {
       "factory": "./src/schematics/web-feature-about/schematic-web-feature-about",
       "schema": "./src/schematics/web-feature-about/schema.json",
@@ -112,6 +117,11 @@
       "factory": "./src/schematics/api-lib/schematic-api-lib",
       "schema": "./src/schematics/api-lib/schema.json",
       "description": "api-lib schematic"
+    },
+    "generators": {
+      "factory": "./src/schematics/generators/schematic-generators",
+      "schema": "./src/schematics/generators/schema.json",
+      "description": "generators schematic"
     },
     "init": {
       "factory": "./src/schematics/init/schematic-init",

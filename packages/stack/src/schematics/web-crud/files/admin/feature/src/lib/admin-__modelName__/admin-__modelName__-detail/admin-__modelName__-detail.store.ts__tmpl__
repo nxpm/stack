@@ -1,0 +1,46 @@
+import { Injectable } from '@angular/core'
+import { ActivatedRoute } from '@angular/router'
+import { ComponentStore, tapResponse } from '@ngrx/component-store'
+import { <%= classify(webAppName) %>UtilSdkService, <%= classify(modelName) %> } from '@<%= npmScope %>/<%= webAppName %>/util/sdk'
+import { pluck, switchMap, tap } from 'rxjs/operators'
+
+export interface <%= classify(modelName) %>DetailState {
+  errors?: any
+  loading?: boolean
+  item?: <%= classify(modelName) %>
+}
+
+@Injectable()
+export class Admin<%= classify(modelName) %>DetailStore extends ComponentStore<<%= classify(modelName) %>DetailState> {
+  constructor(private readonly data: <%= classify(webAppName) %>UtilSdkService, route: ActivatedRoute) {
+    super({ loading: false })
+    this.load<%= classify(modelName) %>Effect(route.params.pipe(pluck('<%= modelName %>Id')))
+  }
+
+  readonly errors$ = this.select((s) => s.errors)
+  readonly loading$ = this.select((s) => s.loading)
+  readonly item$ = this.select((s) => s.item)
+  readonly vm$ = this.select(this.errors$, this.loading$, this.item$, (errors, loading, item) => ({
+    errors,
+    loading,
+    item: { ...item },
+  }))
+
+  readonly load<%= classify(modelName) %>Effect = this.effect<string>((<%= modelName %>Id$) =>
+    <%= modelName %>Id$.pipe(
+      tap(() => this.setState({ loading: true })),
+      switchMap((<%= modelName %>Id) =>
+        this.data.admin<%= classify(modelName) %>({ <%= modelName %>Id }).pipe(
+          tapResponse(
+            (res) => this.patchState({ item: res.data.item, errors: res.errors, loading: false }),
+            (errors: any) =>
+              this.patchState({
+                loading: false,
+                errors: errors.graphQLErrors ? errors.graphQLErrors : errors,
+              }),
+          ),
+        ),
+      ),
+    ),
+  )
+}

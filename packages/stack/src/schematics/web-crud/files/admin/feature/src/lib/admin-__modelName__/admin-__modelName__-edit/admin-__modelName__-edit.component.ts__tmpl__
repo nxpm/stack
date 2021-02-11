@@ -1,0 +1,31 @@
+import { Component } from '@angular/core'
+import { FormGroup } from '@angular/forms'
+import { AdminUpdate<%= classify(modelName) %>Input, Role } from '@<%= npmScope %>/<%= webAppName %>/util/sdk'
+import { <%= classify(webAppName) %>UiFormField } from '@<%= npmScope %>/<%= webAppName %>/ui/form'
+import { Admin<%= classify(modelName) %>EditStore } from './admin-<%= dasherize(modelName) %>-edit.store'
+
+@Component({
+  template: `
+    <ng-container *ngIf="vm$ | async as vm">
+      <ui-page-header [title]="'Edit <%= dasherize(modelName) %> ' + vm.item?.<%= classify(nameField) %>" linkPath=".." linkTitle="Back"></ui-page-header>
+      <ng-container *ngIf="vm.item">
+        <ui-form [form]="form" [fields]="fields" [model]="vm.item" (submitForm)="update<%= classify(modelName) %>($event)"></ui-form>
+      </ng-container>
+    </ng-container>
+  `,
+  providers: [Admin<%= classify(modelName) %>EditStore],
+})
+export class Admin<%= classify(modelName) %>EditComponent {
+  readonly vm$ = this.store.vm$
+  readonly form = new FormGroup({})
+  fields = [
+    <%= classify(webAppName) %>UiFormField.input('<%= classify(nameField) %>', { label: '<%= classify(nameField) %>' }),
+  ]
+
+  constructor(private readonly store: Admin<%= classify(modelName) %>EditStore) {}
+
+  update<%= classify(modelName) %>(input: AdminUpdate<%= classify(modelName) %>Input) {
+    const { <%= nameField %> } = input
+    this.store.update<%= classify(modelName) %>Effect({ <%= nameField %> })
+  }
+}

@@ -1,0 +1,16 @@
+import { CommonModule } from '@angular/common'
+import { NgModule } from '@angular/core'
+import { RouterModule } from '@angular/router'
+import { <%= classify(webAppName) %>UiPageHeaderModule } from '@<%= npmScope %>/<%= webAppName %>/ui/page-header'
+
+import { Admin<%= classify(modelName) %>ListComponent } from './admin-<%= modelName %>-list.component'
+
+@NgModule({
+  declarations: [Admin<%= classify(modelName) %>ListComponent],
+  imports: [
+    CommonModule,
+    RouterModule.forChild([{ path: '', component: Admin<%= classify(modelName) %>ListComponent }]),
+    <%= classify(webAppName) %>UiPageHeaderModule,
+  ],
+})
+export class Admin<%= classify(modelName) %>ListModule {}
