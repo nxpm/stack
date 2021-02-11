@@ -3,6 +3,12 @@
   "id": "Init",
   "title": "",
   "type": "object",
-  "properties": {},
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "",
+      "default": "web"
+    }
+  },
   "required": []
 }

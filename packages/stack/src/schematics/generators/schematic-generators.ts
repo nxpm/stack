@@ -10,9 +10,10 @@ function addWorkspaceGenerators(name, normalizedOptions): Rule {
     addFiles({ ...normalizedOptions, projectRoot: './tools/generators/' }, './generators', {
       tmplEnd: '%>',
       tmplStart: '<%=',
+      name: name || 'web',
     }),
     (host, ctx) => {
-      const base = `/tools/generators/web-module/files`
+      const base = `tools/generators/web-module/files`
       const files = ['component', 'module', 'store']
       for (const file of files) {
         const filePath = `${base}/${name}.${file}.ts`
