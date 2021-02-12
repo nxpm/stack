@@ -17,7 +17,6 @@ describe('generators schematic', () => {
 
   it('should run successfully', async () => {
     await expect(testRunner.runSchematicAsync('generators', options, appTree).toPromise()).resolves.not.toThrowError()
-    console.log(appTree.getDir('tools/generators').subdirs.toString())
     expect(appTree.getDir('tools/generators').subdirs.toString()).toMatchSnapshot()
   })
 })
