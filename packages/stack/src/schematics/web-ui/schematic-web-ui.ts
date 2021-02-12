@@ -17,7 +17,6 @@ export default function (options: WebUiSchematicSchema): Rule {
     prefix: options.prefix || 'ui',
   }
 
-  console.log({ normalizedOptions })
   return chain([
     externalSchematic('@nrwl/angular', 'library', {
       ...templateOptions,

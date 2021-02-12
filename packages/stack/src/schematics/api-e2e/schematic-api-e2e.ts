@@ -8,7 +8,7 @@ export default function (options: ApiE2eSchematicSchema): Rule {
 
   const normalizedOptions = normalizeOptions<ApiE2eSchematicSchema>({ ...options, name }, ProjectType.Application)
   return chain([
-    addDepsToPackageJson({ supertest: '^5.0.0' }, {}),
+    addDepsToPackageJson({ supertest: '6.1.3' }, {}),
     externalSchematic('@nrwl/node', 'application', {
       name,
     }),

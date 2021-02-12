@@ -13,8 +13,8 @@ export function createUiLibForm(options: WebUiLibsSchematicSchema): Rule {
     name,
     `./files/${name}/${options.library}`,
     {
-      '@ngx-formly/core': '^5.10.8',
-      ...(options.library === 'bootstrap' ? { '@ngx-formly/bootstrap': '^5.10.8' } : {}),
+      '@ngx-formly/core': '5.10.13',
+      ...(options.library === 'bootstrap' ? { '@ngx-formly/bootstrap': '5.10.13' } : {}),
     },
     normalizedOptions,
   )
