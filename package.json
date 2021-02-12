@@ -29,9 +29,13 @@
   "private": true,
   "dependencies": {
     "@nrwl/nx-cloud": "^10.1.9",
+    "rxjs": "^6.6.3",
     "yaml": "^1.10.0"
   },
   "devDependencies": {
+    "@nestjs/common": "^7.6.12",
+    "@nestjs/core": "^7.6.12",
+    "@nestjs/platform-express": "^7.6.12",
     "@ngneat/tailwind": "5.2.4",
     "@nrwl/angular": "10.4.4",
     "@nrwl/cli": "10.4.4",

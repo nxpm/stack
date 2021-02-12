@@ -3,8 +3,26 @@ import * as yargs from 'yargs'
 import { workspaceInit } from './commands/workspace-init'
 import { workspaceLint } from './commands/workspace-lint'
 import { WebStyleLibrary } from './interfaces'
+import { workspaceDev } from './commands/workspace-dev'
 
 yargs
+  .command(
+    'dev',
+    'Run nxpm dev server',
+    {
+      port: {
+        alias: 'p',
+        type: 'number',
+        demandOption: false,
+        default: 7979,
+      },
+    },
+    async (args) => {
+      await workspaceDev({ port: args.port }).catch((e) => {
+        console.log('Something went wrong :(', e)
+      })
+    },
+  )
   .command(
     'init',
     'Initialize new nxpm workspace',
