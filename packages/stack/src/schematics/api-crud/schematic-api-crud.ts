@@ -81,7 +81,7 @@ function addImport(options: ApiCrudSchematicSchema): Rule {
       const app = strings.classify(normalizedOptions.apiAppName)
       const name = strings.classify(normalizedOptions.name)
 
-      const searchImport = `import { ${app}UserFeatureModule } from '@${normalizedOptions.npmScope}/${normalizedOptions.apiAppName}/user/feature';`
+      const searchImport = `import { ${app}UserFeatureModule } from '@${normalizedOptions.npmScope}/${normalizedOptions.apiAppName}/user/feature'`
       const featureImport = `import { ${app}${name}FeatureModule } from '@${normalizedOptions.npmScope}/${normalizedOptions.apiAppName}/${normalizedOptions.name}/feature';`
       const searchModule = `${app}UserFeatureModule,`
       const featureModule = `    ${app}${name}FeatureModule,`
