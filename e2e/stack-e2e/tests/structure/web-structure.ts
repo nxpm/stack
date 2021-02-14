@@ -26,7 +26,7 @@ export function webProjects(project: string) {
     `${project}-ui-page-header`,
     `${project}-ui-page`,
     `${project}-ui-sidebar-page`,
-    `${project}-util-sdk`,
+    `shared-util-sdk`,
   ]
 }
 
@@ -46,12 +46,12 @@ export function webFileTests(project: string): FileTests {
       `libs/${project}/layout/src/lib/${project}-layout.module.ts`,
       `libs/${project}/layout/src/lib/${project}-layout.component.ts`,
       `libs/${project}/style/src/index.css`,
-      `libs/${project}/util/sdk/src/codegen.yml`,
-      `libs/${project}/util/sdk/src/generated/graphql.ts`,
-      `libs/${project}/util/sdk/src/graphql/feature-account.graphql`,
-      `libs/${project}/util/sdk/src/graphql/feature-auth.graphql`,
-      `libs/${project}/util/sdk/src/graphql/feature-core.graphql`,
-      `libs/${project}/util/sdk/src/graphql/feature-user.graphql`,
+      `libs/shared/util/sdk/src/codegen.yml`,
+      `libs/shared/util/sdk/src/generated/graphql.ts`,
+      `libs/shared/util/sdk/src/graphql/feature-account.graphql`,
+      `libs/shared/util/sdk/src/graphql/feature-auth.graphql`,
+      `libs/shared/util/sdk/src/graphql/feature-core.graphql`,
+      `libs/shared/util/sdk/src/graphql/feature-user.graphql`,
     ],
     missing: [
       `apps/${project}/src/app/app.component.html`,
@@ -101,11 +101,11 @@ export function webFileTests(project: string): FileTests {
         `CoreFeatureModule`,
         `/${project}/core/feature'`,
       ],
-      [`libs/${project}/util/sdk/src/codegen.yml`]: [
-        `libs/${project}/util/sdk/src/graphql/**/*.graphql`,
-        `libs/${project}/util/sdk/src/generated/graphql.ts:`,
+      [`libs/shared/util/sdk/src/codegen.yml`]: [
+        `libs/shared/util/sdk/src/graphql/**/*.graphql`,
+        `libs/shared/util/sdk/src/generated/graphql.ts:`,
       ],
-      [`libs/${project}/util/sdk/src/index.ts`]: [`export * from './generated/graphql'`],
+      [`libs/shared/util/sdk/src/index.ts`]: [`export * from './generated/graphql'`],
       [`libs/${project}/about/feature/src/lib/${project}-about-feature.module.ts`]: [
         `${project}-about-feature.component`,
       ],

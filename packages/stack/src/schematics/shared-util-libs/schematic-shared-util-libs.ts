@@ -1,16 +1,16 @@
 import { chain, Rule } from '@angular-devkit/schematics'
 import { ProjectType } from '@nrwl/workspace'
 import { addRunScript, createWebLib, normalizeOptions, WebLibType } from '../../utils'
-import { WebUtilLibsSchematicSchema } from './schema'
+import { SharedUtilLibsSchematicSchema } from './schema'
 
 export function createLibUtilSdk(
   name: string,
   directory: string,
   type: WebLibType,
-  options: WebUtilLibsSchematicSchema,
+  options: SharedUtilLibsSchematicSchema,
 ): Rule {
   const normalizedOptions = normalizeOptions({ ...options, name: `${type}/${name}`, directory }, ProjectType.Library)
-  const sdkName = `sdk:${options.appName}`
+  const sdkName = `${options.directory !== 'shared' ? `${options.directory}:` : ''}sdk`
   return chain([
     createWebLib(
       directory,
@@ -26,13 +26,13 @@ export function createLibUtilSdk(
       {},
       true,
     ),
-    addRunScript(`${sdkName}:watch`, `yarn ${sdkName} --watch`),
-    addRunScript(`${sdkName}`, `graphql-codegen --config ${normalizedOptions.projectRoot}/src/codegen.yml`),
+    addRunScript(`dev:${sdkName}`, `yarn build:${sdkName} --watch`),
+    addRunScript(`build:${sdkName}`, `graphql-codegen --config ${normalizedOptions.projectRoot}/src/codegen.yml`),
   ])
 }
 
-export default function (options: WebUtilLibsSchematicSchema): Rule {
-  const directory = options.directory || options.appName
+export default function (options: SharedUtilLibsSchematicSchema): Rule {
+  const directory = options.directory || 'shared'
 
   return chain([
     // Create User Libs

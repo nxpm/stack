@@ -49,7 +49,7 @@ function webCrudLibrary(type: 'ui' | 'feature', options: ApiCrudSchematicSchema)
 
 function updateGraphQLSDK(options: ApiCrudSchematicSchema): Rule {
   const templateOptions = getTemplateOptions(options)
-  const projectRoot = `libs/${templateOptions.webAppName}/util/sdk`
+  const projectRoot = `libs/shared/util/sdk`
 
   const params: any = {
     ...templateOptions,

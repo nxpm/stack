@@ -3,6 +3,61 @@
   "name": "stack",
   "version": "0.0.1",
   "schematics": {
+    "api": {
+      "factory": "./src/schematics/api/schematic-api",
+      "schema": "./src/schematics/api/schema.json",
+      "description": "api schematic"
+    },
+    "api-crud": {
+      "factory": "./src/schematics/api-crud/schematic-api-crud",
+      "schema": "./src/schematics/api-crud/schema.json",
+      "description": "api-crud schematic"
+    },
+    "api-e2e": {
+      "factory": "./src/schematics/api-e2e/schematic-api-e2e",
+      "schema": "./src/schematics/api-e2e/schema.json",
+      "description": "api e2e schematic"
+    },
+    "api-feature-account": {
+      "factory": "./src/schematics/api-feature-account/schematic-api-feature-account",
+      "schema": "./src/schematics/api-feature-account/schema.json",
+      "description": "api-feature-account schematic"
+    },
+    "api-feature-auth": {
+      "factory": "./src/schematics/api-feature-auth/schematic-api-feature-auth",
+      "schema": "./src/schematics/api-feature-auth/schema.json",
+      "description": "api-feature-auth schematic"
+    },
+    "api-feature-core": {
+      "factory": "./src/schematics/api-feature-core/schematic-api-feature-core",
+      "schema": "./src/schematics/api-feature-core/schema.json",
+      "description": "api-feature-core schematic"
+    },
+    "api-feature-user": {
+      "factory": "./src/schematics/api-feature-user/schematic-api-feature-user",
+      "schema": "./src/schematics/api-feature-user/schema.json",
+      "description": "api-feature-user schematic"
+    },
+    "api-lib": {
+      "factory": "./src/schematics/api-lib/schematic-api-lib",
+      "schema": "./src/schematics/api-lib/schema.json",
+      "description": "api-lib schematic"
+    },
+    "generators": {
+      "factory": "./src/schematics/generators/schematic-generators",
+      "schema": "./src/schematics/generators/schema.json",
+      "description": "generators schematic"
+    },
+    "init": {
+      "factory": "./src/schematics/init/schematic-init",
+      "schema": "./src/schematics/init/schema.json",
+      "description": "init schematic"
+    },
+    "shared-util-libs": {
+      "factory": "./src/schematics/shared-util-libs/schematic-shared-util-libs",
+      "schema": "./src/schematics/shared-util-libs/schema.json",
+      "description": "shared-util-libs schematic"
+    },
     "web": {
       "factory": "./src/schematics/web/schematic-web",
       "schema": "./src/schematics/web/schema.json",
@@ -77,61 +132,6 @@
       "factory": "./src/schematics/web-ui-libs/schematic-web-ui-libs",
       "schema": "./src/schematics/web-ui-libs/schema.json",
       "description": "web-ui-libs schematic"
-    },
-    "web-util-libs": {
-      "factory": "./src/schematics/web-util-libs/schematic-web-util-libs",
-      "schema": "./src/schematics/web-util-libs/schema.json",
-      "description": "web-util-libs schematic"
-    },
-    "api": {
-      "factory": "./src/schematics/api/schematic-api",
-      "schema": "./src/schematics/api/schema.json",
-      "description": "api schematic"
-    },
-    "api-crud": {
-      "factory": "./src/schematics/api-crud/schematic-api-crud",
-      "schema": "./src/schematics/api-crud/schema.json",
-      "description": "api-crud schematic"
-    },
-    "api-e2e": {
-      "factory": "./src/schematics/api-e2e/schematic-api-e2e",
-      "schema": "./src/schematics/api-e2e/schema.json",
-      "description": "api e2e schematic"
-    },
-    "api-feature-account": {
-      "factory": "./src/schematics/api-feature-account/schematic-api-feature-account",
-      "schema": "./src/schematics/api-feature-account/schema.json",
-      "description": "api-feature-account schematic"
-    },
-    "api-feature-auth": {
-      "factory": "./src/schematics/api-feature-auth/schematic-api-feature-auth",
-      "schema": "./src/schematics/api-feature-auth/schema.json",
-      "description": "api-feature-auth schematic"
-    },
-    "api-feature-core": {
-      "factory": "./src/schematics/api-feature-core/schematic-api-feature-core",
-      "schema": "./src/schematics/api-feature-core/schema.json",
-      "description": "api-feature-core schematic"
-    },
-    "api-feature-user": {
-      "factory": "./src/schematics/api-feature-user/schematic-api-feature-user",
-      "schema": "./src/schematics/api-feature-user/schema.json",
-      "description": "api-feature-user schematic"
-    },
-    "api-lib": {
-      "factory": "./src/schematics/api-lib/schematic-api-lib",
-      "schema": "./src/schematics/api-lib/schema.json",
-      "description": "api-lib schematic"
-    },
-    "generators": {
-      "factory": "./src/schematics/generators/schematic-generators",
-      "schema": "./src/schematics/generators/schema.json",
-      "description": "generators schematic"
-    },
-    "init": {
-      "factory": "./src/schematics/init/schematic-init",
-      "schema": "./src/schematics/init/schema.json",
-      "description": "init schematic"
     }
   }
 }
