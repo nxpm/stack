@@ -1,4 +1,4 @@
-import { User } from '@<%= npmScope %>/<%= appName %>/util/sdk'
+import { User } from '@<%= npmScope %>/<%= appName %>/core/data-access'
 import { Component, Input } from '@angular/core'
 
 @Component({

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core'
 import { FormGroup } from '@angular/forms'
-import { AdminUpdate<%= classify(modelName) %>Input, Role } from '@<%= npmScope %>/<%= webAppName %>/util/sdk'
+import { AdminUpdate<%= classify(modelName) %>Input, Role } from '@<%= npmScope %>/<%= webAppName %>/core/data-access'
 import { <%= classify(webAppName) %>UiFormField } from '@<%= npmScope %>/<%= webAppName %>/ui/form'
 import { Admin<%= classify(modelName) %>EditStore } from './admin-<%= dasherize(modelName) %>-edit.store'
 

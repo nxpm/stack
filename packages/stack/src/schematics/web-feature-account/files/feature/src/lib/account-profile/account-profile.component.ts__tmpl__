@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core'
-import { AccountUpdateProfileInput } from '@<%= npmScope %>/<%= appName %>/util/sdk'
+import { AccountUpdateProfileInput } from '@<%= npmScope %>/<%= appName %>/core/data-access'
 import { AccountProfileStore } from './account-profile.store'
 
 @Component({

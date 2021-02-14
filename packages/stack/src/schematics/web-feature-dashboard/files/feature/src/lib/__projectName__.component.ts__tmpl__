@@ -1,5 +1,5 @@
 import { Component } from '@angular/core'
-import { <%= classify(appName) %>UtilSdkService } from '@<%= npmScope %>/<%= appName %>/util/sdk'
+import { <%= classify(appName) %>CoreDataAccessService } from '@<%= npmScope %>/<%= appName %>/core/data-access'
 import { map } from 'rxjs/operators'
 
 @Component({
@@ -33,5 +33,5 @@ import { map } from 'rxjs/operators'
 })
 export class <%= classify(projectName) %>Component {
   me$ = this.data.me().pipe(map((res) => res.data.me))
-  constructor(private readonly data: <%= classify(appName) %>UtilSdkService) {}
+  constructor(private readonly data: <%= classify(appName) %>CoreDataAccessService) {}
 }

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core'
-import { AccountCreateEmailInput, Email } from '@<%= npmScope %>/<%= appName %>/util/sdk'
+import { AccountCreateEmailInput, Email } from '@<%= npmScope %>/<%= appName %>/core/data-access'
 import { AccountEmailStore } from './account-email.store'
 
 @Component({

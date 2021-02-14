@@ -1,6 +1,6 @@
 import { Component } from '@angular/core'
 import { FormGroup } from '@angular/forms'
-import { AdminUpdateUserInput, Role } from '@<%= npmScope %>/<%= appName %>/util/sdk'
+import { AdminUpdateUserInput, Role } from '@<%= npmScope %>/<%= appName %>/core/data-access'
 import { <%= classify(appName) %>UiFormField } from '@<%= npmScope %>/<%= appName %>/ui/form'
 import { AdminUserEditStore } from './admin-user-edit.store'
 

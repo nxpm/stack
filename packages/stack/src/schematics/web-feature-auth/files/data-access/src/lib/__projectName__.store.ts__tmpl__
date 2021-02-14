@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core'
 import { Router } from '@angular/router'
-import { <%= classify(appName) %>UtilSdkService, LoginInput, RegisterInput, User } from '@<%= npmScope %>/<%= appName %>/util/sdk'
+import { <%= classify(appName) %>CoreDataAccessService, LoginInput, RegisterInput, User } from '@<%= npmScope %>/<%= appName %>/core/data-access'
 import { ComponentStore, tapResponse } from '@ngrx/component-store'
 import { Observable } from 'rxjs'
 import { switchMap } from 'rxjs/operators'
@@ -24,7 +24,7 @@ export class <%= classify(appName) %>AuthStore extends ComponentStore<<%= classi
     errors,
   }))
 
-  constructor(public readonly data: <%= classify(appName) %>UtilSdkService, private readonly router: Router) {
+  constructor(public readonly data: <%= classify(appName) %>CoreDataAccessService, private readonly router: Router) {
     super()
     this.initializeEffect()
   }

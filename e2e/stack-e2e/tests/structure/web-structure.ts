@@ -12,6 +12,7 @@ export function webProjects(project: string) {
     `${project}-auth-data-access`,
     `${project}-auth-feature`,
     `${project}-auth-ui`,
+    `${project}-core-data-access`,
     `${project}-core-feature`,
     `${project}-dashboard-feature`,
     `${project}-e2e`,
