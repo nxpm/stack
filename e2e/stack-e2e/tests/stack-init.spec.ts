@@ -96,12 +96,12 @@ describe('@nxpm/stack:init e2e', () => {
       await runCommandAsync(`yarn prisma:db-push`)
       // Build the API
       await runNxCommandAsync(`build ${projectNameWeb}`)
-      // Run the e2e test to that api-schema.graphql gets re-generated (needed for running yarn sdk:... )
+      // Run the e2e test to that api-schema.graphql gets re-generated (needed for running yarn build:sdk )
       await runNxCommandAsync(`e2e ${projectNameApi}-e2e`)
       // Create the Web crud
       await runNxCommandAsync(`generate @nxpm/stack:web-crud company --plural companies`)
       // Generate SDK
-      await runCommandAsync(`yarn sdk:${projectNameWeb}`)
+      await runCommandAsync(`yarn build:sdk`)
       // Build the Web
       await runNxCommandAsync(`build ${projectNameWeb}`)
       done()

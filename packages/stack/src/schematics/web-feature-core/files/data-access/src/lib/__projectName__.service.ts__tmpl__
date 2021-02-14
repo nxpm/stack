@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core'
-import { ApolloAngularSDK } from '@<%= npmScope %>/<%= appName %>/util/sdk'
+import { ApolloAngularSDK } from '@<%= npmScope %>/shared/util/sdk'
 
 @Injectable({ providedIn: 'root' })
 export class <%= classify(projectName) %>Service extends ApolloAngularSDK {}

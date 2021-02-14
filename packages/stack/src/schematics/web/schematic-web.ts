@@ -116,7 +116,7 @@ export default function (options: WebSchematicSchema): Rule {
     schematic('web-layout', { appName: name, directory, name: 'layout', library: styleLibrary }),
     schematic('web-style', { appName: name, directory, name: 'style', library: styleLibrary }),
     schematic('web-ui-libs', { appName: name, directory, library: styleLibrary }),
-    schematic('web-util-libs', { appName: name, directory }),
+    schematic('shared-util-libs', { appName: name, directory: 'shared' }),
     addRunScript(`build:${name}`, `nx build ${name} --prod`),
     addRunScript(`dev:${name}`, `nx serve ${name} --hmr`),
     addFiles(normalizedOptions),
