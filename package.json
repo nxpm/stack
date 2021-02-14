@@ -32,6 +32,7 @@
     "yaml": "^1.10.0"
   },
   "devDependencies": {
+    "@nestjs/common": "^7.6.12",
     "@ngneat/tailwind": "5.2.4",
     "@nrwl/angular": "10.4.4",
     "@nrwl/cli": "10.4.4",

@@ -43,6 +43,9 @@
     "stack-e2e": {
       "tags": [],
       "implicitDependencies": ["stack"]
+    },
+    "common": {
+      "tags": []
     }
   },
   "workspaceLayout": {

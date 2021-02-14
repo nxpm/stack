@@ -1,0 +1,12 @@
+{
+  "name": "@nxpm/common",
+  "version": "0.0.1",
+  "homepage": "https://github.com/nxpm/stack",
+  "bugs": {
+    "url": "https://github.com/nxpm/stack/issues"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@nestjs/common": "^7.6.12"
+  }
+}

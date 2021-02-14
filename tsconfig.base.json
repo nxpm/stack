@@ -18,7 +18,8 @@
     "paths": {
       "@nxpm/ci": ["packages/ci/src/index.ts"],
       "@nxpm/cli": ["packages/cli/src/index.ts"],
-      "@nxpm/stack": ["packages/stack/src/index.ts"]
+      "@nxpm/stack": ["packages/stack/src/index.ts"],
+      "@nxpm/common": ["packages/common/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
