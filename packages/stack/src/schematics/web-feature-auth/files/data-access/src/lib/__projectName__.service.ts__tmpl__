@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core'
-import { <%= classify(appName) %>UtilSdkService, LoginInput, RegisterInput } from '@<%= npmScope %>/<%= appName %>/util/sdk'
+import { <%= classify(appName) %>CoreDataAccessService, LoginInput, RegisterInput } from '@<%= npmScope %>/<%= appName %>/core/data-access'
 
 @Injectable()
 export class <%= classify(projectName) %>Service {
-  constructor(public readonly data: <%= classify(appName) %>UtilSdkService) {}
+  constructor(public readonly data: <%= classify(appName) %>CoreDataAccessService) {}
 
   me() {
     return this.data.me()

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core'
-import { <%= classify(webAppName) %>UtilSdkService, AdminList<%= classify(modelName) %>Input, <%= classify(modelName) %> } from '@<%= npmScope %>/<%= webAppName %>/util/sdk'
+import { <%= classify(webAppName) %>CoreDataAccessService, AdminList<%= classify(modelName) %>Input, <%= classify(modelName) %> } from '@<%= npmScope %>/<%= webAppName %>/core/data-access'
 import { ComponentStore, tapResponse } from '@ngrx/component-store'
 import { switchMap, tap, withLatestFrom } from 'rxjs/operators'
 
@@ -12,7 +12,7 @@ export interface <%= classify(modelName) %>ListState {
 
 @Injectable()
 export class Admin<%= classify(modelName) %>ListStore extends ComponentStore<<%= classify(modelName) %>ListState> {
-  constructor(private readonly data: <%= classify(webAppName) %>UtilSdkService) {
+  constructor(private readonly data: <%= classify(webAppName) %>CoreDataAccessService) {
     super({ input: { skip: 0, limit: 10 } })
   }
 

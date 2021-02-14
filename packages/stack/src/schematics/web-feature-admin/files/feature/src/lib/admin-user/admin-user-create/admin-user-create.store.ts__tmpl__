@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core'
 import { Router } from '@angular/router'
-import { AdminCreateUserInput, <%= classify(appName) %>UtilSdkService, User } from '@<%= npmScope %>/<%= appName %>/util/sdk'
+import { AdminCreateUserInput, <%= classify(appName) %>CoreDataAccessService, User } from '@<%= npmScope %>/<%= appName %>/core/data-access'
 import { ComponentStore, tapResponse } from '@ngrx/component-store'
 import { switchMap, tap } from 'rxjs/operators'
 
@@ -12,7 +12,7 @@ export interface UserCreateState {
 
 @Injectable()
 export class AdminUserCreateStore extends ComponentStore<UserCreateState> {
-  constructor(private readonly data: <%= classify(appName) %>UtilSdkService, private readonly router: Router) {
+  constructor(private readonly data: <%= classify(appName) %>CoreDataAccessService, private readonly router: Router) {
     super({ loading: false })
   }
 

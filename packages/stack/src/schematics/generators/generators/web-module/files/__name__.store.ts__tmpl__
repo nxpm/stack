@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core'
 import { ComponentStore, tapResponse } from '@ngrx/component-store'
-import { <%= classify(webAppName) %>UtilSdkService } from '@<%= tmplStart %> npmScope <%= tmplEnd %>/web/util/sdk'
+import { <%= classify(webAppName) %>CoreDataAccessService } from '@<%= tmplStart %> npmScope <%= tmplEnd %>/web/core/data-access'
 import { of } from 'rxjs'
 import { switchMap, tap } from 'rxjs/operators'
 
@@ -16,7 +16,7 @@ interface <%= tmplStart %> className <%= tmplEnd %>State {
 
 @Injectable()
 export class <%= tmplStart %> className <%= tmplEnd %>Store extends ComponentStore<<%= tmplStart %> className <%= tmplEnd %>State> {
-  constructor(private readonly data: <%= classify(webAppName) %>UtilSdkService) {
+  constructor(private readonly data: <%= classify(webAppName) %>CoreDataAccessService) {
     super({})
     this.loadItemsEffect()
   }
