@@ -18,5 +18,8 @@ export default function (options: WebFeatureCoreSchematicSchema): Rule {
   const name = 'core'
   const directory = options.directory || options.appName
 
-  return chain([createLibCoreFeature(name, directory, 'feature', options)])
+  return chain([
+    createLibCoreFeature(name, directory, 'data-access', options),
+    createLibCoreFeature(name, directory, 'feature', options),
+  ])
 }
