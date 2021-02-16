@@ -11,6 +11,25 @@ import { runFileTests } from '../../e2e-file-utils'
 import { apiFileTests, apiProjects } from './structure/api-structure'
 import { initFileTests } from './structure/init-structure'
 import { webFileTests, webProjects } from './structure/web-structure'
+import { writeFileSync } from 'fs'
+
+function workingTailwindConfig() {
+  return `module.exports = {
+  prefix: '',
+  purge: {
+    enabled: process.argv.join(' ').includes('production'),
+    content: ['./apps/**/*.{html,ts}', './libs/**/*.{html,ts}'],
+  },
+  darkMode: 'class', // or 'media' or 'class'
+  theme: {
+    extend: {},
+  },
+  variants: {
+    extend: {},
+  },
+  plugins: [require('@tailwindcss/forms')],
+}`
+}
 
 describe('@nxpm/stack:init e2e', () => {
   const projectNameApi = 'api'
@@ -79,6 +98,7 @@ describe('@nxpm/stack:init e2e', () => {
     })
 
     it('should build the web', async (done) => {
+      writeFileSync('tailwind.config.js', workingTailwindConfig())
       await runNxCommandAsync(`build ${projectNameWeb}`)
       expect(() => checkFilesExist(`dist/apps/${projectNameWeb}/index.html`)).not.toThrow()
       done()

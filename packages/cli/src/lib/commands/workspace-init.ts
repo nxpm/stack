@@ -3,6 +3,7 @@ import { execSync } from 'child_process'
 import { existsSync } from 'fs-extra'
 import { join } from 'path'
 import { WebStyleLibrary } from '../interfaces'
+import { writeFileSync } from 'fs'
 
 function log(...msg) {
   console.log(magentaBright('>'), inverse(magentaBright(bold(` NXPM `))), ...msg)
@@ -15,6 +16,24 @@ function runCommand(command: string, cwd = process.cwd()) {
 
 function info(message: string) {
   log(inverse(cyanBright(bold(` INFO `))), white(message))
+}
+
+function workingTailwindConfig() {
+  return `module.exports = {
+  prefix: '',
+  purge: {
+    enabled: process.argv.join(' ').includes('production'),
+    content: ['./apps/**/*.{html,ts}', './libs/**/*.{html,ts}'],
+  },
+  darkMode: 'class', // or 'media' or 'class'
+  theme: {
+    extend: {},
+  },
+  variants: {
+    extend: {},
+  },
+  plugins: [require('@tailwindcss/forms')],
+}`
 }
 
 export async function workspaceInit({
@@ -59,6 +78,8 @@ export async function workspaceInit({
 
   log('Finalize package installation')
   runCommand('yarn', target)
+
+  writeFileSync('tailwind.config.js', workingTailwindConfig())
 
   log('Rewrite git history')
   const rewriteGitHistory = `git checkout -B main && git add . && git commit -am "Initial commit of @nxpm/stack"`
