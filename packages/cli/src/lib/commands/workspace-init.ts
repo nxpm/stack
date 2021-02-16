@@ -79,7 +79,7 @@ export async function workspaceInit({
   log('Finalize package installation')
   runCommand('yarn', target)
 
-  writeFileSync('tailwind.config.js', workingTailwindConfig())
+  writeFileSync(join(target, 'tailwind.config.js'), workingTailwindConfig())
 
   log('Rewrite git history')
   const rewriteGitHistory = `git checkout -B main && git add . && git commit -am "Initial commit of @nxpm/stack"`
