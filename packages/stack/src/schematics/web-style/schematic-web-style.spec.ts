@@ -42,7 +42,7 @@ describe('web-style schematic with tailwind', () => {
         app,
       )
       .toPromise()
-    expect(app.exists('tailwind.config.js')).toBeDefined()
+    expect(app.exists('tailwind-patch.config.js')).toBeDefined()
     expect(app.exists('webpack.config.js')).toBeDefined()
   })
 })
