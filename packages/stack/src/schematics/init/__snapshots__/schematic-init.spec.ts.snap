@@ -113,6 +113,9 @@ exports[`init schematic should run successfully 1`] = `
     \\"test-ui-sidebar-page\\": {
       \\"tags\\": [\\"scope:test\\", \\"type:ui\\"]
     },
+    \\"test-ui-table\\": {
+      \\"tags\\": [\\"scope:test\\", \\"type:ui\\"]
+    },
     \\"shared-util-sdk\\": {
       \\"tags\\": [\\"scope:shared\\", \\"type:util\\"]
     }
@@ -1010,6 +1013,28 @@ exports[`init schematic should run successfully 2`] = `
       },
       \\"schematics\\": {}
     },
+    \\"test-ui-table\\": {
+      \\"projectType\\": \\"library\\",
+      \\"root\\": \\"libs/test/ui/table\\",
+      \\"sourceRoot\\": \\"libs/test/ui/table/src\\",
+      \\"prefix\\": \\"ui\\",
+      \\"architect\\": {
+        \\"lint\\": {
+          \\"builder\\": \\"@nrwl/linter:eslint\\",
+          \\"options\\": {
+            \\"lintFilePatterns\\": [\\"libs/test/ui/table/src/**/*.ts\\"]
+          }
+        },
+        \\"test\\": {
+          \\"builder\\": \\"@nrwl/jest:jest\\",
+          \\"options\\": {
+            \\"jestConfig\\": \\"libs/test/ui/table/jest.config.js\\",
+            \\"passWithNoTests\\": true
+          }
+        }
+      },
+      \\"schematics\\": {}
+    },
     \\"shared-util-sdk\\": {
       \\"projectType\\": \\"library\\",
       \\"root\\": \\"libs/shared/util/sdk\\",
@@ -1088,6 +1113,7 @@ exports[`init schematic should run successfully 3`] = `
       \\"@proj/test/ui/page\\": [\\"libs/test/ui/page/src/index.ts\\"],
       \\"@proj/test/ui/page-header\\": [\\"libs/test/ui/page-header/src/index.ts\\"],
       \\"@proj/test/ui/sidebar-page\\": [\\"libs/test/ui/sidebar-page/src/index.ts\\"],
+      \\"@proj/test/ui/table\\": [\\"libs/test/ui/table/src/index.ts\\"],
       \\"@proj/shared/util/sdk\\": [\\"libs/shared/util/sdk/src/index.ts\\"]
     }
   }
@@ -1100,6 +1126,7 @@ exports[`init schematic should run successfully 4`] = `
   \\"name\\": \\"test-name\\",
   \\"dependencies\\": {
     \\"@angular/animations\\": \\"^10.1.0\\",
+    \\"@angular/cdk\\": \\"^11.2.0\\",
     \\"@angular/common\\": \\"^10.1.0\\",
     \\"@angular/compiler\\": \\"^10.1.0\\",
     \\"@angular/core\\": \\"^10.1.0\\",

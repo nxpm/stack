@@ -82,9 +82,10 @@ export default function (options: WebSchematicSchema): Rule {
   return chain([
     addDepsToPackageJson(
       {
+        '@angular/cdk': '^11.2.0',
         '@apollo/client': '3.3.9',
-        'apollo-angular': '2.2.0',
         '@ngrx/component-store': '11.0.0',
+        'apollo-angular': '2.2.0',
       },
       {
         '@angular-eslint/eslint-plugin': '1.1.0',

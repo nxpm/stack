@@ -26,6 +26,7 @@ export function webProjects(project: string) {
     `${project}-ui-page-header`,
     `${project}-ui-page`,
     `${project}-ui-sidebar-page`,
+    `${project}-ui-table`,
     `shared-util-sdk`,
   ]
 }
