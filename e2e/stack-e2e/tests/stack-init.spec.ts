@@ -12,6 +12,7 @@ import { apiFileTests, apiProjects } from './structure/api-structure'
 import { initFileTests } from './structure/init-structure'
 import { webFileTests, webProjects } from './structure/web-structure'
 import { writeFileSync } from 'fs'
+import { join } from 'path'
 
 function workingTailwindConfig() {
   return `module.exports = {
@@ -98,7 +99,7 @@ describe('@nxpm/stack:init e2e', () => {
     })
 
     it('should build the web', async (done) => {
-      writeFileSync('tailwind.config.js', workingTailwindConfig())
+      writeFileSync(join('tmp/nx-e2e/proj', 'tailwind.config.js'), workingTailwindConfig())
       await runNxCommandAsync(`build ${projectNameWeb}`)
       expect(() => checkFilesExist(`dist/apps/${projectNameWeb}/index.html`)).not.toThrow()
       done()
