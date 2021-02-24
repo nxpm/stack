@@ -37,18 +37,20 @@ function workingTailwindConfig() {
 }
 
 export async function workspaceInit({
+  allowExisting,
   dryRun,
   name,
   cli,
   webStyleLibrary,
 }: {
+  allowExisting: boolean
   dryRun: boolean
   name: string
   cli: string
   webStyleLibrary: WebStyleLibrary
 }) {
   const target = join(process.cwd(), name)
-  if (existsSync(target)) {
+  if (existsSync(target) && !allowExisting) {
     throw new Error(`Path ${target} already exists`)
   }
   log('Creating Nx Workspace')

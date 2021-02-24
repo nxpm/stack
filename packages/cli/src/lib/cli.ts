@@ -9,6 +9,10 @@ yargs
     'init',
     'Initialize new nxpm workspace',
     {
+      allowExisting: {
+        type: 'boolean',
+        demandOption: false,
+      },
       name: {
         alias: 'n',
         type: 'string',
@@ -27,6 +31,7 @@ yargs
     },
     async (args) => {
       await workspaceInit({
+        allowExisting: !!args.allowExisting,
         dryRun: !!args.dryRun,
         name: args.name,
         cli: args.cli,
