@@ -13,6 +13,7 @@ import { initFileTests } from './structure/init-structure'
 import { webFileTests, webProjects } from './structure/web-structure'
 import { writeFileSync } from 'fs'
 import { join } from 'path'
+import { mobileProjects } from './structure/mobile-structure'
 
 function workingTailwindConfig() {
   return `module.exports = {
@@ -34,6 +35,7 @@ function workingTailwindConfig() {
 
 describe('@nxpm/stack:init e2e', () => {
   const projectNameApi = 'api'
+  const projectNameMobile = uniq('mobile')
   const projectNameWeb = uniq('web')
 
   beforeAll(async () => {
@@ -50,11 +52,13 @@ describe('@nxpm/stack:init e2e', () => {
       '@ngneat/tailwind@5.2.4',
       '@schematics/angular',
       '@angular/cli',
+      '@nxtend/ionic-angular',
+      '@nxtend/capacitor',
     ]
     log('Install packages')
     await runCommandAsync(`yarn add ${packages.join(' ')}`)
     log('Generate project')
-    await runNxCommandAsync(`generate @nxpm/stack:init ${projectNameWeb}`)
+    await runNxCommandAsync(`generate @nxpm/stack:init ${projectNameWeb} --mobile-name=${projectNameMobile}`)
     log('Install packages second run')
     await runCommandAsync(`yarn`)
     log('Test project created')
@@ -69,7 +73,9 @@ describe('@nxpm/stack:init e2e', () => {
       const nxJson = readJson('nx.json')
       const projectNames = Object.keys(nxJson.projects)
 
-      expect(projectNames.sort()).toEqual([...apiProjects(projectNameApi), ...webProjects(projectNameWeb)].sort())
+      expect(projectNames.sort()).toEqual(
+        [...apiProjects(projectNameApi), ...mobileProjects(projectNameMobile), ...webProjects(projectNameWeb)].sort(),
+      )
       done()
     })
   })

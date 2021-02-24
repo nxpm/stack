@@ -42,6 +42,8 @@
     "@nrwl/nx-plugin": "10.4.4",
     "@nrwl/tao": "10.4.4",
     "@nrwl/workspace": "10.4.4",
+    "@nxtend/capacitor": "^11.1.1",
+    "@nxtend/ionic-angular": "^11.0.0",
     "@types/fs-extra": "^9.0.4",
     "@types/jest": "26.0.15",
     "@types/node": "~14.14.10",

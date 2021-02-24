@@ -1,0 +1,4 @@
+export * from './lib/guards/is-logged-in.guard'
+export * from './lib/<%= projectName %>.module'
+export * from './lib/<%= projectName %>.service'
+export * from './lib/<%= projectName %>.store'

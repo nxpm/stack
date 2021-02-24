@@ -1,0 +1,22 @@
+::ng-deep table.cdk-table {
+  @apply w-full divide-y divide-gray-600;
+}
+
+::ng-deep .cdk-table thead {
+  @apply bg-gray-50 bg-gray-800 text-gray-500;
+}
+
+::ng-deep .cdk-table thead th {
+  @apply px-2 md:px-4 py-3 text-xs font-medium uppercase tracking-wider text-left;
+}
+
+::ng-deep .cdk-table tbody tr:nth-child(even) {
+  @apply bg-gray-600 text-gray-300;
+}
+::ng-deep .cdk-table tbody tr:nth-child(odd) {
+  @apply bg-gray-700 text-gray-300;
+}
+
+::ng-deep .cdk-table tbody td {
+  @apply px-2 md:px-4 py-2 md:py-4 whitespace-nowrap text-sm;
+}

@@ -53,6 +53,36 @@
       "schema": "./src/schematics/init/schema.json",
       "description": "init schematic"
     },
+    "mobile": {
+      "factory": "./src/schematics/mobile/schematic-mobile",
+      "schema": "./src/schematics/mobile/schema.json",
+      "description": "mobile schematic"
+    },
+    "mobile-feature-auth": {
+      "factory": "./src/schematics/mobile-feature-auth/schematic-mobile-feature-auth",
+      "schema": "./src/schematics/mobile-feature-auth/schema.json",
+      "description": "mobile-feature-auth schematic"
+    },
+    "mobile-feature-core": {
+      "factory": "./src/schematics/mobile-feature-core/schematic-mobile-feature-core",
+      "schema": "./src/schematics/mobile-feature-core/schema.json",
+      "description": "mobile-feature-core schematic"
+    },
+    "mobile-feature-dashboard": {
+      "factory": "./src/schematics/mobile-feature-dashboard/schematic-mobile-feature-dashboard",
+      "schema": "./src/schematics/mobile-feature-dashboard/schema.json",
+      "description": "mobile-feature-dashboard schematic"
+    },
+    "mobile-feature-shell": {
+      "factory": "./src/schematics/mobile-feature-shell/schematic-mobile-feature-shell",
+      "schema": "./src/schematics/mobile-feature-shell/schema.json",
+      "description": "mobile-feature-shell schematic"
+    },
+    "mobile-ui-libs": {
+      "factory": "./src/schematics/mobile-ui-libs/schematic-mobile-ui-libs",
+      "schema": "./src/schematics/mobile-ui-libs/schema.json",
+      "description": "mobile-ui-libs schematic"
+    },
     "shared-util-libs": {
       "factory": "./src/schematics/shared-util-libs/schematic-shared-util-libs",
       "schema": "./src/schematics/shared-util-libs/schema.json",

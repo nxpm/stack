@@ -40,6 +40,58 @@ exports[`init schematic should run successfully 1`] = `
     \\"api-e2e\\": {
       \\"tags\\": []
     },
+    \\"mobile\\": {
+      \\"tags\\": []
+    },
+    \\"mobile-e2e\\": {
+      \\"tags\\": [],
+      \\"implicitDependencies\\": [\\"mobile\\"]
+    },
+    \\"mobile-auth-data-access\\": {
+      \\"tags\\": [\\"scope:mobile\\", \\"type:data-access\\"]
+    },
+    \\"mobile-auth-feature\\": {
+      \\"tags\\": [\\"scope:mobile\\", \\"type:feature\\"]
+    },
+    \\"mobile-auth-ui\\": {
+      \\"tags\\": [\\"scope:mobile\\", \\"type:ui\\"]
+    },
+    \\"mobile-core-data-access\\": {
+      \\"tags\\": [\\"scope:mobile\\", \\"type:data-access\\"]
+    },
+    \\"mobile-core-feature\\": {
+      \\"tags\\": [\\"scope:mobile\\", \\"type:feature\\"]
+    },
+    \\"mobile-dashboard-feature\\": {
+      \\"tags\\": [\\"scope:mobile\\", \\"type:feature\\"]
+    },
+    \\"mobile-shell-feature\\": {
+      \\"tags\\": [\\"scope:mobile\\", \\"type:feature\\"]
+    },
+    \\"mobile-ui-button\\": {
+      \\"tags\\": [\\"scope:mobile\\", \\"type:ui\\"]
+    },
+    \\"mobile-ui-form\\": {
+      \\"tags\\": [\\"scope:mobile\\", \\"type:ui\\"]
+    },
+    \\"mobile-ui-loader\\": {
+      \\"tags\\": [\\"scope:mobile\\", \\"type:ui\\"]
+    },
+    \\"mobile-ui-icon\\": {
+      \\"tags\\": [\\"scope:mobile\\", \\"type:ui\\"]
+    },
+    \\"mobile-ui-page\\": {
+      \\"tags\\": [\\"scope:mobile\\", \\"type:ui\\"]
+    },
+    \\"mobile-ui-page-header\\": {
+      \\"tags\\": [\\"scope:mobile\\", \\"type:ui\\"]
+    },
+    \\"mobile-ui-sidebar-page\\": {
+      \\"tags\\": [\\"scope:mobile\\", \\"type:ui\\"]
+    },
+    \\"mobile-ui-table\\": {
+      \\"tags\\": [\\"scope:mobile\\", \\"type:ui\\"]
+    },
     \\"test\\": {
       \\"tags\\": []
     },
@@ -136,6 +188,10 @@ exports[`init schematic should run successfully 1`] = `
       \\"api\\": {
         \\"tech\\": \\"@nrwl/nest\\",
         \\"project\\": \\"api\\"
+      },
+      \\"mobile\\": {
+        \\"tech\\": \\"@nxtend/ionic-angular\\",
+        \\"project\\": \\"mobile\\"
       },
       \\"web\\": {
         \\"tech\\": \\"@nrwl/angular\\",
@@ -434,6 +490,555 @@ exports[`init schematic should run successfully 2`] = `
           }
         }
       }
+    },
+    \\"mobile\\": {
+      \\"projectType\\": \\"application\\",
+      \\"schematics\\": {
+        \\"@schematics/angular:component\\": {
+          \\"style\\": \\"scss\\"
+        }
+      },
+      \\"root\\": \\"apps/mobile\\",
+      \\"sourceRoot\\": \\"apps/mobile/src\\",
+      \\"prefix\\": \\"proj\\",
+      \\"architect\\": {
+        \\"build\\": {
+          \\"builder\\": \\"@angular-devkit/build-angular:browser\\",
+          \\"options\\": {
+            \\"outputPath\\": \\"dist/apps/mobile\\",
+            \\"index\\": \\"apps/mobile/src/index.html\\",
+            \\"main\\": \\"apps/mobile/src/main.ts\\",
+            \\"polyfills\\": \\"apps/mobile/src/polyfills.ts\\",
+            \\"tsConfig\\": \\"apps/mobile/tsconfig.app.json\\",
+            \\"aot\\": true,
+            \\"assets\\": [
+              \\"apps/mobile/src/assets\\",
+              {
+                \\"glob\\": \\"**/*.svg\\",
+                \\"input\\": \\"node_modules/ionicons/dist/ionicons/svg\\",
+                \\"output\\": \\"./svg\\"
+              }
+            ],
+            \\"styles\\": [
+              \\"apps/mobile/src/styles.scss\\",
+              {
+                \\"input\\": \\"apps/mobile/src/theme/variables.scss\\"
+              }
+            ],
+            \\"scripts\\": [],
+            \\"allowedCommonJsDependencies\\": [\\"graphql-tag\\", \\"subscriptions-transport-ws\\", \\"zen-observable\\"]
+          },
+          \\"configurations\\": {
+            \\"production\\": {
+              \\"fileReplacements\\": [
+                {
+                  \\"replace\\": \\"libs/mobile/core/feature/src/environments/environment.ts\\",
+                  \\"with\\": \\"libs/mobile/core/feature/src/environments/environment.prod.ts\\"
+                }
+              ],
+              \\"optimization\\": true,
+              \\"outputHashing\\": \\"all\\",
+              \\"sourceMap\\": false,
+              \\"extractCss\\": true,
+              \\"namedChunks\\": false,
+              \\"extractLicenses\\": true,
+              \\"vendorChunk\\": false,
+              \\"buildOptimizer\\": true,
+              \\"budgets\\": [
+                {
+                  \\"type\\": \\"initial\\",
+                  \\"maximumWarning\\": \\"2mb\\",
+                  \\"maximumError\\": \\"5mb\\"
+                },
+                {
+                  \\"type\\": \\"anyComponentStyle\\",
+                  \\"maximumWarning\\": \\"6kb\\",
+                  \\"maximumError\\": \\"10kb\\"
+                }
+              ]
+            }
+          }
+        },
+        \\"serve\\": {
+          \\"builder\\": \\"@angular-devkit/build-angular:dev-server\\",
+          \\"options\\": {
+            \\"browserTarget\\": \\"mobile:build\\",
+            \\"proxyConfig\\": \\"apps/mobile/proxy.conf.js\\"
+          },
+          \\"configurations\\": {
+            \\"production\\": {
+              \\"browserTarget\\": \\"mobile:build:production\\"
+            }
+          }
+        },
+        \\"extract-i18n\\": {
+          \\"builder\\": \\"@angular-devkit/build-angular:extract-i18n\\",
+          \\"options\\": {
+            \\"browserTarget\\": \\"mobile:build\\"
+          }
+        },
+        \\"lint\\": {
+          \\"builder\\": \\"@angular-devkit/build-angular:tslint\\",
+          \\"options\\": {
+            \\"tsConfig\\": [
+              \\"apps/mobile/tsconfig.app.json\\",
+              \\"apps/mobile/tsconfig.spec.json\\",
+              \\"apps/mobile/tsconfig.editor.json\\"
+            ],
+            \\"exclude\\": [\\"**/node_modules/**\\", \\"!apps/mobile/**/*\\"]
+          }
+        },
+        \\"test\\": {
+          \\"builder\\": \\"@angular-devkit/build-angular:karma\\",
+          \\"options\\": {
+            \\"main\\": \\"apps/mobile/src/test.ts\\",
+            \\"tsConfig\\": \\"apps/mobile/tsconfig.spec.json\\",
+            \\"karmaConfig\\": \\"apps/mobile/karma.conf.js\\",
+            \\"polyfills\\": \\"apps/mobile/src/polyfills.ts\\",
+            \\"styles\\": [],
+            \\"scripts\\": [],
+            \\"assets\\": []
+          }
+        },
+        \\"cap\\": {
+          \\"builder\\": \\"@nxtend/capacitor:cap\\",
+          \\"options\\": {
+            \\"cmd\\": \\"--help\\"
+          }
+        },
+        \\"add\\": {
+          \\"builder\\": \\"@nxtend/capacitor:cap\\",
+          \\"options\\": {
+            \\"cmd\\": \\"add\\",
+            \\"packageInstall\\": true
+          },
+          \\"configurations\\": {
+            \\"ios\\": {
+              \\"cmd\\": \\"add ios\\"
+            },
+            \\"android\\": {
+              \\"cmd\\": \\"add android\\"
+            }
+          }
+        },
+        \\"copy\\": {
+          \\"builder\\": \\"@nxtend/capacitor:cap\\",
+          \\"options\\": {
+            \\"cmd\\": \\"copy\\",
+            \\"packageInstall\\": false
+          },
+          \\"configurations\\": {
+            \\"ios\\": {
+              \\"cmd\\": \\"copy ios\\"
+            },
+            \\"android\\": {
+              \\"cmd\\": \\"copy android\\"
+            }
+          }
+        },
+        \\"open\\": {
+          \\"builder\\": \\"@nxtend/capacitor:cap\\",
+          \\"options\\": {
+            \\"cmd\\": \\"open\\",
+            \\"packageInstall\\": false
+          },
+          \\"configurations\\": {
+            \\"ios\\": {
+              \\"cmd\\": \\"open ios\\"
+            },
+            \\"android\\": {
+              \\"cmd\\": \\"open android\\"
+            }
+          }
+        },
+        \\"sync\\": {
+          \\"builder\\": \\"@nxtend/capacitor:cap\\",
+          \\"options\\": {
+            \\"cmd\\": \\"sync\\",
+            \\"packageInstall\\": true
+          },
+          \\"configurations\\": {
+            \\"ios\\": {
+              \\"cmd\\": \\"sync ios\\"
+            },
+            \\"android\\": {
+              \\"cmd\\": \\"sync android\\"
+            }
+          }
+        },
+        \\"update\\": {
+          \\"builder\\": \\"@nxtend/capacitor:cap\\",
+          \\"options\\": {
+            \\"cmd\\": \\"update\\",
+            \\"packageInstall\\": true
+          },
+          \\"configurations\\": {
+            \\"ios\\": {
+              \\"cmd\\": \\"update ios\\"
+            },
+            \\"android\\": {
+              \\"cmd\\": \\"update android\\"
+            }
+          }
+        }
+      }
+    },
+    \\"mobile-e2e\\": {
+      \\"root\\": \\"apps/mobile-e2e\\",
+      \\"sourceRoot\\": \\"apps/mobile-e2e/src\\",
+      \\"projectType\\": \\"application\\",
+      \\"architect\\": {
+        \\"e2e\\": {
+          \\"builder\\": \\"@nrwl/cypress:cypress\\",
+          \\"options\\": {
+            \\"cypressConfig\\": \\"apps/mobile-e2e/cypress.json\\",
+            \\"tsConfig\\": \\"apps/mobile-e2e/tsconfig.e2e.json\\",
+            \\"devServerTarget\\": \\"mobile:serve\\"
+          },
+          \\"configurations\\": {
+            \\"production\\": {
+              \\"devServerTarget\\": \\"mobile:serve:production\\"
+            }
+          }
+        },
+        \\"lint\\": {
+          \\"builder\\": \\"@angular-devkit/build-angular:tslint\\",
+          \\"options\\": {
+            \\"tsConfig\\": [\\"apps/mobile-e2e/tsconfig.e2e.json\\"],
+            \\"exclude\\": [\\"**/node_modules/**\\", \\"!apps/mobile-e2e/**/*\\"]
+          }
+        }
+      }
+    },
+    \\"mobile-auth-data-access\\": {
+      \\"projectType\\": \\"library\\",
+      \\"root\\": \\"libs/mobile/auth/data-access\\",
+      \\"sourceRoot\\": \\"libs/mobile/auth/data-access/src\\",
+      \\"prefix\\": \\"auth\\",
+      \\"architect\\": {
+        \\"lint\\": {
+          \\"builder\\": \\"@nrwl/linter:eslint\\",
+          \\"options\\": {
+            \\"lintFilePatterns\\": [\\"libs/mobile/auth/data-access/src/**/*.ts\\"]
+          }
+        },
+        \\"test\\": {
+          \\"builder\\": \\"@nrwl/jest:jest\\",
+          \\"options\\": {
+            \\"jestConfig\\": \\"libs/mobile/auth/data-access/jest.config.js\\",
+            \\"passWithNoTests\\": true
+          }
+        }
+      },
+      \\"schematics\\": {}
+    },
+    \\"mobile-auth-feature\\": {
+      \\"projectType\\": \\"library\\",
+      \\"root\\": \\"libs/mobile/auth/feature\\",
+      \\"sourceRoot\\": \\"libs/mobile/auth/feature/src\\",
+      \\"prefix\\": \\"auth\\",
+      \\"architect\\": {
+        \\"lint\\": {
+          \\"builder\\": \\"@nrwl/linter:eslint\\",
+          \\"options\\": {
+            \\"lintFilePatterns\\": [\\"libs/mobile/auth/feature/src/**/*.ts\\"]
+          }
+        },
+        \\"test\\": {
+          \\"builder\\": \\"@nrwl/jest:jest\\",
+          \\"options\\": {
+            \\"jestConfig\\": \\"libs/mobile/auth/feature/jest.config.js\\",
+            \\"passWithNoTests\\": true
+          }
+        }
+      },
+      \\"schematics\\": {}
+    },
+    \\"mobile-auth-ui\\": {
+      \\"projectType\\": \\"library\\",
+      \\"root\\": \\"libs/mobile/auth/ui\\",
+      \\"sourceRoot\\": \\"libs/mobile/auth/ui/src\\",
+      \\"prefix\\": \\"auth\\",
+      \\"architect\\": {
+        \\"lint\\": {
+          \\"builder\\": \\"@nrwl/linter:eslint\\",
+          \\"options\\": {
+            \\"lintFilePatterns\\": [\\"libs/mobile/auth/ui/src/**/*.ts\\"]
+          }
+        },
+        \\"test\\": {
+          \\"builder\\": \\"@nrwl/jest:jest\\",
+          \\"options\\": {
+            \\"jestConfig\\": \\"libs/mobile/auth/ui/jest.config.js\\",
+            \\"passWithNoTests\\": true
+          }
+        }
+      },
+      \\"schematics\\": {}
+    },
+    \\"mobile-core-data-access\\": {
+      \\"projectType\\": \\"library\\",
+      \\"root\\": \\"libs/mobile/core/data-access\\",
+      \\"sourceRoot\\": \\"libs/mobile/core/data-access/src\\",
+      \\"prefix\\": \\"core\\",
+      \\"architect\\": {
+        \\"lint\\": {
+          \\"builder\\": \\"@nrwl/linter:eslint\\",
+          \\"options\\": {
+            \\"lintFilePatterns\\": [\\"libs/mobile/core/data-access/src/**/*.ts\\"]
+          }
+        },
+        \\"test\\": {
+          \\"builder\\": \\"@nrwl/jest:jest\\",
+          \\"options\\": {
+            \\"jestConfig\\": \\"libs/mobile/core/data-access/jest.config.js\\",
+            \\"passWithNoTests\\": true
+          }
+        }
+      },
+      \\"schematics\\": {}
+    },
+    \\"mobile-core-feature\\": {
+      \\"projectType\\": \\"library\\",
+      \\"root\\": \\"libs/mobile/core/feature\\",
+      \\"sourceRoot\\": \\"libs/mobile/core/feature/src\\",
+      \\"prefix\\": \\"core\\",
+      \\"architect\\": {
+        \\"lint\\": {
+          \\"builder\\": \\"@nrwl/linter:eslint\\",
+          \\"options\\": {
+            \\"lintFilePatterns\\": [\\"libs/mobile/core/feature/src/**/*.ts\\"]
+          }
+        },
+        \\"test\\": {
+          \\"builder\\": \\"@nrwl/jest:jest\\",
+          \\"options\\": {
+            \\"jestConfig\\": \\"libs/mobile/core/feature/jest.config.js\\",
+            \\"passWithNoTests\\": true
+          }
+        }
+      },
+      \\"schematics\\": {}
+    },
+    \\"mobile-dashboard-feature\\": {
+      \\"projectType\\": \\"library\\",
+      \\"root\\": \\"libs/mobile/dashboard/feature\\",
+      \\"sourceRoot\\": \\"libs/mobile/dashboard/feature/src\\",
+      \\"prefix\\": \\"dashboard\\",
+      \\"architect\\": {
+        \\"lint\\": {
+          \\"builder\\": \\"@nrwl/linter:eslint\\",
+          \\"options\\": {
+            \\"lintFilePatterns\\": [\\"libs/mobile/dashboard/feature/src/**/*.ts\\"]
+          }
+        },
+        \\"test\\": {
+          \\"builder\\": \\"@nrwl/jest:jest\\",
+          \\"options\\": {
+            \\"jestConfig\\": \\"libs/mobile/dashboard/feature/jest.config.js\\",
+            \\"passWithNoTests\\": true
+          }
+        }
+      },
+      \\"schematics\\": {}
+    },
+    \\"mobile-shell-feature\\": {
+      \\"projectType\\": \\"library\\",
+      \\"root\\": \\"libs/mobile/shell/feature\\",
+      \\"sourceRoot\\": \\"libs/mobile/shell/feature/src\\",
+      \\"prefix\\": \\"shell\\",
+      \\"architect\\": {
+        \\"lint\\": {
+          \\"builder\\": \\"@nrwl/linter:eslint\\",
+          \\"options\\": {
+            \\"lintFilePatterns\\": [\\"libs/mobile/shell/feature/src/**/*.ts\\"]
+          }
+        },
+        \\"test\\": {
+          \\"builder\\": \\"@nrwl/jest:jest\\",
+          \\"options\\": {
+            \\"jestConfig\\": \\"libs/mobile/shell/feature/jest.config.js\\",
+            \\"passWithNoTests\\": true
+          }
+        }
+      },
+      \\"schematics\\": {}
+    },
+    \\"mobile-ui-button\\": {
+      \\"projectType\\": \\"library\\",
+      \\"root\\": \\"libs/mobile/ui/button\\",
+      \\"sourceRoot\\": \\"libs/mobile/ui/button/src\\",
+      \\"prefix\\": \\"ui\\",
+      \\"architect\\": {
+        \\"lint\\": {
+          \\"builder\\": \\"@nrwl/linter:eslint\\",
+          \\"options\\": {
+            \\"lintFilePatterns\\": [\\"libs/mobile/ui/button/src/**/*.ts\\"]
+          }
+        },
+        \\"test\\": {
+          \\"builder\\": \\"@nrwl/jest:jest\\",
+          \\"options\\": {
+            \\"jestConfig\\": \\"libs/mobile/ui/button/jest.config.js\\",
+            \\"passWithNoTests\\": true
+          }
+        }
+      },
+      \\"schematics\\": {}
+    },
+    \\"mobile-ui-form\\": {
+      \\"projectType\\": \\"library\\",
+      \\"root\\": \\"libs/mobile/ui/form\\",
+      \\"sourceRoot\\": \\"libs/mobile/ui/form/src\\",
+      \\"prefix\\": \\"ui\\",
+      \\"architect\\": {
+        \\"lint\\": {
+          \\"builder\\": \\"@nrwl/linter:eslint\\",
+          \\"options\\": {
+            \\"lintFilePatterns\\": [\\"libs/mobile/ui/form/src/**/*.ts\\"]
+          }
+        },
+        \\"test\\": {
+          \\"builder\\": \\"@nrwl/jest:jest\\",
+          \\"options\\": {
+            \\"jestConfig\\": \\"libs/mobile/ui/form/jest.config.js\\",
+            \\"passWithNoTests\\": true
+          }
+        }
+      },
+      \\"schematics\\": {}
+    },
+    \\"mobile-ui-loader\\": {
+      \\"projectType\\": \\"library\\",
+      \\"root\\": \\"libs/mobile/ui/loader\\",
+      \\"sourceRoot\\": \\"libs/mobile/ui/loader/src\\",
+      \\"prefix\\": \\"ui\\",
+      \\"architect\\": {
+        \\"lint\\": {
+          \\"builder\\": \\"@nrwl/linter:eslint\\",
+          \\"options\\": {
+            \\"lintFilePatterns\\": [\\"libs/mobile/ui/loader/src/**/*.ts\\"]
+          }
+        },
+        \\"test\\": {
+          \\"builder\\": \\"@nrwl/jest:jest\\",
+          \\"options\\": {
+            \\"jestConfig\\": \\"libs/mobile/ui/loader/jest.config.js\\",
+            \\"passWithNoTests\\": true
+          }
+        }
+      },
+      \\"schematics\\": {}
+    },
+    \\"mobile-ui-icon\\": {
+      \\"projectType\\": \\"library\\",
+      \\"root\\": \\"libs/mobile/ui/icon\\",
+      \\"sourceRoot\\": \\"libs/mobile/ui/icon/src\\",
+      \\"prefix\\": \\"ui\\",
+      \\"architect\\": {
+        \\"lint\\": {
+          \\"builder\\": \\"@nrwl/linter:eslint\\",
+          \\"options\\": {
+            \\"lintFilePatterns\\": [\\"libs/mobile/ui/icon/src/**/*.ts\\"]
+          }
+        },
+        \\"test\\": {
+          \\"builder\\": \\"@nrwl/jest:jest\\",
+          \\"options\\": {
+            \\"jestConfig\\": \\"libs/mobile/ui/icon/jest.config.js\\",
+            \\"passWithNoTests\\": true
+          }
+        }
+      },
+      \\"schematics\\": {}
+    },
+    \\"mobile-ui-page\\": {
+      \\"projectType\\": \\"library\\",
+      \\"root\\": \\"libs/mobile/ui/page\\",
+      \\"sourceRoot\\": \\"libs/mobile/ui/page/src\\",
+      \\"prefix\\": \\"ui\\",
+      \\"architect\\": {
+        \\"lint\\": {
+          \\"builder\\": \\"@nrwl/linter:eslint\\",
+          \\"options\\": {
+            \\"lintFilePatterns\\": [\\"libs/mobile/ui/page/src/**/*.ts\\"]
+          }
+        },
+        \\"test\\": {
+          \\"builder\\": \\"@nrwl/jest:jest\\",
+          \\"options\\": {
+            \\"jestConfig\\": \\"libs/mobile/ui/page/jest.config.js\\",
+            \\"passWithNoTests\\": true
+          }
+        }
+      },
+      \\"schematics\\": {}
+    },
+    \\"mobile-ui-page-header\\": {
+      \\"projectType\\": \\"library\\",
+      \\"root\\": \\"libs/mobile/ui/page-header\\",
+      \\"sourceRoot\\": \\"libs/mobile/ui/page-header/src\\",
+      \\"prefix\\": \\"ui\\",
+      \\"architect\\": {
+        \\"lint\\": {
+          \\"builder\\": \\"@nrwl/linter:eslint\\",
+          \\"options\\": {
+            \\"lintFilePatterns\\": [\\"libs/mobile/ui/page-header/src/**/*.ts\\"]
+          }
+        },
+        \\"test\\": {
+          \\"builder\\": \\"@nrwl/jest:jest\\",
+          \\"options\\": {
+            \\"jestConfig\\": \\"libs/mobile/ui/page-header/jest.config.js\\",
+            \\"passWithNoTests\\": true
+          }
+        }
+      },
+      \\"schematics\\": {}
+    },
+    \\"mobile-ui-sidebar-page\\": {
+      \\"projectType\\": \\"library\\",
+      \\"root\\": \\"libs/mobile/ui/sidebar-page\\",
+      \\"sourceRoot\\": \\"libs/mobile/ui/sidebar-page/src\\",
+      \\"prefix\\": \\"ui\\",
+      \\"architect\\": {
+        \\"lint\\": {
+          \\"builder\\": \\"@nrwl/linter:eslint\\",
+          \\"options\\": {
+            \\"lintFilePatterns\\": [\\"libs/mobile/ui/sidebar-page/src/**/*.ts\\"]
+          }
+        },
+        \\"test\\": {
+          \\"builder\\": \\"@nrwl/jest:jest\\",
+          \\"options\\": {
+            \\"jestConfig\\": \\"libs/mobile/ui/sidebar-page/jest.config.js\\",
+            \\"passWithNoTests\\": true
+          }
+        }
+      },
+      \\"schematics\\": {}
+    },
+    \\"mobile-ui-table\\": {
+      \\"projectType\\": \\"library\\",
+      \\"root\\": \\"libs/mobile/ui/table\\",
+      \\"sourceRoot\\": \\"libs/mobile/ui/table/src\\",
+      \\"prefix\\": \\"ui\\",
+      \\"architect\\": {
+        \\"lint\\": {
+          \\"builder\\": \\"@nrwl/linter:eslint\\",
+          \\"options\\": {
+            \\"lintFilePatterns\\": [\\"libs/mobile/ui/table/src/**/*.ts\\"]
+          }
+        },
+        \\"test\\": {
+          \\"builder\\": \\"@nrwl/jest:jest\\",
+          \\"options\\": {
+            \\"jestConfig\\": \\"libs/mobile/ui/table/jest.config.js\\",
+            \\"passWithNoTests\\": true
+          }
+        }
+      },
+      \\"schematics\\": {}
     },
     \\"test\\": {
       \\"projectType\\": \\"application\\",
@@ -1065,11 +1670,11 @@ exports[`init schematic should run successfully 2`] = `
   \\"defaultProject\\": \\"api\\",
   \\"schematics\\": {
     \\"@nrwl/angular:application\\": {
-      \\"unitTestRunner\\": \\"jest\\",
+      \\"unitTestRunner\\": \\"karma\\",
       \\"e2eTestRunner\\": \\"cypress\\"
     },
     \\"@nrwl/angular:library\\": {
-      \\"unitTestRunner\\": \\"jest\\"
+      \\"unitTestRunner\\": \\"karma\\"
     }
   }
 }
@@ -1091,6 +1696,21 @@ exports[`init schematic should run successfully 3`] = `
       \\"@proj/api/core/util\\": [\\"libs/api/core/util/src/index.ts\\"],
       \\"@proj/api/user/data-access\\": [\\"libs/api/user/data-access/src/index.ts\\"],
       \\"@proj/api/user/feature\\": [\\"libs/api/user/feature/src/index.ts\\"],
+      \\"@proj/mobile/auth/data-access\\": [\\"libs/mobile/auth/data-access/src/index.ts\\"],
+      \\"@proj/mobile/auth/feature\\": [\\"libs/mobile/auth/feature/src/index.ts\\"],
+      \\"@proj/mobile/auth/ui\\": [\\"libs/mobile/auth/ui/src/index.ts\\"],
+      \\"@proj/mobile/core/data-access\\": [\\"libs/mobile/core/data-access/src/index.ts\\"],
+      \\"@proj/mobile/core/feature\\": [\\"libs/mobile/core/feature/src/index.ts\\"],
+      \\"@proj/mobile/dashboard/feature\\": [\\"libs/mobile/dashboard/feature/src/index.ts\\"],
+      \\"@proj/mobile/shell/feature\\": [\\"libs/mobile/shell/feature/src/index.ts\\"],
+      \\"@proj/mobile/ui/button\\": [\\"libs/mobile/ui/button/src/index.ts\\"],
+      \\"@proj/mobile/ui/form\\": [\\"libs/mobile/ui/form/src/index.ts\\"],
+      \\"@proj/mobile/ui/loader\\": [\\"libs/mobile/ui/loader/src/index.ts\\"],
+      \\"@proj/mobile/ui/icon\\": [\\"libs/mobile/ui/icon/src/index.ts\\"],
+      \\"@proj/mobile/ui/page\\": [\\"libs/mobile/ui/page/src/index.ts\\"],
+      \\"@proj/mobile/ui/page-header\\": [\\"libs/mobile/ui/page-header/src/index.ts\\"],
+      \\"@proj/mobile/ui/sidebar-page\\": [\\"libs/mobile/ui/sidebar-page/src/index.ts\\"],
+      \\"@proj/mobile/ui/table\\": [\\"libs/mobile/ui/table/src/index.ts\\"],
       \\"@proj/test/assets\\": [\\"libs/test/assets/src/index.ts\\"],
       \\"@proj/test/about/feature\\": [\\"libs/test/about/feature/src/index.ts\\"],
       \\"@proj/test/account/feature\\": [\\"libs/test/account/feature/src/index.ts\\"],
@@ -1135,6 +1755,11 @@ exports[`init schematic should run successfully 4`] = `
     \\"@angular/platform-browser-dynamic\\": \\"^10.1.0\\",
     \\"@angular/router\\": \\"^10.1.0\\",
     \\"@apollo/client\\": \\"3.3.9\\",
+    \\"@capacitor/core\\": \\"^2.4.5\\",
+    \\"@ionic-native/core\\": \\"^5.30.0\\",
+    \\"@ionic-native/splash-screen\\": \\"^5.30.0\\",
+    \\"@ionic-native/status-bar\\": \\"^5.30.0\\",
+    \\"@ionic/angular\\": \\"^5.5.2\\",
     \\"@kikstart-playground/graphql-intercom\\": \\"1.4.1\\",
     \\"@nestjs/common\\": \\"^7.0.0\\",
     \\"@nestjs/config\\": \\"^0.5.0\\",
@@ -1147,6 +1772,7 @@ exports[`init schematic should run successfully 4`] = `
     \\"@ngneat/svg-icon\\": \\"2.2.2\\",
     \\"@ngrx/component-store\\": \\"11.0.0\\",
     \\"@ngx-formly/core\\": \\"5.10.13\\",
+    \\"@ngx-formly/ionic\\": \\"5.10.13\\",
     \\"@prisma/client\\": \\"2.15.0\\",
     \\"apollo-angular\\": \\"2.2.0\\",
     \\"apollo-server-express\\": \\"^2.18.0\\",
@@ -1174,6 +1800,8 @@ exports[`init schematic should run successfully 4`] = `
     \\"@angular-eslint/template-parser\\": \\"1.1.0\\",
     \\"@angular/compiler-cli\\": \\"^10.1.0\\",
     \\"@angular/language-service\\": \\"^10.1.0\\",
+    \\"@capacitor/android\\": \\"^2.4.5\\",
+    \\"@capacitor/ios\\": \\"^2.4.5\\",
     \\"@graphql-codegen/cli\\": \\"1.20.1\\",
     \\"@graphql-codegen/introspection\\": \\"1.18.1\\",
     \\"@graphql-codegen/typescript\\": \\"1.21.0\\",
@@ -1182,14 +1810,18 @@ exports[`init schematic should run successfully 4`] = `
     \\"@nestjs/schematics\\": \\"^7.0.0\\",
     \\"@nestjs/testing\\": \\"^7.0.0\\",
     \\"@ngneat/spectator\\": \\"7.0.0\\",
+    \\"@nrwl/angular\\": \\"0.0.0\\",
     \\"@nrwl/cypress\\": \\"10.4.4\\",
     \\"@nrwl/eslint-plugin-nx\\": \\"10.4.4\\",
     \\"@nrwl/jest\\": \\"10.4.4\\",
     \\"@nrwl/nest\\": \\"10.4.4\\",
     \\"@nrwl/node\\": \\"10.4.4\\",
+    \\"@nrwl/workspace\\": \\"0.0.0\\",
     \\"@nxpm/cli\\": \\"^4.12.2\\",
+    \\"@nxtend/capacitor\\": \\"^11.0.0\\",
     \\"@prisma/cli\\": \\"2.15.0\\",
     \\"@types/fs-extra\\": \\"9.0.7\\",
+    \\"@types/jasmine\\": \\"~3.5.0\\",
     \\"@types/jest\\": \\"26.0.8\\",
     \\"@types/pg\\": \\"7.14.9\\",
     \\"@typescript-eslint/eslint-plugin\\": \\"4.3.0\\",
@@ -1200,8 +1832,15 @@ exports[`init schematic should run successfully 4`] = `
     \\"eslint-config-prettier\\": \\"6.0.0\\",
     \\"eslint-plugin-cypress\\": \\"^2.10.3\\",
     \\"husky\\": \\"^4.3.0\\",
+    \\"jasmine-core\\": \\"~3.6.0\\",
+    \\"jasmine-spec-reporter\\": \\"~5.0.0\\",
     \\"jest\\": \\"26.2.2\\",
     \\"jest-preset-angular\\": \\"8.3.1\\",
+    \\"karma\\": \\"~5.0.0\\",
+    \\"karma-chrome-launcher\\": \\"~3.1.0\\",
+    \\"karma-coverage-istanbul-reporter\\": \\"~3.0.2\\",
+    \\"karma-jasmine\\": \\"~4.0.0\\",
+    \\"karma-jasmine-html-reporter\\": \\"^1.5.0\\",
     \\"lint-staged\\": \\"^10.4.0\\",
     \\"pg\\": \\"8.5.1\\",
     \\"ts-jest\\": \\"26.4.0\\",
@@ -1227,6 +1866,8 @@ exports[`init schematic should run successfully 4`] = `
     \\"build:test\\": \\"nx build test --prod\\",
     \\"build:sdk\\": \\"graphql-codegen --config libs/shared/util/sdk/src/codegen.yml\\",
     \\"dev:sdk\\": \\"yarn build:sdk --watch\\",
+    \\"dev:mobile\\": \\"nx serve mobile --hmr\\",
+    \\"build:mobile\\": \\"nx build mobile --prod\\",
     \\"dev:api\\": \\"nx serve api\\",
     \\"build:api\\": \\"nx build api --prod\\",
     \\"setup\\": \\"yarn nx workspace-generator workspace-setup\\",
