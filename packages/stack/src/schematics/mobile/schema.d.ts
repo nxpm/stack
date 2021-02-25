@@ -5,5 +5,5 @@ export interface MobileSchematicSchema extends BaseSchema {
   tags?: string
   style?: 'css' | 'scss'
   directory?: string
-  styleLibrary?: 'bootstrap' | 'tailwind'
+  styleLibrary?: 'ionic-angular'
 }

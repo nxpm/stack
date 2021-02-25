@@ -47,6 +47,18 @@ exports[`init schematic should run successfully 1`] = `
       \\"tags\\": [],
       \\"implicitDependencies\\": [\\"mobile\\"]
     },
+    \\"mobile-assets\\": {
+      \\"tags\\": [\\"scope:mobile\\", \\"type:assets\\"]
+    },
+    \\"mobile-about-feature\\": {
+      \\"tags\\": [\\"scope:mobile\\", \\"type:feature\\"]
+    },
+    \\"mobile-account-feature\\": {
+      \\"tags\\": [\\"scope:mobile\\", \\"type:feature\\"]
+    },
+    \\"mobile-account-ui\\": {
+      \\"tags\\": [\\"scope:mobile\\", \\"type:ui\\"]
+    },
     \\"mobile-auth-data-access\\": {
       \\"tags\\": [\\"scope:mobile\\", \\"type:data-access\\"]
     },
@@ -65,8 +77,14 @@ exports[`init schematic should run successfully 1`] = `
     \\"mobile-dashboard-feature\\": {
       \\"tags\\": [\\"scope:mobile\\", \\"type:feature\\"]
     },
+    \\"mobile-layout-feature\\": {
+      \\"tags\\": [\\"scope:mobile\\", \\"type:feature\\"]
+    },
     \\"mobile-shell-feature\\": {
       \\"tags\\": [\\"scope:mobile\\", \\"type:feature\\"]
+    },
+    \\"mobile-style\\": {
+      \\"tags\\": [\\"scope:mobile\\", \\"type:style\\"]
     },
     \\"mobile-ui-button\\": {
       \\"tags\\": [\\"scope:mobile\\", \\"type:ui\\"]
@@ -512,19 +530,18 @@ exports[`init schematic should run successfully 2`] = `
             \\"tsConfig\\": \\"apps/mobile/tsconfig.app.json\\",
             \\"aot\\": true,
             \\"assets\\": [
-              \\"apps/mobile/src/assets\\",
               {
-                \\"glob\\": \\"**/*.svg\\",
-                \\"input\\": \\"node_modules/ionicons/dist/ionicons/svg\\",
-                \\"output\\": \\"./svg\\"
+                \\"glob\\": \\"favicon.ico\\",
+                \\"input\\": \\"libs/mobile/assets/src\\",
+                \\"output\\": \\"./\\"
+              },
+              {
+                \\"glob\\": \\"**/*\\",
+                \\"input\\": \\"libs/mobile/assets/src/assets\\",
+                \\"output\\": \\"assets\\"
               }
             ],
-            \\"styles\\": [
-              \\"apps/mobile/src/styles.scss\\",
-              {
-                \\"input\\": \\"apps/mobile/src/theme/variables.scss\\"
-              }
-            ],
+            \\"styles\\": [\\"libs/mobile/style/src/index.css\\"],
             \\"scripts\\": [],
             \\"allowedCommonJsDependencies\\": [\\"graphql-tag\\", \\"subscriptions-transport-ws\\", \\"zen-observable\\"]
           },
@@ -710,6 +727,80 @@ exports[`init schematic should run successfully 2`] = `
         }
       }
     },
+    \\"mobile-assets\\": {
+      \\"projectType\\": \\"library\\",
+      \\"root\\": \\"libs/mobile/assets\\",
+      \\"sourceRoot\\": \\"libs/mobile/assets/src\\",
+      \\"prefix\\": \\"assets\\",
+      \\"architect\\": {},
+      \\"schematics\\": {}
+    },
+    \\"mobile-about-feature\\": {
+      \\"projectType\\": \\"library\\",
+      \\"root\\": \\"libs/mobile/about/feature\\",
+      \\"sourceRoot\\": \\"libs/mobile/about/feature/src\\",
+      \\"prefix\\": \\"about\\",
+      \\"architect\\": {
+        \\"lint\\": {
+          \\"builder\\": \\"@nrwl/linter:eslint\\",
+          \\"options\\": {
+            \\"lintFilePatterns\\": [\\"libs/mobile/about/feature/src/**/*.ts\\"]
+          }
+        },
+        \\"test\\": {
+          \\"builder\\": \\"@nrwl/jest:jest\\",
+          \\"options\\": {
+            \\"jestConfig\\": \\"libs/mobile/about/feature/jest.config.js\\",
+            \\"passWithNoTests\\": true
+          }
+        }
+      },
+      \\"schematics\\": {}
+    },
+    \\"mobile-account-feature\\": {
+      \\"projectType\\": \\"library\\",
+      \\"root\\": \\"libs/mobile/account/feature\\",
+      \\"sourceRoot\\": \\"libs/mobile/account/feature/src\\",
+      \\"prefix\\": \\"account\\",
+      \\"architect\\": {
+        \\"lint\\": {
+          \\"builder\\": \\"@nrwl/linter:eslint\\",
+          \\"options\\": {
+            \\"lintFilePatterns\\": [\\"libs/mobile/account/feature/src/**/*.ts\\"]
+          }
+        },
+        \\"test\\": {
+          \\"builder\\": \\"@nrwl/jest:jest\\",
+          \\"options\\": {
+            \\"jestConfig\\": \\"libs/mobile/account/feature/jest.config.js\\",
+            \\"passWithNoTests\\": true
+          }
+        }
+      },
+      \\"schematics\\": {}
+    },
+    \\"mobile-account-ui\\": {
+      \\"projectType\\": \\"library\\",
+      \\"root\\": \\"libs/mobile/account/ui\\",
+      \\"sourceRoot\\": \\"libs/mobile/account/ui/src\\",
+      \\"prefix\\": \\"account\\",
+      \\"architect\\": {
+        \\"lint\\": {
+          \\"builder\\": \\"@nrwl/linter:eslint\\",
+          \\"options\\": {
+            \\"lintFilePatterns\\": [\\"libs/mobile/account/ui/src/**/*.ts\\"]
+          }
+        },
+        \\"test\\": {
+          \\"builder\\": \\"@nrwl/jest:jest\\",
+          \\"options\\": {
+            \\"jestConfig\\": \\"libs/mobile/account/ui/jest.config.js\\",
+            \\"passWithNoTests\\": true
+          }
+        }
+      },
+      \\"schematics\\": {}
+    },
     \\"mobile-auth-data-access\\": {
       \\"projectType\\": \\"library\\",
       \\"root\\": \\"libs/mobile/auth/data-access\\",
@@ -842,6 +933,28 @@ exports[`init schematic should run successfully 2`] = `
       },
       \\"schematics\\": {}
     },
+    \\"mobile-layout-feature\\": {
+      \\"projectType\\": \\"library\\",
+      \\"root\\": \\"libs/mobile/layout/feature\\",
+      \\"sourceRoot\\": \\"libs/mobile/layout/feature/src\\",
+      \\"prefix\\": \\"layout\\",
+      \\"architect\\": {
+        \\"lint\\": {
+          \\"builder\\": \\"@nrwl/linter:eslint\\",
+          \\"options\\": {
+            \\"lintFilePatterns\\": [\\"libs/mobile/layout/feature/src/**/*.ts\\"]
+          }
+        },
+        \\"test\\": {
+          \\"builder\\": \\"@nrwl/jest:jest\\",
+          \\"options\\": {
+            \\"jestConfig\\": \\"libs/mobile/layout/feature/jest.config.js\\",
+            \\"passWithNoTests\\": true
+          }
+        }
+      },
+      \\"schematics\\": {}
+    },
     \\"mobile-shell-feature\\": {
       \\"projectType\\": \\"library\\",
       \\"root\\": \\"libs/mobile/shell/feature\\",
@@ -862,6 +975,14 @@ exports[`init schematic should run successfully 2`] = `
           }
         }
       },
+      \\"schematics\\": {}
+    },
+    \\"mobile-style\\": {
+      \\"projectType\\": \\"library\\",
+      \\"root\\": \\"libs/mobile/style\\",
+      \\"sourceRoot\\": \\"libs/mobile/style/src\\",
+      \\"prefix\\": \\"style\\",
+      \\"architect\\": {},
       \\"schematics\\": {}
     },
     \\"mobile-ui-button\\": {
@@ -1696,13 +1817,19 @@ exports[`init schematic should run successfully 3`] = `
       \\"@proj/api/core/util\\": [\\"libs/api/core/util/src/index.ts\\"],
       \\"@proj/api/user/data-access\\": [\\"libs/api/user/data-access/src/index.ts\\"],
       \\"@proj/api/user/feature\\": [\\"libs/api/user/feature/src/index.ts\\"],
+      \\"@proj/mobile/assets\\": [\\"libs/mobile/assets/src/index.ts\\"],
+      \\"@proj/mobile/about/feature\\": [\\"libs/mobile/about/feature/src/index.ts\\"],
+      \\"@proj/mobile/account/feature\\": [\\"libs/mobile/account/feature/src/index.ts\\"],
+      \\"@proj/mobile/account/ui\\": [\\"libs/mobile/account/ui/src/index.ts\\"],
       \\"@proj/mobile/auth/data-access\\": [\\"libs/mobile/auth/data-access/src/index.ts\\"],
       \\"@proj/mobile/auth/feature\\": [\\"libs/mobile/auth/feature/src/index.ts\\"],
       \\"@proj/mobile/auth/ui\\": [\\"libs/mobile/auth/ui/src/index.ts\\"],
       \\"@proj/mobile/core/data-access\\": [\\"libs/mobile/core/data-access/src/index.ts\\"],
       \\"@proj/mobile/core/feature\\": [\\"libs/mobile/core/feature/src/index.ts\\"],
       \\"@proj/mobile/dashboard/feature\\": [\\"libs/mobile/dashboard/feature/src/index.ts\\"],
+      \\"@proj/mobile/layout/feature\\": [\\"libs/mobile/layout/feature/src/index.ts\\"],
       \\"@proj/mobile/shell/feature\\": [\\"libs/mobile/shell/feature/src/index.ts\\"],
+      \\"@proj/mobile/style\\": [\\"libs/mobile/style/src/index.ts\\"],
       \\"@proj/mobile/ui/button\\": [\\"libs/mobile/ui/button/src/index.ts\\"],
       \\"@proj/mobile/ui/form\\": [\\"libs/mobile/ui/form/src/index.ts\\"],
       \\"@proj/mobile/ui/loader\\": [\\"libs/mobile/ui/loader/src/index.ts\\"],

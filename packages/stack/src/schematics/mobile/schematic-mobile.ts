@@ -76,7 +76,7 @@ export default function (options: MobileSchematicSchema): Rule {
   const name = options.name || 'mobile'
   const directory = options.directory || options.name
   const styleLibrary = options.styleLibrary || 'ionic-angular'
-  const style = styleLibrary === 'bootstrap' ? 'scss' : 'css'
+  const style = 'css'
   const normalizedOptions = normalizeOptions<MobileSchematicSchema>(options, ProjectType.Application)
 
   return chain([
@@ -106,33 +106,32 @@ export default function (options: MobileSchematicSchema): Rule {
       routing: true,
       linter: 'eslint',
     }),
-    // schematic('mobile-assets', { appName: name, directory, name: 'assets' }),
-    // schematic('web-feature-about', { appName: name, directory }),
-    // schematic('web-feature-account', { appName: name, directory }),
-    // schematic('web-feature-admin', { appName: name, directory }),
-    schematic('web-feature-auth', { appName: name, directory }),
+    schematic('mobile-assets', { appName: name, directory, name: 'assets' }),
+    schematic('mobile-feature-about', { appName: name, directory }),
+    schematic('mobile-feature-account', { appName: name, directory }),
+    schematic('mobile-feature-auth', { appName: name, directory }),
     schematic('mobile-feature-core', { appName: name, directory }),
-    schematic('web-feature-dashboard', { appName: name, directory }),
+    schematic('mobile-feature-dashboard', { appName: name, directory }),
+    schematic('mobile-feature-layout', { appName: name, directory, name: 'layout', library: styleLibrary }),
     schematic('mobile-feature-shell', { appName: name, directory }),
-    // schematic('mobile-layout', { appName: name, directory, name: 'layout', library: styleLibrary }),
-    // schematic('mobile-style', { appName: name, directory, name: 'style', library: styleLibrary }),
+    schematic('mobile-style', { appName: name, directory, name: 'style', library: styleLibrary }),
     schematic('mobile-ui-libs', { appName: name, directory, library: styleLibrary }),
     addRunScript(`build:${name}`, `nx build ${name} --prod`),
     addRunScript(`dev:${name}`, `nx serve ${name} --hmr`),
     addFiles(normalizedOptions),
     removeFiles(
       [
-        `app/app.component.css`,
-        `app/app.component.${style}`,
-        `app/app.component.html`,
+        // `app/app.component.css`,
+        // `app/app.component.${style}`,
+        // `app/app.component.html`,
         `app/app.component.spec.ts`,
-        `environments/environment.ts`,
-        `environments/environment.prod.ts`,
-        `environments`,
-        `assets/.gitkeep`,
-        `assets/`,
-        `favicon.ico`,
-        `styles.${style}`,
+        // `environments/environment.ts`,
+        // `environments/environment.prod.ts`,
+        // `environments`,
+        // `assets/.gitkeep`,
+        // `assets/`,
+        // `favicon.ico`,
+        // `styles.${style}`,
       ],
       `${normalizedOptions.projectRoot}/src/`,
     ),

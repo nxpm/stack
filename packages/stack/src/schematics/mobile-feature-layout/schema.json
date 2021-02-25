@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema",
-  "id": "Mobile",
+  "id": "MobileFeatureLayout",
   "title": "",
   "type": "object",
   "properties": {
@@ -13,6 +13,11 @@
       },
       "x-prompt": "What name would you like to use?"
     },
+    "appName": {
+      "type": "string",
+      "description": "Name of the app to connect to",
+      "alias": "a"
+    },
     "tags": {
       "type": "string",
       "description": "Add tags to the project (used for linting)",
@@ -23,7 +28,7 @@
       "description": "A directory where the project is placed",
       "alias": "d"
     },
-    "styleLibrary": {
+    "library": {
       "description": "The UI library",
       "type": "string",
       "default": "ionic-angular",
@@ -39,5 +44,5 @@
       }
     }
   },
-  "required": ["name"]
+  "required": ["appName", "name"]
 }
