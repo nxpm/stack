@@ -4,7 +4,7 @@ import { map } from 'rxjs/operators'
 
 @Component({
   template: `
-    <ui-page headerTitle="Dashboard">
+    <ui-page pageTitle="Dashboard">
       <div class="dark:bg-gray-800 px-6 py-4 mb-3 md:mb-6 rounded-lg shadow">
         <ng-container *ngIf="me$ | async as user">
           <div class="flex items-center justify-between">

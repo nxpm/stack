@@ -2,7 +2,7 @@ import { Component } from '@angular/core'
 
 @Component({
   template: `
-    <ui-sidebar-page headerTitle="Account" [links]="links">
+    <ui-sidebar-page pageTitle="Account" [links]="links">
       <router-outlet></router-outlet>
     </ui-sidebar-page>
   `,

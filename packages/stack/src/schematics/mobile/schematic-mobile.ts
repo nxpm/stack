@@ -72,6 +72,21 @@ function addProxyConfig(name: string): Rule {
   }
 }
 
+function setProjectPort(name: string, port: number): Rule {
+  return (host: Tree, context: SchematicContext) => {
+    const projectConfig = getProjectConfig(host, name)
+    if (projectConfig.architect && projectConfig.architect.serve) {
+      return chain([
+        updateWorkspaceInTree((json) => {
+          projectConfig.architect.serve.options.port = port
+          json.projects[name] = projectConfig
+          return json
+        }),
+      ])(host, context)
+    }
+  }
+}
+
 export default function (options: MobileSchematicSchema): Rule {
   const name = options.name || 'mobile'
   const directory = options.directory || options.name
@@ -137,6 +152,7 @@ export default function (options: MobileSchematicSchema): Rule {
     ),
     updateEnvironment(normalizedOptions.name),
     addProxyConfig(normalizedOptions.name),
+    setProjectPort(normalizedOptions.name, 4300),
     addAllowedCommonJsDependencies(normalizedOptions.name, [
       'graphql-tag',
       'subscriptions-transport-ws',

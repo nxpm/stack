@@ -18,7 +18,10 @@ export default function (options: MobileStyleSchematicSchema): Rule {
       type: 'style',
     }),
     addFiles(normalizedOptions, `./files/${library}`),
-    updateAppStyles(appName, [`libs/${appName}/${name}/src/index.${style}`]),
+    updateAppStyles(appName, [
+      `libs/${appName}/${name}/src/index.${style}`,
+      { input: `libs/${appName}/${name}/src/theme/variables.${style}` },
+    ]),
     updateProjectArchitects(projectName),
     removeFiles(
       [

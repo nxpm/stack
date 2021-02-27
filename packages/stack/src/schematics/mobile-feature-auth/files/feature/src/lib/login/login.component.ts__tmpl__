@@ -21,7 +21,7 @@ import { <%= classify(appName) %>UiFormField } from '@<%= npmScope %>/<%= appNam
 export class LoginComponent {
   readonly vm$ = this.store.vm$
   readonly fields = [
-    <%= classify(appName) %>UiFormField.email('email', { label: 'Email', required: true }),
+    <%= classify(appName) %>UiFormField.input('email', { label: 'Email', required: true }),
     <%= classify(appName) %>UiFormField.password('password', { label: 'Password', required: true }),
   ]
   constructor(private readonly store: <%= classify(appName) %>AuthStore) {}

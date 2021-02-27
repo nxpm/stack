@@ -2,12 +2,12 @@ import { CommonModule } from '@angular/common'
 import { NgModule } from '@angular/core'
 import { RouterModule, Routes } from '@angular/router'
 import { <%= classify(appName) %>AuthDataAccessModule, IsLoggedInGuard } from '@<%= npmScope %>/<%= appName %>/auth/data-access'
-import { <%= classify(appName) %>LayoutComponent } from '@<%= npmScope %>/<%= appName %>/layout'
+import { <%= classify(appName) %>LayoutFeatureComponent } from '@<%= npmScope %>/<%= appName %>/layout/feature'
 
 const routes: Routes = [
   {
     path: '',
-    component: <%= classify(appName) %>LayoutComponent,
+    component: <%= classify(appName) %>LayoutFeatureComponent,
     canActivate: [IsLoggedInGuard],
     children: [
       // Application routes here
@@ -19,10 +19,6 @@ const routes: Routes = [
       {
         path: 'account',
         loadChildren: () => import('@<%= npmScope %>/<%= appName %>/account/feature').then((m) => m.<%= classify(appName) %>AccountFeatureModule),
-      },
-      {
-        path: 'admin',
-        loadChildren: () => import('@<%= npmScope %>/<%= appName %>/admin/feature').then((m) => m.<%= classify(appName) %>AdminFeatureModule),
       },
       {
         path: 'dashboard',

@@ -117,43 +117,15 @@ exports[`mobile-ui-libs schematic should run successfully 5`] = `
 "import { NgModule } from '@angular/core'
 import { ReactiveFormsModule } from '@angular/forms'
 import { FormlyModule } from '@ngx-formly/core'
-
-// Types
-import { UiFormCheckboxModule } from './types/checkbox/ui-form-checkbox.module'
-import { UiFormInputModule } from './types/input/ui-form-input.module'
-import { UiFormMulticheckboxModule } from './types/multicheckbox/ui-form-multicheckbox.module'
-import { UiFormRadioModule } from './types/radio/ui-form-radio.module'
-import { UiFormSelectModule } from './types/select/ui-form-select.module'
-import { UiFormTextareaModule } from './types/textarea/ui-form-textarea.module'
+import { FormlyIonicModule } from '@ngx-formly/ionic'
 
 import { TestUiFormComponent } from './test-ui-form.component'
-
-// Validators
 import { UiFormValidatorsModule } from './validators/ui-form-validators.module'
-
-// Wrappers
-import { UiFormAddonsModule } from './wrappers/addons/ui-form-addons.module'
-import { UiFormFieldModule } from './wrappers/form-field/ui-form-field.module'
 
 @NgModule({
   declarations: [TestUiFormComponent],
   exports: [TestUiFormComponent],
-  imports: [
-    ReactiveFormsModule,
-    FormlyModule.forRoot(),
-    // Types
-    UiFormCheckboxModule,
-    UiFormInputModule,
-    UiFormMulticheckboxModule,
-    UiFormRadioModule,
-    UiFormSelectModule,
-    UiFormTextareaModule,
-    // Validators
-    UiFormValidatorsModule,
-    // Wrappers
-    UiFormAddonsModule,
-    UiFormFieldModule,
-  ],
+  imports: [ReactiveFormsModule, FormlyModule.forRoot(), FormlyIonicModule, UiFormValidatorsModule],
 })
 export class TestUiFormModule {}
 "
@@ -392,12 +364,13 @@ exports[`mobile-ui-libs schematic should run successfully 12`] = `
 "import { NgModule } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { RouterModule } from '@angular/router'
+import { IonicModule } from '@ionic/angular'
 import { TestUiPageComponent } from './test-ui-page.component'
 
 @NgModule({
   declarations: [TestUiPageComponent],
   exports: [TestUiPageComponent],
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, IonicModule, RouterModule],
 })
 export class TestUiPageModule {}
 "
@@ -409,27 +382,27 @@ exports[`mobile-ui-libs schematic should run successfully 13`] = `
 @Component({
   selector: 'ui-page',
   template: \`
-    <div class=\\"h-full flex flex-col justify-between\\">
-      <header class=\\"bg-gray-800 text-gray-300 shadow\\" *ngIf=\\"headerTitle\\">
-        <div class=\\"max-w-7xl mx-auto py-4 sm:py-6 px-4 sm:px-6 lg:px-8 flex justify-between items-center\\">
-          <h1 class=\\"text-2xl md:text-3xl font-bold leading-tight \\">
-            {{ headerTitle }}
-          </h1>
-          <div class=\\"mt-0\\">
-            <ng-content select=\\"ui-page-header\\"></ng-content>
-          </div>
-        </div>
-      </header>
-      <div class=\\"flex-grow h-full\\">
-        <div class=\\"max-w-7xl mx-auto py-3 md:py-6 lg:py-12 px-3 md:px-6 lg:px-8 h-full overflow-auto\\">
-          <ng-content></ng-content>
-        </div>
-      </div>
-    </div>
+    <ion-header [translucent]=\\"true\\">
+      <ion-toolbar>
+        <ion-buttons slot=\\"start\\">
+          <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title>{{ pageTitle }}</ion-title>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content [fullscreen]=\\"true\\">
+      <ion-header collapse=\\"condense\\">
+        <ion-toolbar>
+          <ion-title size=\\"large\\">{{ pageTitle }}</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ng-content></ng-content>
+    </ion-content>
   \`,
 })
 export class TestUiPageComponent {
-  @Input() headerTitle?: string
+  @Input() pageTitle: string = 'ui-page'
 }
 "
 `;
@@ -500,7 +473,7 @@ export interface TestUiSidebarPageLink {
 @Component({
   selector: 'ui-sidebar-page',
   template: \`
-    <ui-page [headerTitle]=\\"headerTitle\\">
+    <ui-page [pageTitle]=\\"headerTitle\\">
       <div class=\\"lg:grid lg:grid-cols-12 lg:gap-x-5\\">
         <aside class=\\"py-3 md:py-6 md:px-2 lg:py-0 lg:px-0 lg:col-span-3\\">
           <nav class=\\"space-y-1 md:space-y-3\\">

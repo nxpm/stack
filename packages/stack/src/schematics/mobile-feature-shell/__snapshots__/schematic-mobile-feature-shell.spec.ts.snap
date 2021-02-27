@@ -5,12 +5,12 @@ exports[`mobile-feature-shell schematic should run successfully 1`] = `
 import { NgModule } from '@angular/core'
 import { RouterModule, Routes } from '@angular/router'
 import { TestAuthDataAccessModule, IsLoggedInGuard } from '@nxpm/test/auth/data-access'
-import { TestLayoutComponent } from '@nxpm/test/layout'
+import { TestLayoutFeatureComponent } from '@nxpm/test/layout/feature'
 
 const routes: Routes = [
   {
     path: '',
-    component: TestLayoutComponent,
+    component: TestLayoutFeatureComponent,
     canActivate: [IsLoggedInGuard],
     children: [
       // Application routes here
@@ -22,10 +22,6 @@ const routes: Routes = [
       {
         path: 'account',
         loadChildren: () => import('@nxpm/test/account/feature').then((m) => m.TestAccountFeatureModule),
-      },
-      {
-        path: 'admin',
-        loadChildren: () => import('@nxpm/test/admin/feature').then((m) => m.TestAdminFeatureModule),
       },
       {
         path: 'dashboard',
