@@ -541,7 +541,12 @@ exports[`init schematic should run successfully 2`] = `
                 \\"output\\": \\"assets\\"
               }
             ],
-            \\"styles\\": [\\"libs/mobile/style/src/index.css\\"],
+            \\"styles\\": [
+              \\"libs/mobile/style/src/index.css\\",
+              {
+                \\"input\\": \\"libs/mobile/style/src/theme/variables.css\\"
+              }
+            ],
             \\"scripts\\": [],
             \\"allowedCommonJsDependencies\\": [\\"graphql-tag\\", \\"subscriptions-transport-ws\\", \\"zen-observable\\"]
           },
@@ -580,7 +585,8 @@ exports[`init schematic should run successfully 2`] = `
           \\"builder\\": \\"@angular-devkit/build-angular:dev-server\\",
           \\"options\\": {
             \\"browserTarget\\": \\"mobile:build\\",
-            \\"proxyConfig\\": \\"apps/mobile/proxy.conf.js\\"
+            \\"proxyConfig\\": \\"apps/mobile/proxy.conf.js\\",
+            \\"port\\": 4300
           },
           \\"configurations\\": {
             \\"production\\": {
@@ -1938,11 +1944,11 @@ exports[`init schematic should run successfully 4`] = `
     \\"@nestjs/testing\\": \\"^7.0.0\\",
     \\"@ngneat/spectator\\": \\"7.0.0\\",
     \\"@nrwl/angular\\": \\"0.0.0\\",
-    \\"@nrwl/cypress\\": \\"10.4.4\\",
-    \\"@nrwl/eslint-plugin-nx\\": \\"10.4.4\\",
-    \\"@nrwl/jest\\": \\"10.4.4\\",
-    \\"@nrwl/nest\\": \\"10.4.4\\",
-    \\"@nrwl/node\\": \\"10.4.4\\",
+    \\"@nrwl/cypress\\": \\"10.4.13\\",
+    \\"@nrwl/eslint-plugin-nx\\": \\"10.4.13\\",
+    \\"@nrwl/jest\\": \\"10.4.13\\",
+    \\"@nrwl/nest\\": \\"10.4.13\\",
+    \\"@nrwl/node\\": \\"10.4.13\\",
     \\"@nrwl/workspace\\": \\"0.0.0\\",
     \\"@nxpm/cli\\": \\"^4.12.2\\",
     \\"@nxtend/capacitor\\": \\"^11.0.0\\",
