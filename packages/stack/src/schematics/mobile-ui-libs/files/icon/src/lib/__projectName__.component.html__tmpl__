@@ -1,0 +1,3 @@
+<div class="">
+  <svg-icon [key]="icon" [size]="size"></svg-icon>
+</div>

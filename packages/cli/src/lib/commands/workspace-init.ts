@@ -66,7 +66,7 @@ export async function workspaceInit({
   runCommand(createCommand)
 
   log('Install dependencies')
-  const deps = ['@nxpm/stack', '@nrwl/angular', '@nrwl/nest']
+  const deps = ['@nxpm/stack', '@nrwl/angular', '@nrwl/nest', '@nxtend/ionic-angular', '@nxtend/capacitor']
   if (webStyleLibrary === 'tailwind') {
     deps.push('@ngneat/tailwind@5.2.4')
   }

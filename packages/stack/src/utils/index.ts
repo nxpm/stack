@@ -245,7 +245,7 @@ export function updateAppAssets(
   return updateAppOptions(projectName, 'assets', assets)
 }
 
-export function updateAppStyles(projectName: string, styles: string[] = []): Rule {
+export function updateAppStyles(projectName: string, styles: Array<string | { input: string }> = []): Rule {
   return updateAppOptions(projectName, 'styles', styles)
 }
 

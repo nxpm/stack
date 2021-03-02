@@ -1,0 +1,36 @@
+import { Component } from '@angular/core'
+import { <%= classify(appName) %>AuthStore } from '@<%= npmScope %>/<%= appName %>/auth/data-access'
+import { <%= classify(appName) %>UiFormField } from '@<%= npmScope %>/<%= appName %>/ui/form'
+
+@Component({
+  template: `
+    <ng-container *ngIf="vm$ | async as vm">
+      <auth-page
+        (submitForm)="submit($event)"
+        [errors]="vm.errors"
+        [fields]="fields"
+        buttonTitle="Register"
+        linkPath="/login"
+        linkTitle="Log in"
+        pageTitle="Register"
+      >
+      </auth-page>
+    </ng-container>
+  `,
+})
+export class RegisterComponent {
+  readonly vm$ = this.store.vm$
+  readonly fields = [
+    <%= classify(appName) %>UiFormField.input('email', { label: 'Email', required: true }),
+    <%= classify(appName) %>UiFormField.password('password', { label: 'Password', required: true }),
+    <%= classify(appName) %>UiFormField.input('username', { label: 'Username', required: false }),
+    <%= classify(appName) %>UiFormField.input('firstName', { label: 'First name', required: false }),
+    <%= classify(appName) %>UiFormField.input('lastName', { label: 'Last name', required: false }),
+  ]
+
+  constructor(private readonly store: <%= classify(appName) %>AuthStore) {}
+
+  submit(input) {
+    this.store.registerEffect(input)
+  }
+}

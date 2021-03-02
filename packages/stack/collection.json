@@ -53,6 +53,61 @@
       "schema": "./src/schematics/init/schema.json",
       "description": "init schematic"
     },
+    "mobile": {
+      "factory": "./src/schematics/mobile/schematic-mobile",
+      "schema": "./src/schematics/mobile/schema.json",
+      "description": "mobile schematic"
+    },
+    "mobile-assets": {
+      "factory": "./src/schematics/mobile-assets/schematic-mobile-assets",
+      "schema": "./src/schematics/mobile-assets/schema.json",
+      "description": "mobile-assets schematic"
+    },
+    "mobile-feature-about": {
+      "factory": "./src/schematics/mobile-feature-about/schematic-mobile-feature-about",
+      "schema": "./src/schematics/mobile-feature-about/schema.json",
+      "description": "mobile-feature-about schematic"
+    },
+    "mobile-feature-account": {
+      "factory": "./src/schematics/mobile-feature-account/schematic-mobile-feature-account",
+      "schema": "./src/schematics/mobile-feature-account/schema.json",
+      "description": "mobile-feature-account schematic"
+    },
+    "mobile-feature-auth": {
+      "factory": "./src/schematics/mobile-feature-auth/schematic-mobile-feature-auth",
+      "schema": "./src/schematics/mobile-feature-auth/schema.json",
+      "description": "mobile-feature-auth schematic"
+    },
+    "mobile-feature-core": {
+      "factory": "./src/schematics/mobile-feature-core/schematic-mobile-feature-core",
+      "schema": "./src/schematics/mobile-feature-core/schema.json",
+      "description": "mobile-feature-core schematic"
+    },
+    "mobile-feature-dashboard": {
+      "factory": "./src/schematics/mobile-feature-dashboard/schematic-mobile-feature-dashboard",
+      "schema": "./src/schematics/mobile-feature-dashboard/schema.json",
+      "description": "mobile-feature-dashboard schematic"
+    },
+    "mobile-feature-layout": {
+      "factory": "./src/schematics/mobile-feature-layout/schematic-mobile-feature-layout",
+      "schema": "./src/schematics/mobile-feature-layout/schema.json",
+      "description": "mobile-feature-layout schematic"
+    },
+    "mobile-feature-shell": {
+      "factory": "./src/schematics/mobile-feature-shell/schematic-mobile-feature-shell",
+      "schema": "./src/schematics/mobile-feature-shell/schema.json",
+      "description": "mobile-feature-shell schematic"
+    },
+    "mobile-style": {
+      "factory": "./src/schematics/mobile-style/schematic-mobile-style",
+      "schema": "./src/schematics/mobile-style/schema.json",
+      "description": "mobile-styles schematic"
+    },
+    "mobile-ui-libs": {
+      "factory": "./src/schematics/mobile-ui-libs/schematic-mobile-ui-libs",
+      "schema": "./src/schematics/mobile-ui-libs/schema.json",
+      "description": "mobile-ui-libs schematic"
+    },
     "shared-util-libs": {
       "factory": "./src/schematics/shared-util-libs/schematic-shared-util-libs",
       "schema": "./src/schematics/shared-util-libs/schema.json",

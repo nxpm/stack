@@ -13,6 +13,11 @@
       },
       "x-prompt": "What name would you like to use?"
     },
+    "mobileName": {
+      "type": "string",
+      "description": "Name of the mobile app to generate",
+      "default": "mobile"
+    },
     "ci": {
       "type": "string",
       "description": "Select the CI workflow to generate",

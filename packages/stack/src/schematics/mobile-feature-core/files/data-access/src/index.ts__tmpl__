@@ -1,0 +1,2 @@
+export * from './lib/<%= projectName %>.service'
+export * from '@<%= npmScope %>/shared/util/sdk'

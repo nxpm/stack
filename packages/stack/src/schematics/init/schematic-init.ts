@@ -103,27 +103,14 @@ function addDockerCompose(): Rule {
   }
 }
 
-function addWorkspaceGenerators(name, normalizedOptions): Rule {
-  return chain([
-    addFiles({ ...normalizedOptions, projectRoot: './tools/generators/' }, './generators', {
-      tmplEnd: '%>',
-      tmplStart: '<%=',
-    }),
-    (host) => {
-      const base = `tools/generators/web-module/files`
-      const files = ['component', 'module', 'store']
-      for (const file of files) {
-        host.rename(`${base}/${name}.${file}.ts`, `${base}/__name__.${file}.ts__tmpl__`)
-      }
-    },
-  ])
-}
-
 export default function (options: InitSchematicSchema): Rule {
   const normalizedOptions = normalizeOptions(options, ProjectType.Application)
   const apiName = 'api'
   const apiTech = '@nrwl/nest'
-  const webName = options.name
+  const mobileName = options.mobileName || 'mobile'
+  const mobileTech = '@nxtend/ionic-angular'
+  const mobileStyleLibrary = 'ionic-angular'
+  const webName = options.name || 'web'
   const webTech = '@nrwl/angular'
   const webStyleLibrary = options.webStyleLibrary || 'tailwind'
   return chain([
@@ -146,6 +133,7 @@ export default function (options: InitSchematicSchema): Rule {
     configureNxJsonDefaultBase('main'),
     addPluginToNxJson('@nxpm/stack', {
       api: { tech: apiTech, project: apiName },
+      mobile: { tech: mobileTech, project: mobileName },
       web: { tech: webTech, project: webName },
     }),
     addRunScript('docker:push', `docker push ${normalizedOptions.npmScope}/${apiName}`, true),
@@ -155,6 +143,7 @@ export default function (options: InitSchematicSchema): Rule {
     addRunScript('start', 'yarn prisma:db-push && node dist/apps/api/main.js', true),
     addRunScript('build', `yarn build:${webName} && yarn prisma:generate && yarn build:${apiName}`, true),
     schematic('api', { name: apiName, webName }),
+    schematic('mobile', { name: mobileName, styleLibrary: mobileStyleLibrary }),
     schematic('web', { name: webName, styleLibrary: webStyleLibrary }),
     options?.ci === 'github' ? externalSchematic('@nxpm/ci', 'github', {}) : noop(),
     removeFiles([`apps/.gitkeep`, `libs/.gitkeep`, 'README.md']),
