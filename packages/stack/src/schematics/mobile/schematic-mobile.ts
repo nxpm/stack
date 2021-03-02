@@ -120,6 +120,7 @@ export default function (options: MobileSchematicSchema): Rule {
       style,
       routing: true,
       linter: 'eslint',
+      unitTestRunner: 'none',
     }),
     schematic('mobile-assets', { appName: name, directory, name: 'assets' }),
     schematic('mobile-feature-about', { appName: name, directory }),

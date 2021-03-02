@@ -608,24 +608,8 @@ exports[`init schematic should run successfully 2`] = `
         \\"lint\\": {
           \\"builder\\": \\"@angular-devkit/build-angular:tslint\\",
           \\"options\\": {
-            \\"tsConfig\\": [
-              \\"apps/mobile/tsconfig.app.json\\",
-              \\"apps/mobile/tsconfig.spec.json\\",
-              \\"apps/mobile/tsconfig.editor.json\\"
-            ],
+            \\"tsConfig\\": [\\"apps/mobile/tsconfig.app.json\\", \\"apps/mobile/tsconfig.editor.json\\"],
             \\"exclude\\": [\\"**/node_modules/**\\", \\"!apps/mobile/**/*\\"]
-          }
-        },
-        \\"test\\": {
-          \\"builder\\": \\"@angular-devkit/build-angular:karma\\",
-          \\"options\\": {
-            \\"main\\": \\"apps/mobile/src/test.ts\\",
-            \\"tsConfig\\": \\"apps/mobile/tsconfig.spec.json\\",
-            \\"karmaConfig\\": \\"apps/mobile/karma.conf.js\\",
-            \\"polyfills\\": \\"apps/mobile/src/polyfills.ts\\",
-            \\"styles\\": [],
-            \\"scripts\\": [],
-            \\"assets\\": []
           }
         },
         \\"cap\\": {
@@ -1802,11 +1786,11 @@ exports[`init schematic should run successfully 2`] = `
   \\"defaultProject\\": \\"api\\",
   \\"schematics\\": {
     \\"@nrwl/angular:application\\": {
-      \\"unitTestRunner\\": \\"karma\\",
+      \\"unitTestRunner\\": \\"none\\",
       \\"e2eTestRunner\\": \\"cypress\\"
     },
     \\"@nrwl/angular:library\\": {
-      \\"unitTestRunner\\": \\"karma\\"
+      \\"unitTestRunner\\": \\"none\\"
     }
   }
 }
@@ -1959,7 +1943,6 @@ exports[`init schematic should run successfully 4`] = `
     \\"@nxtend/capacitor\\": \\"^11.0.0\\",
     \\"@prisma/cli\\": \\"2.15.0\\",
     \\"@types/fs-extra\\": \\"9.0.7\\",
-    \\"@types/jasmine\\": \\"~3.5.0\\",
     \\"@types/jest\\": \\"26.0.8\\",
     \\"@types/pg\\": \\"7.14.9\\",
     \\"@typescript-eslint/eslint-plugin\\": \\"4.3.0\\",
@@ -1970,15 +1953,8 @@ exports[`init schematic should run successfully 4`] = `
     \\"eslint-config-prettier\\": \\"6.0.0\\",
     \\"eslint-plugin-cypress\\": \\"^2.10.3\\",
     \\"husky\\": \\"^4.3.0\\",
-    \\"jasmine-core\\": \\"~3.6.0\\",
-    \\"jasmine-spec-reporter\\": \\"~5.0.0\\",
     \\"jest\\": \\"26.2.2\\",
     \\"jest-preset-angular\\": \\"8.3.1\\",
-    \\"karma\\": \\"~5.0.0\\",
-    \\"karma-chrome-launcher\\": \\"~3.1.0\\",
-    \\"karma-coverage-istanbul-reporter\\": \\"~3.0.2\\",
-    \\"karma-jasmine\\": \\"~4.0.0\\",
-    \\"karma-jasmine-html-reporter\\": \\"^1.5.0\\",
     \\"lint-staged\\": \\"^10.4.0\\",
     \\"pg\\": \\"8.5.1\\",
     \\"ts-jest\\": \\"26.4.0\\",
