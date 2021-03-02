@@ -531,6 +531,11 @@ exports[`init schematic should run successfully 2`] = `
             \\"aot\\": true,
             \\"assets\\": [
               {
+                \\"glob\\": \\"**/*.svg\\",
+                \\"input\\": \\"node_modules/ionicons/dist/ionicons/svg\\",
+                \\"output\\": \\"./svg\\"
+              },
+              {
                 \\"glob\\": \\"favicon.ico\\",
                 \\"input\\": \\"libs/mobile/assets/src\\",
                 \\"output\\": \\"./\\"

@@ -1,20 +1,17 @@
 import { BrowserModule } from '@angular/platform-browser'
 import { NgModule } from '@angular/core'
-import { RouterModule } from '@angular/router'
-import { <%= classify(name) %>CoreFeatureModule } from '@<%= npmScope %>/<%= name %>/core/feature'
+import { IonicModule } from '@ionic/angular'
 import { <%= classify(name) %>ShellFeatureModule } from '@<%= npmScope %>/<%= name %>/shell/feature'
 
 import { AppComponent } from './app.component'
 
 @NgModule({
+  bootstrap: [AppComponent],
   declarations: [AppComponent],
   imports: [
     BrowserModule,
-    RouterModule,
-    <%= classify(name) %>CoreFeatureModule,
+    IonicModule,
     <%= classify(name) %>ShellFeatureModule,
   ],
-  providers: [],
-  bootstrap: [AppComponent],
 })
 export class AppModule {}

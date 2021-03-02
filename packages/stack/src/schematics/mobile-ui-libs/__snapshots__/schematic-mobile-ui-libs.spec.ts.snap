@@ -22,14 +22,12 @@ exports[`mobile-ui-libs schematic should run successfully 2`] = `
   selector: 'ui-button',
   template: \`
     <ng-container *ngIf=\\"routerLink\\">
-      <a [routerLink]=\\"routerLink\\" [class]=\\"classes\\">
-        {{ label }}
-      </a>
+      <ion-button [routerLink]=\\"routerLink\\" fill=\\"outline\\" [class]=\\"classes\\">{{ label }}</ion-button>
     </ng-container>
     <ng-container *ngIf=\\"!routerLink\\">
-      <button (click)=\\"handler.emit($event)\\" [class]=\\"classes\\" [disabled]=\\"disabled\\" [type]=\\"type\\">
-        {{ label }}
-      </button>
+      <ion-button (click)=\\"handler.emit($event)\\" [disabled]=\\"disabled\\" [type]=\\"type\\" [class]=\\"classes\\" fill=\\"outline\\">{{
+        label
+      }}</ion-button>
     </ng-container>
   \`,
 })
@@ -41,7 +39,7 @@ export class TestUiButtonComponent {
   @Output() handler = new EventEmitter()
 
   get classes(): string {
-    return 'inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-indigo-300 bg-indigo-900 border-indigo-600 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-indigo-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
+    return ' '
   }
 }
 "
@@ -337,11 +335,11 @@ exports[`mobile-ui-libs schematic should run successfully 11`] = `
 @Component({
   selector: 'ui-loader',
   template: \`
-    <div class=\\"flex items-center justify-center p-4 rounded\\" *ngIf=\\"loading\\">
-      <div class=\\"flex space-x-3 animate-pulse\\">
-        <div class=\\"w-2 h-2 bg-gray-500 rounded-full\\"></div>
-        <div class=\\"w-2 h-2 bg-gray-500 rounded-full\\"></div>
-        <div class=\\"w-2 h-2 bg-gray-500 rounded-full\\"></div>
+    <div class=\\"\\" *ngIf=\\"loading\\">
+      <div class=\\"\\">
+        <div class=\\"\\"></div>
+        <div class=\\"\\"></div>
+        <div class=\\"\\"></div>
       </div>
     </div>
   \`,
@@ -429,8 +427,8 @@ exports[`mobile-ui-libs schematic should run successfully 15`] = `
 @Component({
   selector: 'ui-page-header',
   template: \`
-    <div class=\\"flex justify-between items-center  px-6 py-3 mb-3 md:mb-6 bg-gray-800 text-gray-300 shadow rounded-md\\">
-      <div class=\\"text-lg font-semibold\\">
+    <div class=\\"\\">
+      <div class=\\"\\">
         {{ title }}
       </div>
       <ui-button [label]=\\"linkTitle\\" [routerLink]=\\"linkPath\\"></ui-button>
@@ -474,25 +472,16 @@ export interface TestUiSidebarPageLink {
   selector: 'ui-sidebar-page',
   template: \`
     <ui-page [pageTitle]=\\"headerTitle\\">
-      <div class=\\"lg:grid lg:grid-cols-12 lg:gap-x-5\\">
-        <aside class=\\"py-3 md:py-6 md:px-2 lg:py-0 lg:px-0 lg:col-span-3\\">
-          <nav class=\\"space-y-1 md:space-y-3\\">
+      <div>
+        <aside>
+          <nav>
             <ng-container *ngFor=\\"let link of links\\">
-              <a
-                routerLinkActive=\\"bg-gray-50 dark:bg-gray-700 text-pink-600 dark:text-pink-600 hover:bg-white\\"
-                [routerLink]=\\"link.path\\"
-                class=\\"dark:bg-gray-800 dark:text-gray-400 text-gray-900 hover:text-gray-900 hover:bg-gray-50 group rounded-md px-3 py-2 flex items-center text-sm font-medium\\"
-              >
-                <i class=\\"mr-2 text-gray-900 fa fa-fw {{ link.icon || 'fa-cube ' }}\\"></i>
-                <span class=\\"truncate\\">
-                  {{ link.label }}
-                </span>
-              </a>
+              <ion-button [routerLink]=\\"link.path\\" fill=\\"outline\\" slot=\\"end\\">{{ link.label }}</ion-button>
             </ng-container>
           </nav>
         </aside>
 
-        <div class=\\"md:px-2 lg:px-0 lg:col-span-9\\">
+        <div>
           <ng-content></ng-content>
         </div>
       </div>

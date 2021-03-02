@@ -10,25 +10,16 @@ export interface <%= classify(projectName) %>Link {
   selector: 'ui-sidebar-page',
   template: `
     <ui-page [pageTitle]="headerTitle">
-      <div class="lg:grid lg:grid-cols-12 lg:gap-x-5">
-        <aside class="py-3 md:py-6 md:px-2 lg:py-0 lg:px-0 lg:col-span-3">
-          <nav class="space-y-1 md:space-y-3">
+      <div>
+        <aside>
+          <nav>
             <ng-container *ngFor="let link of links">
-              <a
-                routerLinkActive="bg-gray-50 dark:bg-gray-700 text-pink-600 dark:text-pink-600 hover:bg-white"
-                [routerLink]="link.path"
-                class="dark:bg-gray-800 dark:text-gray-400 text-gray-900 hover:text-gray-900 hover:bg-gray-50 group rounded-md px-3 py-2 flex items-center text-sm font-medium"
-              >
-                <i class="mr-2 text-gray-900 fa fa-fw {{ link.icon || 'fa-cube ' }}"></i>
-                <span class="truncate">
-                  {{ link.label }}
-                </span>
-              </a>
+              <ion-button [routerLink]="link.path" fill="outline" slot="end">{{link.label}}</ion-button>
             </ng-container>
           </nav>
         </aside>
 
-        <div class="md:px-2 lg:px-0 lg:col-span-9">
+        <div>
           <ng-content></ng-content>
         </div>
       </div>

@@ -1,10 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`mobile-feature-shell schematic should run successfully 1`] = `
-"import { CommonModule } from '@angular/common'
-import { NgModule } from '@angular/core'
-import { RouterModule, Routes } from '@angular/router'
+"import { NgModule } from '@angular/core'
+import { PreloadAllModules, RouteReuseStrategy, RouterModule, Routes } from '@angular/router'
+import { SplashScreen } from '@ionic-native/splash-screen/ngx'
+import { StatusBar } from '@ionic-native/status-bar/ngx'
+import { IonicModule, IonicRouteStrategy } from '@ionic/angular'
 import { TestAuthDataAccessModule, IsLoggedInGuard } from '@nxpm/test/auth/data-access'
+import { TestCoreFeatureModule } from '@nxpm/test/core/feature'
 import { TestLayoutFeatureComponent } from '@nxpm/test/layout/feature'
 
 const routes: Routes = [
@@ -38,10 +41,12 @@ const routes: Routes = [
 ]
 
 @NgModule({
+  providers: [StatusBar, SplashScreen, { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   imports: [
-    CommonModule,
-    RouterModule.forRoot(routes, { paramsInheritanceStrategy: 'always' }),
+    IonicModule.forRoot(),
+    RouterModule.forRoot(routes, { paramsInheritanceStrategy: 'always', preloadingStrategy: PreloadAllModules }),
     TestAuthDataAccessModule,
+    TestCoreFeatureModule,
   ],
 })
 export class TestShellFeatureModule {}

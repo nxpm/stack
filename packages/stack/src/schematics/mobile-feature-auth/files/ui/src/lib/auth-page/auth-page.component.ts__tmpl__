@@ -11,14 +11,14 @@ import { FormGroup } from '@angular/forms'
         </ion-avatar>
       </div>
 
-      <div class="error text-center mt-6 bg-red-300 text-red-800 rounded-md p-4 mx-auto" *ngIf="errors">
+      <div class="" *ngIf="errors">
         {{ errors }}
       </div>
 
       <ng-container *ngIf="buttonTitle || (linkTitle && linkPath)">
         <ion-card>
           <ui-form [form]="form" [fields]="fields" [model]="model" (submitForm)="submitForm.emit(model)">
-            <div class="flex flex-col space-y-6 mt-6">
+            <div class="">
               <ion-button [disabled]="!form.valid" color="primary" type="submit">
                 {{ buttonTitle }}
               </ion-button>

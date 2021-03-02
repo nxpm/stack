@@ -4,31 +4,29 @@ import { map } from 'rxjs/operators'
 
 @Component({
   template: `
-    <ui-page pageTitle="Dashboard">
-      <div class="dark:bg-gray-800 px-6 py-4 mb-3 md:mb-6 rounded-lg shadow">
-        <ng-container *ngIf="me$ | async as user">
-          <div class="flex items-center justify-between">
-            <div class="flex items-center">
-              <div class="flex-shrink-0 h-20 w-20">
-                <img class="h-20 w-20 rounded-full" [attr.src]="user?.avatarUrl" alt="" />
-              </div>
-              <div class="ml-4">
-                <div class="text-lg font-medium text-gray-900 dark:text-gray-200">
-                  {{ user?.name }}
-                </div>
-                <div class="text-lg text-gray-500">
-                  {{ user?.email }}
-                </div>
+    <ng-container *ngIf="me$ | async as me">
+      <ui-page pageTitle="Dashboard">
+        <ion-card>
+          <ion-card-header>
+            <div class="ion-text-start ion-justify-content-start ion-align-items-center" [style.display]="'flex'">
+              <ion-avatar *ngIf="me?.avatarUrl" class="ion-margin-end">
+                <img [attr.src]="me?.avatarUrl" alt="User Avatar" />
+              </ion-avatar>
+              <div>
+                <ion-card-title>{{ me?.name }}</ion-card-title>
+                <ion-card-subtitle>{{ me?.email }}</ion-card-subtitle>
               </div>
             </div>
-            <div class="flex space-x-3">
-              <ui-button routerLink="/account" label="Manage Account"></ui-button>
-              <ui-button *ngIf="user.role == 'Admin'" routerLink="/admin" label="Admin"></ui-button>
+          </ion-card-header>
+          <ion-card-content>
+            <div>
+              <ion-button routerLink="/account" fill="outline" slot="end">Manage Account</ion-button>
+              <ion-button routerLink="/about" fill="outline" slot="end">About</ion-button>
             </div>
-          </div>
-        </ng-container>
-      </div>
-    </ui-page>
+          </ion-card-content>
+        </ion-card>
+      </ui-page>
+    </ng-container>
   `,
 })
 export class <%= classify(projectName) %>Component {

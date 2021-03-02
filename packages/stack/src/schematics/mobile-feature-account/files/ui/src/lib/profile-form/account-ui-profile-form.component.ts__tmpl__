@@ -7,7 +7,7 @@ import { <%= classify(appName) %>UiFormField } from '@<%= npmScope %>/<%= appNam
   selector: 'account-profile-form',
   template: `
     <ui-form (submitForm)="submit($event.payload)" [model]="user" [fields]="fields" [form]="form"></ui-form>
-    <div class="text-right">
+    <div class="">
       <ui-button (handler)="submit($any(user))" [disabled]="!form.valid" label="Save"></ui-button>
     </div>
   `,

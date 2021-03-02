@@ -18,6 +18,11 @@ export default function (options: MobileAssetsSchematicSchema): Rule {
     addFiles(normalizedOptions),
     updateAppAssets(appName, [
       {
+        glob: '**/*.svg',
+        input: 'node_modules/ionicons/dist/ionicons/svg',
+        output: './svg',
+      },
+      {
         glob: 'favicon.ico',
         input: `libs/${appName}/${name}/src`,
         output: './',

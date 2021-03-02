@@ -1,7 +1,10 @@
-import { CommonModule } from '@angular/common'
 import { NgModule } from '@angular/core'
-import { RouterModule, Routes } from '@angular/router'
+import { PreloadAllModules, RouteReuseStrategy, RouterModule, Routes } from '@angular/router'
+import { SplashScreen } from '@ionic-native/splash-screen/ngx'
+import { StatusBar } from '@ionic-native/status-bar/ngx'
+import { IonicModule, IonicRouteStrategy } from '@ionic/angular'
 import { <%= classify(appName) %>AuthDataAccessModule, IsLoggedInGuard } from '@<%= npmScope %>/<%= appName %>/auth/data-access'
+import { <%= classify(appName) %>CoreFeatureModule } from '@<%= npmScope %>/<%= appName %>/core/feature'
 import { <%= classify(appName) %>LayoutFeatureComponent } from '@<%= npmScope %>/<%= appName %>/layout/feature'
 
 const routes: Routes = [
@@ -35,10 +38,12 @@ const routes: Routes = [
 ]
 
 @NgModule({
+  providers: [StatusBar, SplashScreen, { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   imports: [
-    CommonModule,
-    RouterModule.forRoot(routes, { paramsInheritanceStrategy: 'always' }),
+    IonicModule.forRoot(),
+    RouterModule.forRoot(routes, { paramsInheritanceStrategy: 'always', preloadingStrategy: PreloadAllModules }),
     <%= classify(appName) %>AuthDataAccessModule,
+    <%= classify(appName) %>CoreFeatureModule,
   ],
 })
 export class <%= classify(projectName) %>Module {}

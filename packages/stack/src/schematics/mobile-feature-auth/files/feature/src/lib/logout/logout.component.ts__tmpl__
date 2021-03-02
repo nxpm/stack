@@ -5,7 +5,7 @@ import { <%= classify(appName) %>AuthStore } from '@<%= npmScope %>/<%= appName 
   template: `
     <ng-container *ngIf="vm$ | async as vm">
       <auth-page pageTitle="Logging out">
-        <div class="error" *ngIf="vm.errors">
+        <div class="" *ngIf="vm.errors">
           {{ vm.errors }}
         </div>
       </auth-page>
