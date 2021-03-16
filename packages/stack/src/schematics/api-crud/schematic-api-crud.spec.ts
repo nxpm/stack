@@ -23,4 +23,21 @@ describe('api-crud schematic', () => {
   it('should run successfully', async () => {
     await expect(testRunner.runSchematicAsync('api-crud', options, appTree).toPromise()).resolves.not.toThrowError()
   })
+
+  it('should run with a dashed name', async () => {
+    await expect(
+      testRunner
+        .runSchematicAsync('api-crud', { ...options, model: 'CompanyAddress', plural: 'CompanyAddresses' }, appTree)
+        .toPromise(),
+    ).resolves.not.toThrowError()
+
+    const dirs = appTree.getDir('/').subdirs
+    const files = appTree.getDir('/').subfiles
+    console.log({ dirs, files })
+    // expect(
+    //   appTree
+    //     .read('libs/test/company-address/feature/src/lib/test-company-address-feature-admin.resolver.ts')
+    //     .toString(),
+    // ).toMatchSnapshot()
+  })
 })

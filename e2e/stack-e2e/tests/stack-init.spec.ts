@@ -117,9 +117,10 @@ describe('@nxpm/stack:init e2e', () => {
       done()
     })
 
-    it(`should add a api-crud and still build`, async (done) => {
+    async function addCrud(model: string, plural: string) {
+      log(`Create CRUD for ${model}/${plural}`)
       // Create the API crud
-      await runNxCommandAsync(`generate @nxpm/stack:api-crud company --plural companies`)
+      await runNxCommandAsync(`generate @nxpm/stack:api-crud ${model} --plural ${plural}`)
       // Apply changes to Prisma
       await runCommandAsync(`yarn prisma:db-push`)
       // Build the API
@@ -127,11 +128,20 @@ describe('@nxpm/stack:init e2e', () => {
       // Run the e2e test to that api-schema.graphql gets re-generated (needed for running yarn build:sdk )
       await runNxCommandAsync(`e2e ${projectNameApi}-e2e`)
       // Create the Web crud
-      await runNxCommandAsync(`generate @nxpm/stack:web-crud company --plural companies`)
+      await runNxCommandAsync(`generate @nxpm/stack:web-crud ${model} --plural ${plural}`)
       // Generate SDK
       await runCommandAsync(`yarn build:sdk`)
       // Build the Web
       await runNxCommandAsync(`build ${projectNameWeb}`)
+    }
+
+    it(`should add a api-crud and still build`, async (done) => {
+      await addCrud('company', 'companies')
+      done()
+    })
+
+    it(`should add a api-crud dashed name and still build`, async (done) => {
+      await addCrud('company-address', 'company-addresses')
       done()
     })
   })
