@@ -8,6 +8,7 @@ import {
   createUiLibPageHeader,
   createUiLibSidebarPage,
   createUiLibTable,
+  createUiLibToast,
 } from './libs'
 import { WebUiLibsSchematicSchema } from './schema'
 
@@ -26,5 +27,6 @@ export default function (options: WebUiLibsSchematicSchema): Rule {
     createUiLibPageHeader(options),
     createUiLibSidebarPage(options),
     createUiLibTable(options),
+    createUiLibToast(options),
   ])
 }

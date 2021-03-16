@@ -1,15 +1,22 @@
-import {formatFiles, generateFiles, names, Tree} from '@nrwl/devkit';
-import {readJsonSync} from "fs-extra";
-import {join} from 'path';
-import * as process from "process";
+import { Tree } from '@nrwl/devkit'
+import { execSync } from 'child_process'
+
+const sleep = (seconds = 1) => new Promise((resolve) => setTimeout(resolve, seconds * 1000))
+function run(command) {
+  console.log(`Running command: ${command}`)
+  execSync(command, { stdio: 'inherit' })
+}
 
 export default async function (
   host: Tree,
-  { name, model, nameField, plural, dryRun }: { name: string, model: string, nameField: string, plural: string, dryRun: boolean }
+  { model, nameField, plural }: { model: string; nameField: string; plural: string },
 ) {
-  console.log(`nx g @nxpm/stack:api-crud ${name} --plural ${plural}`)
-  console.log(`yarn prisma:apply`)
-  console.log(`nx g @nxpm/stack:web-crud ${name} --plural ${plural}`)
-  console.log(`yarn build:sdk `)
-  console.log({ name, model, nameField, plural, dryRun })
+  run(`nx g @nxpm/stack:api-crud ${model} --plural ${plural} --nameField ${nameField}`)
+  run(`yarn prisma:apply`)
+
+  console.log('Please restart the API, will continue in 10 seconds...')
+  await sleep(10)
+
+  run(`nx g @nxpm/stack:web-crud ${model} --plural ${plural} --nameField ${nameField}`)
+  run(`yarn build:sdk`)
 }

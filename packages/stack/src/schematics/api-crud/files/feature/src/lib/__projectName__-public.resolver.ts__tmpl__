@@ -1,7 +1,5 @@
-import { Args, Mutation, Query, Resolver } from '@nestjs/graphql'
-import { UseGuards } from '@nestjs/common'
+import { Resolver } from '@nestjs/graphql'
 import { <%= classify(apiAppName) %><%= classify(modelName) %>DataAccessService, <%= classify(modelName) %> } from '@<%= npmScope %>/<%= apiAppName %>/<%= dasherize(modelName) %>/data-access'
-import { GqlAuthGuard } from '@<%= npmScope %>/<%= apiAppName %>/auth/util'
 
 @Resolver(() => <%= classify(modelName) %>)
 export class <%= classify(projectName) %>PublicResolver {

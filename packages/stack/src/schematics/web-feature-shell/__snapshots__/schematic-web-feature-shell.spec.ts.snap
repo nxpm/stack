@@ -4,7 +4,7 @@ exports[`web-feature-shell schematic should run successfully 1`] = `
 "import { CommonModule } from '@angular/common'
 import { NgModule } from '@angular/core'
 import { RouterModule, Routes } from '@angular/router'
-import { TestAuthDataAccessModule, IsLoggedInGuard } from '@nxpm/test/auth/data-access'
+import { IsAdminGuard, IsLoggedInGuard, TestAuthDataAccessModule } from '@nxpm/test/auth/data-access'
 import { TestLayoutComponent } from '@nxpm/test/layout'
 
 const routes: Routes = [
@@ -25,6 +25,7 @@ const routes: Routes = [
       },
       {
         path: 'admin',
+        canActivate: [IsAdminGuard],
         loadChildren: () => import('@nxpm/test/admin/feature').then((m) => m.TestAdminFeatureModule),
       },
       {

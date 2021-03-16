@@ -1,24 +1,24 @@
 {
   "cli": "nx",
-  "id": "web-module",
+  "id": "crud",
   "type": "object",
   "properties": {
-    "target": {
+    "model": {
       "type": "string",
-      "description": "Target folder to create the module",
+      "description": "Name of the model (in kebab-case), for example: company-address",
       "$default": {
         "$source": "argv",
         "index": 0
       }
     },
-    "name": {
+    "plural": {
       "type": "string",
-      "description": "Name of the module (in kebab-case)",
+      "description": "Name of the model (in kebab-case), for example: company-addresses",
       "$default": {
         "$source": "argv",
         "index": 1
       }
     }
   },
-  "required": ["target", "name"]
+  "required": ["model", "plural"]
 }
