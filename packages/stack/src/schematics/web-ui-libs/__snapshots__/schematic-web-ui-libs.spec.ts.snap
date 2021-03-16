@@ -21,12 +21,12 @@ exports[`web-ui-libs schematic should run successfully 2`] = `
 @Component({
   selector: 'ui-button',
   template: \`
-    <ng-container *ngIf=\\"routerLink\\">
-      <a [routerLink]=\\"routerLink\\" [class]=\\"classes\\">
+    <ng-container *ngIf=\\"link\\">
+      <a [routerLink]=\\"link\\" [class]=\\"classes\\">
         {{ label }}
       </a>
     </ng-container>
-    <ng-container *ngIf=\\"!routerLink\\">
+    <ng-container *ngIf=\\"!link\\">
       <button (click)=\\"handler.emit($event)\\" [class]=\\"classes\\" [disabled]=\\"disabled\\" [type]=\\"type\\">
         {{ label }}
       </button>
@@ -34,7 +34,7 @@ exports[`web-ui-libs schematic should run successfully 2`] = `
   \`,
 })
 export class TestUiButtonComponent {
-  @Input() routerLink?: string
+  @Input() link?: string
   @Input() disabled?: boolean
   @Input() label: string
   @Input() type = 'button'
@@ -421,7 +421,7 @@ exports[`web-ui-libs schematic should run successfully 13`] = `
         </div>
       </header>
       <div class=\\"flex-grow h-full\\">
-        <div class=\\"max-w-7xl mx-auto py-3 md:py-6 lg:py-12 px-3 md:px-6 lg:px-8 h-full overflow-auto\\">
+        <div class=\\"max-w-7xl mx-auto py-3 md:py-6 lg:py-12 px-3 md:px-6 lg:px-8 h-full\\">
           <ng-content></ng-content>
         </div>
       </div>
@@ -460,7 +460,7 @@ exports[`web-ui-libs schematic should run successfully 15`] = `
       <div class=\\"text-lg font-semibold\\">
         {{ title }}
       </div>
-      <ui-button [label]=\\"linkTitle\\" [routerLink]=\\"linkPath\\"></ui-button>
+      <ui-button [label]=\\"linkTitle\\" [link]=\\"linkPath\\"></ui-button>
     </div>
   \`,
 })

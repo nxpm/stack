@@ -22,8 +22,8 @@ import { map } from 'rxjs/operators'
               </div>
             </div>
             <div class="flex space-x-3">
-              <ui-button routerLink="/account" label="Manage Account"></ui-button>
-              <ui-button *ngIf="user.role == 'Admin'" routerLink="/admin" label="Admin"></ui-button>
+              <ui-button link="/account" label="Manage Account"></ui-button>
+              <ui-button *ngIf="user.role == 'Admin'" link="/admin" label="Admin"></ui-button>
             </div>
           </div>
         </ng-container>

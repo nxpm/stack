@@ -21,10 +21,10 @@ exports[`mobile-ui-libs schematic should run successfully 2`] = `
 @Component({
   selector: 'ui-button',
   template: \`
-    <ng-container *ngIf=\\"routerLink\\">
-      <ion-button [routerLink]=\\"routerLink\\" fill=\\"outline\\" [class]=\\"classes\\">{{ label }}</ion-button>
+    <ng-container *ngIf=\\"link\\">
+      <ion-button [routerLink]=\\"link\\" fill=\\"outline\\" [class]=\\"classes\\">{{ label }}</ion-button>
     </ng-container>
-    <ng-container *ngIf=\\"!routerLink\\">
+    <ng-container *ngIf=\\"!link\\">
       <ion-button (click)=\\"handler.emit($event)\\" [disabled]=\\"disabled\\" [type]=\\"type\\" [class]=\\"classes\\" fill=\\"outline\\">{{
         label
       }}</ion-button>
@@ -32,7 +32,7 @@ exports[`mobile-ui-libs schematic should run successfully 2`] = `
   \`,
 })
 export class TestUiButtonComponent {
-  @Input() routerLink?: string
+  @Input() link?: string
   @Input() disabled?: boolean
   @Input() label: string
   @Input() type = 'button'
@@ -431,7 +431,7 @@ exports[`mobile-ui-libs schematic should run successfully 15`] = `
       <div class=\\"\\">
         {{ title }}
       </div>
-      <ui-button [label]=\\"linkTitle\\" [routerLink]=\\"linkPath\\"></ui-button>
+      <ui-button [label]=\\"linkTitle\\" [link]=\\"linkPath\\"></ui-button>
     </div>
   \`,
 })
