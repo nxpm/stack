@@ -1,3 +1,3 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`generators schematic should run successfully 1`] = `"api-feature,crud,prisma-seed,web-feature,web-module,workspace-setup"`;
+exports[`generators schematic should run successfully 1`] = `"api-feature,crud,prisma-seed,web-component,web-feature,web-module,workspace-setup"`;

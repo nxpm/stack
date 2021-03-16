@@ -1,9 +1,25 @@
-import { chain, Rule } from '@angular-devkit/schematics'
+import { chain, Rule, SchematicContext, Tree } from '@angular-devkit/schematics'
 import { ProjectType } from '@nrwl/workspace'
 
 import { addFiles, normalizeOptions } from '../../utils'
 
 import { InitSchematicSchema } from './schema'
+
+/**
+ * When generating these generators, the templates get renamed.
+ *
+ * This method renames the generator template files back to the expected name.
+ */
+function renameGeneratorFiles(host: Tree, ctx: SchematicContext, name: string, base: string, files: string[]) {
+  for (const file of files) {
+    const filePath = `${base}/${name}.${file}.ts`
+    if (host.exists(filePath)) {
+      host.rename(filePath, `${base}/__name__.${file}.ts__tmpl__`)
+    } else {
+      ctx.logger.warn(`Can't find ${filePath}`)
+    }
+  }
+}
 
 function addWorkspaceGenerators(name, normalizedOptions): Rule {
   return chain([
@@ -13,16 +29,8 @@ function addWorkspaceGenerators(name, normalizedOptions): Rule {
       name: name || 'web',
     }),
     (host, ctx) => {
-      const base = `tools/generators/web-module/files`
-      const files = ['component', 'module', 'store']
-      for (const file of files) {
-        const filePath = `${base}/${name}.${file}.ts`
-        if (host.exists(filePath)) {
-          host.rename(filePath, `${base}/__name__.${file}.ts__tmpl__`)
-        } else {
-          ctx.logger.warn(`Can't find ${filePath}`)
-        }
-      }
+      renameGeneratorFiles(host, ctx, name, `tools/generators/web-component/files`, ['component', 'module'])
+      renameGeneratorFiles(host, ctx, name, `tools/generators/web-module/files`, ['component', 'module', 'store'])
     },
   ])
 }
