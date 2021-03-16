@@ -1,0 +1,10 @@
+import { Args, Mutation, Query, Resolver } from '@nestjs/graphql'
+import { UseGuards } from '@nestjs/common'
+import { <%= classify(apiAppName) %><%= classify(modelName) %>DataAccessService } from '@<%= npmScope %>/<%= apiAppName %>/<%= dasherize(modelName) %>/data-access'
+import { GqlAuthGuard } from '@<%= npmScope %>/<%= apiAppName %>/auth/util'
+
+@Resolver()
+@UseGuards(GqlAuthGuard)
+export class <%= classify(projectName) %>UserResolver {
+  constructor(private readonly service: <%= classify(apiAppName) %><%= classify(modelName) %>DataAccessService) {}
+}
