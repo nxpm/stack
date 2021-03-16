@@ -7,9 +7,9 @@ export default async function (
   host: Tree,
   { name, model, nameField, plural, dryRun }: { name: string, model: string, nameField: string, plural: string, dryRun: boolean }
 ) {
-  console.log('nx g @nxpm/api-crud ${name} ')
-  console.log('yarn prisma:apply')
-  console.log('nx g @nxpm/web-crud ${name} ')
-  console.log('yarn build:sdk ')
+  console.log(`nx g @nxpm/stack:api-crud ${name} --plural ${plural}`)
+  console.log(`yarn prisma:apply`)
+  console.log(`nx g @nxpm/stack:web-crud ${name} --plural ${plural}`)
+  console.log(`yarn build:sdk `)
   console.log({ name, model, nameField, plural, dryRun })
 }
