@@ -36,8 +36,8 @@ export class <%= classify(projectName) %>AdminResolver {
   }
 
   @Query(() => <%= classify(modelName) %>, { nullable: true })
-  admin<%= classify(modelName) %>(@CtxUser() admin: User, @Args('<%= modelName %>Id') <%= modelName %>Id: string) {
-    return this.service.admin<%= classify(modelName) %>(admin.id, <%= modelName %>Id)
+  admin<%= classify(modelName) %>(@CtxUser() admin: User, @Args('<%= camelize(modelName) %>Id') <%= camelize(modelName) %>Id: string) {
+    return this.service.admin<%= classify(modelName) %>(admin.id, <%= camelize(modelName) %>Id)
   }
 
   @Mutation(() => <%= classify(modelName) %>, { nullable: true })
@@ -48,14 +48,14 @@ export class <%= classify(projectName) %>AdminResolver {
   @Mutation(() => <%= classify(modelName) %>, { nullable: true })
   adminUpdate<%= classify(modelName) %>(
     @CtxUser() admin: User,
-    @Args('<%= modelName %>Id') <%= modelName %>Id: string,
+    @Args('<%= camelize(modelName) %>Id') <%= camelize(modelName) %>Id: string,
     @Args('input') input: AdminUpdate<%= classify(modelName) %>Input,
   ) {
-    return this.service.adminUpdate<%= classify(modelName) %>(admin.id, <%= modelName %>Id, input)
+    return this.service.adminUpdate<%= classify(modelName) %>(admin.id, <%= camelize(modelName) %>Id, input)
   }
 
   @Mutation(() => <%= classify(modelName) %>, { nullable: true })
-  adminDelete<%= classify(modelName) %>(@CtxUser() admin: User, @Args('<%= modelName %>Id') <%= modelName %>Id: string) {
-    return this.service.adminDelete<%= classify(modelName) %>(admin.id, <%= modelName %>Id)
+  adminDelete<%= classify(modelName) %>(@CtxUser() admin: User, @Args('<%= camelize(modelName) %>Id') <%= camelize(modelName) %>Id: string) {
+    return this.service.adminDelete<%= classify(modelName) %>(admin.id, <%= camelize(modelName) %>Id)
   }
 }

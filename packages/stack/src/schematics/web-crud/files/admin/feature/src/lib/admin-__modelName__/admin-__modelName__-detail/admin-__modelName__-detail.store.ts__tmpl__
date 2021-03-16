@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core'
-import { ActivatedRoute } from '@angular/router'
+import { ActivatedRoute, Router } from '@angular/router'
 import { ComponentStore, tapResponse } from '@ngrx/component-store'
 import { <%= classify(webAppName) %>CoreDataAccessService, <%= classify(modelName) %> } from '@<%= npmScope %>/<%= webAppName %>/core/data-access'
 import { pluck, switchMap, tap } from 'rxjs/operators'
@@ -12,9 +12,9 @@ export interface <%= classify(modelName) %>DetailState {
 
 @Injectable()
 export class Admin<%= classify(modelName) %>DetailStore extends ComponentStore<<%= classify(modelName) %>DetailState> {
-  constructor(private readonly data: <%= classify(webAppName) %>CoreDataAccessService, route: ActivatedRoute) {
+  constructor(private readonly data: <%= classify(webAppName) %>CoreDataAccessService, private readonly router: Router, route: ActivatedRoute) {
     super({ loading: false })
-    this.load<%= classify(modelName) %>Effect(route.params.pipe(pluck('<%= modelName %>Id')))
+    this.load<%= classify(modelName) %>Effect(route.params.pipe(pluck('<%= camelize(modelName) %>Id')))
   }
 
   readonly errors$ = this.select((s) => s.errors)
@@ -26,13 +26,30 @@ export class Admin<%= classify(modelName) %>DetailStore extends ComponentStore<<
     item: { ...item },
   }))
 
-  readonly load<%= classify(modelName) %>Effect = this.effect<string>((<%= modelName %>Id$) =>
-    <%= modelName %>Id$.pipe(
+  readonly load<%= classify(modelName) %>Effect = this.effect<string>((<%= camelize(modelName) %>Id$) =>
+    <%= camelize(modelName) %>Id$.pipe(
       tap(() => this.setState({ loading: true })),
-      switchMap((<%= modelName %>Id) =>
-        this.data.admin<%= classify(modelName) %>({ <%= modelName %>Id }).pipe(
+      switchMap((<%= camelize(modelName) %>Id) =>
+        this.data.admin<%= classify(modelName) %>({ <%= camelize(modelName) %>Id }).pipe(
           tapResponse(
             (res) => this.patchState({ item: res.data.item, errors: res.errors, loading: false }),
+            (errors: any) =>
+              this.patchState({
+                loading: false,
+                errors: errors.graphQLErrors ? errors.graphQLErrors : errors,
+              }),
+          ),
+        ),
+      ),
+    ),
+  )
+
+  readonly delete<%= classify(modelName) %>Effect = this.effect<<%= classify(modelName) %>>((<%= camelize(modelName) %>$) =>
+    <%= camelize(modelName) %>$.pipe(
+      switchMap((<%= camelize(modelName) %>) =>
+        this.data.adminDelete<%= classify(modelName) %>({ <%= camelize(modelName) %>Id: <%= camelize(modelName) %>.id }).pipe(
+          tapResponse(
+            (res) => this.router.navigate(['/admin/<%= dasherize(pluralModelName) %>']),
             (errors: any) =>
               this.patchState({
                 loading: false,

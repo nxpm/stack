@@ -20,8 +20,8 @@ query AdminCount<%= classify(pluralModelName) %>($input: AdminList<%= classify(m
   }
 }
 
-query Admin<%= classify(modelName) %>($<%= modelName %>Id: String!) {
-  item: admin<%= classify(modelName) %>(<%= modelName %>Id: $<%= modelName %>Id) {
+query Admin<%= classify(modelName) %>($<%= camelize(modelName) %>Id: String!) {
+  item: admin<%= classify(modelName) %>(<%= camelize(modelName) %>Id: $<%= camelize(modelName) %>Id) {
     ...<%= classify(modelName) %>Details
   }
 }
@@ -32,14 +32,14 @@ mutation AdminCreate<%= classify(modelName) %>($input: AdminCreate<%= classify(m
   }
 }
 
-mutation AdminUpdate<%= classify(modelName) %>($<%= modelName %>Id: String!, $input: AdminUpdate<%= classify(modelName) %>Input!) {
-  updated: adminUpdate<%= classify(modelName) %>(<%= modelName %>Id: $<%= modelName %>Id, input: $input) {
+mutation AdminUpdate<%= classify(modelName) %>($<%= camelize(modelName) %>Id: String!, $input: AdminUpdate<%= classify(modelName) %>Input!) {
+  updated: adminUpdate<%= classify(modelName) %>(<%= camelize(modelName) %>Id: $<%= camelize(modelName) %>Id, input: $input) {
     ...<%= classify(modelName) %>Details
   }
 }
 
-mutation AdminDelete<%= classify(modelName) %>($<%= modelName %>Id: String!) {
-  deleted: adminDelete<%= classify(modelName) %>(<%= modelName %>Id: $<%= modelName %>Id) {
+mutation AdminDelete<%= classify(modelName) %>($<%= camelize(modelName) %>Id: String!) {
+  deleted: adminDelete<%= classify(modelName) %>(<%= camelize(modelName) %>Id: $<%= camelize(modelName) %>Id) {
     ...<%= classify(modelName) %>Details
   }
 }
