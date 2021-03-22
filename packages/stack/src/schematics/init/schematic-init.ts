@@ -136,6 +136,7 @@ export default function (options: InitSchematicSchema): Rule {
       mobile: { tech: mobileTech, project: mobileName },
       web: { tech: webTech, project: webName },
     }),
+    addRunScript('dev:db', `docker-compose up`, true),
     addRunScript('docker:push', `docker push ${normalizedOptions.npmScope}/${apiName}`, true),
     addRunScript('docker:run', `docker run -it -p 8000:3000 ${normalizedOptions.npmScope}/${apiName}`, true),
     addRunScript('docker:build', `docker build . -t ${normalizedOptions.npmScope}/${apiName}`, true),
