@@ -19,7 +19,7 @@ import { Admin<%= classify(modelName) %>DetailStore } from './admin-<%= dasheriz
               </div>
             </div>
             <div class="flex space-x-2">
-              <ui-button routerLink="edit" label="Edit"></ui-button>
+              <ui-button link="edit" label="Edit"></ui-button>
               <ui-button (handler)="deleteItem(vm.item)" label="Delete"></ui-button>
             </div>
           </div>

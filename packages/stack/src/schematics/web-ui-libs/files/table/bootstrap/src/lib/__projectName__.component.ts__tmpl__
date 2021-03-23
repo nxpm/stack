@@ -3,12 +3,12 @@ import { Component, EventEmitter, Input } from '@angular/core'
 @Component({
   selector: 'ui-button',
   template: `
-    <ng-container *ngIf="routerLink">
-      <a [routerLink]="routerLink" [class]="classes">
+    <ng-container *ngIf="link">
+      <a [routerLink]="link" [class]="classes">
         {{ label }}
       </a>
     </ng-container>
-    <ng-container *ngIf="!routerLink">
+    <ng-container *ngIf="!link">
       <button (click)="click.emit($event)" [class]="classes" [disabled]="disabled" [type]="type">
         {{ label }}
       </button>
@@ -16,7 +16,7 @@ import { Component, EventEmitter, Input } from '@angular/core'
   `,
 })
 export class <%= classify(projectName) %>Component {
-  @Input() routerLink?: string
+  @Input() link?: string
   @Input() disabled?: boolean
   @Input() label: string
   @Input() type = 'button'

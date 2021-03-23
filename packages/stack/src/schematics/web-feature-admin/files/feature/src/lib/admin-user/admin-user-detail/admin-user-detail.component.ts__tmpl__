@@ -24,8 +24,8 @@ import { AdminUserDetailStore } from './admin-user-detail.store'
               </div>
             </div>
             <div class="flex space-x-2">
-              <ui-button routerLink="password" label="Change Password"></ui-button>
-              <ui-button routerLink="edit" label="Edit"></ui-button>
+              <ui-button link="password" label="Change Password"></ui-button>
+              <ui-button link="edit" label="Edit"></ui-button>
             </div>
           </div>
         </div>

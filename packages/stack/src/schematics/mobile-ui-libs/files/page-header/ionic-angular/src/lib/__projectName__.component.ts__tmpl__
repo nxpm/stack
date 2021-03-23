@@ -7,7 +7,7 @@ import { Component, Input } from '@angular/core'
       <div class="">
         {{ title }}
       </div>
-      <ui-button [label]="linkTitle" [routerLink]="linkPath"></ui-button>
+      <ui-button [label]="linkTitle" [link]="linkPath"></ui-button>
     </div>
   `
 })
