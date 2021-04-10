@@ -162,7 +162,7 @@ export function webFileTests(project: string): FileTests {
         `@import 'tailwindcss/components';`,
         `@import 'tailwindcss/utilities';`,
       ],
-      [`nx.json`]: [`"project": "${project}"`],
+      // [`nx.json`]: [`"project": "${project}"`],
     },
   }
 }
