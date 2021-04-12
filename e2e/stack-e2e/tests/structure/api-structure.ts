@@ -83,7 +83,10 @@ export function apiFileTests(project: string): FileTests {
         `yarn nxpm-stack lint`,
       ],
       [`tsconfig.base.json`]: [`"apps/${project}/src/app/app.module.ts"`],
-      [`nx.json`]: [`"defaultBase": "main"`, `"project": "${project}"`],
+      [`nx.json`]: [
+        `"defaultBase": "main"`,
+        // `"project": "${project}"`
+      ],
       [`apps/${project}/src/main.ts`]: [`Logger.log('Listening at http://localhost:' + port + '/graphql')`],
       [`libs/${project}/core/data-access/src/lib/${project}-core-data-access.service.ts`]: [
         `extends PrismaClient`,

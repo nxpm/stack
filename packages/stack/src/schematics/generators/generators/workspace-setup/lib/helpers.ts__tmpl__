@@ -106,7 +106,7 @@ export function runPrismaSeed() {
 
 export const sleep = (ms = 1000) => new Promise((resolve) => setTimeout(resolve, ms))
 
-async function waitForConnection(): Promise<any> {
+async function waitForConnection(): Promise<void> {
   log(yellow('Waiting for Postgres to connect'))
   return new Promise(async (resolve, reject) => {
     let count = 0
