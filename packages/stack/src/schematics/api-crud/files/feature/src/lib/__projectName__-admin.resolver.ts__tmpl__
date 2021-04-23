@@ -4,7 +4,7 @@ import {
   AdminCreate<%= classify(modelName) %>Input,
   AdminList<%= classify(modelName) %>Input,
   AdminUpdate<%= classify(modelName) %>Input,
-  <%= classify(apiAppName) %><%= classify(modelName) %>DataAccessService,
+  <%= classify(apiAppName) %><%= classify(modelName) %>DataAccessAdminService,
   <%= classify(modelName) %>,
 } from '@<%= npmScope %>/<%= apiAppName %>/<%= dasherize(modelName) %>/data-access'
 import { CorePaging } from '@<%= npmScope %>/<%= apiAppName %>/core/data-access'
@@ -17,7 +17,7 @@ import { User } from '@<%= npmScope %>/<%= apiAppName %>/user/data-access'
 @Resolver()
 @UseGuards(GqlAuthAdminGuard)
 export class <%= classify(projectName) %>AdminResolver {
-  constructor(private readonly service: <%= classify(apiAppName) %><%= classify(modelName) %>DataAccessService) {}
+  constructor(private readonly service: <%= classify(apiAppName) %><%= classify(modelName) %>DataAccessAdminService) {}
 
   @Query(() => [<%= classify(modelName) %>], { nullable: true })
   admin<%= classify(pluralModelName) %>(

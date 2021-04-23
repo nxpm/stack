@@ -6,7 +6,7 @@ import { AdminList<%= classify(modelName) %>Input } from './dto/admin-list-<%= d
 import { AdminUpdate<%= classify(modelName) %>Input } from './dto/admin-update-<%= dasherize(modelName) %>.input'
 
 @Injectable()
-export class <%= classify(projectName) %>Service {
+export class <%= classify(projectName) %>AdminService {
   constructor(private readonly data: <%= classify(apiAppName) %>CoreDataAccessService) {}
 
   admin<%= classify(pluralModelName) %>(adminId: string, input?: AdminList<%= classify(modelName) %>Input) {
