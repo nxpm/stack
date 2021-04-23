@@ -1,7 +1,7 @@
 import { Resolver } from '@nestjs/graphql'
-import { <%= classify(apiAppName) %><%= classify(modelName) %>DataAccessService, <%= classify(modelName) %> } from '@<%= npmScope %>/<%= apiAppName %>/<%= dasherize(modelName) %>/data-access'
+import { <%= classify(apiAppName) %><%= classify(modelName) %>DataAccessPublicService, <%= classify(modelName) %> } from '@<%= npmScope %>/<%= apiAppName %>/<%= dasherize(modelName) %>/data-access'
 
 @Resolver(() => <%= classify(modelName) %>)
 export class <%= classify(projectName) %>PublicResolver {
-  constructor(private readonly service: <%= classify(apiAppName) %><%= classify(modelName) %>DataAccessService) {}
+  constructor(private readonly service: <%= classify(apiAppName) %><%= classify(modelName) %>DataAccessPublicService) {}
 }

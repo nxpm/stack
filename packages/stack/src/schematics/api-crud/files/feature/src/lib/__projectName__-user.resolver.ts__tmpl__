@@ -1,10 +1,61 @@
+import { Args, Mutation, Query, Resolver } from '@nestjs/graphql'
 import { UseGuards } from '@nestjs/common'
-import { Resolver } from '@nestjs/graphql'
-import { <%= classify(apiAppName) %><%= classify(modelName) %>DataAccessService } from '@<%= npmScope %>/<%= apiAppName %>/<%= dasherize(modelName) %>/data-access'
-import { GqlAuthGuard } from '@<%= npmScope %>/<%= apiAppName %>/auth/util'
+import {
+  UserCreate<%= classify(modelName) %>Input,
+  UserList<%= classify(modelName) %>Input,
+  UserUpdate<%= classify(modelName) %>Input,
+  <%= classify(apiAppName) %><%= classify(modelName) %>DataAccessUserService,
+  <%= classify(modelName) %>,
+} from '@<%= npmScope %>/<%= apiAppName %>/<%= dasherize(modelName) %>/data-access'
+import { CorePaging } from '@<%= npmScope %>/<%= apiAppName %>/core/data-access'
+import {
+  CtxUser,
+  GqlAuthGuard,
+} from '@<%= npmScope %>/<%= apiAppName %>/auth/util'
+import { User } from '@<%= npmScope %>/<%= apiAppName %>/user/data-access'
 
 @Resolver()
 @UseGuards(GqlAuthGuard)
 export class <%= classify(projectName) %>UserResolver {
-  constructor(private readonly service: <%= classify(apiAppName) %><%= classify(modelName) %>DataAccessService) {}
+  constructor(private readonly service: <%= classify(apiAppName) %><%= classify(modelName) %>DataAccessUserService) {}
+
+  @Query(() => [<%= classify(modelName) %>], { nullable: true })
+  user<%= classify(pluralModelName) %>(
+    @CtxUser() user: User,
+    @Args({ name: 'input', type: () => UserList<%= classify(modelName) %>Input, nullable: true }) input?: UserList<%= classify(modelName) %>Input,
+  ) {
+    return this.service.user<%= classify(pluralModelName) %>(user.id, input)
+  }
+
+  @Query(() => CorePaging, { nullable: true })
+  userCount<%= classify(pluralModelName) %>(
+    @CtxUser() user: User,
+    @Args({ name: 'input', type: () => UserList<%= classify(modelName) %>Input, nullable: true }) input?: UserList<%= classify(modelName) %>Input,
+  ) {
+    return this.service.userCount<%= classify(pluralModelName) %>(user.id, input)
+  }
+
+  @Query(() => <%= classify(modelName) %>, { nullable: true })
+  user<%= classify(modelName) %>(@CtxUser() user: User, @Args('<%= camelize(modelName) %>Id') <%= camelize(modelName) %>Id: string) {
+    return this.service.user<%= classify(modelName) %>(user.id, <%= camelize(modelName) %>Id)
+  }
+
+  @Mutation(() => <%= classify(modelName) %>, { nullable: true })
+  userCreate<%= classify(modelName) %>(@CtxUser() user: User,@Args('input') input: UserCreate<%= classify(modelName) %>Input,) {
+    return this.service.userCreate<%= classify(modelName) %>(user.id, input)
+  }
+
+  @Mutation(() => <%= classify(modelName) %>, { nullable: true })
+  userUpdate<%= classify(modelName) %>(
+    @CtxUser() user: User,
+    @Args('<%= camelize(modelName) %>Id') <%= camelize(modelName) %>Id: string,
+    @Args('input') input: UserUpdate<%= classify(modelName) %>Input,
+  ) {
+    return this.service.userUpdate<%= classify(modelName) %>(user.id, <%= camelize(modelName) %>Id, input)
+  }
+
+  @Mutation(() => <%= classify(modelName) %>, { nullable: true })
+  userDelete<%= classify(modelName) %>(@CtxUser() user: User, @Args('<%= camelize(modelName) %>Id') <%= camelize(modelName) %>Id: string) {
+    return this.service.userDelete<%= classify(modelName) %>(user.id, <%= camelize(modelName) %>Id)
+  }
 }

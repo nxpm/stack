@@ -43,3 +43,42 @@ mutation AdminDelete<%= classify(modelName) %>($<%= camelize(modelName) %>Id: St
     ...<%= classify(modelName) %>Details
   }
 }
+
+query User<%= classify(pluralModelName) %>($input: UserList<%= classify(modelName) %>Input) {
+  items: user<%= classify(pluralModelName) %>(input: $input) {
+    ...<%= classify(modelName) %>Details
+  }
+  count: userCount<%= classify(pluralModelName) %>(input: $input) {
+    ...CorePagingDetails
+  }
+}
+
+query UserCount<%= classify(pluralModelName) %>($input: UserList<%= classify(modelName) %>Input) {
+  count: userCount<%= classify(pluralModelName) %>(input: $input) {
+    ...CorePagingDetails
+  }
+}
+
+query User<%= classify(modelName) %>($<%= camelize(modelName) %>Id: String!) {
+  item: user<%= classify(modelName) %>(<%= camelize(modelName) %>Id: $<%= camelize(modelName) %>Id) {
+    ...<%= classify(modelName) %>Details
+  }
+}
+
+mutation UserCreate<%= classify(modelName) %>($input: UserCreate<%= classify(modelName) %>Input!) {
+  created: userCreate<%= classify(modelName) %>(input: $input) {
+    ...<%= classify(modelName) %>Details
+  }
+}
+
+mutation UserUpdate<%= classify(modelName) %>($<%= camelize(modelName) %>Id: String!, $input: UserUpdate<%= classify(modelName) %>Input!) {
+  updated: userUpdate<%= classify(modelName) %>(<%= camelize(modelName) %>Id: $<%= camelize(modelName) %>Id, input: $input) {
+    ...<%= classify(modelName) %>Details
+  }
+}
+
+mutation UserDelete<%= classify(modelName) %>($<%= camelize(modelName) %>Id: String!) {
+  deleted: userDelete<%= classify(modelName) %>(<%= camelize(modelName) %>Id: $<%= camelize(modelName) %>Id) {
+    ...<%= classify(modelName) %>Details
+  }
+}
