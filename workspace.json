@@ -1,0 +1,78 @@
+{
+  "version": 2,
+  "projects": {
+    "stack": {
+      "root": "packages/stack",
+      "sourceRoot": "packages/stack/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["packages/stack/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/packages/stack"],
+          "options": {
+            "jestConfig": "packages/stack/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "build": {
+          "executor": "@nrwl/node:package",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/packages/stack",
+            "tsConfig": "packages/stack/tsconfig.lib.json",
+            "packageJson": "packages/stack/package.json",
+            "main": "packages/stack/src/index.ts",
+            "assets": [
+              "packages/stack/*.md",
+              {
+                "input": "./packages/stack/src",
+                "glob": "**/!(*.ts)",
+                "output": "./src"
+              },
+              {
+                "input": "./packages/stack/src",
+                "glob": "**/*.d.ts",
+                "output": "./src"
+              },
+              {
+                "input": "./packages/stack",
+                "glob": "generators.json",
+                "output": "."
+              },
+              {
+                "input": "./packages/stack",
+                "glob": "executors.json",
+                "output": "."
+              }
+            ]
+          }
+        }
+      }
+    },
+    "stack-e2e": {
+      "root": "e2e/stack-e2e",
+      "projectType": "application",
+      "sourceRoot": "e2e/stack-e2e/src",
+      "targets": {
+        "e2e": {
+          "executor": "@nrwl/nx-plugin:e2e",
+          "options": {
+            "target": "stack:build",
+            "npmPackageName": "@nxpm/stack",
+            "pluginOutputPath": "dist/packages/stack",
+            "jestConfig": "e2e/stack-e2e/jest.config.js"
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/workspace"
+  }
+}

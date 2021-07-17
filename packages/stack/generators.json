@@ -1,0 +1,12 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "name": "stack",
+  "version": "0.0.1",
+  "generators": {
+    "stack": {
+      "factory": "./src/generators/stack/generator",
+      "schema": "./src/generators/stack/schema.json",
+      "description": "stack generator"
+    }
+  }
+}
