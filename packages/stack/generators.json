@@ -3,10 +3,10 @@
   "name": "stack",
   "version": "0.0.1",
   "generators": {
-    "stack": {
-      "factory": "./src/generators/stack/generator",
-      "schema": "./src/generators/stack/schema.json",
-      "description": "stack generator"
+    "init": {
+      "factory": "./src/generators/init/generator-init#generatorInit",
+      "schema": "./src/generators/init/schema.json",
+      "description": "init generator"
     }
   }
 }

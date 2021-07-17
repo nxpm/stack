@@ -1,0 +1,12 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "name": "web",
+  "version": "0.0.1",
+  "generators": {
+    "web": {
+      "factory": "./src/generators/web/generator-web#generatorWeb",
+      "schema": "./src/generators/web/schema.json",
+      "description": "web generator"
+    }
+  }
+}

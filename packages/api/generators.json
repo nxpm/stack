@@ -1,0 +1,12 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "name": "api",
+  "version": "0.0.1",
+  "generators": {
+    "api": {
+      "factory": "./src/generators/api/generator-api#generatorApi",
+      "schema": "./src/generators/api/schema.json",
+      "description": "api generator"
+    }
+  }
+}

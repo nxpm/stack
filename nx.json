@@ -27,12 +27,33 @@
     ]
   },
   "projects": {
+    "api": {
+      "tags": []
+    },
+    "api-e2e": {
+      "tags": [],
+      "implicitDependencies": ["api"]
+    },
+    "mobile": {
+      "tags": []
+    },
+    "mobile-e2e": {
+      "tags": [],
+      "implicitDependencies": ["mobile"]
+    },
     "stack": {
       "tags": []
     },
     "stack-e2e": {
       "tags": [],
       "implicitDependencies": ["stack"]
+    },
+    "web": {
+      "tags": []
+    },
+    "web-e2e": {
+      "tags": [],
+      "implicitDependencies": ["web"]
     }
   },
   "workspaceLayout": {

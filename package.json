@@ -7,7 +7,7 @@
     "start": "nx serve",
     "build": "nx run-many --target build --all",
     "test": "nx test",
-    "test:ci": "nx run-many --target test --all && nx run-many --target e2e --all",
+    "test:ci": "yarn affected:test && yarn affected:e2e",
     "lint": "nx workspace-lint && nx lint",
     "e2e": "nx e2e",
     "prepare": "husky install",

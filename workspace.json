@@ -1,6 +1,146 @@
 {
   "version": 2,
   "projects": {
+    "api": {
+      "root": "packages/api",
+      "sourceRoot": "packages/api/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["packages/api/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/packages/api"],
+          "options": {
+            "jestConfig": "packages/api/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "build": {
+          "executor": "@nrwl/node:package",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/packages/api",
+            "tsConfig": "packages/api/tsconfig.lib.json",
+            "packageJson": "packages/api/package.json",
+            "main": "packages/api/src/index.ts",
+            "assets": [
+              "packages/api/*.md",
+              {
+                "input": "./packages/api/src",
+                "glob": "**/!(*.ts)",
+                "output": "./src"
+              },
+              {
+                "input": "./packages/api/src",
+                "glob": "**/*.d.ts",
+                "output": "./src"
+              },
+              {
+                "input": "./packages/api",
+                "glob": "generators.json",
+                "output": "."
+              },
+              {
+                "input": "./packages/api",
+                "glob": "executors.json",
+                "output": "."
+              }
+            ]
+          }
+        }
+      }
+    },
+    "api-e2e": {
+      "root": "e2e/api-e2e",
+      "projectType": "application",
+      "sourceRoot": "e2e/api-e2e/src",
+      "targets": {
+        "e2e": {
+          "executor": "@nrwl/nx-plugin:e2e",
+          "options": {
+            "target": "api:build",
+            "npmPackageName": "@nxpm/api",
+            "pluginOutputPath": "dist/packages/api",
+            "jestConfig": "e2e/api-e2e/jest.config.js"
+          }
+        }
+      }
+    },
+    "mobile": {
+      "root": "packages/mobile",
+      "sourceRoot": "packages/mobile/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["packages/mobile/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/packages/mobile"],
+          "options": {
+            "jestConfig": "packages/mobile/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "build": {
+          "executor": "@nrwl/node:package",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/packages/mobile",
+            "tsConfig": "packages/mobile/tsconfig.lib.json",
+            "packageJson": "packages/mobile/package.json",
+            "main": "packages/mobile/src/index.ts",
+            "assets": [
+              "packages/mobile/*.md",
+              {
+                "input": "./packages/mobile/src",
+                "glob": "**/!(*.ts)",
+                "output": "./src"
+              },
+              {
+                "input": "./packages/mobile/src",
+                "glob": "**/*.d.ts",
+                "output": "./src"
+              },
+              {
+                "input": "./packages/mobile",
+                "glob": "generators.json",
+                "output": "."
+              },
+              {
+                "input": "./packages/mobile",
+                "glob": "executors.json",
+                "output": "."
+              }
+            ]
+          }
+        }
+      }
+    },
+    "mobile-e2e": {
+      "root": "e2e/mobile-e2e",
+      "projectType": "application",
+      "sourceRoot": "e2e/mobile-e2e/src",
+      "targets": {
+        "e2e": {
+          "executor": "@nrwl/nx-plugin:e2e",
+          "options": {
+            "target": "mobile:build",
+            "npmPackageName": "@nxpm/mobile",
+            "pluginOutputPath": "dist/packages/mobile",
+            "jestConfig": "e2e/mobile-e2e/jest.config.js"
+          }
+        }
+      }
+    },
     "stack": {
       "root": "packages/stack",
       "sourceRoot": "packages/stack/src",
@@ -67,6 +207,76 @@
             "npmPackageName": "@nxpm/stack",
             "pluginOutputPath": "dist/packages/stack",
             "jestConfig": "e2e/stack-e2e/jest.config.js"
+          }
+        }
+      }
+    },
+    "web": {
+      "root": "packages/web",
+      "sourceRoot": "packages/web/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["packages/web/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/packages/web"],
+          "options": {
+            "jestConfig": "packages/web/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "build": {
+          "executor": "@nrwl/node:package",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/packages/web",
+            "tsConfig": "packages/web/tsconfig.lib.json",
+            "packageJson": "packages/web/package.json",
+            "main": "packages/web/src/index.ts",
+            "assets": [
+              "packages/web/*.md",
+              {
+                "input": "./packages/web/src",
+                "glob": "**/!(*.ts)",
+                "output": "./src"
+              },
+              {
+                "input": "./packages/web/src",
+                "glob": "**/*.d.ts",
+                "output": "./src"
+              },
+              {
+                "input": "./packages/web",
+                "glob": "generators.json",
+                "output": "."
+              },
+              {
+                "input": "./packages/web",
+                "glob": "executors.json",
+                "output": "."
+              }
+            ]
+          }
+        }
+      }
+    },
+    "web-e2e": {
+      "root": "e2e/web-e2e",
+      "projectType": "application",
+      "sourceRoot": "e2e/web-e2e/src",
+      "targets": {
+        "e2e": {
+          "executor": "@nrwl/nx-plugin:e2e",
+          "options": {
+            "target": "web:build",
+            "npmPackageName": "@nxpm/web",
+            "pluginOutputPath": "dist/packages/web",
+            "jestConfig": "e2e/web-e2e/jest.config.js"
           }
         }
       }

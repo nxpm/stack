@@ -1,0 +1,12 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "name": "mobile",
+  "version": "0.0.1",
+  "generators": {
+    "mobile": {
+      "factory": "./src/generators/mobile/generator-mobile#generatorMobile",
+      "schema": "./src/generators/mobile/schema.json",
+      "description": "mobile generator"
+    }
+  }
+}
