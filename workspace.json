@@ -71,6 +71,60 @@
         }
       }
     },
+    "common": {
+      "root": "packages/common",
+      "sourceRoot": "packages/common/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["packages/common/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/packages/common"],
+          "options": {
+            "jestConfig": "packages/common/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "build": {
+          "executor": "@nrwl/node:package",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/packages/common",
+            "tsConfig": "packages/common/tsconfig.lib.json",
+            "packageJson": "packages/common/package.json",
+            "main": "packages/common/src/index.ts",
+            "assets": [
+              "packages/common/*.md",
+              {
+                "input": "./packages/common/src",
+                "glob": "**/!(*.ts)",
+                "output": "./src"
+              },
+              {
+                "input": "./packages/common/src",
+                "glob": "**/*.d.ts",
+                "output": "./src"
+              },
+              {
+                "input": "./packages/common",
+                "glob": "generators.json",
+                "output": "."
+              },
+              {
+                "input": "./packages/common",
+                "glob": "executors.json",
+                "output": "."
+              }
+            ]
+          }
+        }
+      }
+    },
     "mobile": {
       "root": "packages/mobile",
       "sourceRoot": "packages/mobile/src",

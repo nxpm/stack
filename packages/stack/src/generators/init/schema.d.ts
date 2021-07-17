@@ -1,4 +1,4 @@
-import { BaseSchema } from '../../interfaces'
+import { BaseSchema } from '@nxpm/common'
 
 export interface InitGeneratorSchema extends BaseSchema {
   apiName?: string

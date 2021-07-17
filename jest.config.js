@@ -8,5 +8,6 @@ module.exports = {
     '<rootDir>/e2e/web-e2e',
     '<rootDir>/packages/mobile',
     '<rootDir>/e2e/mobile-e2e',
+    '<rootDir>/packages/common',
   ],
 }

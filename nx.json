@@ -34,6 +34,9 @@
       "tags": [],
       "implicitDependencies": ["api"]
     },
+    "common": {
+      "tags": []
+    },
     "mobile": {
       "tags": []
     },

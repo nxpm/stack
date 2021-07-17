@@ -37,6 +37,7 @@
     "@nrwl/eslint-plugin-nx": "12.5.8",
     "@nrwl/jest": "12.5.8",
     "@nrwl/linter": "12.5.8",
+    "@nrwl/nest": "^12.5.8",
     "@nrwl/node": "12.5.8",
     "@nrwl/nx-plugin": "12.5.8",
     "@nrwl/tao": "12.5.8",

@@ -1,5 +1,5 @@
-import { ProjectType, Tree } from '@nrwl/devkit'
-import { BaseSchema, NormalizedSchema } from '../interfaces'
+import { ProjectType, readJson, Tree } from '@nrwl/devkit'
+import { AppTypeApi, AppTypeMobile, AppTypeWeb, BaseSchema, NormalizedSchema } from '../interfaces'
 import { projectRootDir, toFileName } from '@nrwl/workspace'
 
 export function normalizeOptions<T extends BaseSchema>(
@@ -7,18 +7,30 @@ export function normalizeOptions<T extends BaseSchema>(
   options: T,
   projectType?: ProjectType,
 ): NormalizedSchema {
-  const name = toFileName(options.name)
-  const nxJson = JSON.parse(host.read('nx.json').toString())
+  const name = toFileName(options?.name || '')
+  const nxJson = readJson(host, 'nx.json')
+
   const appNameApi = options.apiName || 'api'
   const appNameMobile = options.mobileName || 'mobile'
   const appNameWeb = options.webName || 'web'
+  const appTypeApi = AppTypeApi.nest
+  const appTypeMobile = AppTypeMobile.ionicAngular
+  const appTypeWeb = AppTypeWeb.angular
+  const skipApi = !!options.skipApi
+  const skipMobile = !!options.skipMobile
+  const skipWeb = !!options.skipWeb
 
   const baseResult = {
-    // ...options,
     npmScope: nxJson.npmScope,
     appNameApi,
     appNameMobile,
     appNameWeb,
+    appTypeApi,
+    appTypeMobile,
+    appTypeWeb,
+    skipApi,
+    skipMobile,
+    skipWeb,
     name,
   }
 

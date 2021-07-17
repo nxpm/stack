@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`normalize-schema should run successfully 1`] = `
+Object {
+  "appNameApi": "api",
+  "appNameMobile": "mobile",
+  "appNameWeb": "web",
+  "appTypeApi": "nest",
+  "appTypeMobile": "ionic-angular",
+  "appTypeWeb": "angular",
+  "name": "test",
+  "npmScope": "proj",
+  "skipApi": false,
+  "skipMobile": false,
+  "skipWeb": false,
+}
+`;

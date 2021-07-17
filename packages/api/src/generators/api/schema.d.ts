@@ -1,5 +1,5 @@
-export interface ApiGeneratorSchema {
-  name: string
-  tags?: string
-  directory?: string
+import { AppTypeApi, BaseSchema } from '@nxpm/common'
+
+export interface ApiGeneratorSchema extends BaseSchema {
+  type?: AppTypeApi
 }

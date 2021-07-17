@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`init generator should run successfully 1`] = `
+Array [
+  "src",
+  "tsconfig.app.json",
+  "tsconfig.json",
+  ".eslintrc.json",
+  "jest.config.js",
+  "tsconfig.spec.json",
+]
+`;
+
+exports[`init generator should run successfully 2`] = `
+Array [
+  "app",
+  "assets",
+  "environments",
+  "main.ts",
+]
+`;
+
+exports[`init generator should run successfully 3`] = `
+Array [
+  ".gitkeep",
+  "app.controller.spec.ts",
+  "app.controller.ts",
+  "app.module.ts",
+  "app.service.spec.ts",
+  "app.service.ts",
+]
+`;
