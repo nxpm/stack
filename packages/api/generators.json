@@ -12,6 +12,16 @@
       "factory": "./src/generators/api-e2e/generator-api-e2e#generatorApiE2e",
       "schema": "./src/generators/api-e2e/schema.json",
       "description": "api-e2e generator"
+    },
+    "api-feature": {
+      "factory": "./src/generators/api-feature/generator-api-feature#generatorApiFeature",
+      "schema": "./src/generators/api-feature/schema.json",
+      "description": "api-feature generator"
+    },
+    "api-lib": {
+      "factory": "./src/generators/api-lib/generator-api-lib#generatorApiLib",
+      "schema": "./src/generators/api-lib/schema.json",
+      "description": "api-lib generator"
     }
   }
 }

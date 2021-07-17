@@ -1,0 +1,12 @@
+import { Controller, Get } from '@nestjs/common'
+import { <%= project.className %>Service } from './<%= project.name %>.service'
+
+@Controller()
+export class <%= project.className %>Controller {
+  constructor(private readonly service: <%= project.className %>Service) {}
+
+  @Get('uptime')
+  uptime() {
+    return this.service.uptime()
+  }
+}

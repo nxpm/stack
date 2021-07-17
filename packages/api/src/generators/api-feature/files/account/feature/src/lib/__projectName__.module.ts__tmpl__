@@ -1,0 +1,10 @@
+import { Module } from '@nestjs/common'
+import { <%= api.className %>AccountDataAccessModule } from '@<%= npmScope %>/<%= api.name %>/account/data-access'
+
+import { <%= project.className %>Resolver } from './<%= project.name %>.resolver'
+
+@Module({
+  imports: [<%= api.className %>AccountDataAccessModule],
+  providers: [<%= project.className %>Resolver],
+})
+export class <%= project.className %>Module {}

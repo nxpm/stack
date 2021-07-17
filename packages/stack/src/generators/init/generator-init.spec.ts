@@ -13,7 +13,7 @@ describe('init generator', () => {
     appTree = createTreeWithEmptyWorkspace()
   })
 
-  it('should run successfully', async () => {
+  it('should run successfully with default options', async () => {
     await generatorInit(appTree, options)
     const configApi = readProjectConfiguration(appTree, options.apiName)
     expect(configApi).toBeDefined()
@@ -28,7 +28,7 @@ describe('init generator', () => {
 
     const nxpmJson = readJson(appTree, 'nxpm.json')
     expect(nxpmJson).toMatchSnapshot()
-  })
+  }, 10000)
 })
 
 describe('init generator: custom options', () => {
@@ -47,7 +47,7 @@ describe('init generator: custom options', () => {
     appTree = createTreeWithEmptyWorkspace()
   })
 
-  it('should run successfully', async () => {
+  it('should run successfully with custom options', async () => {
     await generatorInit(appTree, options)
     const configApi = readProjectConfiguration(appTree, options.apiName)
     expect(configApi).toBeDefined()
@@ -64,5 +64,5 @@ describe('init generator: custom options', () => {
 
     const nxpmJson = readJson(appTree, 'nxpm.json')
     expect(nxpmJson).toMatchSnapshot()
-  })
+  }, 10000)
 })

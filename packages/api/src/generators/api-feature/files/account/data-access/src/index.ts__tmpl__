@@ -1,0 +1,5 @@
+export * from './lib/<%= project.name %>.module'
+export * from './lib/<%= project.name %>.service'
+export * from './lib/dto/account-create-email.input'
+export * from './lib/dto/account-update-password.input'
+export * from './lib/dto/account-update-profile.input'

@@ -1,0 +1,6 @@
+export * from './lib/<%= project.name  %>.module'
+export * from './lib/<%= project.name  %>.service'
+export * from './lib/dto/jwt.dto'
+export * from './lib/dto/login.input'
+export * from './lib/dto/register.input'
+export * from './lib/models/auth-token.model'

@@ -14,5 +14,5 @@ describe('api generator', () => {
 
   it('should run successfully', async () => {
     await generatorApi(appTree, options)
-  })
+  }, 30000)
 })

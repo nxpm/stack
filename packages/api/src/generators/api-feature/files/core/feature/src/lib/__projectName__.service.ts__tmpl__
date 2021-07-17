@@ -1,0 +1,8 @@
+import { Injectable } from '@nestjs/common'
+
+@Injectable()
+export class <%= project.className %>Service {
+  uptime(): number {
+    return process.uptime()
+  }
+}

@@ -1,0 +1,47 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native"]
+}
+
+model User {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+  role      Role
+  developer Boolean  @default(false)
+  username  String   @unique
+  password  String?
+  firstName String?
+  lastName  String?
+  avatarUrl String?
+  location  String?
+  phone     String?
+  bio       String?
+  emails    Email[]  @relation("Email_belongsTo_Owner")
+}
+
+enum Role {
+  Admin
+  User
+}
+
+model Email {
+  id            String    @id @default(cuid())
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @default(now()) @updatedAt
+  email         String    @unique
+  public        Boolean   @default(false)
+  primary       Boolean   @default(false)
+  verified      Boolean   @default(false)
+  verifyToken   String?
+  verifyExpires DateTime?
+  owner         User      @relation(name: "Email_belongsTo_Owner", fields: [ownerId], references: [id])
+  ownerId       String
+  // Enable when this is resolved https://github.com/prisma/prisma/issues/3387
+  // @@unique([ownerId, primary])
+}

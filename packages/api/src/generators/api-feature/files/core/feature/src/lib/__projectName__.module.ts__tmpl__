@@ -1,0 +1,36 @@
+import { GraphQLIntercomModule } from '@kikstart-playground/graphql-intercom'
+import { Module } from '@nestjs/common'
+import { GraphQLModule } from '@nestjs/graphql'
+import { PubSub } from 'graphql-subscriptions'
+import { join } from 'path'
+import { <%= api.className %>AccountFeatureModule } from '@<%= npmScope %>/<%= api.name %>/account/feature'
+import { <%= api.className %>AuthFeatureModule } from '@<%= npmScope %>/<%= api.name %>/auth/feature'
+import { <%= api.className %>UserFeatureModule } from '@<%= npmScope %>/<%= api.name %>/user/feature'
+
+import { <%= project.className %>Controller } from './<%= project.name %>.controller'
+import { <%= project.className %>Resolver } from './<%= project.name %>.resolver'
+import { <%= project.className %>Service } from './<%= project.name %>.service'
+
+@Module({
+  imports: [
+    GraphQLModule.forRoot({
+      autoSchemaFile: join(process.cwd(), '<%= api.name %>-schema.graphql'),
+      context: ({ req, res }) => ({ req, res }),
+      installSubscriptionHandlers: true,
+      playground: {
+        settings: {
+          'request.credentials': 'include',
+        },
+      },
+      sortSchema: true,
+    }),
+    GraphQLIntercomModule.forRoot({ pubSub: new PubSub() }),
+    <%= api.className %>AccountFeatureModule,
+    <%= api.className %>AuthFeatureModule,
+    <%= api.className %>UserFeatureModule,
+  ],
+  controllers: [<%= project.className %>Controller],
+  providers: [<%= project.className %>Resolver, <%= project.className %>Service],
+  exports: [<%= project.className %>Service],
+})
+export class <%= project.className %>Module {}

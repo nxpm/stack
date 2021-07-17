@@ -1,0 +1,19 @@
+import { Module } from '@nestjs/common'
+import { ConfigModule } from '@nestjs/config'
+
+import { configuration } from './config/configuration'
+import { validationSchema } from './config/validation'
+import { <%= project.className %>Service } from './<%= project.name %>.service'
+
+@Module({
+  imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+      load: [configuration],
+      validationSchema,
+    }),
+  ],
+  providers: [<%= project.className %>Service],
+  exports: [<%= project.className %>Service],
+})
+export class <%= project.className %>Module {}

@@ -1,0 +1,88 @@
+import { Injectable } from '@nestjs/common'
+import { <%= api.className %>CoreDataAccessService, CorePaging, CorePagingInput } from '@<%= npmScope %>/<%= api.name %>/core/data-access'
+import { getGravatarUrl, hashPassword, uniqueSuffix } from '@<%= npmScope %>/<%= api.name %>/core/util'
+import { AdminCreateUserInput } from './dto/admin-create-user.input'
+import { AdminUpdateUserInput } from './dto/admin-update-user.input'
+
+@Injectable()
+export class <%= project.className %>Service {
+  constructor(private readonly data: <%= api.className %>CoreDataAccessService) {}
+
+  async adminUsers(userId: string, paging: CorePagingInput) {
+    await this.data.ensureAdminUser(userId)
+    return this.data.user.findMany({
+      take: paging.limit,
+      skip: paging.skip,
+      include: { emails: true },
+    })
+  }
+
+  async adminCountUsers(adminId: string, paging: CorePagingInput): Promise<CorePaging> {
+    await this.data.ensureAdminUser(adminId)
+    const total = await this.data.user.count()
+    return {
+      limit: paging.limit,
+      skip: paging.skip,
+      total,
+    }
+  }
+
+  async adminUser(adminId: string, userId: string) {
+    await this.data.ensureAdminUser(adminId)
+    return this.data.user.findUnique({ where: { id: userId }, include: { emails: true } })
+  }
+
+  async adminCreateUser(adminId: string, input: AdminCreateUserInput) {
+    await this.data.ensureAdminUser(adminId)
+    const email = input.email.trim()
+    const avatarUrl = getGravatarUrl(email)
+    const username = this.formatUsername(email, input.username)
+    await this.ensureUsernameAvailable(username)
+
+    return this.data.user.create({
+      data: {
+        emails: { create: { email, primary: true } },
+        role: input.role,
+        firstName: input.firstName,
+        lastName: input.lastName,
+        avatarUrl,
+        username,
+      },
+      include: { emails: true },
+    })
+  }
+
+  async adminUpdateUser(adminId: string, userId: string, input: AdminUpdateUserInput) {
+    await this.data.ensureAdminUser(adminId)
+    return this.data.user.update({
+      where: { id: userId },
+      data: { ...input },
+      include: { emails: true },
+    })
+  }
+
+  async adminSetUserPassword(adminId: string, userId: string, password: string) {
+    await this.data.ensureAdminUser(adminId)
+    return this.data.user.update({
+      where: { id: userId },
+      data: { password: hashPassword(password) },
+    })
+  }
+
+  async adminDeleteUser(adminId: string, userId: string) {
+    await this.data.ensureAdminUser(adminId)
+    return this.data.user.delete({ where: { id: userId } })
+  }
+
+  private formatUsername(email: string, username?: string): string {
+    return username?.trim() || uniqueSuffix(email.trim().split('@')[0])
+  }
+
+  private async ensureUsernameAvailable(username: string): Promise<boolean> {
+    const user = await this.data.findUserByUsername(username)
+    if (user) {
+      throw new Error(`This username is not available`)
+    }
+    return true
+  }
+}

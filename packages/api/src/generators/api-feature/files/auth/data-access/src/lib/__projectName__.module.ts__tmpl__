@@ -1,0 +1,22 @@
+import { <%= api.className  %>CoreDataAccessModule } from '@<%= npmScope %>/<%= api.name %>/core/data-access'
+import { <%= api.className  %>CoreUtilModule, } from '@<%= npmScope %>/<%= api.name %>/core/util'
+import { Module } from '@nestjs/common'
+import { JwtModule } from '@nestjs/jwt'
+import { PassportModule } from '@nestjs/passport'
+
+import { <%= project.className  %>Service } from './<%= project.name  %>.service'
+import { JwtStrategy } from './strategies/jwt.strategy'
+
+@Module({
+  imports: [
+    <%= api.className  %>CoreDataAccessModule,
+    <%= api.className  %>CoreUtilModule,
+    PassportModule.register({ defaultStrategy: 'jwt' }),
+    JwtModule.register({
+      secret: process.env.JWT_SECRET,
+    }),
+  ],
+  exports: [<%= project.className  %>Service],
+  providers: [<%= project.className  %>Service, JwtStrategy],
+})
+export class <%= project.className  %>Module {}
