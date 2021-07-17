@@ -1,4 +1,4 @@
-import { runNxCommandAsync, uniq } from '@nrwl/nx-plugin/testing'
+import { runNxCommandAsync, runPackageManagerInstall, uniq } from '@nrwl/nx-plugin/testing'
 import { ensureNxProjects } from '../lib/testing'
 
 describe('stack e2e', () => {
@@ -20,7 +20,7 @@ describe('stack e2e', () => {
     const command = `generate @nxpm/stack:init ${params}`
     console.log(`command: nx ${command}`)
     await runNxCommandAsync(command)
-
+    await runPackageManagerInstall()
     // const result = await runNxCommandAsync(`build ${plugin}`)
     // expect(result.stdout).toContain('Executor ran')
   }, 120000)

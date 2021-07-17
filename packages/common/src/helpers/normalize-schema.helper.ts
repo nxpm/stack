@@ -21,6 +21,7 @@ export function normalizeOptions<T extends BaseSchema>(
   const skipWeb = !!options.skipWeb
 
   const baseResult = {
+    ...options,
     npmScope: nxJson.npmScope,
     appNameApi,
     appNameMobile,

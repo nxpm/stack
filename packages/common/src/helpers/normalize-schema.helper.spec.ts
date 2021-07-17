@@ -1,7 +1,7 @@
 import { Tree } from '@nrwl/devkit'
 import { createTreeWithEmptyWorkspace } from '@nrwl/devkit/testing'
 import { BaseSchema } from '../interfaces'
-import { normalizeOptions } from '../helpers/normalize-schema.helper'
+import { normalizeOptions } from './normalize-schema.helper'
 
 describe('normalize-schema', () => {
   let appTree: Tree

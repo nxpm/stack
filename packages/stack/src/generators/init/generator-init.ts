@@ -1,7 +1,7 @@
-import { Tree } from '@nrwl/devkit'
+import { formatFiles, Tree } from '@nrwl/devkit'
 import { generatorApi } from '@nxpm/api'
 import { InitGeneratorSchema } from './schema'
-import { normalizeOptions } from '@nxpm/common'
+import { normalizeOptions, writeNxpmConfigHelper } from '@nxpm/common'
 
 export async function generatorInit(host: Tree, options: InitGeneratorSchema) {
   // Prepare options
@@ -27,5 +27,7 @@ export async function generatorInit(host: Tree, options: InitGeneratorSchema) {
   }
   // Configure Workspace
   // addFiles(host, normalizedOptions, join(__dirname, 'files'))
-  // await formatFiles(host)
+  writeNxpmConfigHelper(host, normalizedOptions)
+  // Format files
+  await formatFiles(host)
 }
