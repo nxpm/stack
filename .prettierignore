@@ -1,4 +1,6 @@
-# Add files here to ignore them from prettier formatting
-
-/dist
-/coverage
+package.json
+dist
+coverage
+tmp
+/libs/sdk/src/generated/g libs/themes/src/vendor
+.github/*.md

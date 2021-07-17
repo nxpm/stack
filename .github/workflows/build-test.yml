@@ -1,0 +1,43 @@
+name: build-test
+
+on:
+  pull_request:
+
+env:
+  BEFORE_SHA: ${{ github.event.before }}
+  NX_BRANCH: ${{ github.event.number }}
+  NX_RUN_GROUP: ${{ github.run_id }}
+
+jobs:
+  build:
+    runs-on: ${{ matrix.operating-system }}
+    strategy:
+      matrix:
+        node-version: [14.x]
+        operating-system: [ubuntu-latest]
+    services:
+      postgres:
+        image: postgres:12
+        env:
+          POSTGRES_DB: prisma
+          POSTGRES_USER: prisma
+          POSTGRES_PASSWORD: prisma
+        ports: ['5432:5432']
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - uses: actions/cache@v2
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+      - name: Setup node ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: yarn install --frozen-lockfile
+      - run: yarn build
+      - run: yarn format:check
+      - run: yarn affected:test --base=remotes/origin/main
+      - run: yarn affected:e2e --base=remotes/origin/main
