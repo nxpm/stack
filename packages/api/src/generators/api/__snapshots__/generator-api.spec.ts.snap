@@ -1,0 +1,1979 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`api generator should run successfully 1`] = `
+Object {
+  "root": "apps/api-test",
+  "tree": Array [
+    "/.eslintrc.json",
+    "/jest.config.js",
+    "/src/app/app.module.ts",
+    "/src/assets/.gitkeep",
+    "/src/environments/environment.prod.ts",
+    "/src/environments/environment.ts",
+    "/src/main.ts",
+    "/tsconfig.app.json",
+    "/tsconfig.json",
+    "/tsconfig.spec.json",
+  ],
+}
+`;
+
+exports[`api generator should run successfully 2`] = `
+Object {
+  "content": Array [
+    Object {
+      "content": "import { Logger, Module } from '@nestjs/common'
+import { ServeStaticModule } from '@nestjs/serve-static'
+import { ApiCoreFeatureModule } from '@proj/api/core/feature'
+import { ensureDirSync, existsSync, writeFileSync } from 'fs-extra'
+import { join } from 'path'
+
+const rootPath = join(__dirname, '..', 'web')
+
+@Module({
+  imports: [
+    ApiCoreFeatureModule,
+    ServeStaticModule.forRoot({
+      rootPath,
+      exclude: ['/api/*', '/graphql'],
+    }),
+  ],
+})
+export class AppModule {
+  constructor() {
+    if (!existsSync(rootPath)) {
+      ensureDirSync(rootPath)
+      writeFileSync(join(rootPath, 'index.html'), \`<pre>@nxpm/stack api</pre>\`)
+      Logger.verbose(\`Created static root path \${rootPath}\`)
+    }
+  }
+}
+",
+      "file": "/app/app.module.ts",
+    },
+    Object {
+      "content": "",
+      "file": "/assets/.gitkeep",
+    },
+    Object {
+      "content": "export const environment = {
+  production: true,
+}
+",
+      "file": "/environments/environment.prod.ts",
+    },
+    Object {
+      "content": "export const environment = {
+  production: false,
+}
+",
+      "file": "/environments/environment.ts",
+    },
+    Object {
+      "content": "import { ApiCoreUtilService } from '@proj/api-test/core/util'
+import { Logger } from '@nestjs/common'
+import { NestFactory } from '@nestjs/core'
+import * as cookieParser from 'cookie-parser'
+
+import { AppModule } from './app/app.module'
+
+async function bootstrap() {
+  const app = await NestFactory.create(AppModule)
+  const config = app.get(ApiCoreUtilService)
+  const globalPrefix = 'api'
+  app.setGlobalPrefix(globalPrefix)
+  app.enableCors({
+    credentials: true,
+    origin: config.apiCorsOrigins,
+  })
+  app.use(cookieParser())
+  const port = process.env.PORT || 3333
+  await app.listen(port, () => {
+    Logger.log('Listening at http://localhost:' + port + '/' + globalPrefix)
+    Logger.log('Listening at http://localhost:' + port + '/graphql')
+  })
+}
+
+bootstrap()
+",
+      "file": "/main.ts",
+    },
+  ],
+  "root": "apps/api-test/src",
+}
+`;
+
+exports[`api generator should run successfully 3`] = `
+Object {
+  "root": "libs/api-test/account/data-access",
+  "tree": Array [
+    "/.babelrc",
+    "/.eslintrc.json",
+    "/README.md",
+    "/jest.config.js",
+    "/src/index.ts",
+    "/src/lib/api-test-account-data-access.module.ts",
+    "/src/lib/api-test-account-data-access.service.ts",
+    "/src/lib/dto/account-create-email.input.ts",
+    "/src/lib/dto/account-update-password.input.ts",
+    "/src/lib/dto/account-update-profile.input.ts",
+    "/tsconfig.json",
+    "/tsconfig.lib.json",
+    "/tsconfig.spec.json",
+  ],
+}
+`;
+
+exports[`api generator should run successfully 4`] = `
+Object {
+  "content": Array [
+    Object {
+      "content": "export * from './lib/api-test-account-data-access.module'
+export * from './lib/api-test-account-data-access.service'
+export * from './lib/dto/account-create-email.input'
+export * from './lib/dto/account-update-password.input'
+export * from './lib/dto/account-update-profile.input'
+",
+      "file": "/index.ts",
+    },
+    Object {
+      "content": "import { Module } from '@nestjs/common'
+import { ApiCoreDataAccessModule } from '@proj/api/core/data-access'
+
+import { ApiTestAccountDataAccessService } from './api-test-account-data-access.service'
+
+@Module({
+  imports: [ApiCoreDataAccessModule],
+  providers: [ApiTestAccountDataAccessService],
+  exports: [ApiTestAccountDataAccessService],
+})
+export class ApiTestAccountDataAccessModule {}
+",
+      "file": "/lib/api-test-account-data-access.module.ts",
+    },
+    Object {
+      "content": "import { BadRequestException, Injectable, Logger, UnauthorizedException } from '@nestjs/common'
+import { ApiCoreDataAccessService } from '@proj/api/core/data-access'
+import { hashPassword, validatePassword } from '@proj/api/core/util'
+import { Prisma } from '@prisma/client'
+import { AccountCreateEmailInput } from './dto/account-create-email.input'
+import { AccountUpdatePasswordInput } from './dto/account-update-password.input'
+import { AccountUpdateProfileInput } from './dto/account-update-profile.input'
+
+@Injectable()
+export class ApiTestAccountDataAccessService {
+  constructor(private readonly data: ApiCoreDataAccessService) {}
+
+  accountEmails(userId: string) {
+    return this.data.email.findMany({ where: { owner: { id: userId } }, orderBy: { primary: 'desc' } })
+  }
+
+  accountProfile(userId: string) {
+    return this.data.findUserById(userId)
+  }
+
+  async accountCreateEmail(userId: string, input: AccountCreateEmailInput) {
+    const exists = await this.data.findUserByEmail(input.email)
+    if (exists) {
+      throw new BadRequestException(\`Can't add email address \${input.email}\`)
+    }
+    return this.data.email.create({ data: { ownerId: userId, email: input.email, primary: false } })
+  }
+
+  async accountDeleteEmail(userId: string, userEmailId: string) {
+    const owner = await this.data.email.findUnique({ where: { id: userEmailId } }).owner()
+    if (owner.id !== userId) {
+      throw new UnauthorizedException()
+    }
+    const email = await this.data.email.findUnique({ where: { id: userEmailId } })
+    if (email.primary) {
+      throw new BadRequestException(\`You can't delete your primary email\`)
+    }
+    return this.data.email.delete({ where: { id: userEmailId } })
+  }
+
+  accountUpdateProfile(userId: string, input: AccountUpdateProfileInput) {
+    return this.data.user.update({
+      where: { id: userId },
+      data: {
+        avatarUrl: input.avatarUrl,
+        firstName: input.firstName,
+        lastName: input.lastName,
+        bio: input.bio,
+        location: input.location,
+        phone: input.phone,
+      },
+    })
+  }
+
+  async accountUpdateUsername(userId: string, username: string) {
+    const available = await this.accountUsernameAvailable(userId, username)
+
+    if (!available) {
+      throw new BadRequestException(\`Username \${username} is not available\`)
+    }
+
+    return this.data.user.update({ where: { id: userId }, data: { username } })
+  }
+
+  async accountUsernameAvailable(userId: string, username: string): Promise<boolean> {
+    const denied = await this.data.usernameDenyList(username)
+
+    if (denied) {
+      throw new BadRequestException(\`Username \${username} is not available\`)
+    }
+
+    const count = await this.data.user.count({
+      where: { username },
+    })
+    return count === 0
+  }
+
+  async userEmailOwner(userId: string, userEmailId: string) {
+    const owner = await this.data.email.findUnique({ where: { id: userEmailId } }).owner()
+    if (owner.id !== userId) {
+      throw new UnauthorizedException()
+    }
+    return owner
+  }
+
+  async updateUserEmail(userId: string, userEmailId: string, input: Prisma.EmailUpdateInput) {
+    await this.userEmailOwner(userId, userEmailId)
+    return this.data.email.update({ where: { id: userEmailId }, data: { ...input } })
+  }
+
+  async accountMarkEmailPrivate(userId: string, userEmailId: string) {
+    return this.updateUserEmail(userId, userEmailId, { public: false })
+  }
+
+  async accountMarkEmailPublic(userId: string, userEmailId: string) {
+    return this.updateUserEmail(userId, userEmailId, { public: true })
+  }
+
+  async accountMarkEmailPrimary(userId: string, userEmailId: string) {
+    // Check if we are the owner
+    await this.userEmailOwner(userId, userEmailId)
+    // Mark all emails as non primary
+    await this.data.email.updateMany({
+      where: { owner: { id: userId } },
+      data: { primary: false },
+    })
+    // Mark the chosen one
+    return this.updateUserEmail(userId, userEmailId, { primary: true })
+  }
+
+  async accountResetPassword(userId: string) {
+    const emails = await this.accountEmails(userId)
+    const primary = emails.find((email) => email.primary)
+
+    if (!primary) {
+      throw new BadRequestException(\`Could not find primary email for user with id \${userId}\`)
+    }
+    Logger.verbose(\`TODO: Implement Account Reset Password\`)
+    // await this.auth.forgotPassword(primary.email)
+    return true
+  }
+
+  async accountUpdatePassword(userId: string, input: AccountUpdatePasswordInput) {
+    const user = await this.data.findUserById(userId)
+    // We need to make sure the user provides the correct current password
+    await validatePassword(input.currentPassword, user.password)
+
+    // The new password must be the same as the verified new password
+    if (input.password !== input.verified) {
+      throw new BadRequestException(\`Passwords do not match!\`)
+    }
+    // We can now update the password
+    await this.data.user.update({ where: { id: userId }, data: { password: hashPassword(input.password) } })
+    return true
+  }
+}
+",
+      "file": "/lib/api-test-account-data-access.service.ts",
+    },
+    Object {
+      "content": "import { InputType, Field } from '@nestjs/graphql'
+import { IsEmail } from 'class-validator'
+
+@InputType()
+export class AccountCreateEmailInput {
+  @Field()
+  @IsEmail()
+  email: string
+}
+",
+      "file": "/lib/dto/account-create-email.input.ts",
+    },
+    Object {
+      "content": "import { Field, InputType } from '@nestjs/graphql'
+import { MinLength } from 'class-validator'
+
+@InputType()
+export class AccountUpdatePasswordInput {
+  @Field()
+  currentPassword?: string
+
+  @Field()
+  @MinLength(10)
+  password?: string
+
+  @Field()
+  @MinLength(10)
+  verified?: string
+}
+",
+      "file": "/lib/dto/account-update-password.input.ts",
+    },
+    Object {
+      "content": "import { Field, InputType } from '@nestjs/graphql'
+
+@InputType()
+export class AccountUpdateProfileInput {
+  @Field({ nullable: true })
+  firstName?: string
+
+  @Field({ nullable: true })
+  lastName?: string
+
+  @Field({ nullable: true })
+  avatarUrl?: string
+
+  @Field({ nullable: true })
+  bio?: string
+
+  @Field({ nullable: true })
+  location?: string
+
+  @Field({ nullable: true })
+  phone?: string
+
+  @Field({ nullable: true })
+  dob?: Date
+}
+",
+      "file": "/lib/dto/account-update-profile.input.ts",
+    },
+  ],
+  "root": "libs/api-test/account/data-access/src",
+}
+`;
+
+exports[`api generator should run successfully 5`] = `
+Object {
+  "root": "libs/api-test/account/feature",
+  "tree": Array [
+    "/.babelrc",
+    "/.eslintrc.json",
+    "/README.md",
+    "/jest.config.js",
+    "/src/index.ts",
+    "/src/lib/api-test-account-feature.module.ts",
+    "/src/lib/api-test-account-feature.resolver.ts",
+    "/tsconfig.json",
+    "/tsconfig.lib.json",
+    "/tsconfig.spec.json",
+  ],
+}
+`;
+
+exports[`api generator should run successfully 6`] = `
+Object {
+  "content": Array [
+    Object {
+      "content": "export * from './lib/api-test-account-feature.module'
+",
+      "file": "/index.ts",
+    },
+    Object {
+      "content": "import { Module } from '@nestjs/common'
+import { ApiAccountDataAccessModule } from '@proj/api/account/data-access'
+
+import { ApiTestAccountFeatureResolver } from './api-test-account-feature.resolver'
+
+@Module({
+  imports: [ApiAccountDataAccessModule],
+  providers: [ApiTestAccountFeatureResolver],
+})
+export class ApiTestAccountFeatureModule {}
+",
+      "file": "/lib/api-test-account-feature.module.ts",
+    },
+    Object {
+      "content": "import { UseGuards, ValidationPipe } from '@nestjs/common'
+import { Args, Mutation, Query, Resolver } from '@nestjs/graphql'
+import {
+  AccountCreateEmailInput,
+  AccountUpdatePasswordInput,
+  AccountUpdateProfileInput,
+  ApiAccountDataAccessService,
+} from '@proj/api/account/data-access'
+import { CtxUser, GqlAuthGuard } from '@proj/api/auth/util'
+import { Email, User } from '@proj/api/user/data-access'
+
+@Resolver()
+@UseGuards(GqlAuthGuard)
+export class ApiTestAccountFeatureResolver {
+  constructor(private readonly service: ApiAccountDataAccessService) {}
+
+  @Query(() => [Email], { nullable: true })
+  accountEmails(@CtxUser() user: User) {
+    return this.service.accountEmails(user.id)
+  }
+
+  @Query(() => User, { nullable: true })
+  accountProfile(@CtxUser() user: User) {
+    return this.service.accountProfile(user.id)
+  }
+
+  @Query(() => Boolean, { nullable: true })
+  accountUsernameAvailable(@CtxUser() user: User, @Args('username') username: string) {
+    return this.service.accountUsernameAvailable(user.id, username)
+  }
+
+  @Mutation(() => Email, { nullable: true })
+  accountCreateEmail(@CtxUser() user: User, @Args('input', new ValidationPipe()) input: AccountCreateEmailInput) {
+    return this.service.accountCreateEmail(user.id, input)
+  }
+
+  @Mutation(() => Email, { nullable: true })
+  accountDeleteEmail(@CtxUser() user: User, @Args('emailId') emailId: string) {
+    return this.service.accountDeleteEmail(user.id, emailId)
+  }
+
+  @Mutation(() => Email, { nullable: true })
+  accountMarkEmailPrimary(@CtxUser() user: User, @Args('emailId') emailId: string) {
+    return this.service.accountMarkEmailPrimary(user.id, emailId)
+  }
+
+  @Mutation(() => Email, { nullable: true })
+  accountMarkEmailPrivate(@CtxUser() user: User, @Args('emailId') emailId: string) {
+    return this.service.accountMarkEmailPrivate(user.id, emailId)
+  }
+
+  @Mutation(() => Email, { nullable: true })
+  accountMarkEmailPublic(@CtxUser() user: User, @Args('emailId') emailId: string) {
+    return this.service.accountMarkEmailPublic(user.id, emailId)
+  }
+
+  @Mutation(() => User, { nullable: true })
+  accountUpdateProfile(@CtxUser() user: User, @Args('input', new ValidationPipe()) input: AccountUpdateProfileInput) {
+    return this.service.accountUpdateProfile(user.id, input)
+  }
+
+  @Mutation(() => User, { nullable: true })
+  accountUpdateUsername(@CtxUser() user: User, @Args('username') username: string) {
+    return this.service.accountUpdateUsername(user.id, username)
+  }
+
+  @Mutation(() => Boolean, { nullable: true })
+  accountResetPassword(@CtxUser() user: User) {
+    return this.service.accountResetPassword(user.id)
+  }
+
+  @Mutation(() => Boolean, { nullable: true })
+  accountUpdatePassword(@CtxUser() user: User, @Args('input', new ValidationPipe()) input: AccountUpdatePasswordInput) {
+    return this.service.accountUpdatePassword(user.id, input)
+  }
+}
+",
+      "file": "/lib/api-test-account-feature.resolver.ts",
+    },
+  ],
+  "root": "libs/api-test/account/feature/src",
+}
+`;
+
+exports[`api generator should run successfully 7`] = `
+Object {
+  "root": "libs/api-test/auth/data-access",
+  "tree": Array [
+    "/.babelrc",
+    "/.eslintrc.json",
+    "/README.md",
+    "/jest.config.js",
+    "/src/index.ts",
+    "/src/lib/api-test-auth-data-access.module.ts",
+    "/src/lib/api-test-auth-data-access.service.ts",
+    "/src/lib/dto/jwt.dto.ts",
+    "/src/lib/dto/login.input.ts",
+    "/src/lib/dto/register.input.ts",
+    "/src/lib/models/auth-token.model.ts",
+    "/src/lib/strategies/jwt.strategy.ts",
+    "/tsconfig.json",
+    "/tsconfig.lib.json",
+    "/tsconfig.spec.json",
+  ],
+}
+`;
+
+exports[`api generator should run successfully 8`] = `
+Object {
+  "content": Array [
+    Object {
+      "content": "export * from './lib/api-test-auth-data-access.module'
+export * from './lib/api-test-auth-data-access.service'
+export * from './lib/dto/jwt.dto'
+export * from './lib/dto/login.input'
+export * from './lib/dto/register.input'
+export * from './lib/models/auth-token.model'
+",
+      "file": "/index.ts",
+    },
+    Object {
+      "content": "import { ApiCoreDataAccessModule } from '@proj/api/core/data-access'
+import { ApiCoreUtilModule, } from '@proj/api/core/util'
+import { Module } from '@nestjs/common'
+import { JwtModule } from '@nestjs/jwt'
+import { PassportModule } from '@nestjs/passport'
+
+import { ApiTestAuthDataAccessService } from './api-test-auth-data-access.service'
+import { JwtStrategy } from './strategies/jwt.strategy'
+
+@Module({
+  imports: [
+    ApiCoreDataAccessModule,
+    ApiCoreUtilModule,
+    PassportModule.register({ defaultStrategy: 'jwt' }),
+    JwtModule.register({
+      secret: process.env.JWT_SECRET,
+    }),
+  ],
+  exports: [ApiTestAuthDataAccessService],
+  providers: [ApiTestAuthDataAccessService, JwtStrategy],
+})
+export class ApiTestAuthDataAccessModule {}
+",
+      "file": "/lib/api-test-auth-data-access.module.ts",
+    },
+    Object {
+      "content": "import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common'
+import { JwtService } from '@nestjs/jwt'
+import { ApiCoreDataAccessService } from '@proj/api/core/data-access'
+import { ApiCoreUtilService, validatePassword } from '@proj/api/core/util'
+import { Response } from 'express'
+import { LoginInput } from './dto/login.input'
+import { RegisterInput } from './dto/register.input'
+import { AuthToken } from './models/auth-token.model'
+
+@Injectable()
+export class ApiAuthDataAccessService {
+  constructor(
+    private readonly data: ApiCoreDataAccessService,
+    private readonly core: ApiCoreUtilService,
+    private readonly jwtService: JwtService
+  ) {}
+
+  async register(payload: RegisterInput) {
+    const user = await this.data.createUser(payload, { email: payload.email })
+
+    return this.signUser(user)
+  }
+
+  async login(input: LoginInput) {
+    const email = input.email.trim()
+    const password = input.password.trim()
+    const user = await this.data.findUserByEmail(email)
+
+    if (!user) {
+      throw new NotFoundException(\`No user found for email: \${email}\`)
+    }
+
+    if (!user?.password) {
+      throw new NotFoundException(\`Can't log in with email: \${email}\`)
+    }
+
+    const passwordValid = await validatePassword(password, user.password)
+
+    if (!passwordValid) {
+      throw new BadRequestException('Invalid password')
+    }
+
+    return this.signUser(user)
+  }
+
+  signUser(user): AuthToken {
+    const token = this.jwtService.sign({ userId: user?.id })
+    return { token }
+  }
+
+  validateUser(userId: string) {
+    return this.data.findUserById(userId)
+  }
+
+  getUserFromToken(token: string) {
+    const userId = this.jwtService.decode(token)['userId']
+
+    return this.data.findUserById(userId)
+  }
+
+  setCookie(res: Response, token: string) {
+    return res?.cookie(this.core.cookie.name, token, this.core.cookie.options)
+  }
+
+  clearCookie(res: Response) {
+    return res.clearCookie(this.core.cookie.name, this.core.cookie.options)
+  }
+}
+",
+      "file": "/lib/api-test-auth-data-access.service.ts",
+    },
+    Object {
+      "content": "export interface JwtDto {
+  userId: string
+}
+",
+      "file": "/lib/dto/jwt.dto.ts",
+    },
+    Object {
+      "content": "import { Field, InputType } from '@nestjs/graphql'
+import { IsNotEmpty, MinLength } from 'class-validator'
+
+@InputType()
+export class LoginInput {
+  @Field()
+  @IsNotEmpty()
+  email: string
+
+  @Field()
+  @IsNotEmpty()
+  @MinLength(8)
+  password: string
+}
+",
+      "file": "/lib/dto/login.input.ts",
+    },
+    Object {
+      "content": "import { IsEmail, IsNotEmpty, MinLength } from 'class-validator'
+import { InputType, Field } from '@nestjs/graphql'
+
+@InputType()
+export class RegisterInput {
+  @Field()
+  @IsNotEmpty()
+  @IsEmail()
+  email: string
+
+  @Field({ nullable: true })
+  username?: string
+
+  @Field({ nullable: true })
+  firstName?: string
+
+  @Field({ nullable: true })
+  lastName?: string
+
+  @Field({ nullable: true })
+  phone?: string
+
+  @Field({ nullable: true })
+  avatarUrl?: string
+
+  @Field()
+  @IsNotEmpty()
+  @MinLength(8)
+  password: string
+}
+",
+      "file": "/lib/dto/register.input.ts",
+    },
+    Object {
+      "content": "import { Field, ObjectType } from '@nestjs/graphql'
+
+@ObjectType()
+export class AuthToken {
+  @Field({ description: 'JWT Bearer token' })
+  token: string
+}
+",
+      "file": "/lib/models/auth-token.model.ts",
+    },
+    Object {
+      "content": "import { Injectable, UnauthorizedException } from '@nestjs/common'
+import { PassportStrategy } from '@nestjs/passport'
+import { Request } from 'express'
+import { ExtractJwt, Strategy } from 'passport-jwt'
+import { ApiTestAuthDataAccessService } from '../api-auth-data-access.service'
+import { JwtDto } from '../dto/jwt.dto'
+
+function headerAndCookieExtractor(req: Request) {
+  const token = ExtractJwt.fromAuthHeaderAsBearerToken()(req)
+  if (!token) {
+    return cookieExtractor(req)
+  }
+  return token
+}
+
+function cookieExtractor(req: Request) {
+  const name = process.env.API_COOKIE_NAME || '__session'
+  return req?.cookies?.[name] ? req.cookies[name] : undefined
+}
+
+@Injectable()
+export class JwtStrategy extends PassportStrategy(Strategy) {
+  constructor(private readonly auth: ApiTestAuthDataAccessService) {
+    super({
+      jwtFromRequest: cookieExtractor,
+      secretOrKey: process.env.JWT_SECRET,
+    })
+  }
+
+  async validate(payload: JwtDto) {
+    const user = await this.auth.validateUser(payload.userId)
+    if (!user) {
+      throw new UnauthorizedException()
+    }
+    return user
+  }
+}
+",
+      "file": "/lib/strategies/jwt.strategy.ts",
+    },
+  ],
+  "root": "libs/api-test/auth/data-access/src",
+}
+`;
+
+exports[`api generator should run successfully 9`] = `
+Object {
+  "root": "libs/api-test/auth/feature",
+  "tree": Array [
+    "/.babelrc",
+    "/.eslintrc.json",
+    "/README.md",
+    "/jest.config.js",
+    "/src/index.ts",
+    "/src/lib/api-test-auth-feature.module.ts",
+    "/src/lib/api-test-auth-feature.resolver.ts",
+    "/tsconfig.json",
+    "/tsconfig.lib.json",
+    "/tsconfig.spec.json",
+  ],
+}
+`;
+
+exports[`api generator should run successfully 10`] = `
+Object {
+  "content": Array [
+    Object {
+      "content": "export * from './lib/api-test-auth-feature.module'
+",
+      "file": "/index.ts",
+    },
+    Object {
+      "content": "import { Module } from '@nestjs/common'
+import { ApiAuthDataAccessModule } from '@proj/api/auth/data-access'
+import { ApiTestAuthFeatureResolver } from './api-test-auth-feature.resolver'
+
+@Module({
+  imports: [ApiAuthDataAccessModule],
+  providers: [ApiTestAuthFeatureResolver],
+})
+export class ApiTestAuthFeatureModule {}
+",
+      "file": "/lib/api-test-auth-feature.module.ts",
+    },
+    Object {
+      "content": "import {
+  ApiAuthDataAccessService,
+  LoginInput,
+  RegisterInput,
+  AuthToken,
+} from '@proj/api/auth/data-access'
+import {
+  CtxUser,
+  GqlAuthGuard,
+} from '@proj/api/auth/util'
+import {
+  User,
+} from '@proj/api/user/data-access'
+import { Context, Query, Resolver, Mutation, Args } from '@nestjs/graphql'
+import { UseGuards } from '@nestjs/common'
+
+@Resolver()
+export class ApiTestAuthFeatureResolver {
+  constructor(private readonly service: ApiAuthDataAccessService) {}
+
+  @Query(() => User, { nullable: true })
+  @UseGuards(GqlAuthGuard)
+  async me(@CtxUser() user: User) {
+    return user
+  }
+
+  @Mutation(() => AuthToken, { nullable: true })
+  async login(@Context() context, @Args('input') input: LoginInput) {
+    const authToken = await this.service.login(input)
+    this.service.setCookie(context.res, authToken.token)
+    return authToken
+  }
+
+  @Mutation(() => Boolean, { nullable: true })
+  async logout(@Context() context) {
+    this.service.clearCookie(context.res)
+    return true
+  }
+
+  @Mutation(() => AuthToken, { nullable: true })
+  async register(@Context() context, @Args('input') input: RegisterInput) {
+    const authToken = await this.service.register(input)
+    this.service.setCookie(context.res, authToken.token)
+    return authToken
+  }
+}
+",
+      "file": "/lib/api-test-auth-feature.resolver.ts",
+    },
+  ],
+  "root": "libs/api-test/auth/feature/src",
+}
+`;
+
+exports[`api generator should run successfully 11`] = `
+Object {
+  "root": "libs/api-test/auth/util",
+  "tree": Array [
+    "/.babelrc",
+    "/.eslintrc.json",
+    "/README.md",
+    "/jest.config.js",
+    "/src/index.ts",
+    "/src/lib/api-test-auth-util.module.ts",
+    "/src/lib/decorators/ctx-user.decorator.ts",
+    "/src/lib/guards/gql-auth-admin.guard.ts",
+    "/src/lib/guards/gql-auth.guard.ts",
+    "/tsconfig.json",
+    "/tsconfig.lib.json",
+    "/tsconfig.spec.json",
+  ],
+}
+`;
+
+exports[`api generator should run successfully 12`] = `
+Object {
+  "content": Array [
+    Object {
+      "content": "export * from './lib/decorators/ctx-user.decorator'
+export * from './lib/guards/gql-auth-admin.guard'
+export * from './lib/guards/gql-auth.guard'
+",
+      "file": "/index.ts",
+    },
+    Object {
+      "content": "import { Module } from '@nestjs/common'
+
+@Module({
+  controllers: [],
+  providers: [],
+  exports: [],
+})
+export class ApiTestAuthUtilModule {}
+",
+      "file": "/lib/api-test-auth-util.module.ts",
+    },
+    Object {
+      "content": "import { createParamDecorator } from '@nestjs/common'
+import { GqlExecutionContext } from '@nestjs/graphql'
+
+export const CtxUser = createParamDecorator((data, ctx) => GqlExecutionContext.create(ctx).getContext().req.user)
+",
+      "file": "/lib/decorators/ctx-user.decorator.ts",
+    },
+    Object {
+      "content": "import { ExecutionContext, ForbiddenException, Injectable } from '@nestjs/common'
+import { GqlExecutionContext } from '@nestjs/graphql'
+import { AuthGuard } from '@nestjs/passport'
+
+@Injectable()
+export class GqlAuthAdminGuard extends AuthGuard('jwt') {
+  private readonly _roles: string[] = ['Admin']
+
+  getRequest(context: ExecutionContext) {
+    const ctx = GqlExecutionContext.create(context)
+
+    return ctx.getContext().req
+  }
+
+  constructor() {
+    super()
+  }
+
+  async canActivate(context: ExecutionContext): Promise<boolean> {
+    await super.canActivate(context)
+    const ctx = GqlExecutionContext.create(context)
+    const req = ctx.getContext().req
+
+    if (!req || !req.user) {
+      return false
+    }
+    const hasAccess = this.hasAccess(req.user)
+
+    if (!hasAccess) {
+      throw new ForbiddenException(\`You need to have Admin access\`)
+    }
+    return req && req.user && this.hasAccess(req.user)
+  }
+
+  private hasAccess(user): boolean {
+    return user.role && this._roles.includes(user.role)
+  }
+}
+",
+      "file": "/lib/guards/gql-auth-admin.guard.ts",
+    },
+    Object {
+      "content": "import { ExecutionContext, Injectable } from '@nestjs/common'
+import { GqlExecutionContext } from '@nestjs/graphql'
+import { AuthGuard } from '@nestjs/passport'
+
+@Injectable()
+export class GqlAuthGuard extends AuthGuard('jwt') {
+  getRequest(context: ExecutionContext) {
+    const ctx = GqlExecutionContext.create(context)
+
+    return ctx.getContext().req
+  }
+}
+",
+      "file": "/lib/guards/gql-auth.guard.ts",
+    },
+  ],
+  "root": "libs/api-test/auth/util/src",
+}
+`;
+
+exports[`api generator should run successfully 13`] = `
+Object {
+  "root": "libs/api-test/core/data-access",
+  "tree": Array [
+    "/.babelrc",
+    "/.eslintrc.json",
+    "/README.md",
+    "/jest.config.js",
+    "/src/index.ts",
+    "/src/lib/api-test-core-data-access.module.ts",
+    "/src/lib/api-test-core-data-access.service.ts",
+    "/src/lib/dto/core-paging.input.ts",
+    "/src/lib/models/core-paging.model.ts",
+    "/src/prisma/schema.prisma",
+    "/tsconfig.json",
+    "/tsconfig.lib.json",
+    "/tsconfig.spec.json",
+  ],
+}
+`;
+
+exports[`api generator should run successfully 14`] = `
+Object {
+  "content": Array [
+    Object {
+      "content": "export * from './lib/api-test-core-data-access.module'
+export * from './lib/api-test-core-data-access.service'
+export * from './lib/dto/core-paging.input'
+export * from './lib/models/core-paging.model'
+",
+      "file": "/index.ts",
+    },
+    Object {
+      "content": "import { Module } from '@nestjs/common'
+
+import { ApiTestCoreDataAccessService } from './api-test-core-data-access.service'
+
+@Module({
+  providers: [ApiTestCoreDataAccessService],
+  exports: [ApiTestCoreDataAccessService],
+})
+export class ApiTestCoreDataAccessModule {}
+",
+      "file": "/lib/api-test-core-data-access.module.ts",
+    },
+    Object {
+      "content": "import { BadRequestException, Injectable, OnModuleDestroy, OnModuleInit } from '@nestjs/common'
+import { PrismaClient, Prisma, Role } from '@prisma/client'
+import { getGravatarUrl, hashPassword } from '@proj/api/core/util'
+
+@Injectable()
+export class ApiTestCoreDataAccessService extends PrismaClient implements OnModuleInit, OnModuleDestroy {
+  constructor() {
+    super()
+  }
+
+  async onModuleDestroy() {
+    await this.$disconnect()
+  }
+
+  async onModuleInit() {
+    await this.$connect()
+  }
+
+  async createUser(input: Partial<Prisma.UserCreateInput>, emailInput: Partial<Prisma.EmailCreateInput>) {
+    const email = emailInput?.email?.trim()
+    const existing = await this.findUserByEmail(email)
+    if (existing) {
+      throw new BadRequestException(\`Can't create user with email \${email}\`)
+    }
+    const password = hashPassword(input.password)
+
+    // The first user will get the Admin role
+    const hasAdmin = await this.user.count({ where: { role: 'Admin' } })
+    const role = hasAdmin ? 'User' : 'Admin'
+
+    return this.user.create({
+      data: {
+        firstName: input.firstName,
+        lastName: input.lastName,
+        emails: { create: { email, primary: true } },
+        username: email,
+        avatarUrl: input.avatarUrl || getGravatarUrl(email),
+        password,
+        role,
+      },
+    })
+  }
+
+  findUserByEmail(email: string) {
+    return this.email.findUnique({ where: { email } }).owner({ include: { emails: true } })
+  }
+
+  findUserById(userId: string) {
+    return this.user.findUnique({ where: { id: userId }, include: { emails: true } })
+  }
+
+  findUserByUsername(username: string) {
+    return this.user.findUnique({ where: { username }, include: { emails: true } })
+  }
+
+  async ensureAdminUser(adminId: string): Promise<boolean> {
+    const tenant = await this.findUserById(adminId)
+    if (tenant.role !== Role.Admin) {
+      throw new Error(\`This operation needs Admin access\`)
+    }
+    return true
+  }
+
+  async usernameDenyList(username: string) {
+    const denied = [
+      // Add usernames you want to deny
+      'admin',
+      'administrator',
+      'system',
+      'owner',
+      'info',
+      'webmaster',
+    ]
+    return denied.includes(username)
+  }
+}
+",
+      "file": "/lib/api-test-core-data-access.service.ts",
+    },
+    Object {
+      "content": "import { Field, InputType, Int } from '@nestjs/graphql'
+
+@InputType()
+export class CorePagingInput {
+  @Field(() => Int, { nullable: true, defaultValue: 10 })
+  limit?: number
+
+  @Field(() => Int, { nullable: true, defaultValue: 0 })
+  skip?: number
+}
+",
+      "file": "/lib/dto/core-paging.input.ts",
+    },
+    Object {
+      "content": "import { Field, Int, ObjectType } from '@nestjs/graphql'
+
+@ObjectType()
+export class CorePaging {
+  @Field(() => Int, { nullable: true, defaultValue: 10 })
+  limit?: number
+
+  @Field(() => Int, { nullable: true, defaultValue: 10 })
+  skip?: number
+
+  @Field(() => Int, { nullable: true, defaultValue: 10 })
+  total?: number
+}
+",
+      "file": "/lib/models/core-paging.model.ts",
+    },
+    Object {
+      "content": "datasource db {
+  provider = \\"postgresql\\"
+  url      = env(\\"DATABASE_URL\\")
+}
+
+generator client {
+  provider      = \\"prisma-client-js\\"
+  binaryTargets = [\\"native\\"]
+}
+
+model User {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+  role      Role
+  developer Boolean  @default(false)
+  username  String   @unique
+  password  String?
+  firstName String?
+  lastName  String?
+  avatarUrl String?
+  location  String?
+  phone     String?
+  bio       String?
+  emails    Email[]  @relation(\\"Email_belongsTo_Owner\\")
+}
+
+enum Role {
+  Admin
+  User
+}
+
+model Email {
+  id            String    @id @default(cuid())
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @default(now()) @updatedAt
+  email         String    @unique
+  public        Boolean   @default(false)
+  primary       Boolean   @default(false)
+  verified      Boolean   @default(false)
+  verifyToken   String?
+  verifyExpires DateTime?
+  owner         User      @relation(name: \\"Email_belongsTo_Owner\\", fields: [ownerId], references: [id])
+  ownerId       String
+  // Enable when this is resolved https://github.com/prisma/prisma/issues/3387
+  // @@unique([ownerId, primary])
+}
+",
+      "file": "/prisma/schema.prisma",
+    },
+  ],
+  "root": "libs/api-test/core/data-access/src",
+}
+`;
+
+exports[`api generator should run successfully 15`] = `
+Object {
+  "root": "libs/api-test/core/feature",
+  "tree": Array [
+    "/.babelrc",
+    "/.eslintrc.json",
+    "/README.md",
+    "/jest.config.js",
+    "/src/index.ts",
+    "/src/lib/api-test-core-feature.controller.ts",
+    "/src/lib/api-test-core-feature.module.ts",
+    "/src/lib/api-test-core-feature.resolver.ts",
+    "/src/lib/api-test-core-feature.service.ts",
+    "/tsconfig.json",
+    "/tsconfig.lib.json",
+    "/tsconfig.spec.json",
+  ],
+}
+`;
+
+exports[`api generator should run successfully 16`] = `
+Object {
+  "content": Array [
+    Object {
+      "content": "export * from './lib/api-test-core-feature.module'
+export * from './lib/api-test-core-feature.service'
+",
+      "file": "/index.ts",
+    },
+    Object {
+      "content": "import { Controller, Get } from '@nestjs/common'
+import { ApiTestCoreFeatureService } from './api-test-core-feature.service'
+
+@Controller()
+export class ApiTestCoreFeatureController {
+  constructor(private readonly service: ApiTestCoreFeatureService) {}
+
+  @Get('uptime')
+  uptime() {
+    return this.service.uptime()
+  }
+}
+",
+      "file": "/lib/api-test-core-feature.controller.ts",
+    },
+    Object {
+      "content": "import { GraphQLIntercomModule } from '@kikstart-playground/graphql-intercom'
+import { Module } from '@nestjs/common'
+import { GraphQLModule } from '@nestjs/graphql'
+import { PubSub } from 'graphql-subscriptions'
+import { join } from 'path'
+import { ApiAccountFeatureModule } from '@proj/api/account/feature'
+import { ApiAuthFeatureModule } from '@proj/api/auth/feature'
+import { ApiUserFeatureModule } from '@proj/api/user/feature'
+
+import { ApiTestCoreFeatureController } from './api-test-core-feature.controller'
+import { ApiTestCoreFeatureResolver } from './api-test-core-feature.resolver'
+import { ApiTestCoreFeatureService } from './api-test-core-feature.service'
+
+@Module({
+  imports: [
+    GraphQLModule.forRoot({
+      autoSchemaFile: join(process.cwd(), 'api-schema.graphql'),
+      context: ({ req, res }) => ({ req, res }),
+      installSubscriptionHandlers: true,
+      playground: {
+        settings: {
+          'request.credentials': 'include',
+        },
+      },
+      sortSchema: true,
+    }),
+    GraphQLIntercomModule.forRoot({ pubSub: new PubSub() }),
+    ApiAccountFeatureModule,
+    ApiAuthFeatureModule,
+    ApiUserFeatureModule,
+  ],
+  controllers: [ApiTestCoreFeatureController],
+  providers: [ApiTestCoreFeatureResolver, ApiTestCoreFeatureService],
+  exports: [ApiTestCoreFeatureService],
+})
+export class ApiTestCoreFeatureModule {}
+",
+      "file": "/lib/api-test-core-feature.module.ts",
+    },
+    Object {
+      "content": "import { Float, Query, Resolver } from '@nestjs/graphql'
+import { ApiTestCoreFeatureService } from './api-test-core-feature.service'
+
+@Resolver()
+export class ApiTestCoreFeatureResolver {
+  constructor(private readonly service: ApiTestCoreFeatureService) {}
+
+  @Query(() => Float, { nullable: true })
+  uptime() {
+    return this.service.uptime()
+  }
+}
+",
+      "file": "/lib/api-test-core-feature.resolver.ts",
+    },
+    Object {
+      "content": "import { Injectable } from '@nestjs/common'
+
+@Injectable()
+export class ApiTestCoreFeatureService {
+  uptime(): number {
+    return process.uptime()
+  }
+}
+",
+      "file": "/lib/api-test-core-feature.service.ts",
+    },
+  ],
+  "root": "libs/api-test/core/feature/src",
+}
+`;
+
+exports[`api generator should run successfully 17`] = `
+Object {
+  "root": "libs/api-test/core/util",
+  "tree": Array [
+    "/.babelrc",
+    "/.eslintrc.json",
+    "/README.md",
+    "/jest.config.js",
+    "/src/index.ts",
+    "/src/lib/api-test-core-util.helper.ts",
+    "/src/lib/api-test-core-util.module.ts",
+    "/src/lib/api-test-core-util.service.ts",
+    "/src/lib/config/configuration.ts",
+    "/src/lib/config/validation.ts",
+    "/tsconfig.json",
+    "/tsconfig.lib.json",
+    "/tsconfig.spec.json",
+  ],
+}
+`;
+
+exports[`api generator should run successfully 18`] = `
+Object {
+  "content": Array [
+    Object {
+      "content": "export * from './lib/api-test-core-util.helper'
+export * from './lib/api-test-core-util.module'
+export * from './lib/api-test-core-util.service'
+",
+      "file": "/index.ts",
+    },
+    Object {
+      "content": "import { compareSync, hashSync } from 'bcryptjs'
+import { createHash } from 'crypto'
+
+const getHash = (str: string) => createHash('md5').update(str).digest('hex')
+
+const gravatarUrl = 'https://www.gravatar.com/avatar/'
+const gravatarSize = 460
+
+export const getGravatarUrl = (email = '') =>
+  \`\${gravatarUrl}\${getHash(email)}?s=\${gravatarSize}&d=mp\`
+
+export function validatePassword(
+  password: string,
+  hashedPassword: string
+): boolean {
+  return compareSync(password, hashedPassword)
+}
+
+export function hashPassword(password: string): string {
+  return hashSync(password, 10)
+}
+
+export function generateMd5Hash(input: string) {
+  return createHash('md5').update(input).digest('hex')
+}
+
+export function generateToken() {
+  return generateMd5Hash(randomId(24))
+}
+
+export function generateExpireDate(days = 1) {
+  return new Date(Date.now() + 60 * 60 * 24 * 1000 * days)
+}
+
+export function randomId (length = 8) {
+  return new Date().getTime().toString().substr(0, length)
+}
+
+export function rand (items) {
+  return items[Math.floor(Math.random() * items.length)]
+}
+
+export function uniqueSuffix(input, length = 5) {
+  const suffix = generateMd5Hash(Date.now() + input).slice(0, length)
+  return \`\${input}-\${suffix}\`
+}
+",
+      "file": "/lib/api-test-core-util.helper.ts",
+    },
+    Object {
+      "content": "import { Module } from '@nestjs/common'
+import { ConfigModule } from '@nestjs/config'
+
+import { configuration } from './config/configuration'
+import { validationSchema } from './config/validation'
+import { ApiTestCoreUtilService } from './api-test-core-util.service'
+
+@Module({
+  imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+      load: [configuration],
+      validationSchema,
+    }),
+  ],
+  providers: [ApiTestCoreUtilService],
+  exports: [ApiTestCoreUtilService],
+})
+export class ApiTestCoreUtilModule {}
+",
+      "file": "/lib/api-test-core-util.module.ts",
+    },
+    Object {
+      "content": "import { Injectable } from '@nestjs/common'
+import { ConfigService } from '@nestjs/config'
+import { CookieOptions } from 'express'
+
+@Injectable()
+export class ApiTestCoreUtilService {
+
+  constructor(public readonly config: ConfigService) {}
+
+  uptime(): number {
+    return process.uptime()
+  }
+
+  get apiUrl(): string {
+    return this.config.get('apiUrl')
+  }
+
+  get apiCorsOrigins(): string[] {
+    return this.config.get('api.cors.origin')
+  }
+
+  get cookie(): { name: string; options: CookieOptions } {
+    return this.config.get('api.cookie')
+  }
+}
+",
+      "file": "/lib/api-test-core-util.service.ts",
+    },
+    Object {
+      "content": "export const configuration = () => ({
+  prefix: 'api',
+  environment: process.env.NODE_ENV,
+  host: process.env.HOST,
+  port: parseInt(process.env.PORT, 10),
+  apiUrl: process.env.API_URL,
+  api: {
+    cookie: {
+      name: process.env.API_COOKIE_NAME,
+      options: {
+        domain: process.env.API_COOKIE_DOMAIN,
+        httpOnly: true,
+      },
+    },
+    cors: {
+      origin: [process.env.WEB_URL],
+    },
+  },
+})
+",
+      "file": "/lib/config/configuration.ts",
+    },
+    Object {
+      "content": "import * as Joi from 'joi'
+
+export const validationSchema = Joi.object({
+  NODE_ENV: Joi.string().valid('development', 'production', 'test'),
+  HOST: Joi.string().alphanum().default('localhost'),
+  PORT: Joi.number().default(3000),
+  WEB_PORT: Joi.number().default(4200),
+  WEB_URL: Joi.string().default(
+    \`http://\${process.env.HOST || 'localhost'}:\${process.env.WEB_PORT}\`,
+  ),
+  API_COOKIE_DOMAIN: Joi.string().default('localhost'),
+  API_COOKIE_NAME: Joi.string().default('__session'),
+  API_URL: Joi.string().default(
+    \`http://\${process.env.HOST || 'localhost'}:\${process.env.PORT}/api\`,
+  ),
+  JWT_SECRET: Joi.string().required(),
+})
+",
+      "file": "/lib/config/validation.ts",
+    },
+  ],
+  "root": "libs/api-test/core/util/src",
+}
+`;
+
+exports[`api generator should run successfully 19`] = `
+Object {
+  "root": "apps/api-test-e2e",
+  "tree": Array [
+    "/.eslintrc.json",
+    "/jest.config.js",
+    "/tsconfig.json",
+    "/tsconfig.spec.json",
+  ],
+}
+`;
+
+exports[`api generator should run successfully 20`] = `
+Object {
+  "content": Array [
+    Object {
+      "content": "import { AppModule } from '@proj/api-app-module'
+import { INestApplication } from '@nestjs/common'
+import { Test, TestingModule } from '@nestjs/testing'
+import * as request from 'supertest'
+
+describe('AppController (e2e)', () => {
+  let app: INestApplication
+
+  beforeEach(async () => {
+    const moduleFixture: TestingModule = await Test.createTestingModule({
+      imports: [AppModule],
+    }).compile()
+
+    app = moduleFixture.createNestApplication()
+    app.setGlobalPrefix('api')
+    await app.init()
+  })
+
+  afterEach(async () => {
+    return app.close()
+  })
+
+  it('/api/uptime (GET)', () => {
+    return request(app.getHttpServer()).get('/api/uptime').expect(200)
+  })
+})
+",
+      "file": "/integration/app.spec.ts",
+    },
+    Object {
+      "content": "import { AppModule } from '@proj/api-app-module'
+import { Test, TestingModule } from '@nestjs/testing'
+import { INestApplication } from '@nestjs/common'
+import * as request from 'supertest'
+
+describe('CoreModule (e2e)', () => {
+  let app: INestApplication
+
+  beforeEach(async () => {
+    const moduleFixture: TestingModule = await Test.createTestingModule({
+      imports: [AppModule],
+    }).compile()
+
+    app = moduleFixture.createNestApplication()
+    await app.init()
+  })
+
+  afterEach(async () => {
+    return app.close()
+  })
+
+  it('/graphql (POST)', () => {
+    return request(app.getHttpServer())
+      .post('/graphql')
+      .send({ query: \`query { uptime }\` })
+      .expect(200)
+      .expect((res) => {
+        const body = res.body
+
+        if (!body.data) {
+          throw Error(\`Data prop not found\`)
+        }
+
+        if (!body.data.uptime) {
+          throw Error(\`Data prop not found\`)
+        }
+
+        if (typeof body.data.uptime !== 'number') {
+          throw Error(\`Uptime not a number\`)
+        }
+        return true
+      })
+  })
+})
+",
+      "file": "/integration/core.spec.ts",
+    },
+  ],
+  "root": "apps/api-test-e2e/src",
+}
+`;
+
+exports[`api generator should run successfully 21`] = `
+Object {
+  "root": "libs/api-test/user/data-access",
+  "tree": Array [
+    "/.babelrc",
+    "/.eslintrc.json",
+    "/README.md",
+    "/jest.config.js",
+    "/src/index.ts",
+    "/src/lib/api-test-user-data-access.module.ts",
+    "/src/lib/api-test-user-data-access.service.ts",
+    "/src/lib/dto/admin-create-user.input.ts",
+    "/src/lib/dto/admin-update-user.input.ts",
+    "/src/lib/models/email.model.ts",
+    "/src/lib/models/role.enum.ts",
+    "/src/lib/models/user.model.ts",
+    "/tsconfig.json",
+    "/tsconfig.lib.json",
+    "/tsconfig.spec.json",
+  ],
+}
+`;
+
+exports[`api generator should run successfully 22`] = `
+Object {
+  "content": Array [
+    Object {
+      "content": "export * from './lib/api-test-user-data-access.module'
+export * from './lib/api-test-user-data-access.service'
+export * from './lib/models/email.model'
+export * from './lib/models/role.enum'
+export * from './lib/models/user.model'
+export * from './lib/dto/admin-create-user.input'
+export * from './lib/dto/admin-update-user.input'
+",
+      "file": "/index.ts",
+    },
+    Object {
+      "content": "import { Module } from '@nestjs/common'
+import { ApiCoreDataAccessModule } from '@proj/api/core/data-access'
+
+import { ApiTestUserDataAccessService } from './api-test-user-data-access.service'
+
+@Module({
+  imports: [ApiCoreDataAccessModule],
+  providers: [ApiTestUserDataAccessService],
+  exports: [ApiTestUserDataAccessService],
+})
+export class ApiTestUserDataAccessModule {}
+",
+      "file": "/lib/api-test-user-data-access.module.ts",
+    },
+    Object {
+      "content": "import { Injectable } from '@nestjs/common'
+import { ApiCoreDataAccessService, CorePaging, CorePagingInput } from '@proj/api/core/data-access'
+import { getGravatarUrl, hashPassword, uniqueSuffix } from '@proj/api/core/util'
+import { AdminCreateUserInput } from './dto/admin-create-user.input'
+import { AdminUpdateUserInput } from './dto/admin-update-user.input'
+
+@Injectable()
+export class ApiTestUserDataAccessService {
+  constructor(private readonly data: ApiCoreDataAccessService) {}
+
+  async adminUsers(userId: string, paging: CorePagingInput) {
+    await this.data.ensureAdminUser(userId)
+    return this.data.user.findMany({
+      take: paging.limit,
+      skip: paging.skip,
+      include: { emails: true },
+    })
+  }
+
+  async adminCountUsers(adminId: string, paging: CorePagingInput): Promise<CorePaging> {
+    await this.data.ensureAdminUser(adminId)
+    const total = await this.data.user.count()
+    return {
+      limit: paging.limit,
+      skip: paging.skip,
+      total,
+    }
+  }
+
+  async adminUser(adminId: string, userId: string) {
+    await this.data.ensureAdminUser(adminId)
+    return this.data.user.findUnique({ where: { id: userId }, include: { emails: true } })
+  }
+
+  async adminCreateUser(adminId: string, input: AdminCreateUserInput) {
+    await this.data.ensureAdminUser(adminId)
+    const email = input.email.trim()
+    const avatarUrl = getGravatarUrl(email)
+    const username = this.formatUsername(email, input.username)
+    await this.ensureUsernameAvailable(username)
+
+    return this.data.user.create({
+      data: {
+        emails: { create: { email, primary: true } },
+        role: input.role,
+        firstName: input.firstName,
+        lastName: input.lastName,
+        avatarUrl,
+        username,
+      },
+      include: { emails: true },
+    })
+  }
+
+  async adminUpdateUser(adminId: string, userId: string, input: AdminUpdateUserInput) {
+    await this.data.ensureAdminUser(adminId)
+    return this.data.user.update({
+      where: { id: userId },
+      data: { ...input },
+      include: { emails: true },
+    })
+  }
+
+  async adminSetUserPassword(adminId: string, userId: string, password: string) {
+    await this.data.ensureAdminUser(adminId)
+    return this.data.user.update({
+      where: { id: userId },
+      data: { password: hashPassword(password) },
+    })
+  }
+
+  async adminDeleteUser(adminId: string, userId: string) {
+    await this.data.ensureAdminUser(adminId)
+    return this.data.user.delete({ where: { id: userId } })
+  }
+
+  private formatUsername(email: string, username?: string): string {
+    return username?.trim() || uniqueSuffix(email.trim().split('@')[0])
+  }
+
+  private async ensureUsernameAvailable(username: string): Promise<boolean> {
+    const user = await this.data.findUserByUsername(username)
+    if (user) {
+      throw new Error(\`This username is not available\`)
+    }
+    return true
+  }
+}
+",
+      "file": "/lib/api-test-user-data-access.service.ts",
+    },
+    Object {
+      "content": "import { Field, InputType } from '@nestjs/graphql'
+import { Role } from '../models/role.enum'
+
+@InputType()
+export class AdminCreateUserInput {
+  @Field(() => Role)
+  role: Role
+
+  @Field()
+  email: string
+
+  @Field({ nullable: true })
+  username?: string
+
+  @Field({ nullable: true })
+  firstName?: string
+
+  @Field({ nullable: true })
+  lastName?: string
+}
+",
+      "file": "/lib/dto/admin-create-user.input.ts",
+    },
+    Object {
+      "content": "import { Field, InputType } from '@nestjs/graphql'
+import { Role } from '../models/role.enum'
+
+@InputType()
+export class AdminUpdateUserInput {
+  @Field(() => Role, { nullable: true })
+  role: Role
+
+  @Field({ nullable: true })
+  username?: string
+
+  @Field({ nullable: true })
+  firstName?: string
+
+  @Field({ nullable: true })
+  lastName?: string
+
+  @Field({ nullable: true })
+  phone: string
+
+  @Field({ nullable: true })
+  avatarUrl?: string
+
+  @Field({ nullable: true })
+  location?: string
+
+  @Field({ nullable: true })
+  bio?: string
+}
+",
+      "file": "/lib/dto/admin-update-user.input.ts",
+    },
+    Object {
+      "content": "import { Field, ObjectType } from '@nestjs/graphql'
+
+@ObjectType()
+export class Email {
+  @Field({ nullable: true })
+  id: string
+
+  @Field({ nullable: true })
+  createdAt: Date
+
+  @Field({ nullable: true })
+  updatedAt: Date
+
+  @Field({ nullable: true })
+  email: string
+
+  @Field({ nullable: true })
+  public: boolean
+
+  @Field({ nullable: true })
+  primary: boolean
+
+  @Field({ nullable: true })
+  verified: boolean
+}
+",
+      "file": "/lib/models/email.model.ts",
+    },
+    Object {
+      "content": "import { registerEnumType } from '@nestjs/graphql'
+import { Role } from '@prisma/client'
+export { Role }
+
+registerEnumType(Role, { name: 'Role' })
+",
+      "file": "/lib/models/role.enum.ts",
+    },
+    Object {
+      "content": "import { Field, ObjectType } from '@nestjs/graphql'
+import { Email } from './email.model'
+import { Role } from './role.enum'
+
+@ObjectType()
+export class User {
+  @Field({ nullable: true })
+  id: string
+
+  @Field({ nullable: true })
+  createdAt: Date
+
+  @Field({ nullable: true })
+  updatedAt: Date
+
+  @Field({ nullable: true })
+  email: string
+
+  @Field({ nullable: true })
+  phone: string
+
+  @Field({ nullable: true })
+  username?: string
+
+  @Field({ nullable: true })
+  firstName?: string
+
+  @Field({ nullable: true })
+  lastName?: string
+
+  @Field({ nullable: true })
+  avatarUrl?: string
+
+  @Field({ nullable: true })
+  location?: string
+
+  @Field({ nullable: true })
+  bio?: string
+
+  @Field(() => Role, { nullable: true })
+  role: Role
+
+  @Field(() => [Email], { nullable: true })
+  emails: Email[]
+
+  password?: string
+}
+",
+      "file": "/lib/models/user.model.ts",
+    },
+  ],
+  "root": "libs/api-test/user/data-access/src",
+}
+`;
+
+exports[`api generator should run successfully 23`] = `
+Object {
+  "root": "libs/api-test/user/feature",
+  "tree": Array [
+    "/.babelrc",
+    "/.eslintrc.json",
+    "/README.md",
+    "/jest.config.js",
+    "/src/index.ts",
+    "/src/lib/api-test-user-feature-admin.resolver.ts",
+    "/src/lib/api-test-user-feature.module.ts",
+    "/src/lib/api-test-user-feature.resolver.ts",
+    "/tsconfig.json",
+    "/tsconfig.lib.json",
+    "/tsconfig.spec.json",
+  ],
+}
+`;
+
+exports[`api generator should run successfully 24`] = `
+Object {
+  "content": Array [
+    Object {
+      "content": "export * from './lib/api-test-user-feature.module'
+",
+      "file": "/index.ts",
+    },
+    Object {
+      "content": "import { Args, Mutation, Query, Resolver } from '@nestjs/graphql'
+import { UseGuards } from '@nestjs/common'
+import {
+  AdminCreateUserInput,
+  AdminUpdateUserInput,
+  ApiUserDataAccessService,
+  User,
+} from '@proj/api/user/data-access'
+import { CorePaging, CorePagingInput } from '@proj/api/core/data-access'
+import {
+  CtxUser,
+  GqlAuthAdminGuard,
+} from '@proj/api/auth/util'
+
+@Resolver()
+@UseGuards(GqlAuthAdminGuard)
+export class ApiTestUserFeatureAdminResolver {
+  constructor(private readonly service: ApiUserDataAccessService) {}
+
+  @Query(() => [User], { nullable: true })
+  adminUsers(
+    @CtxUser() admin: User,
+    @Args({ name: 'paging', type: () => CorePagingInput, nullable: true }) paging?: CorePagingInput,
+  ) {
+    return this.service.adminUsers(admin.id, paging)
+  }
+
+  @Query(() => CorePaging, { nullable: true })
+  adminCountUsers(
+    @CtxUser() admin: User,
+    @Args({ name: 'paging', type: () => CorePagingInput, nullable: true }) paging?: CorePagingInput,
+  ) {
+    return this.service.adminCountUsers(admin.id, paging)
+  }
+
+  @Query(() => User, { nullable: true })
+  adminUser(@CtxUser() admin: User, @Args('userId') userId: string) {
+    return this.service.adminUser(admin.id, userId)
+  }
+
+  @Mutation(() => User, { nullable: true })
+  adminCreateUser(@CtxUser() admin: User, @Args('input') input: AdminCreateUserInput) {
+    return this.service.adminCreateUser(admin.id, input)
+  }
+
+  @Mutation(() => User, { nullable: true })
+  adminUpdateUser(@CtxUser() admin: User, @Args('userId') userId: string, @Args('input') input: AdminUpdateUserInput) {
+    return this.service.adminUpdateUser(admin.id, userId, input)
+  }
+
+  @Mutation(() => User, { nullable: true })
+  adminSetUserPassword(@CtxUser() admin: User, @Args('userId') userId: string, @Args('password') password: string) {
+    return this.service.adminSetUserPassword(admin.id, userId, password)
+  }
+
+  @Mutation(() => User, { nullable: true })
+  adminDeleteUser(@CtxUser() admin: User, @Args('userId') userId: string) {
+    return this.service.adminDeleteUser(admin.id, userId)
+  }
+}
+",
+      "file": "/lib/api-test-user-feature-admin.resolver.ts",
+    },
+    Object {
+      "content": "import { Module } from '@nestjs/common'
+import { ApiUserDataAccessModule } from '@proj/api/user/data-access'
+
+import { ApiTestUserFeatureResolver } from './api-test-user-feature.resolver'
+import { ApiTestUserFeatureAdminResolver } from './api-test-user-feature-admin.resolver'
+
+@Module({
+  imports: [ApiUserDataAccessModule],
+  providers: [ApiTestUserFeatureResolver, ApiTestUserFeatureAdminResolver],
+})
+export class ApiTestUserFeatureModule {}
+",
+      "file": "/lib/api-test-user-feature.module.ts",
+    },
+    Object {
+      "content": "import { Parent, ResolveField, Resolver } from '@nestjs/graphql'
+import { User } from '@proj/api/user/data-access'
+
+@Resolver(() => User)
+export class ApiTestUserFeatureResolver {
+  @ResolveField(() => String, { nullable: true })
+  name(@Parent() user: User) {
+    const name = [user?.firstName, user?.lastName].join(' ').trim()
+    return name.length ? name : user?.username
+  }
+
+  @ResolveField(() => String, { nullable: true })
+  email(@Parent() user: User) {
+    const hasPrimary = user.emails?.find((email) => email.primary)
+
+    return hasPrimary ? hasPrimary.email : user.emails?.find((e) => e).email
+  }
+}
+",
+      "file": "/lib/api-test-user-feature.resolver.ts",
+    },
+  ],
+  "root": "libs/api-test/user/feature/src",
+}
+`;

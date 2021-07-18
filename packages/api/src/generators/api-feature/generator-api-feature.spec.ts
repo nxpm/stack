@@ -1,8 +1,9 @@
 import { createTreeWithEmptyWorkspace } from '@nrwl/devkit/testing'
 import { readProjectConfiguration, Tree } from '@nrwl/devkit'
 
-import { generatorApiFeature } from './generator-api-feature'
 import { ApiFeatureGeneratorSchema } from './schema'
+import { generatorApiFeatureAuth } from './generator-api-feature-auth'
+import { generatorApiFeatureAccount } from './generator-api-feature-account'
 
 describe('api-feature generator - account ', () => {
   let appTree: Tree
@@ -12,13 +13,15 @@ describe('api-feature generator - account ', () => {
     appTree = createTreeWithEmptyWorkspace()
   })
 
-  it('should run successfully', async () => {
-    await generatorApiFeature(appTree, options)
+  xit('should run successfully', async () => {
+    await generatorApiFeatureAccount(appTree, options)
     const configDataAccess = readProjectConfiguration(appTree, 'test-account-data-access')
     const configFeature = readProjectConfiguration(appTree, 'test-account-feature')
     expect(configDataAccess).toBeDefined()
     expect(configFeature).toBeDefined()
-  }, 10000)
+    // const contentDataAccess = hostTreeHelper(appTree, configDataAccess.root)
+    // console.log(contentDataAccess)
+  }, 15000)
 })
 
 describe('api-feature generator - auth ', () => {
@@ -29,11 +32,20 @@ describe('api-feature generator - auth ', () => {
     appTree = createTreeWithEmptyWorkspace()
   })
 
-  it('should run successfully', async () => {
-    await generatorApiFeature(appTree, options)
+  xit('should run successfully', async () => {
+    await generatorApiFeatureAuth(appTree, options)
     const configDataAccess = readProjectConfiguration(appTree, 'test-auth-data-access')
     const configFeature = readProjectConfiguration(appTree, 'test-auth-feature')
+    const configUtil = readProjectConfiguration(appTree, 'test-auth-util')
+
     expect(configDataAccess).toBeDefined()
     expect(configFeature).toBeDefined()
-  }, 10000)
+    expect(configUtil).toBeDefined()
+
+    // const contentDataAccess = hostTreeHelper(appTree, configDataAccess.root)
+    // console.log(contentDataAccess)
+    //
+    // const contentFeature = hostTreeHelper(appTree, configFeature.root)
+    // console.log(contentFeature)
+  }, 12000)
 })

@@ -28,7 +28,7 @@ describe('init generator', () => {
 
     const nxpmJson = readJson(appTree, 'nxpm.json')
     expect(nxpmJson).toMatchSnapshot()
-  }, 10000)
+  }, 15000)
 })
 
 describe('init generator: custom options', () => {
@@ -64,5 +64,5 @@ describe('init generator: custom options', () => {
 
     const nxpmJson = readJson(appTree, 'nxpm.json')
     expect(nxpmJson).toMatchSnapshot()
-  }, 10000)
+  }, 15000)
 })

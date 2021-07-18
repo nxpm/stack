@@ -1,0 +1,26 @@
+import { Logger, Module } from '@nestjs/common'
+import { ServeStaticModule } from '@nestjs/serve-static'
+import { <%= api.className %>CoreFeatureModule } from '@<%= npmScope %>/<%= api.name %>/core/feature'
+import { ensureDirSync, existsSync, writeFileSync } from 'fs-extra'
+import { join } from 'path'
+
+const rootPath = join(__dirname, '..', '<%= web.name %>')
+
+@Module({
+  imports: [
+    <%= api.className %>CoreFeatureModule,
+    ServeStaticModule.forRoot({
+      rootPath,
+      exclude: ['/api/*', '/graphql'],
+    }),
+  ],
+})
+export class AppModule {
+  constructor() {
+    if (!existsSync(rootPath)) {
+      ensureDirSync(rootPath)
+      writeFileSync(join(rootPath, 'index.html'), `<pre>@nxpm/stack api</pre>`)
+      Logger.verbose(`Created static root path ${rootPath}`)
+    }
+  }
+}

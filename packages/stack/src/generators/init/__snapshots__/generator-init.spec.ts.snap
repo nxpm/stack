@@ -17,18 +17,12 @@ Array [
   "assets",
   "environments",
   "main.ts",
-  "index.ts",
 ]
 `;
 
 exports[`init generator should run successfully with default options 3`] = `
 Array [
-  ".gitkeep",
-  "app.controller.spec.ts",
-  "app.controller.ts",
   "app.module.ts",
-  "app.service.spec.ts",
-  "app.service.ts",
 ]
 `;
 
@@ -68,18 +62,12 @@ Array [
   "assets",
   "environments",
   "main.ts",
-  "index.ts",
 ]
 `;
 
 exports[`init generator: custom options should run successfully with custom options 3`] = `
 Array [
-  ".gitkeep",
-  "app.controller.spec.ts",
-  "app.controller.ts",
   "app.module.ts",
-  "app.service.spec.ts",
-  "app.service.ts",
 ]
 `;
 

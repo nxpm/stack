@@ -26,6 +26,7 @@ export async function generatorInit(host: Tree, options: InitGeneratorSchema) {
     // await generatorWeb(host, { name: options.webName, type: options.webType })
   }
   // Configure Workspace
+  // addRunScript(host, `setup`, `yarn nx workspace-generator workspace-setup`)
   // addFiles(host, normalizedOptions, join(__dirname, 'files'))
   writeNxpmConfigHelper(host, normalizedOptions)
   // Format files

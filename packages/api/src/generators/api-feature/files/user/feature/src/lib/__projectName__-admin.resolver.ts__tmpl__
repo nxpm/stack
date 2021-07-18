@@ -3,7 +3,7 @@ import { UseGuards } from '@nestjs/common'
 import {
   AdminCreateUserInput,
   AdminUpdateUserInput,
-  ApiUserDataAccessService,
+  <%= api.className %>UserDataAccessService,
   User,
 } from '@<%= npmScope %>/<%= api.name %>/user/data-access'
 import { CorePaging, CorePagingInput } from '@<%= npmScope %>/<%= api.name %>/core/data-access'
