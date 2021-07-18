@@ -5,8 +5,8 @@ export function addFiles(host: Tree, options: NormalizedSchema, srcFolder: strin
   const api = names(options.appNameApi)
   const mobile = names(options.appNameMobile)
   const web = names(options.appNameWeb)
-  const project = names(options.projectName)
-
+  const project = names(options.projectName || '')
+  const root = options.projectRoot || '.'
   const templateOptions = {
     ...options,
     ...names(options.name),
@@ -14,9 +14,9 @@ export function addFiles(host: Tree, options: NormalizedSchema, srcFolder: strin
     mobile,
     web,
     project,
-    offsetFromRoot: offsetFromRoot(options.projectRoot),
+    offsetFromRoot: offsetFromRoot(root),
     template: '',
     tmpl: '',
   }
-  generateFiles(host, srcFolder, options.projectRoot, templateOptions)
+  generateFiles(host, srcFolder, root, templateOptions)
 }

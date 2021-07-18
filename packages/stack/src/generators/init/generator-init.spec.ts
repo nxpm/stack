@@ -28,6 +28,10 @@ describe('init generator', () => {
 
     const nxpmJson = readJson(appTree, 'nxpm.json')
     expect(nxpmJson).toMatchSnapshot()
+    const root = appTree.children('.')
+    expect(root).toMatchSnapshot()
+    const packageJson = appTree.read('package.json').toString('utf-8')
+    expect(packageJson).toMatchSnapshot()
   }, 15000)
 })
 

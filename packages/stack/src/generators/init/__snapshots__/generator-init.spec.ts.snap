@@ -45,6 +45,105 @@ Object {
 }
 `;
 
+exports[`init generator should run successfully with default options 5`] = `
+Array [
+  "workspace.json",
+  ".prettierrc",
+  "package.json",
+  "nx.json",
+  "tsconfig.base.json",
+  "jest.config.js",
+  "jest.preset.js",
+  "apps",
+  ".eslintrc.json",
+  "libs",
+  ".env",
+  ".env.example",
+  ".gitignore",
+  "Dockerfile",
+  ".dockerignore",
+  "docker-compose.yml",
+  ".prettierignore",
+  "nxpm.json",
+  "README.md",
+]
+`;
+
+exports[`init generator should run successfully with default options 6`] = `
+"{
+  \\"name\\": \\"test-name\\",
+  \\"dependencies\\": {
+    \\"@kikstart-playground/graphql-intercom\\": \\"1.4.1\\",
+    \\"@nestjs/common\\": \\"^7.0.0\\",
+    \\"@nestjs/config\\": \\"^0.5.0\\",
+    \\"@nestjs/core\\": \\"^7.0.0\\",
+    \\"@nestjs/graphql\\": \\"7.11.0\\",
+    \\"@nestjs/jwt\\": \\"^7.2.0\\",
+    \\"@nestjs/passport\\": \\"^7.1.5\\",
+    \\"@nestjs/platform-express\\": \\"^7.0.0\\",
+    \\"@nestjs/serve-static\\": \\"2.2.2\\",
+    \\"@prisma/client\\": \\"2.27.0\\",
+    \\"apollo-server-express\\": \\"^2.18.0\\",
+    \\"bcryptjs\\": \\"^2.4.3\\",
+    \\"class-transformer\\": \\"^0.3.1\\",
+    \\"class-validator\\": \\"^0.12.2\\",
+    \\"cookie-parser\\": \\"1.4.5\\",
+    \\"fs-extra\\": \\"10.0.0\\",
+    \\"graphql\\": \\"^15.3.0\\",
+    \\"graphql-subscriptions\\": \\"1.2.1\\",
+    \\"graphql-tools\\": \\"^6.2.3\\",
+    \\"graphql-type-json\\": \\"^0.3.2\\",
+    \\"joi\\": \\"^17.2.1\\",
+    \\"passport\\": \\"^0.4.1\\",
+    \\"passport-jwt\\": \\"^4.0.0\\",
+    \\"reflect-metadata\\": \\"^0.1.13\\",
+    \\"rxjs\\": \\"~6.6.3\\",
+    \\"tslib\\": \\"^2.0.0\\"
+  },
+  \\"devDependencies\\": {
+    \\"@nestjs/schematics\\": \\"^7.0.0\\",
+    \\"@nestjs/testing\\": \\"^7.0.0\\",
+    \\"@nrwl/eslint-plugin-nx\\": \\"12.5.8\\",
+    \\"@nrwl/jest\\": \\"12.5.8\\",
+    \\"@nrwl/linter\\": \\"12.5.8\\",
+    \\"@nrwl/nest\\": \\"12.5.8\\",
+    \\"@nrwl/node\\": \\"12.5.8\\",
+    \\"@types/fs-extra\\": \\"9.0.12\\",
+    \\"@types/jest\\": \\"26.0.8\\",
+    \\"@typescript-eslint/eslint-plugin\\": \\"4.19.0\\",
+    \\"@typescript-eslint/parser\\": \\"4.19.0\\",
+    \\"eslint\\": \\"7.22.0\\",
+    \\"eslint-config-prettier\\": \\"8.1.0\\",
+    \\"jest\\": \\"27.0.3\\",
+    \\"prisma\\": \\"2.27.0\\",
+    \\"supertest\\": \\"6.1.3\\",
+    \\"ts-jest\\": \\"27.0.3\\"
+  },
+  \\"prisma\\": {
+    \\"schema\\": \\"libs/test-api/core/data-access/src/prisma/schema.prisma\\"
+  },
+  \\"scripts\\": {
+    \\"build\\": \\"yarn build:web && yarn prisma:generate && yarn build:test-api\\",
+    \\"build:test-api\\": \\"nx build test-api --prod\\",
+    \\"dev:services\\": \\"docker-compose up\\",
+    \\"dev:test-api\\": \\"nx serve test-api\\",
+    \\"docker:build\\": \\"docker build . -t proj/test-api\\",
+    \\"docker:push\\": \\"docker push proj/test-api\\",
+    \\"docker:run\\": \\"docker run -it -p 8000:3000 proj/test-api\\",
+    \\"prisma:apply\\": \\"yarn prisma:format && yarn prisma:db-push\\",
+    \\"prisma:db-push\\": \\"yarn prisma db push\\",
+    \\"prisma:format\\": \\"yarn prisma format\\",
+    \\"prisma:generate\\": \\"yarn prisma generate\\",
+    \\"prisma:migrate\\": \\"yarn prisma migrate\\",
+    \\"prisma:seed\\": \\"yarn nx workspace-generator prisma-seed\\",
+    \\"prisma:studio\\": \\"yarn prisma studio\\",
+    \\"setup\\": \\"yarn nx workspace-generator workspace-setup\\",
+    \\"start\\": \\"yarn prisma:db-push && node dist/apps/api/main.js\\",
+    \\"test:ci\\": \\"yarn prisma:apply && yarn e2e api-e2e\\"
+  }
+}"
+`;
+
 exports[`init generator: custom options should run successfully with custom options 1`] = `
 Array [
   "src",

@@ -31,7 +31,7 @@ function runNxNewCommand(args?: string, silent?: boolean) {
  */
 export function newNxProject(paths: ProjectDistPath[]): void {
   cleanup()
-  runNxNewCommand('', true)
+  runNxNewCommand('--package-manager=yarn', true)
   patchDistProjects(paths)
   for (const path of paths) {
     patchPackageJsonForPlugin(path.package, path.path)

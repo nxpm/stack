@@ -1,7 +1,9 @@
 import { formatFiles, Tree } from '@nrwl/devkit'
 import { generatorApi } from '@nxpm/api'
+import { normalizeOptions, workspaceConfig } from '@nxpm/common'
+import { join } from 'path'
+
 import { InitGeneratorSchema } from './schema'
-import { normalizeOptions, writeNxpmConfigHelper } from '@nxpm/common'
 
 export async function generatorInit(host: Tree, options: InitGeneratorSchema) {
   // Prepare options
@@ -25,10 +27,7 @@ export async function generatorInit(host: Tree, options: InitGeneratorSchema) {
     // Run Web
     // await generatorWeb(host, { name: options.webName, type: options.webType })
   }
-  // Configure Workspace
-  // addRunScript(host, `setup`, `yarn nx workspace-generator workspace-setup`)
-  // addFiles(host, normalizedOptions, join(__dirname, 'files'))
-  writeNxpmConfigHelper(host, normalizedOptions)
-  // Format files
+
+  workspaceConfig(host, normalizedOptions, join(__dirname, 'files'))
   await formatFiles(host)
 }
