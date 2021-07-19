@@ -1,0 +1,53 @@
+import { CommonModule } from '@angular/common'
+import { NgModule } from '@angular/core'
+import { RouterModule, Routes } from '@angular/router'
+import { IsAdminGuard, IsLoggedInGuard, <%= web.className %>AuthDataAccessModule } from '@<%= npmScope %>/<%= web.name %>/auth/data-access'
+import { <%= web.className %>CoreFeatureModule } from '@<%= npmScope %>/<%= web.name %>/core/feature'
+import { <%= web.className %>LayoutFeatureComponent, <%= web.className %>LayoutFeatureModule } from '@<%= npmScope %>/<%= web.name %>/layout/feature'
+
+const routes: Routes = [
+  {
+    path: '',
+    component: <%= web.className %>LayoutFeatureComponent,
+    canActivate: [IsLoggedInGuard],
+    children: [
+      // Application routes here
+      { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
+      {
+        path: 'about',
+        loadChildren: () => import('@<%= npmScope %>/<%= web.name %>/about/feature').then((m) => m.<%= web.className %>AboutFeatureModule),
+      },
+      {
+        path: 'account',
+        loadChildren: () => import('@<%= npmScope %>/<%= web.name %>/account/feature').then((m) => m.<%= web.className %>AccountFeatureModule),
+      },
+      {
+        path: 'admin',
+        canActivate: [IsAdminGuard],
+        loadChildren: () => import('@<%= npmScope %>/<%= web.name %>/admin/feature').then((m) => m.<%= web.className %>AdminFeatureModule),
+      },
+      {
+        path: 'dashboard',
+        loadChildren: () => import('@<%= npmScope %>/<%= web.name %>/dashboard/feature').then((m) => m.<%= web.className %>DashboardFeatureModule),
+      },
+      { path: 'not-found', loadChildren: () => import('./not-found/not-found.module').then((m) => m.NotFoundModule) },
+    ],
+  },
+  {
+    path: '',
+    loadChildren: () => import('@<%= npmScope %>/<%= web.name %>/auth/feature').then((m) => m.<%= web.className %>AuthFeatureModule),
+  },
+  { path: '**', redirectTo: '/not-found' },
+]
+
+@NgModule({
+  exports: [RouterModule],
+  imports: [
+    CommonModule,
+    RouterModule.forRoot(routes, { paramsInheritanceStrategy: 'always' }),
+    <%= web.className %>AuthDataAccessModule,
+    <%= web.className %>CoreFeatureModule,
+    <%= web.className %>LayoutFeatureModule,
+  ],
+})
+export class <%= project.className %>Module {}

@@ -1,0 +1,195 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`web-base generator should run successfully 1`] = `
+Object {
+  "affected": Object {
+    "defaultBase": "master",
+  },
+  "npmScope": "proj",
+  "projects": Object {
+    "web-test": Object {
+      "tags": Array [],
+    },
+    "web-test-assets": Object {
+      "tags": Array [],
+    },
+    "web-test-e2e": Object {
+      "implicitDependencies": Array [
+        "web-test",
+      ],
+      "tags": Array [],
+    },
+    "web-test-environments": Object {
+      "tags": Array [],
+    },
+    "web-test-style": Object {
+      "tags": Array [],
+    },
+  },
+  "tasksRunnerOptions": Object {
+    "default": Object {
+      "options": Object {
+        "cacheableOperations": Array [
+          "build",
+          "lint",
+          "test",
+          "e2e",
+        ],
+      },
+      "runner": "@nrwl/workspace/tasks-runners/default",
+    },
+  },
+}
+`;
+
+exports[`web-base generator should run successfully 2`] = `
+Object {
+  "prefix": "proj",
+  "projectType": "application",
+  "root": "apps/web-test",
+  "sourceRoot": "apps/web-test/src",
+  "tags": Array [],
+  "targets": Object {
+    "build": Object {
+      "configurations": Object {
+        "development": Object {
+          "buildOptimizer": false,
+          "extractLicenses": false,
+          "namedChunks": true,
+          "optimization": false,
+          "sourceMap": true,
+          "vendorChunk": true,
+        },
+        "production": Object {
+          "budgets": Array [
+            Object {
+              "maximumError": "1mb",
+              "maximumWarning": "500kb",
+              "type": "initial",
+            },
+            Object {
+              "maximumError": "4kb",
+              "maximumWarning": "2kb",
+              "type": "anyComponentStyle",
+            },
+          ],
+          "fileReplacements": Array [
+            Object {
+              "replace": "libs/web-test/environments/src/environments/environment.ts",
+              "with": "libs/web-test/environments/src/environments/environment.prod.ts",
+            },
+          ],
+          "outputHashing": "all",
+        },
+      },
+      "defaultConfiguration": "production",
+      "executor": "@angular-devkit/build-angular:browser",
+      "options": Object {
+        "assets": Array [
+          Object {
+            "glob": "favicon.ico",
+            "input": "libs/web-test/assets/src",
+            "output": "./",
+          },
+          Object {
+            "glob": "**/*",
+            "input": "libs/web-test/assets/src/assets",
+            "output": "assets",
+          },
+        ],
+        "index": "apps/web-test/src/index.html",
+        "main": "apps/web-test/src/main.ts",
+        "outputPath": "dist/apps/web-test",
+        "polyfills": "apps/web-test/src/polyfills.ts",
+        "scripts": Array [],
+        "styles": Array [
+          "apps/web-test/src/styles.css",
+        ],
+        "tsConfig": "apps/web-test/tsconfig.app.json",
+      },
+      "outputs": Array [
+        "{options.outputPath}",
+      ],
+    },
+    "extract-i18n": Object {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": Object {
+        "browserTarget": "web-test:build",
+      },
+    },
+    "lint": Object {
+      "executor": "@nrwl/linter:eslint",
+      "options": Object {
+        "lintFilePatterns": Array [
+          "apps/web-test/src/**/*.ts",
+          "apps/web-test/src/**/*.html",
+        ],
+      },
+    },
+    "serve": Object {
+      "configurations": Object {
+        "development": Object {
+          "browserTarget": "web-test:build:development",
+        },
+        "production": Object {
+          "browserTarget": "web-test:build:production",
+        },
+      },
+      "defaultConfiguration": "development",
+      "executor": "@angular-devkit/build-angular:dev-server",
+    },
+    "test": Object {
+      "executor": "@nrwl/jest:jest",
+      "options": Object {
+        "jestConfig": "apps/web-test/jest.config.js",
+        "passWithNoTests": true,
+      },
+      "outputs": Array [
+        "coverage/apps/web-test",
+      ],
+    },
+  },
+}
+`;
+
+exports[`web-base generator should run successfully 3`] = `
+Object {
+  "prefix": "proj",
+  "projectType": "library",
+  "root": "libs/web-test/assets",
+  "sourceRoot": "libs/web-test/assets/src",
+  "tags": Array [],
+  "targets": Object {},
+}
+`;
+
+exports[`web-base generator should run successfully 4`] = `
+Object {
+  "prefix": "proj",
+  "projectType": "library",
+  "root": "libs/web-test/environments",
+  "sourceRoot": "libs/web-test/environments/src",
+  "tags": Array [],
+  "targets": Object {
+    "lint": Object {
+      "executor": "@nrwl/linter:eslint",
+      "options": Object {
+        "lintFilePatterns": Array [
+          "libs/web-test/environments/src/**/*.ts",
+          "libs/web-test/environments/src/**/*.html",
+        ],
+      },
+    },
+    "test": Object {
+      "executor": "@nrwl/jest:jest",
+      "options": Object {
+        "jestConfig": "libs/web-test/environments/jest.config.js",
+        "passWithNoTests": true,
+      },
+      "outputs": Array [
+        "coverage/libs/web-test/environments",
+      ],
+    },
+  },
+}
+`;

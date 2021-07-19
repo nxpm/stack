@@ -8,10 +8,10 @@ import { ApiGeneratorSchema } from './schema'
 import { generatorApiE2e } from '../api-e2e/generator-api-e2e'
 
 import {
-  generatorApiFeatureAccount,
-  generatorApiFeatureAuth,
-  generatorApiFeatureCore,
-  generatorApiFeatureUser,
+  generateApiFeatureAccount,
+  generateApiFeatureAuth,
+  generateApiFeatureCore,
+  generateApiFeatureUser,
 } from '../api-feature'
 
 export async function generatorApi(host: Tree, options: ApiGeneratorSchema) {
@@ -29,7 +29,7 @@ export async function generatorApi(host: Tree, options: ApiGeneratorSchema) {
   addFiles(host, normalizedOptions, join(__dirname, 'files'))
 
   // api feature account
-  await generatorApiFeatureAccount(host, {
+  await generateApiFeatureAccount(host, {
     ...normalizedOptions,
     directory: name,
     name: 'account',
@@ -37,7 +37,7 @@ export async function generatorApi(host: Tree, options: ApiGeneratorSchema) {
   })
 
   // api feature auth
-  await generatorApiFeatureAuth(host, {
+  await generateApiFeatureAuth(host, {
     ...normalizedOptions,
     directory: name,
     name: 'auth',
@@ -45,7 +45,7 @@ export async function generatorApi(host: Tree, options: ApiGeneratorSchema) {
   })
 
   // api feature core
-  await generatorApiFeatureCore(host, {
+  await generateApiFeatureCore(host, {
     ...normalizedOptions,
     directory: name,
     name: 'core',
@@ -53,7 +53,7 @@ export async function generatorApi(host: Tree, options: ApiGeneratorSchema) {
   })
 
   // api feature user
-  await generatorApiFeatureUser(host, {
+  await generateApiFeatureUser(host, {
     ...normalizedOptions,
     directory: name,
     name: 'user',

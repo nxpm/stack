@@ -1,20 +1,20 @@
 import { Tree } from '@nrwl/devkit'
 import { ApiFeatureGeneratorSchema } from './schema'
 
-import { generatorApiFeatureAccount } from './generator-api-feature-account'
-import { generatorApiFeatureAuth } from './generator-api-feature-auth'
-import { generatorApiFeatureCore } from './generator-api-feature-core'
-import { generatorApiFeatureUser } from './generator-api-feature-user'
+import { generateApiFeatureAccount } from './generate-api-feature-account'
+import { generateApiFeatureAuth } from './generate-api-feature-auth'
+import { generateApiFeatureCore } from './generate-api-feature-core'
+import { generateApiFeatureUser } from './generate-api-feature-user'
 
 export async function generatorApiFeature(host: Tree, options: ApiFeatureGeneratorSchema) {
   switch (options.type) {
     case 'account':
-      return generatorApiFeatureAccount(host, options)
+      return generateApiFeatureAccount(host, options)
     case 'auth':
-      return generatorApiFeatureAuth(host, options)
+      return generateApiFeatureAuth(host, options)
     case 'core':
-      return generatorApiFeatureCore(host, options)
+      return generateApiFeatureCore(host, options)
     case 'user':
-      return generatorApiFeatureUser(host, options)
+      return generateApiFeatureUser(host, options)
   }
 }

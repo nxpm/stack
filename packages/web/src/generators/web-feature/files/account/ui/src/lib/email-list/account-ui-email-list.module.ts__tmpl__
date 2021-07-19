@@ -1,0 +1,12 @@
+import { CommonModule } from '@angular/common'
+import { NgModule } from '@angular/core'
+import { RouterModule } from '@angular/router'
+import { <%= web.className %>UiIconModule } from '@<%= npmScope %>/<%= web.name %>/ui/icon'
+import { AccountUiEmailListComponent } from './account-ui-email-list.component'
+
+@NgModule({
+  exports: [AccountUiEmailListComponent],
+  declarations: [AccountUiEmailListComponent],
+  imports: [CommonModule, RouterModule, <%= web.className %>UiIconModule],
+})
+export class AccountUiEmailListModule {}

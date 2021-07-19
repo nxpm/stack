@@ -2,8 +2,8 @@ import { createTreeWithEmptyWorkspace } from '@nrwl/devkit/testing'
 import { readProjectConfiguration, Tree } from '@nrwl/devkit'
 
 import { ApiFeatureGeneratorSchema } from './schema'
-import { generatorApiFeatureAuth } from './generator-api-feature-auth'
-import { generatorApiFeatureAccount } from './generator-api-feature-account'
+import { generateApiFeatureAuth } from './generate-api-feature-auth'
+import { generateApiFeatureAccount } from './generate-api-feature-account'
 
 describe('api-feature generator - account ', () => {
   let appTree: Tree
@@ -14,7 +14,7 @@ describe('api-feature generator - account ', () => {
   })
 
   xit('should run successfully', async () => {
-    await generatorApiFeatureAccount(appTree, options)
+    await generateApiFeatureAccount(appTree, options)
     const configDataAccess = readProjectConfiguration(appTree, 'test-account-data-access')
     const configFeature = readProjectConfiguration(appTree, 'test-account-feature')
     expect(configDataAccess).toBeDefined()
@@ -33,7 +33,7 @@ describe('api-feature generator - auth ', () => {
   })
 
   xit('should run successfully', async () => {
-    await generatorApiFeatureAuth(appTree, options)
+    await generateApiFeatureAuth(appTree, options)
     const configDataAccess = readProjectConfiguration(appTree, 'test-auth-data-access')
     const configFeature = readProjectConfiguration(appTree, 'test-auth-feature')
     const configUtil = readProjectConfiguration(appTree, 'test-auth-util')

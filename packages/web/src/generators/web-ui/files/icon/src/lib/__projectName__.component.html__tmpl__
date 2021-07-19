@@ -1,0 +1,3 @@
+<div class="flex items-center">
+  <svg-icon [key]="icon" [size]="size"></svg-icon>
+</div>

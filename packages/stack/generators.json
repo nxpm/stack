@@ -7,6 +7,11 @@
       "factory": "./src/generators/init/generator-init#generatorInit",
       "schema": "./src/generators/init/schema.json",
       "description": "init generator"
+    },
+    "shared-utils": {
+      "factory": "./src/generators/shared-utils/generator",
+      "schema": "./src/generators/shared-utils/schema.json",
+      "description": "shared-utils generator"
     }
   }
 }

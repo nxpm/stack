@@ -1,0 +1,15 @@
+import { NgModule } from '@angular/core'
+import { CommonModule } from '@angular/common'
+import { Routes, RouterModule } from '@angular/router'
+import { <%= web.className %>AuthDataAccessModule } from '@<%= npmScope %>/<%= web.name %>/auth/data-access'
+import { <%= web.className %>UiFormModule } from '@<%= npmScope %>/<%= web.name %>/ui/form'
+import { AuthPageModule } from '@<%= npmScope %>/<%= web.name %>/auth/ui'
+import { LogoutComponent } from './logout.component'
+
+const routes: Routes = [{ path: '', component: LogoutComponent }]
+
+@NgModule({
+  declarations: [LogoutComponent],
+  imports: [CommonModule, RouterModule.forChild(routes), <%= web.className %>UiFormModule, AuthPageModule, <%= web.className %>AuthDataAccessModule],
+})
+export class LogoutModule {}

@@ -27,7 +27,7 @@
     "type": {
       "type": "string",
       "enum": ["nest"],
-      "description": "Type or API project",
+      "description": "Type of API project",
       "default": "nest"
     }
   },

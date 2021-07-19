@@ -1,0 +1,64 @@
+query AccountEmails {
+  accountEmails {
+    ...EmailDetails
+  }
+}
+
+query AccountProfile {
+  accountProfile {
+    ...UserDetails
+    emails {
+      ...EmailDetails
+    }
+  }
+}
+
+query AccountUsernameAvailable($username: String!) {
+  accountUsernameAvailable(username: $username)
+}
+
+mutation AccountCreateEmail($input: AccountCreateEmailInput!) {
+  accountCreateEmail(input: $input) {
+    ...EmailDetails
+  }
+}
+
+mutation AccountDeleteEmail($emailId: String!) {
+  accountDeleteEmail(emailId: $emailId) {
+    ...EmailDetails
+  }
+}
+
+mutation AccountMarkEmailPrimary($emailId: String!) {
+  accountMarkEmailPrimary(emailId: $emailId) {
+    ...EmailDetails
+  }
+}
+
+mutation AccountMarkEmailPrivate($emailId: String!) {
+  accountMarkEmailPrivate(emailId: $emailId) {
+    ...EmailDetails
+  }
+}
+
+mutation AccountMarkEmailPublic($emailId: String!) {
+  accountMarkEmailPublic(emailId: $emailId) {
+    ...EmailDetails
+  }
+}
+
+mutation AccountUpdateProfile($input: AccountUpdateProfileInput!) {
+  accountUpdateProfile(input: $input) {
+    ...UserDetails
+  }
+}
+
+mutation AccountUpdateUsername($username: String!) {
+  accountUpdateUsername(username: $username) {
+    ...UserDetails
+  }
+}
+
+mutation AccountUpdatePassword($input: AccountUpdatePasswordInput!) {
+  accountUpdatePassword(input: $input)
+}

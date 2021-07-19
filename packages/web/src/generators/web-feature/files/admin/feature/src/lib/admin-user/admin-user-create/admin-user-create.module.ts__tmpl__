@@ -1,0 +1,18 @@
+import { CommonModule } from '@angular/common'
+import { NgModule } from '@angular/core'
+import { RouterModule } from '@angular/router'
+import { AdminUserFormModule } from '@<%= npmScope %>/<%= web.name %>/admin/ui'
+import { <%= web.className %>UiPageHeaderModule } from '@<%= npmScope %>/<%= web.name %>/ui/page-header'
+
+import { AdminUserCreateComponent } from './admin-user-create.component'
+
+@NgModule({
+  declarations: [AdminUserCreateComponent],
+  imports: [
+    AdminUserFormModule,
+    CommonModule,
+    RouterModule.forChild([{ path: '', component: AdminUserCreateComponent }]),
+    <%= web.className %>UiPageHeaderModule,
+  ],
+})
+export class AdminUserCreateModule {}

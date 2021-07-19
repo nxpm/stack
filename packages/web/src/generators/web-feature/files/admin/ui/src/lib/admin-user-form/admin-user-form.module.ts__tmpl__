@@ -1,0 +1,13 @@
+import { CommonModule } from '@angular/common'
+import { NgModule } from '@angular/core'
+import { RouterModule } from '@angular/router'
+import { <%= web.className %>UiButtonModule } from '@<%= npmScope %>/<%= web.name %>/ui/button'
+import { <%= web.className %>UiFormModule } from '@<%= npmScope %>/<%= web.name %>/ui/form'
+import { AdminUserFormComponent } from './admin-user-form.component'
+
+@NgModule({
+  declarations: [AdminUserFormComponent],
+  exports: [AdminUserFormComponent],
+  imports: [CommonModule, RouterModule, <%= web.className %>UiFormModule, <%= web.className %>UiButtonModule],
+})
+export class AdminUserFormModule {}

@@ -1,0 +1,31 @@
+import { CommonModule } from '@angular/common'
+import { NgModule } from '@angular/core'
+import { RouterModule } from '@angular/router'
+import { <%= web.className %>UiSidebarPageModule } from '@<%= npmScope %>/<%= web.name %>/ui/sidebar-page'
+import { <%= project.className %>Component } from './<%= project.name %>.component'
+
+@NgModule({
+  declarations: [<%= project.className %>Component],
+  imports: [
+    CommonModule,
+    RouterModule.forChild([
+      {
+        path: '',
+        component: <%= project.className %>Component,
+        children: [
+          { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
+          {
+            path: 'dashboard',
+            loadChildren: () => import('./admin-dashboard/admin-dashboard.module').then((m) => m.AdminDashboardModule),
+          },
+          {
+            path: 'users',
+            loadChildren: () => import('./admin-user/admin-user-feature.module').then((m) => m.AdminUserFeatureModule),
+          },
+        ],
+      },
+    ]),
+    <%= web.className %>UiSidebarPageModule,
+  ],
+})
+export class <%= project.className %>Module {}

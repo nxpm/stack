@@ -1,0 +1,43 @@
+import { Component } from '@angular/core'
+import { FormGroup } from '@angular/forms'
+import { AdminUpdateUserInput, Role } from '@<%= npmScope %>/<%= web.name %>/core/data-access'
+import { <%= web.className %>UiFormField } from '@<%= npmScope %>/<%= web.name %>/ui/form'
+import { AdminUserEditStore } from './admin-user-edit.store'
+
+@Component({
+  template: `
+    <ng-container *ngIf="vm$ | async as vm">
+      <ui-page-header [title]="'Edit user ' + vm.user?.username" linkPath=".." linkTitle="Back"></ui-page-header>
+      <ng-container *ngIf="vm.user">
+        <user-form [form]="form" [fields]="fields" [user]="vm.user" (submitForm)="updateUser($event)"></user-form>
+      </ng-container>
+    </ng-container>
+  `,
+  providers: [AdminUserEditStore],
+})
+export class AdminUserEditComponent {
+  readonly vm$ = this.store.vm$
+  readonly form = new FormGroup({})
+  fields = [
+    <%= web.className %>UiFormField.radio('role', {
+      label: 'Role',
+      required: true,
+      options: Object.keys(Role).map((value) => ({ value, label: value })),
+    }),
+    <%= web.className %>UiFormField.input('email', { label: 'Email', required: true }),
+    <%= web.className %>UiFormField.input('username', { label: 'Username' }),
+    <%= web.className %>UiFormField.input('firstName', { label: 'First name' }),
+    <%= web.className %>UiFormField.input('lastName', { label: 'Last name' }),
+    <%= web.className %>UiFormField.input('phone', { label: 'Phone' }),
+    <%= web.className %>UiFormField.input('avatarUrl', { label: 'Avatar Url' }),
+    <%= web.className %>UiFormField.input('location', { label: 'Location' }),
+    <%= web.className %>UiFormField.textarea('bio', { label: 'Bio' }),
+  ]
+
+  constructor(private readonly store: AdminUserEditStore) {}
+
+  updateUser(input: AdminUpdateUserInput) {
+    const { role, username, firstName, lastName, phone, avatarUrl, location, bio } = input
+    this.store.updateUserEffect({ role, username, firstName, lastName, phone, avatarUrl, location, bio })
+  }
+}

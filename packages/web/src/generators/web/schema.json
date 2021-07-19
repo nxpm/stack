@@ -23,6 +23,12 @@
       "type": "string",
       "description": "A directory where the project is placed",
       "alias": "d"
+    },
+    "type": {
+      "type": "string",
+      "enum": ["web"],
+      "description": "Type of Web project",
+      "default": "web"
     }
   },
   "required": ["name"]

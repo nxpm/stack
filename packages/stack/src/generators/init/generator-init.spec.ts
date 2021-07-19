@@ -1,13 +1,13 @@
 import { createTreeWithEmptyWorkspace } from '@nrwl/devkit/testing'
-import { readJson, readProjectConfiguration, Tree } from '@nrwl/devkit'
-import { AppTypeApi, AppTypeMobile, AppTypeWeb } from '@nxpm/common'
+import { getProjects, readJson, readProjectConfiguration, Tree } from '@nrwl/devkit'
+import { AppTypeApi, AppTypeMobile, AppTypeWeb, getProjectContent, getProjectTree } from '@nxpm/common'
 
 import { generatorInit } from './generator-init'
 import { InitGeneratorSchema } from './schema'
 
 describe('init generator', () => {
   let appTree: Tree
-  const options: InitGeneratorSchema = { name: 'test', apiName: 'test-api' }
+  const options: InitGeneratorSchema = { name: 'test', apiName: 'test-api', webName: 'test-web' }
 
   beforeEach(() => {
     appTree = createTreeWithEmptyWorkspace()
@@ -18,13 +18,8 @@ describe('init generator', () => {
     const configApi = readProjectConfiguration(appTree, options.apiName)
     expect(configApi).toBeDefined()
 
-    const pathAppsApi = `apps/${options.apiName}`
-    const filesApiRoot = appTree.children(`${pathAppsApi}`)
-    const filesApiSrc = appTree.children(`${pathAppsApi}/src`)
-    const filesApiApp = appTree.children(`${pathAppsApi}/src/app`)
-    expect(filesApiRoot).toMatchSnapshot()
-    expect(filesApiSrc).toMatchSnapshot()
-    expect(filesApiApp).toMatchSnapshot()
+    const nxJson = readJson(appTree, 'nx.json')
+    expect(nxJson).toMatchSnapshot()
 
     const nxpmJson = readJson(appTree, 'nxpm.json')
     expect(nxpmJson).toMatchSnapshot()
@@ -32,7 +27,20 @@ describe('init generator', () => {
     expect(root).toMatchSnapshot()
     const packageJson = appTree.read('package.json').toString('utf-8')
     expect(packageJson).toMatchSnapshot()
-  }, 15000)
+
+    // Get a list of projects that belong to the API
+    const projects = Array.from(getProjects(appTree).keys())
+
+    // Make sure that each project has the expected file tree
+    for (const project of projects) {
+      const projectConfig = readProjectConfiguration(appTree, project)
+      expect(projectConfig).toMatchSnapshot()
+      const tree = getProjectTree(appTree, project)
+      expect(tree).toMatchSnapshot()
+      const content = getProjectContent(appTree, project)
+      expect(content).toMatchSnapshot()
+    }
+  }, 60000)
 })
 
 describe('init generator: custom options', () => {
@@ -68,5 +76,5 @@ describe('init generator: custom options', () => {
 
     const nxpmJson = readJson(appTree, 'nxpm.json')
     expect(nxpmJson).toMatchSnapshot()
-  }, 15000)
+  }, 60000)
 })

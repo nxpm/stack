@@ -1,0 +1,2 @@
+export * from './environments/environment'
+export * from './lib/<%= project.name %>.module'

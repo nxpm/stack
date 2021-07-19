@@ -1,0 +1,15 @@
+import { NgModule } from '@angular/core'
+import { SvgIconRegistry, SvgIconsModule } from '@ngneat/svg-icon'
+import { uiIconMap } from './constants/ui-icon.map'
+import { <%= project.className %>Component } from './<%= project.name %>.component'
+
+@NgModule({
+  imports: [SvgIconsModule.forRoot()],
+  declarations: [<%= project.className %>Component],
+  exports: [<%= project.className %>Component],
+})
+export class <%= project.className %>Module {
+  constructor(readonly registry: SvgIconRegistry) {
+    uiIconMap.forEach((data, name) => this.registry.register({ name, data }))
+  }
+}

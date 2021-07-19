@@ -1,0 +1,41 @@
+import { Injectable } from '@angular/core'
+import { CanActivate, CanActivateChild, CanLoad, Router, UrlTree } from '@angular/router'
+import { Role } from '@<%= npmScope %>/<%= web.name %>/core/data-access'
+import { <%= web.className %>UiToastService } from '@<%= npmScope %>/<%= web.name %>/ui/toast'
+import { Observable } from 'rxjs'
+import { map } from 'rxjs/operators'
+import { <%= web.className %>AuthStore } from '../<%= project.name %>.store'
+
+@Injectable()
+export class IsAdminGuard implements CanActivate, CanActivateChild, CanLoad {
+  constructor(
+    private readonly router: Router,
+    private readonly store: <%= web.className %>AuthStore,
+    private readonly toast: <%= web.className %>UiToastService,
+  ) {}
+
+  canActivate(): Observable<boolean | UrlTree> {
+    return this.isAdmin()
+  }
+
+  canActivateChild(): Observable<boolean | UrlTree> {
+    return this.isAdmin()
+  }
+
+  canLoad(): Observable<boolean | UrlTree> {
+    return this.isAdmin()
+  }
+
+  private isAdmin(): Observable<boolean | UrlTree> {
+    return this.store.user$.pipe(
+      map((user) => user?.role === Role.Admin),
+      map((isAdmin) => {
+        if (!isAdmin) {
+          this.toast.error(`You need to have Admin permissions.`)
+          return this.router.createUrlTree(['/dashboard'])
+        }
+        return true
+      }),
+    )
+  }
+}

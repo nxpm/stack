@@ -1,5 +1,5 @@
-export interface WebGeneratorSchema {
-  name: string
-  tags?: string
-  directory?: string
+import { AppTypeWeb, BaseSchema } from '@nxpm/common'
+
+export interface WebGeneratorSchema extends BaseSchema {
+  type?: AppTypeWeb
 }

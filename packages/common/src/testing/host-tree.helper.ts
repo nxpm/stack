@@ -38,3 +38,8 @@ export function getProjectContent(host: Tree, projectName: string) {
   const project = readProjectConfiguration(host, projectName)
   return hostContentHelper(host, project.sourceRoot)
 }
+
+export function getProjectContentRoot(host: Tree, projectName: string) {
+  const project = readProjectConfiguration(host, projectName)
+  return hostContentHelper(host, project.root)
+}

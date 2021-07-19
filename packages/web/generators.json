@@ -7,6 +7,31 @@
       "factory": "./src/generators/web/generator-web#generatorWeb",
       "schema": "./src/generators/web/schema.json",
       "description": "web generator"
+    },
+    "web-base": {
+      "factory": "./src/generators/web-base/generator-web-base#generatorWebBase",
+      "schema": "./src/generators/web-base/schema.json",
+      "description": "web-base generator"
+    },
+    "web-feature": {
+      "factory": "./src/generators/web-feature/generator-web-feature#generatorWebFeature",
+      "schema": "./src/generators/web-feature/schema.json",
+      "description": "web-feature generator"
+    },
+    "web-lib": {
+      "factory": "./src/generators/web-lib/generator-web-lib#generatorWebLib",
+      "schema": "./src/generators/web-lib/schema.json",
+      "description": "web-lib generator"
+    },
+    "web-ui": {
+      "factory": "./src/generators/web-ui/generator-web-ui#generatorWebUi",
+      "schema": "./src/generators/web-ui/schema.json",
+      "description": "web-ui generator"
+    },
+    "web-ui-lib": {
+      "factory": "./src/generators/web-ui-lib/generator-web-ui-lib#generatorWebUiLib",
+      "schema": "./src/generators/web-ui-lib/schema.json",
+      "description": "web-ui-lib generator"
     }
   }
 }

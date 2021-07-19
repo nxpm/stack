@@ -1,0 +1,12 @@
+import { CommonModule } from '@angular/common'
+import { NgModule } from '@angular/core'
+import { RouterModule } from '@angular/router'
+import { CdkTableModule } from '@angular/cdk/table'
+import { <%= project.className %>Component } from './<%= project.fileName %>.component'
+
+@NgModule({
+  declarations: [<%= project.className %>Component],
+  exports: [<%= project.className %>Component],
+  imports: [CommonModule, RouterModule, CdkTableModule],
+})
+export class <%= project.className %>Module {}

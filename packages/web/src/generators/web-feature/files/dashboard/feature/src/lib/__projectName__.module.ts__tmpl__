@@ -1,0 +1,17 @@
+import { NgModule } from '@angular/core'
+import { CommonModule } from '@angular/common'
+import { RouterModule } from '@angular/router'
+import { <%= web.className %>UiButtonModule } from '@<%= npmScope %>/<%= web.name %>/ui/button'
+import { <%= web.className %>UiPageModule } from '@<%= npmScope %>/<%= web.name %>/ui/page'
+import { <%= project.className %>Component } from './<%= project.name %>.component'
+
+@NgModule({
+  declarations: [<%= project.className %>Component],
+  imports: [
+    CommonModule,
+    RouterModule.forChild([{ path: '', pathMatch: 'full', component: <%= project.className %>Component }]),
+    <%= web.className %>UiButtonModule,
+    <%= web.className %>UiPageModule,
+  ],
+})
+export class <%= project.className %>Module {}

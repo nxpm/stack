@@ -1,0 +1,10 @@
+import { HttpClientModule } from '@angular/common/http'
+import { NgModule } from '@angular/core'
+import { SvgIconsModule } from '@ngneat/svg-icon'
+
+import { <%= project.className %>GraphQLModule  } from './<%= project.name %>-graphql.module'
+
+@NgModule({
+  imports: [HttpClientModule, <%= project.className %>GraphQLModule, SvgIconsModule.forRoot()],
+})
+export class <%= project.className %>Module {}

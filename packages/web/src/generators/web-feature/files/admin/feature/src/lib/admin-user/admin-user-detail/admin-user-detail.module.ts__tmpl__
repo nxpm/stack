@@ -1,0 +1,20 @@
+import { CommonModule } from '@angular/common'
+import { NgModule } from '@angular/core'
+import { RouterModule } from '@angular/router'
+import { AdminUserFormModule } from '@<%= npmScope %>/<%= web.name %>/admin/ui'
+import { <%= web.className %>UiButtonModule } from '@<%= npmScope %>/<%= web.name %>/ui/button'
+import { <%= web.className %>UiPageHeaderModule } from '@<%= npmScope %>/<%= web.name %>/ui/page-header'
+
+import { AdminUserDetailComponent } from './admin-user-detail.component'
+
+@NgModule({
+  declarations: [AdminUserDetailComponent],
+  imports: [
+    AdminUserFormModule,
+    CommonModule,
+    RouterModule.forChild([{ path: '', component: AdminUserDetailComponent }]),
+    <%= web.className %>UiPageHeaderModule,
+    <%= web.className %>UiButtonModule,
+  ],
+})
+export class AdminUserDetailModule {}
