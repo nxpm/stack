@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`add-tailwind-config helper should add Tailwind Config 1`] = `
+"<!doctype html>
+<html lang=\\"en\\">
+<head>
+  <meta charset=\\"utf-8\\">
+  <title>AppNameTest</title>
+  <base href=\\"/\\">
+  <meta name=\\"viewport\\" content=\\"width=device-width, initial-scale=1\\">
+  <link rel=\\"icon\\" type=\\"image/x-icon\\" href=\\"favicon.ico\\">
+</head>
+<body class=\\"dark\\">
+  <proj-root></proj-root>
+</body>
+</html>
+"
+`;
+
+exports[`add-tailwind-config helper should add Tailwind Config 2`] = `
+"module.exports = {
+      mode: process.env.TAILWIND_MODE ? 'jit' : '',
+      purge: ['./apps/**/*.{html,ts}', './libs/**/*.{html,ts}'],
+      darkMode: 'class', // or 'media' or 'class'
+      theme: {
+        extend: {},
+      },
+      variants: {
+        extend: {
+          opacity: ['disabled'],
+          cursor: ['disabled'],
+        },
+      },
+      plugins: [require('@tailwindcss/forms')],
+    }"
+`;

@@ -28,7 +28,7 @@ export async function generateWebStyle(host: Tree, options: WebBaseGeneratorSche
     {},
   )
   await generatorWebLib(host, { directory, name, type: 'none' })
-  addTailwindConfig(host, normalizedOptions)
+  addTailwindConfig(host, normalizedOptions.appNameWeb)
   addFiles(host, normalizedOptions, join(__dirname, 'files/style'))
   updateProjectTargets(host, projectName)
   removeFiles(

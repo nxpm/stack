@@ -22,13 +22,13 @@ function tailwindConfigTemplate(): string {
   ].join('\n')
 }
 
-export function addTailwindConfig(host: Tree, normalizedOptions: NormalizedSchema) {
+export function addTailwindConfig(host: Tree, appNameWeb: string) {
   // Write config file
   const contents = tailwindConfigTemplate()
   host.write('tailwind.config.js', contents)
 
   // Enable Dark Mode
-  const app = readProjectConfiguration(host, normalizedOptions.appNameWeb)
+  const app = readProjectConfiguration(host, appNameWeb)
   const indexPath = join(app.sourceRoot, 'index.html')
   const indexContent = host.read(indexPath)
   host.write(indexPath, indexContent.toString('utf-8').replace('<body>', '<body class="dark">'))

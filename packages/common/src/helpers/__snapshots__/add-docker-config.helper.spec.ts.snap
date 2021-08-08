@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`add-docker-config helper should add Dockerfile 1`] = `
+"FROM node:14-alpine
+
+WORKDIR /workspace
+
+COPY package.json yarn.lock /workspace/
+
+RUN yarn
+
+COPY . .
+
+RUN yarn build
+
+CMD [\\"yarn\\", \\"start\\"]"
+`;
+
+exports[`add-docker-config helper should add Dockerfile 2`] = `
+"dist
+node_modules"
+`;

@@ -19,6 +19,7 @@ export function addProxyConfig(host: Tree, projectName: string) {
   const contents = proxyConfigTemplate()
   const projectConfig = readProjectConfiguration(host, projectName)
 
+  console.log('projectConfig?.targets?.serve?.options?.proxyConfig', projectConfig?.targets?.serve)
   if (projectConfig?.targets?.serve?.options?.proxyConfig) {
     const proxyConfig = `${projectConfig.root}/proxy.conf.js`
     host.write(proxyConfig, contents)
