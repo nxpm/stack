@@ -22,5 +22,5 @@ describe('web-ui generator', () => {
 
     // const configApp = readProjectConfiguration(appTree, `${options.webName}`)
     // expect(configApp).toMatchSnapshot()
-  })
+  }, 10000)
 })
