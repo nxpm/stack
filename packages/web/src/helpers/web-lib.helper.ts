@@ -32,5 +32,7 @@ export async function generateWebLib(host: Tree, lib: WebLibOptions, options: No
   if (lib.removeFiles?.length) {
     removeFiles(host, lib.removeFiles, `${options.projectRoot}/src/lib/`)
   }
-  addFiles(host, { ...options }, lib.addFiles)
+  if (lib.addFiles) {
+    addFiles(host, { ...options }, lib.addFiles)
+  }
 }
