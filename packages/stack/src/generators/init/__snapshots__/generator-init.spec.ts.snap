@@ -195,15 +195,15 @@ exports[`init generator should run successfully with default options 4`] = `
 "{
   \\"name\\": \\"test-name\\",
   \\"dependencies\\": {
-    \\"@angular/animations\\": \\"^12.0.0\\",
+    \\"@angular/animations\\": \\"^12.2.0\\",
     \\"@angular/cdk\\": \\"12.1.2\\",
-    \\"@angular/common\\": \\"^12.0.0\\",
-    \\"@angular/compiler\\": \\"^12.0.0\\",
-    \\"@angular/core\\": \\"^12.0.0\\",
-    \\"@angular/forms\\": \\"^12.0.0\\",
-    \\"@angular/platform-browser\\": \\"^12.0.0\\",
-    \\"@angular/platform-browser-dynamic\\": \\"^12.0.0\\",
-    \\"@angular/router\\": \\"^12.0.0\\",
+    \\"@angular/common\\": \\"^12.2.0\\",
+    \\"@angular/compiler\\": \\"^12.2.0\\",
+    \\"@angular/core\\": \\"^12.2.0\\",
+    \\"@angular/forms\\": \\"^12.2.0\\",
+    \\"@angular/platform-browser\\": \\"^12.2.0\\",
+    \\"@angular/platform-browser-dynamic\\": \\"^12.2.0\\",
+    \\"@angular/router\\": \\"^12.2.0\\",
     \\"@apollo/client\\": \\"3.3.21\\",
     \\"@kikstart-playground/graphql-intercom\\": \\"1.4.1\\",
     \\"@nestjs/common\\": \\"^7.0.0\\",
@@ -242,12 +242,12 @@ exports[`init generator should run successfully with default options 4`] = `
     \\"zone.js\\": \\"~0.11.4\\"
   },
   \\"devDependencies\\": {
-    \\"@angular-devkit/build-angular\\": \\"^12.0.0\\",
-    \\"@angular-eslint/eslint-plugin\\": \\"~12.0.0\\",
-    \\"@angular-eslint/eslint-plugin-template\\": \\"~12.0.0\\",
-    \\"@angular-eslint/template-parser\\": \\"~12.0.0\\",
-    \\"@angular/compiler-cli\\": \\"^12.0.0\\",
-    \\"@angular/language-service\\": \\"^12.0.0\\",
+    \\"@angular-devkit/build-angular\\": \\"~12.2.0\\",
+    \\"@angular-eslint/eslint-plugin\\": \\"~12.3.0\\",
+    \\"@angular-eslint/eslint-plugin-template\\": \\"~12.3.0\\",
+    \\"@angular-eslint/template-parser\\": \\"~12.3.0\\",
+    \\"@angular/compiler-cli\\": \\"^12.2.0\\",
+    \\"@angular/language-service\\": \\"^12.2.0\\",
     \\"@graphql-codegen/cli\\": \\"1.21.7\\",
     \\"@graphql-codegen/introspection\\": \\"1.18.2\\",
     \\"@graphql-codegen/typescript\\": \\"1.23.0\\",
@@ -256,26 +256,26 @@ exports[`init generator should run successfully with default options 4`] = `
     \\"@nestjs/schematics\\": \\"^7.0.0\\",
     \\"@nestjs/testing\\": \\"^7.0.0\\",
     \\"@ngneat/spectator\\": \\"7.0.0\\",
-    \\"@nrwl/cypress\\": \\"12.5.8\\",
-    \\"@nrwl/eslint-plugin-nx\\": \\"12.5.8\\",
-    \\"@nrwl/jest\\": \\"12.5.8\\",
-    \\"@nrwl/linter\\": \\"12.5.8\\",
-    \\"@nrwl/nest\\": \\"12.5.8\\",
-    \\"@nrwl/node\\": \\"12.5.8\\",
+    \\"@nrwl/cypress\\": \\"12.10.0\\",
+    \\"@nrwl/eslint-plugin-nx\\": \\"12.10.0\\",
+    \\"@nrwl/jest\\": \\"12.10.0\\",
+    \\"@nrwl/linter\\": \\"12.10.0\\",
+    \\"@nrwl/nest\\": \\"12.10.0\\",
+    \\"@nrwl/node\\": \\"12.10.0\\",
     \\"@types/fs-extra\\": \\"9.0.12\\",
-    \\"@types/jest\\": \\"26.0.8\\",
-    \\"@typescript-eslint/eslint-plugin\\": \\"4.19.0\\",
-    \\"@typescript-eslint/parser\\": \\"4.19.0\\",
-    \\"cypress\\": \\"^7.3.0\\",
+    \\"@types/jest\\": \\"27.0.2\\",
+    \\"@typescript-eslint/eslint-plugin\\": \\"~4.31.1\\",
+    \\"@typescript-eslint/parser\\": \\"~4.31.1\\",
+    \\"cypress\\": \\"^8.3.0\\",
     \\"eslint\\": \\"7.22.0\\",
     \\"eslint-config-prettier\\": \\"8.1.0\\",
     \\"eslint-plugin-cypress\\": \\"^2.10.3\\",
-    \\"jest\\": \\"27.0.3\\",
-    \\"jest-preset-angular\\": \\"9.0.3\\",
+    \\"jest\\": \\"27.2.3\\",
+    \\"jest-preset-angular\\": \\"10.0.1\\",
     \\"prisma\\": \\"2.27.0\\",
     \\"supertest\\": \\"6.1.3\\",
-    \\"ts-jest\\": \\"27.0.3\\",
-    \\"typescript\\": \\"~4.3.2\\"
+    \\"ts-jest\\": \\"27.0.5\\",
+    \\"typescript\\": \\"~4.3.5\\"
   },
   \\"prisma\\": {
     \\"schema\\": \\"libs/test-api/core/data-access/src/prisma/schema.prisma\\"
@@ -304,7 +304,8 @@ exports[`init generator should run successfully with default options 4`] = `
     \\"start\\": \\"yarn prisma:db-push && node dist/apps/api/main.js\\",
     \\"test:ci\\": \\"yarn prisma:apply && yarn e2e api-e2e\\"
   }
-}"
+}
+"
 `;
 
 exports[`init generator should run successfully with default options 5`] = `
@@ -1873,6 +1874,9 @@ Object {
           "apps/test-api/**/*.ts",
         ],
       },
+      "outputs": Array [
+        "{options.outputFile}",
+      ],
     },
     "serve": Object {
       "executor": "@nrwl/node:execute",
@@ -1951,15 +1955,15 @@ export class AppModule {
     },
     Object {
       "content": "export const environment = {
-  production: true,
-}
+  production: true
+};
 ",
       "file": "/environments/environment.prod.ts",
     },
     Object {
       "content": "export const environment = {
-  production: false,
-}
+  production: false
+};
 ",
       "file": "/environments/environment.ts",
     },
@@ -2011,6 +2015,9 @@ Object {
           "libs/test-api/account/data-access/**/*.ts",
         ],
       },
+      "outputs": Array [
+        "{options.outputFile}",
+      ],
     },
     "test": Object {
       "executor": "@nrwl/jest:jest",
@@ -2035,11 +2042,6 @@ Object {
     "/README.md",
     "/jest.config.js",
     "/src/index.ts",
-    "/src/lib/dto/account-create-email.input.ts",
-    "/src/lib/dto/account-update-password.input.ts",
-    "/src/lib/dto/account-update-profile.input.ts",
-    "/src/lib/test-api-account-data-access.module.ts",
-    "/src/lib/test-api-account-data-access.service.ts",
     "/tsconfig.json",
     "/tsconfig.lib.json",
     "/tsconfig.spec.json",
@@ -2058,223 +2060,6 @@ export * from './lib/dto/account-update-password.input'
 export * from './lib/dto/account-update-profile.input'
 ",
       "file": "/index.ts",
-    },
-    Object {
-      "content": "import { InputType, Field } from '@nestjs/graphql'
-import { IsEmail } from 'class-validator'
-
-@InputType()
-export class AccountCreateEmailInput {
-  @Field()
-  @IsEmail()
-  email: string
-}
-",
-      "file": "/lib/dto/account-create-email.input.ts",
-    },
-    Object {
-      "content": "import { Field, InputType } from '@nestjs/graphql'
-import { MinLength } from 'class-validator'
-
-@InputType()
-export class AccountUpdatePasswordInput {
-  @Field()
-  currentPassword?: string
-
-  @Field()
-  @MinLength(10)
-  password?: string
-
-  @Field()
-  @MinLength(10)
-  verified?: string
-}
-",
-      "file": "/lib/dto/account-update-password.input.ts",
-    },
-    Object {
-      "content": "import { Field, InputType } from '@nestjs/graphql'
-
-@InputType()
-export class AccountUpdateProfileInput {
-  @Field({ nullable: true })
-  firstName?: string
-
-  @Field({ nullable: true })
-  lastName?: string
-
-  @Field({ nullable: true })
-  avatarUrl?: string
-
-  @Field({ nullable: true })
-  bio?: string
-
-  @Field({ nullable: true })
-  location?: string
-
-  @Field({ nullable: true })
-  phone?: string
-
-  @Field({ nullable: true })
-  dob?: Date
-}
-",
-      "file": "/lib/dto/account-update-profile.input.ts",
-    },
-    Object {
-      "content": "import { Module } from '@nestjs/common'
-import { TestApiCoreDataAccessModule } from '@proj/test-api/core/data-access'
-
-import { TestApiAccountDataAccessService } from './test-api-account-data-access.service'
-
-@Module({
-  imports: [TestApiCoreDataAccessModule],
-  providers: [TestApiAccountDataAccessService],
-  exports: [TestApiAccountDataAccessService],
-})
-export class TestApiAccountDataAccessModule {}
-",
-      "file": "/lib/test-api-account-data-access.module.ts",
-    },
-    Object {
-      "content": "import { BadRequestException, Injectable, Logger, UnauthorizedException } from '@nestjs/common'
-import { TestApiCoreDataAccessService } from '@proj/test-api/core/data-access'
-import { hashPassword, validatePassword } from '@proj/test-api/core/util'
-import { Prisma } from '@prisma/client'
-import { AccountCreateEmailInput } from './dto/account-create-email.input'
-import { AccountUpdatePasswordInput } from './dto/account-update-password.input'
-import { AccountUpdateProfileInput } from './dto/account-update-profile.input'
-
-@Injectable()
-export class TestApiAccountDataAccessService {
-  constructor(private readonly data: TestApiCoreDataAccessService) {}
-
-  accountEmails(userId: string) {
-    return this.data.email.findMany({ where: { owner: { id: userId } }, orderBy: { primary: 'desc' } })
-  }
-
-  accountProfile(userId: string) {
-    return this.data.findUserById(userId)
-  }
-
-  async accountCreateEmail(userId: string, input: AccountCreateEmailInput) {
-    const exists = await this.data.findUserByEmail(input.email)
-    if (exists) {
-      throw new BadRequestException(\`Can't add email address \${input.email}\`)
-    }
-    return this.data.email.create({ data: { ownerId: userId, email: input.email, primary: false } })
-  }
-
-  async accountDeleteEmail(userId: string, userEmailId: string) {
-    const owner = await this.data.email.findUnique({ where: { id: userEmailId } }).owner()
-    if (owner.id !== userId) {
-      throw new UnauthorizedException()
-    }
-    const email = await this.data.email.findUnique({ where: { id: userEmailId } })
-    if (email.primary) {
-      throw new BadRequestException(\`You can't delete your primary email\`)
-    }
-    return this.data.email.delete({ where: { id: userEmailId } })
-  }
-
-  accountUpdateProfile(userId: string, input: AccountUpdateProfileInput) {
-    return this.data.user.update({
-      where: { id: userId },
-      data: {
-        avatarUrl: input.avatarUrl,
-        firstName: input.firstName,
-        lastName: input.lastName,
-        bio: input.bio,
-        location: input.location,
-        phone: input.phone,
-      },
-    })
-  }
-
-  async accountUpdateUsername(userId: string, username: string) {
-    const available = await this.accountUsernameAvailable(userId, username)
-
-    if (!available) {
-      throw new BadRequestException(\`Username \${username} is not available\`)
-    }
-
-    return this.data.user.update({ where: { id: userId }, data: { username } })
-  }
-
-  async accountUsernameAvailable(userId: string, username: string): Promise<boolean> {
-    const denied = await this.data.usernameDenyList(username)
-
-    if (denied) {
-      throw new BadRequestException(\`Username \${username} is not available\`)
-    }
-
-    const count = await this.data.user.count({
-      where: { username },
-    })
-    return count === 0
-  }
-
-  async userEmailOwner(userId: string, userEmailId: string) {
-    const owner = await this.data.email.findUnique({ where: { id: userEmailId } }).owner()
-    if (owner.id !== userId) {
-      throw new UnauthorizedException()
-    }
-    return owner
-  }
-
-  async updateUserEmail(userId: string, userEmailId: string, input: Prisma.EmailUpdateInput) {
-    await this.userEmailOwner(userId, userEmailId)
-    return this.data.email.update({ where: { id: userEmailId }, data: { ...input } })
-  }
-
-  async accountMarkEmailPrivate(userId: string, userEmailId: string) {
-    return this.updateUserEmail(userId, userEmailId, { public: false })
-  }
-
-  async accountMarkEmailPublic(userId: string, userEmailId: string) {
-    return this.updateUserEmail(userId, userEmailId, { public: true })
-  }
-
-  async accountMarkEmailPrimary(userId: string, userEmailId: string) {
-    // Check if we are the owner
-    await this.userEmailOwner(userId, userEmailId)
-    // Mark all emails as non primary
-    await this.data.email.updateMany({
-      where: { owner: { id: userId } },
-      data: { primary: false },
-    })
-    // Mark the chosen one
-    return this.updateUserEmail(userId, userEmailId, { primary: true })
-  }
-
-  async accountResetPassword(userId: string) {
-    const emails = await this.accountEmails(userId)
-    const primary = emails.find((email) => email.primary)
-
-    if (!primary) {
-      throw new BadRequestException(\`Could not find primary email for user with id \${userId}\`)
-    }
-    Logger.verbose(\`TODO: Implement Account Reset Password\`)
-    // await this.auth.forgotPassword(primary.email)
-    return true
-  }
-
-  async accountUpdatePassword(userId: string, input: AccountUpdatePasswordInput) {
-    const user = await this.data.findUserById(userId)
-    // We need to make sure the user provides the correct current password
-    await validatePassword(input.currentPassword, user.password)
-
-    // The new password must be the same as the verified new password
-    if (input.password !== input.verified) {
-      throw new BadRequestException(\`Passwords do not match!\`)
-    }
-    // We can now update the password
-    await this.data.user.update({ where: { id: userId }, data: { password: hashPassword(input.password) } })
-    return true
-  }
-}
-",
-      "file": "/lib/test-api-account-data-access.service.ts",
     },
   ],
   "root": "libs/test-api/account/data-access/src",
@@ -2295,6 +2080,9 @@ Object {
           "libs/test-api/account/feature/**/*.ts",
         ],
       },
+      "outputs": Array [
+        "{options.outputFile}",
+      ],
     },
     "test": Object {
       "executor": "@nrwl/jest:jest",
@@ -2319,8 +2107,6 @@ Object {
     "/README.md",
     "/jest.config.js",
     "/src/index.ts",
-    "/src/lib/test-api-account-feature.module.ts",
-    "/src/lib/test-api-account-feature.resolver.ts",
     "/tsconfig.json",
     "/tsconfig.lib.json",
     "/tsconfig.spec.json",
@@ -2335,100 +2121,6 @@ Object {
       "content": "export * from './lib/test-api-account-feature.module'
 ",
       "file": "/index.ts",
-    },
-    Object {
-      "content": "import { Module } from '@nestjs/common'
-import { TestApiAccountDataAccessModule } from '@proj/test-api/account/data-access'
-
-import { TestApiAccountFeatureResolver } from './test-api-account-feature.resolver'
-
-@Module({
-  imports: [TestApiAccountDataAccessModule],
-  providers: [TestApiAccountFeatureResolver],
-})
-export class TestApiAccountFeatureModule {}
-",
-      "file": "/lib/test-api-account-feature.module.ts",
-    },
-    Object {
-      "content": "import { UseGuards, ValidationPipe } from '@nestjs/common'
-import { Args, Mutation, Query, Resolver } from '@nestjs/graphql'
-import {
-  AccountCreateEmailInput,
-  AccountUpdatePasswordInput,
-  AccountUpdateProfileInput,
-  TestApiAccountDataAccessService,
-} from '@proj/test-api/account/data-access'
-import { CtxUser, GqlAuthGuard } from '@proj/test-api/auth/util'
-import { Email, User } from '@proj/test-api/user/data-access'
-
-@Resolver()
-@UseGuards(GqlAuthGuard)
-export class TestApiAccountFeatureResolver {
-  constructor(private readonly service: TestApiAccountDataAccessService) {}
-
-  @Query(() => [Email], { nullable: true })
-  accountEmails(@CtxUser() user: User) {
-    return this.service.accountEmails(user.id)
-  }
-
-  @Query(() => User, { nullable: true })
-  accountProfile(@CtxUser() user: User) {
-    return this.service.accountProfile(user.id)
-  }
-
-  @Query(() => Boolean, { nullable: true })
-  accountUsernameAvailable(@CtxUser() user: User, @Args('username') username: string) {
-    return this.service.accountUsernameAvailable(user.id, username)
-  }
-
-  @Mutation(() => Email, { nullable: true })
-  accountCreateEmail(@CtxUser() user: User, @Args('input', new ValidationPipe()) input: AccountCreateEmailInput) {
-    return this.service.accountCreateEmail(user.id, input)
-  }
-
-  @Mutation(() => Email, { nullable: true })
-  accountDeleteEmail(@CtxUser() user: User, @Args('emailId') emailId: string) {
-    return this.service.accountDeleteEmail(user.id, emailId)
-  }
-
-  @Mutation(() => Email, { nullable: true })
-  accountMarkEmailPrimary(@CtxUser() user: User, @Args('emailId') emailId: string) {
-    return this.service.accountMarkEmailPrimary(user.id, emailId)
-  }
-
-  @Mutation(() => Email, { nullable: true })
-  accountMarkEmailPrivate(@CtxUser() user: User, @Args('emailId') emailId: string) {
-    return this.service.accountMarkEmailPrivate(user.id, emailId)
-  }
-
-  @Mutation(() => Email, { nullable: true })
-  accountMarkEmailPublic(@CtxUser() user: User, @Args('emailId') emailId: string) {
-    return this.service.accountMarkEmailPublic(user.id, emailId)
-  }
-
-  @Mutation(() => User, { nullable: true })
-  accountUpdateProfile(@CtxUser() user: User, @Args('input', new ValidationPipe()) input: AccountUpdateProfileInput) {
-    return this.service.accountUpdateProfile(user.id, input)
-  }
-
-  @Mutation(() => User, { nullable: true })
-  accountUpdateUsername(@CtxUser() user: User, @Args('username') username: string) {
-    return this.service.accountUpdateUsername(user.id, username)
-  }
-
-  @Mutation(() => Boolean, { nullable: true })
-  accountResetPassword(@CtxUser() user: User) {
-    return this.service.accountResetPassword(user.id)
-  }
-
-  @Mutation(() => Boolean, { nullable: true })
-  accountUpdatePassword(@CtxUser() user: User, @Args('input', new ValidationPipe()) input: AccountUpdatePasswordInput) {
-    return this.service.accountUpdatePassword(user.id, input)
-  }
-}
-",
-      "file": "/lib/test-api-account-feature.resolver.ts",
     },
   ],
   "root": "libs/test-api/account/feature/src",
@@ -2449,6 +2141,9 @@ Object {
           "libs/test-api/auth/data-access/**/*.ts",
         ],
       },
+      "outputs": Array [
+        "{options.outputFile}",
+      ],
     },
     "test": Object {
       "executor": "@nrwl/jest:jest",
@@ -2473,13 +2168,6 @@ Object {
     "/README.md",
     "/jest.config.js",
     "/src/index.ts",
-    "/src/lib/dto/jwt.dto.ts",
-    "/src/lib/dto/login.input.ts",
-    "/src/lib/dto/register.input.ts",
-    "/src/lib/models/auth-token.model.ts",
-    "/src/lib/strategies/jwt.strategy.ts",
-    "/src/lib/test-api-auth-data-access.module.ts",
-    "/src/lib/test-api-auth-data-access.service.ts",
     "/tsconfig.json",
     "/tsconfig.lib.json",
     "/tsconfig.spec.json",
@@ -2500,215 +2188,6 @@ export * from './lib/models/auth-token.model'
 ",
       "file": "/index.ts",
     },
-    Object {
-      "content": "export interface JwtDto {
-  userId: string
-}
-",
-      "file": "/lib/dto/jwt.dto.ts",
-    },
-    Object {
-      "content": "import { Field, InputType } from '@nestjs/graphql'
-import { IsNotEmpty, MinLength } from 'class-validator'
-
-@InputType()
-export class LoginInput {
-  @Field()
-  @IsNotEmpty()
-  email: string
-
-  @Field()
-  @IsNotEmpty()
-  @MinLength(8)
-  password: string
-}
-",
-      "file": "/lib/dto/login.input.ts",
-    },
-    Object {
-      "content": "import { IsEmail, IsNotEmpty, MinLength } from 'class-validator'
-import { InputType, Field } from '@nestjs/graphql'
-
-@InputType()
-export class RegisterInput {
-  @Field()
-  @IsNotEmpty()
-  @IsEmail()
-  email: string
-
-  @Field({ nullable: true })
-  username?: string
-
-  @Field({ nullable: true })
-  firstName?: string
-
-  @Field({ nullable: true })
-  lastName?: string
-
-  @Field({ nullable: true })
-  phone?: string
-
-  @Field({ nullable: true })
-  avatarUrl?: string
-
-  @Field()
-  @IsNotEmpty()
-  @MinLength(8)
-  password: string
-}
-",
-      "file": "/lib/dto/register.input.ts",
-    },
-    Object {
-      "content": "import { Field, ObjectType } from '@nestjs/graphql'
-
-@ObjectType()
-export class AuthToken {
-  @Field({ description: 'JWT Bearer token' })
-  token: string
-}
-",
-      "file": "/lib/models/auth-token.model.ts",
-    },
-    Object {
-      "content": "import { Injectable, UnauthorizedException } from '@nestjs/common'
-import { PassportStrategy } from '@nestjs/passport'
-import { Request } from 'express'
-import { ExtractJwt, Strategy } from 'passport-jwt'
-import { TestApiAuthDataAccessService } from '../test-api-auth-data-access.service'
-import { JwtDto } from '../dto/jwt.dto'
-
-function headerAndCookieExtractor(req: Request) {
-  const token = ExtractJwt.fromAuthHeaderAsBearerToken()(req)
-  if (!token) {
-    return cookieExtractor(req)
-  }
-  return token
-}
-
-function cookieExtractor(req: Request) {
-  const name = process.env.API_COOKIE_NAME || '__session'
-  return req?.cookies?.[name] ? req.cookies[name] : undefined
-}
-
-@Injectable()
-export class JwtStrategy extends PassportStrategy(Strategy) {
-  constructor(private readonly auth: TestApiAuthDataAccessService) {
-    super({
-      jwtFromRequest: cookieExtractor,
-      secretOrKey: process.env.JWT_SECRET,
-    })
-  }
-
-  async validate(payload: JwtDto) {
-    const user = await this.auth.validateUser(payload.userId)
-    if (!user) {
-      throw new UnauthorizedException()
-    }
-    return user
-  }
-}
-",
-      "file": "/lib/strategies/jwt.strategy.ts",
-    },
-    Object {
-      "content": "import { TestApiCoreDataAccessModule } from '@proj/test-api/core/data-access'
-import { TestApiCoreUtilModule, } from '@proj/test-api/core/util'
-import { Module } from '@nestjs/common'
-import { JwtModule } from '@nestjs/jwt'
-import { PassportModule } from '@nestjs/passport'
-
-import { TestApiAuthDataAccessService } from './test-api-auth-data-access.service'
-import { JwtStrategy } from './strategies/jwt.strategy'
-
-@Module({
-  imports: [
-    TestApiCoreDataAccessModule,
-    TestApiCoreUtilModule,
-    PassportModule.register({ defaultStrategy: 'jwt' }),
-    JwtModule.register({
-      secret: process.env.JWT_SECRET,
-    }),
-  ],
-  exports: [TestApiAuthDataAccessService],
-  providers: [TestApiAuthDataAccessService, JwtStrategy],
-})
-export class TestApiAuthDataAccessModule {}
-",
-      "file": "/lib/test-api-auth-data-access.module.ts",
-    },
-    Object {
-      "content": "import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common'
-import { JwtService } from '@nestjs/jwt'
-import { TestApiCoreDataAccessService } from '@proj/test-api/core/data-access'
-import { TestApiCoreUtilService, validatePassword } from '@proj/test-api/core/util'
-import { Response } from 'express'
-import { LoginInput } from './dto/login.input'
-import { RegisterInput } from './dto/register.input'
-import { AuthToken } from './models/auth-token.model'
-
-@Injectable()
-export class TestApiAuthDataAccessService {
-  constructor(
-    private readonly data: TestApiCoreDataAccessService,
-    private readonly core: TestApiCoreUtilService,
-    private readonly jwtService: JwtService
-  ) {}
-
-  async register(payload: RegisterInput) {
-    const user = await this.data.createUser(payload, { email: payload.email })
-
-    return this.signUser(user)
-  }
-
-  async login(input: LoginInput) {
-    const email = input.email.trim()
-    const password = input.password.trim()
-    const user = await this.data.findUserByEmail(email)
-
-    if (!user) {
-      throw new NotFoundException(\`No user found for email: \${email}\`)
-    }
-
-    if (!user?.password) {
-      throw new NotFoundException(\`Can't log in with email: \${email}\`)
-    }
-
-    const passwordValid = await validatePassword(password, user.password)
-
-    if (!passwordValid) {
-      throw new BadRequestException('Invalid password')
-    }
-
-    return this.signUser(user)
-  }
-
-  signUser(user): AuthToken {
-    const token = this.jwtService.sign({ userId: user?.id })
-    return { token }
-  }
-
-  validateUser(userId: string) {
-    return this.data.findUserById(userId)
-  }
-
-  getUserFromToken(token: string) {
-    const userId = this.jwtService.decode(token)['userId']
-
-    return this.data.findUserById(userId)
-  }
-
-  setCookie(res: Response, token: string) {
-    return res?.cookie(this.core.cookie.name, token, this.core.cookie.options)
-  }
-
-  clearCookie(res: Response) {
-    return res.clearCookie(this.core.cookie.name, this.core.cookie.options)
-  }
-}
-",
-      "file": "/lib/test-api-auth-data-access.service.ts",
-    },
   ],
   "root": "libs/test-api/auth/data-access/src",
 }
@@ -2728,6 +2207,9 @@ Object {
           "libs/test-api/auth/feature/**/*.ts",
         ],
       },
+      "outputs": Array [
+        "{options.outputFile}",
+      ],
     },
     "test": Object {
       "executor": "@nrwl/jest:jest",
@@ -2752,8 +2234,6 @@ Object {
     "/README.md",
     "/jest.config.js",
     "/src/index.ts",
-    "/src/lib/test-api-auth-feature.module.ts",
-    "/src/lib/test-api-auth-feature.resolver.ts",
     "/tsconfig.json",
     "/tsconfig.lib.json",
     "/tsconfig.spec.json",
@@ -2768,69 +2248,6 @@ Object {
       "content": "export * from './lib/test-api-auth-feature.module'
 ",
       "file": "/index.ts",
-    },
-    Object {
-      "content": "import { Module } from '@nestjs/common'
-import { TestApiAuthDataAccessModule } from '@proj/test-api/auth/data-access'
-import { TestApiAuthFeatureResolver } from './test-api-auth-feature.resolver'
-
-@Module({
-  imports: [TestApiAuthDataAccessModule],
-  providers: [TestApiAuthFeatureResolver],
-})
-export class TestApiAuthFeatureModule {}
-",
-      "file": "/lib/test-api-auth-feature.module.ts",
-    },
-    Object {
-      "content": "import {
-  TestApiAuthDataAccessService,
-  LoginInput,
-  RegisterInput,
-  AuthToken,
-} from '@proj/test-api/auth/data-access'
-import {
-  CtxUser,
-  GqlAuthGuard,
-} from '@proj/test-api/auth/util'
-import {
-  User,
-} from '@proj/test-api/user/data-access'
-import { Context, Query, Resolver, Mutation, Args } from '@nestjs/graphql'
-import { UseGuards } from '@nestjs/common'
-
-@Resolver()
-export class TestApiAuthFeatureResolver {
-  constructor(private readonly service: TestApiAuthDataAccessService) {}
-
-  @Query(() => User, { nullable: true })
-  @UseGuards(GqlAuthGuard)
-  async me(@CtxUser() user: User) {
-    return user
-  }
-
-  @Mutation(() => AuthToken, { nullable: true })
-  async login(@Context() context, @Args('input') input: LoginInput) {
-    const authToken = await this.service.login(input)
-    this.service.setCookie(context.res, authToken.token)
-    return authToken
-  }
-
-  @Mutation(() => Boolean, { nullable: true })
-  async logout(@Context() context) {
-    this.service.clearCookie(context.res)
-    return true
-  }
-
-  @Mutation(() => AuthToken, { nullable: true })
-  async register(@Context() context, @Args('input') input: RegisterInput) {
-    const authToken = await this.service.register(input)
-    this.service.setCookie(context.res, authToken.token)
-    return authToken
-  }
-}
-",
-      "file": "/lib/test-api-auth-feature.resolver.ts",
     },
   ],
   "root": "libs/test-api/auth/feature/src",
@@ -2851,6 +2268,9 @@ Object {
           "libs/test-api/auth/util/**/*.ts",
         ],
       },
+      "outputs": Array [
+        "{options.outputFile}",
+      ],
     },
     "test": Object {
       "executor": "@nrwl/jest:jest",
@@ -2875,10 +2295,6 @@ Object {
     "/README.md",
     "/jest.config.js",
     "/src/index.ts",
-    "/src/lib/decorators/ctx-user.decorator.ts",
-    "/src/lib/guards/gql-auth-admin.guard.ts",
-    "/src/lib/guards/gql-auth.guard.ts",
-    "/src/lib/test-api-auth-util.module.ts",
     "/tsconfig.json",
     "/tsconfig.lib.json",
     "/tsconfig.spec.json",
@@ -2895,84 +2311,6 @@ export * from './lib/guards/gql-auth-admin.guard'
 export * from './lib/guards/gql-auth.guard'
 ",
       "file": "/index.ts",
-    },
-    Object {
-      "content": "import { createParamDecorator } from '@nestjs/common'
-import { GqlExecutionContext } from '@nestjs/graphql'
-
-export const CtxUser = createParamDecorator((data, ctx) => GqlExecutionContext.create(ctx).getContext().req.user)
-",
-      "file": "/lib/decorators/ctx-user.decorator.ts",
-    },
-    Object {
-      "content": "import { ExecutionContext, ForbiddenException, Injectable } from '@nestjs/common'
-import { GqlExecutionContext } from '@nestjs/graphql'
-import { AuthGuard } from '@nestjs/passport'
-
-@Injectable()
-export class GqlAuthAdminGuard extends AuthGuard('jwt') {
-  private readonly _roles: string[] = ['Admin']
-
-  getRequest(context: ExecutionContext) {
-    const ctx = GqlExecutionContext.create(context)
-
-    return ctx.getContext().req
-  }
-
-  constructor() {
-    super()
-  }
-
-  async canActivate(context: ExecutionContext): Promise<boolean> {
-    await super.canActivate(context)
-    const ctx = GqlExecutionContext.create(context)
-    const req = ctx.getContext().req
-
-    if (!req || !req.user) {
-      return false
-    }
-    const hasAccess = this.hasAccess(req.user)
-
-    if (!hasAccess) {
-      throw new ForbiddenException(\`You need to have Admin access\`)
-    }
-    return req && req.user && this.hasAccess(req.user)
-  }
-
-  private hasAccess(user): boolean {
-    return user.role && this._roles.includes(user.role)
-  }
-}
-",
-      "file": "/lib/guards/gql-auth-admin.guard.ts",
-    },
-    Object {
-      "content": "import { ExecutionContext, Injectable } from '@nestjs/common'
-import { GqlExecutionContext } from '@nestjs/graphql'
-import { AuthGuard } from '@nestjs/passport'
-
-@Injectable()
-export class GqlAuthGuard extends AuthGuard('jwt') {
-  getRequest(context: ExecutionContext) {
-    const ctx = GqlExecutionContext.create(context)
-
-    return ctx.getContext().req
-  }
-}
-",
-      "file": "/lib/guards/gql-auth.guard.ts",
-    },
-    Object {
-      "content": "import { Module } from '@nestjs/common'
-
-@Module({
-  controllers: [],
-  providers: [],
-  exports: [],
-})
-export class TestApiAuthUtilModule {}
-",
-      "file": "/lib/test-api-auth-util.module.ts",
     },
   ],
   "root": "libs/test-api/auth/util/src",
@@ -2993,6 +2331,9 @@ Object {
           "libs/test-api/core/data-access/**/*.ts",
         ],
       },
+      "outputs": Array [
+        "{options.outputFile}",
+      ],
     },
     "test": Object {
       "executor": "@nrwl/jest:jest",
@@ -3017,10 +2358,6 @@ Object {
     "/README.md",
     "/jest.config.js",
     "/src/index.ts",
-    "/src/lib/dto/core-paging.input.ts",
-    "/src/lib/models/core-paging.model.ts",
-    "/src/lib/test-api-core-data-access.module.ts",
-    "/src/lib/test-api-core-data-access.service.ts",
     "/src/prisma/schema.prisma",
     "/tsconfig.json",
     "/tsconfig.lib.json",
@@ -3039,130 +2376,6 @@ export * from './lib/dto/core-paging.input'
 export * from './lib/models/core-paging.model'
 ",
       "file": "/index.ts",
-    },
-    Object {
-      "content": "import { Field, InputType, Int } from '@nestjs/graphql'
-
-@InputType()
-export class CorePagingInput {
-  @Field(() => Int, { nullable: true, defaultValue: 10 })
-  limit?: number
-
-  @Field(() => Int, { nullable: true, defaultValue: 0 })
-  skip?: number
-}
-",
-      "file": "/lib/dto/core-paging.input.ts",
-    },
-    Object {
-      "content": "import { Field, Int, ObjectType } from '@nestjs/graphql'
-
-@ObjectType()
-export class CorePaging {
-  @Field(() => Int, { nullable: true, defaultValue: 10 })
-  limit?: number
-
-  @Field(() => Int, { nullable: true, defaultValue: 10 })
-  skip?: number
-
-  @Field(() => Int, { nullable: true, defaultValue: 10 })
-  total?: number
-}
-",
-      "file": "/lib/models/core-paging.model.ts",
-    },
-    Object {
-      "content": "import { Module } from '@nestjs/common'
-
-import { TestApiCoreDataAccessService } from './test-api-core-data-access.service'
-
-@Module({
-  providers: [TestApiCoreDataAccessService],
-  exports: [TestApiCoreDataAccessService],
-})
-export class TestApiCoreDataAccessModule {}
-",
-      "file": "/lib/test-api-core-data-access.module.ts",
-    },
-    Object {
-      "content": "import { BadRequestException, Injectable, OnModuleDestroy, OnModuleInit } from '@nestjs/common'
-import { PrismaClient, Prisma, Role } from '@prisma/client'
-import { getGravatarUrl, hashPassword } from '@proj/test-api/core/util'
-
-@Injectable()
-export class TestApiCoreDataAccessService extends PrismaClient implements OnModuleInit, OnModuleDestroy {
-  constructor() {
-    super()
-  }
-
-  async onModuleDestroy() {
-    await this.$disconnect()
-  }
-
-  async onModuleInit() {
-    await this.$connect()
-  }
-
-  async createUser(input: Partial<Prisma.UserCreateInput>, emailInput: Partial<Prisma.EmailCreateInput>) {
-    const email = emailInput?.email?.trim()
-    const existing = await this.findUserByEmail(email)
-    if (existing) {
-      throw new BadRequestException(\`Can't create user with email \${email}\`)
-    }
-    const password = hashPassword(input.password)
-
-    // The first user will get the Admin role
-    const hasAdmin = await this.user.count({ where: { role: 'Admin' } })
-    const role = hasAdmin ? 'User' : 'Admin'
-
-    return this.user.create({
-      data: {
-        firstName: input.firstName,
-        lastName: input.lastName,
-        emails: { create: { email, primary: true } },
-        username: email,
-        avatarUrl: input.avatarUrl || getGravatarUrl(email),
-        password,
-        role,
-      },
-    })
-  }
-
-  findUserByEmail(email: string) {
-    return this.email.findUnique({ where: { email } }).owner({ include: { emails: true } })
-  }
-
-  findUserById(userId: string) {
-    return this.user.findUnique({ where: { id: userId }, include: { emails: true } })
-  }
-
-  findUserByUsername(username: string) {
-    return this.user.findUnique({ where: { username }, include: { emails: true } })
-  }
-
-  async ensureAdminUser(adminId: string): Promise<boolean> {
-    const tenant = await this.findUserById(adminId)
-    if (tenant.role !== Role.Admin) {
-      throw new Error(\`This operation needs Admin access\`)
-    }
-    return true
-  }
-
-  async usernameDenyList(username: string) {
-    const denied = [
-      // Add usernames you want to deny
-      'admin',
-      'administrator',
-      'system',
-      'owner',
-      'info',
-      'webmaster',
-    ]
-    return denied.includes(username)
-  }
-}
-",
-      "file": "/lib/test-api-core-data-access.service.ts",
     },
     Object {
       "content": "datasource db {
@@ -3234,6 +2447,9 @@ Object {
           "libs/test-api/core/feature/**/*.ts",
         ],
       },
+      "outputs": Array [
+        "{options.outputFile}",
+      ],
     },
     "test": Object {
       "executor": "@nrwl/jest:jest",
@@ -3258,10 +2474,6 @@ Object {
     "/README.md",
     "/jest.config.js",
     "/src/index.ts",
-    "/src/lib/test-api-core-feature.controller.ts",
-    "/src/lib/test-api-core-feature.module.ts",
-    "/src/lib/test-api-core-feature.resolver.ts",
-    "/src/lib/test-api-core-feature.service.ts",
     "/tsconfig.json",
     "/tsconfig.lib.json",
     "/tsconfig.spec.json",
@@ -3277,90 +2489,6 @@ Object {
 export * from './lib/test-api-core-feature.service'
 ",
       "file": "/index.ts",
-    },
-    Object {
-      "content": "import { Controller, Get } from '@nestjs/common'
-import { TestApiCoreFeatureService } from './test-api-core-feature.service'
-
-@Controller()
-export class TestApiCoreFeatureController {
-  constructor(private readonly service: TestApiCoreFeatureService) {}
-
-  @Get('uptime')
-  uptime() {
-    return this.service.uptime()
-  }
-}
-",
-      "file": "/lib/test-api-core-feature.controller.ts",
-    },
-    Object {
-      "content": "import { GraphQLIntercomModule } from '@kikstart-playground/graphql-intercom'
-import { Module } from '@nestjs/common'
-import { GraphQLModule } from '@nestjs/graphql'
-import { PubSub } from 'graphql-subscriptions'
-import { join } from 'path'
-import { TestApiAccountFeatureModule } from '@proj/test-api/account/feature'
-import { TestApiAuthFeatureModule } from '@proj/test-api/auth/feature'
-import { TestApiUserFeatureModule } from '@proj/test-api/user/feature'
-
-import { TestApiCoreFeatureController } from './test-api-core-feature.controller'
-import { TestApiCoreFeatureResolver } from './test-api-core-feature.resolver'
-import { TestApiCoreFeatureService } from './test-api-core-feature.service'
-
-@Module({
-  imports: [
-    GraphQLModule.forRoot({
-      autoSchemaFile: join(process.cwd(), 'test-api-schema.graphql'),
-      context: ({ req, res }) => ({ req, res }),
-      installSubscriptionHandlers: true,
-      playground: {
-        settings: {
-          'request.credentials': 'include',
-        },
-      },
-      sortSchema: true,
-    }),
-    GraphQLIntercomModule.forRoot({ pubSub: new PubSub() }),
-    TestApiAccountFeatureModule,
-    TestApiAuthFeatureModule,
-    TestApiUserFeatureModule,
-  ],
-  controllers: [TestApiCoreFeatureController],
-  providers: [TestApiCoreFeatureResolver, TestApiCoreFeatureService],
-  exports: [TestApiCoreFeatureService],
-})
-export class TestApiCoreFeatureModule {}
-",
-      "file": "/lib/test-api-core-feature.module.ts",
-    },
-    Object {
-      "content": "import { Float, Query, Resolver } from '@nestjs/graphql'
-import { TestApiCoreFeatureService } from './test-api-core-feature.service'
-
-@Resolver()
-export class TestApiCoreFeatureResolver {
-  constructor(private readonly service: TestApiCoreFeatureService) {}
-
-  @Query(() => Float, { nullable: true })
-  uptime() {
-    return this.service.uptime()
-  }
-}
-",
-      "file": "/lib/test-api-core-feature.resolver.ts",
-    },
-    Object {
-      "content": "import { Injectable } from '@nestjs/common'
-
-@Injectable()
-export class TestApiCoreFeatureService {
-  uptime(): number {
-    return process.uptime()
-  }
-}
-",
-      "file": "/lib/test-api-core-feature.service.ts",
     },
   ],
   "root": "libs/test-api/core/feature/src",
@@ -3381,6 +2509,9 @@ Object {
           "libs/test-api/core/util/**/*.ts",
         ],
       },
+      "outputs": Array [
+        "{options.outputFile}",
+      ],
     },
     "test": Object {
       "executor": "@nrwl/jest:jest",
@@ -3405,11 +2536,6 @@ Object {
     "/README.md",
     "/jest.config.js",
     "/src/index.ts",
-    "/src/lib/config/configuration.ts",
-    "/src/lib/config/validation.ts",
-    "/src/lib/test-api-core-util.helper.ts",
-    "/src/lib/test-api-core-util.module.ts",
-    "/src/lib/test-api-core-util.service.ts",
     "/tsconfig.json",
     "/tsconfig.lib.json",
     "/tsconfig.spec.json",
@@ -3426,152 +2552,6 @@ export * from './lib/test-api-core-util.module'
 export * from './lib/test-api-core-util.service'
 ",
       "file": "/index.ts",
-    },
-    Object {
-      "content": "export const configuration = () => ({
-  prefix: 'api',
-  environment: process.env.NODE_ENV,
-  host: process.env.HOST,
-  port: parseInt(process.env.PORT, 10),
-  apiUrl: process.env.API_URL,
-  api: {
-    cookie: {
-      name: process.env.API_COOKIE_NAME,
-      options: {
-        domain: process.env.API_COOKIE_DOMAIN,
-        httpOnly: true,
-      },
-    },
-    cors: {
-      origin: [process.env.WEB_URL],
-    },
-  },
-})
-",
-      "file": "/lib/config/configuration.ts",
-    },
-    Object {
-      "content": "import * as Joi from 'joi'
-
-export const validationSchema = Joi.object({
-  NODE_ENV: Joi.string().valid('development', 'production', 'test'),
-  HOST: Joi.string().alphanum().default('localhost'),
-  PORT: Joi.number().default(3000),
-  WEB_PORT: Joi.number().default(4200),
-  WEB_URL: Joi.string().default(
-    \`http://\${process.env.HOST || 'localhost'}:\${process.env.WEB_PORT}\`,
-  ),
-  API_COOKIE_DOMAIN: Joi.string().default('localhost'),
-  API_COOKIE_NAME: Joi.string().default('__session'),
-  API_URL: Joi.string().default(
-    \`http://\${process.env.HOST || 'localhost'}:\${process.env.PORT}/api\`,
-  ),
-  JWT_SECRET: Joi.string().required(),
-})
-",
-      "file": "/lib/config/validation.ts",
-    },
-    Object {
-      "content": "import { compareSync, hashSync } from 'bcryptjs'
-import { createHash } from 'crypto'
-
-const getHash = (str: string) => createHash('md5').update(str).digest('hex')
-
-const gravatarUrl = 'https://www.gravatar.com/avatar/'
-const gravatarSize = 460
-
-export const getGravatarUrl = (email = '') =>
-  \`\${gravatarUrl}\${getHash(email)}?s=\${gravatarSize}&d=mp\`
-
-export function validatePassword(
-  password: string,
-  hashedPassword: string
-): boolean {
-  return compareSync(password, hashedPassword)
-}
-
-export function hashPassword(password: string): string {
-  return hashSync(password, 10)
-}
-
-export function generateMd5Hash(input: string) {
-  return createHash('md5').update(input).digest('hex')
-}
-
-export function generateToken() {
-  return generateMd5Hash(randomId(24))
-}
-
-export function generateExpireDate(days = 1) {
-  return new Date(Date.now() + 60 * 60 * 24 * 1000 * days)
-}
-
-export function randomId (length = 8) {
-  return new Date().getTime().toString().substr(0, length)
-}
-
-export function rand (items) {
-  return items[Math.floor(Math.random() * items.length)]
-}
-
-export function uniqueSuffix(input, length = 5) {
-  const suffix = generateMd5Hash(Date.now() + input).slice(0, length)
-  return \`\${input}-\${suffix}\`
-}
-",
-      "file": "/lib/test-api-core-util.helper.ts",
-    },
-    Object {
-      "content": "import { Module } from '@nestjs/common'
-import { ConfigModule } from '@nestjs/config'
-
-import { configuration } from './config/configuration'
-import { validationSchema } from './config/validation'
-import { TestApiCoreUtilService } from './test-api-core-util.service'
-
-@Module({
-  imports: [
-    ConfigModule.forRoot({
-      isGlobal: true,
-      load: [configuration],
-      validationSchema,
-    }),
-  ],
-  providers: [TestApiCoreUtilService],
-  exports: [TestApiCoreUtilService],
-})
-export class TestApiCoreUtilModule {}
-",
-      "file": "/lib/test-api-core-util.module.ts",
-    },
-    Object {
-      "content": "import { Injectable } from '@nestjs/common'
-import { ConfigService } from '@nestjs/config'
-import { CookieOptions } from 'express'
-
-@Injectable()
-export class TestApiCoreUtilService {
-
-  constructor(public readonly config: ConfigService) {}
-
-  uptime(): number {
-    return process.uptime()
-  }
-
-  get apiUrl(): string {
-    return this.config.get('apiUrl')
-  }
-
-  get apiCorsOrigins(): string[] {
-    return this.config.get('api.cors.origin')
-  }
-
-  get cookie(): { name: string; options: CookieOptions } {
-    return this.config.get('api.cookie')
-  }
-}
-",
-      "file": "/lib/test-api-core-util.service.ts",
     },
   ],
   "root": "libs/test-api/core/util/src",
@@ -3719,6 +2699,9 @@ Object {
           "libs/test-api/user/data-access/**/*.ts",
         ],
       },
+      "outputs": Array [
+        "{options.outputFile}",
+      ],
     },
     "test": Object {
       "executor": "@nrwl/jest:jest",
@@ -3743,13 +2726,6 @@ Object {
     "/README.md",
     "/jest.config.js",
     "/src/index.ts",
-    "/src/lib/dto/admin-create-user.input.ts",
-    "/src/lib/dto/admin-update-user.input.ts",
-    "/src/lib/models/email.model.ts",
-    "/src/lib/models/role.enum.ts",
-    "/src/lib/models/user.model.ts",
-    "/src/lib/test-api-user-data-access.module.ts",
-    "/src/lib/test-api-user-data-access.service.ts",
     "/tsconfig.json",
     "/tsconfig.lib.json",
     "/tsconfig.spec.json",
@@ -3771,259 +2747,6 @@ export * from './lib/dto/admin-update-user.input'
 ",
       "file": "/index.ts",
     },
-    Object {
-      "content": "import { Field, InputType } from '@nestjs/graphql'
-import { Role } from '../models/role.enum'
-
-@InputType()
-export class AdminCreateUserInput {
-  @Field(() => Role)
-  role: Role
-
-  @Field()
-  email: string
-
-  @Field({ nullable: true })
-  username?: string
-
-  @Field({ nullable: true })
-  firstName?: string
-
-  @Field({ nullable: true })
-  lastName?: string
-}
-",
-      "file": "/lib/dto/admin-create-user.input.ts",
-    },
-    Object {
-      "content": "import { Field, InputType } from '@nestjs/graphql'
-import { Role } from '../models/role.enum'
-
-@InputType()
-export class AdminUpdateUserInput {
-  @Field(() => Role, { nullable: true })
-  role: Role
-
-  @Field({ nullable: true })
-  username?: string
-
-  @Field({ nullable: true })
-  firstName?: string
-
-  @Field({ nullable: true })
-  lastName?: string
-
-  @Field({ nullable: true })
-  phone: string
-
-  @Field({ nullable: true })
-  avatarUrl?: string
-
-  @Field({ nullable: true })
-  location?: string
-
-  @Field({ nullable: true })
-  bio?: string
-}
-",
-      "file": "/lib/dto/admin-update-user.input.ts",
-    },
-    Object {
-      "content": "import { Field, ObjectType } from '@nestjs/graphql'
-
-@ObjectType()
-export class Email {
-  @Field({ nullable: true })
-  id: string
-
-  @Field({ nullable: true })
-  createdAt: Date
-
-  @Field({ nullable: true })
-  updatedAt: Date
-
-  @Field({ nullable: true })
-  email: string
-
-  @Field({ nullable: true })
-  public: boolean
-
-  @Field({ nullable: true })
-  primary: boolean
-
-  @Field({ nullable: true })
-  verified: boolean
-}
-",
-      "file": "/lib/models/email.model.ts",
-    },
-    Object {
-      "content": "import { registerEnumType } from '@nestjs/graphql'
-import { Role } from '@prisma/client'
-export { Role }
-
-registerEnumType(Role, { name: 'Role' })
-",
-      "file": "/lib/models/role.enum.ts",
-    },
-    Object {
-      "content": "import { Field, ObjectType } from '@nestjs/graphql'
-import { Email } from './email.model'
-import { Role } from './role.enum'
-
-@ObjectType()
-export class User {
-  @Field({ nullable: true })
-  id: string
-
-  @Field({ nullable: true })
-  createdAt: Date
-
-  @Field({ nullable: true })
-  updatedAt: Date
-
-  @Field({ nullable: true })
-  email: string
-
-  @Field({ nullable: true })
-  phone: string
-
-  @Field({ nullable: true })
-  username?: string
-
-  @Field({ nullable: true })
-  firstName?: string
-
-  @Field({ nullable: true })
-  lastName?: string
-
-  @Field({ nullable: true })
-  avatarUrl?: string
-
-  @Field({ nullable: true })
-  location?: string
-
-  @Field({ nullable: true })
-  bio?: string
-
-  @Field(() => Role, { nullable: true })
-  role: Role
-
-  @Field(() => [Email], { nullable: true })
-  emails: Email[]
-
-  password?: string
-}
-",
-      "file": "/lib/models/user.model.ts",
-    },
-    Object {
-      "content": "import { Module } from '@nestjs/common'
-import { TestApiCoreDataAccessModule } from '@proj/test-api/core/data-access'
-
-import { TestApiUserDataAccessService } from './test-api-user-data-access.service'
-
-@Module({
-  imports: [TestApiCoreDataAccessModule],
-  providers: [TestApiUserDataAccessService],
-  exports: [TestApiUserDataAccessService],
-})
-export class TestApiUserDataAccessModule {}
-",
-      "file": "/lib/test-api-user-data-access.module.ts",
-    },
-    Object {
-      "content": "import { Injectable } from '@nestjs/common'
-import { TestApiCoreDataAccessService, CorePaging, CorePagingInput } from '@proj/test-api/core/data-access'
-import { getGravatarUrl, hashPassword, uniqueSuffix } from '@proj/test-api/core/util'
-import { AdminCreateUserInput } from './dto/admin-create-user.input'
-import { AdminUpdateUserInput } from './dto/admin-update-user.input'
-
-@Injectable()
-export class TestApiUserDataAccessService {
-  constructor(private readonly data: TestApiCoreDataAccessService) {}
-
-  async adminUsers(userId: string, paging: CorePagingInput) {
-    await this.data.ensureAdminUser(userId)
-    return this.data.user.findMany({
-      take: paging.limit,
-      skip: paging.skip,
-      include: { emails: true },
-    })
-  }
-
-  async adminCountUsers(adminId: string, paging: CorePagingInput): Promise<CorePaging> {
-    await this.data.ensureAdminUser(adminId)
-    const total = await this.data.user.count()
-    return {
-      limit: paging.limit,
-      skip: paging.skip,
-      total,
-    }
-  }
-
-  async adminUser(adminId: string, userId: string) {
-    await this.data.ensureAdminUser(adminId)
-    return this.data.user.findUnique({ where: { id: userId }, include: { emails: true } })
-  }
-
-  async adminCreateUser(adminId: string, input: AdminCreateUserInput) {
-    await this.data.ensureAdminUser(adminId)
-    const email = input.email.trim()
-    const avatarUrl = getGravatarUrl(email)
-    const username = this.formatUsername(email, input.username)
-    await this.ensureUsernameAvailable(username)
-
-    return this.data.user.create({
-      data: {
-        emails: { create: { email, primary: true } },
-        role: input.role,
-        firstName: input.firstName,
-        lastName: input.lastName,
-        avatarUrl,
-        username,
-      },
-      include: { emails: true },
-    })
-  }
-
-  async adminUpdateUser(adminId: string, userId: string, input: AdminUpdateUserInput) {
-    await this.data.ensureAdminUser(adminId)
-    return this.data.user.update({
-      where: { id: userId },
-      data: { ...input },
-      include: { emails: true },
-    })
-  }
-
-  async adminSetUserPassword(adminId: string, userId: string, password: string) {
-    await this.data.ensureAdminUser(adminId)
-    return this.data.user.update({
-      where: { id: userId },
-      data: { password: hashPassword(password) },
-    })
-  }
-
-  async adminDeleteUser(adminId: string, userId: string) {
-    await this.data.ensureAdminUser(adminId)
-    return this.data.user.delete({ where: { id: userId } })
-  }
-
-  private formatUsername(email: string, username?: string): string {
-    return username?.trim() || uniqueSuffix(email.trim().split('@')[0])
-  }
-
-  private async ensureUsernameAvailable(username: string): Promise<boolean> {
-    const user = await this.data.findUserByUsername(username)
-    if (user) {
-      throw new Error(\`This username is not available\`)
-    }
-    return true
-  }
-}
-",
-      "file": "/lib/test-api-user-data-access.service.ts",
-    },
   ],
   "root": "libs/test-api/user/data-access/src",
 }
@@ -4043,6 +2766,9 @@ Object {
           "libs/test-api/user/feature/**/*.ts",
         ],
       },
+      "outputs": Array [
+        "{options.outputFile}",
+      ],
     },
     "test": Object {
       "executor": "@nrwl/jest:jest",
@@ -4067,9 +2793,6 @@ Object {
     "/README.md",
     "/jest.config.js",
     "/src/index.ts",
-    "/src/lib/test-api-user-feature-admin.resolver.ts",
-    "/src/lib/test-api-user-feature.module.ts",
-    "/src/lib/test-api-user-feature.resolver.ts",
     "/tsconfig.json",
     "/tsconfig.lib.json",
     "/tsconfig.spec.json",
@@ -4084,107 +2807,6 @@ Object {
       "content": "export * from './lib/test-api-user-feature.module'
 ",
       "file": "/index.ts",
-    },
-    Object {
-      "content": "import { Args, Mutation, Query, Resolver } from '@nestjs/graphql'
-import { UseGuards } from '@nestjs/common'
-import {
-  AdminCreateUserInput,
-  AdminUpdateUserInput,
-  TestApiUserDataAccessService,
-  User,
-} from '@proj/test-api/user/data-access'
-import { CorePaging, CorePagingInput } from '@proj/test-api/core/data-access'
-import {
-  CtxUser,
-  GqlAuthAdminGuard,
-} from '@proj/test-api/auth/util'
-
-@Resolver()
-@UseGuards(GqlAuthAdminGuard)
-export class TestApiUserFeatureAdminResolver {
-  constructor(private readonly service: TestApiUserDataAccessService) {}
-
-  @Query(() => [User], { nullable: true })
-  adminUsers(
-    @CtxUser() admin: User,
-    @Args({ name: 'paging', type: () => CorePagingInput, nullable: true }) paging?: CorePagingInput,
-  ) {
-    return this.service.adminUsers(admin.id, paging)
-  }
-
-  @Query(() => CorePaging, { nullable: true })
-  adminCountUsers(
-    @CtxUser() admin: User,
-    @Args({ name: 'paging', type: () => CorePagingInput, nullable: true }) paging?: CorePagingInput,
-  ) {
-    return this.service.adminCountUsers(admin.id, paging)
-  }
-
-  @Query(() => User, { nullable: true })
-  adminUser(@CtxUser() admin: User, @Args('userId') userId: string) {
-    return this.service.adminUser(admin.id, userId)
-  }
-
-  @Mutation(() => User, { nullable: true })
-  adminCreateUser(@CtxUser() admin: User, @Args('input') input: AdminCreateUserInput) {
-    return this.service.adminCreateUser(admin.id, input)
-  }
-
-  @Mutation(() => User, { nullable: true })
-  adminUpdateUser(@CtxUser() admin: User, @Args('userId') userId: string, @Args('input') input: AdminUpdateUserInput) {
-    return this.service.adminUpdateUser(admin.id, userId, input)
-  }
-
-  @Mutation(() => User, { nullable: true })
-  adminSetUserPassword(@CtxUser() admin: User, @Args('userId') userId: string, @Args('password') password: string) {
-    return this.service.adminSetUserPassword(admin.id, userId, password)
-  }
-
-  @Mutation(() => User, { nullable: true })
-  adminDeleteUser(@CtxUser() admin: User, @Args('userId') userId: string) {
-    return this.service.adminDeleteUser(admin.id, userId)
-  }
-}
-",
-      "file": "/lib/test-api-user-feature-admin.resolver.ts",
-    },
-    Object {
-      "content": "import { Module } from '@nestjs/common'
-import { TestApiUserDataAccessModule } from '@proj/test-api/user/data-access'
-
-import { TestApiUserFeatureResolver } from './test-api-user-feature.resolver'
-import { TestApiUserFeatureAdminResolver } from './test-api-user-feature-admin.resolver'
-
-@Module({
-  imports: [TestApiUserDataAccessModule],
-  providers: [TestApiUserFeatureResolver, TestApiUserFeatureAdminResolver],
-})
-export class TestApiUserFeatureModule {}
-",
-      "file": "/lib/test-api-user-feature.module.ts",
-    },
-    Object {
-      "content": "import { Parent, ResolveField, Resolver } from '@nestjs/graphql'
-import { User } from '@proj/test-api/user/data-access'
-
-@Resolver(() => User)
-export class TestApiUserFeatureResolver {
-  @ResolveField(() => String, { nullable: true })
-  name(@Parent() user: User) {
-    const name = [user?.firstName, user?.lastName].join(' ').trim()
-    return name.length ? name : user?.username
-  }
-
-  @ResolveField(() => String, { nullable: true })
-  email(@Parent() user: User) {
-    const hasPrimary = user.emails?.find((email) => email.primary)
-
-    return hasPrimary ? hasPrimary.email : user.emails?.find((e) => e).email
-  }
-}
-",
-      "file": "/lib/test-api-user-feature.resolver.ts",
     },
   ],
   "root": "libs/test-api/user/feature/src",
@@ -8509,7 +7131,7 @@ Object {
       "options": Object {
         "cypressConfig": "apps/test-web-e2e/cypress.json",
         "devServerTarget": "test-web:serve:development",
-        "tsConfig": "apps/test-web-e2e/tsconfig.e2e.json",
+        "tsConfig": "apps/test-web-e2e/tsconfig.json",
       },
     },
     "lint": Object {
@@ -8519,6 +7141,9 @@ Object {
           "apps/test-web-e2e/**/*.{js,ts}",
         ],
       },
+      "outputs": Array [
+        "{options.outputFile}",
+      ],
     },
   },
 }
@@ -8532,11 +7157,9 @@ Object {
     "/cypress.json",
     "/src/fixtures/example.json",
     "/src/integration/app.spec.ts",
-    "/src/plugins/index.js",
     "/src/support/app.po.ts",
     "/src/support/commands.ts",
     "/src/support/index.ts",
-    "/tsconfig.e2e.json",
     "/tsconfig.json",
   ],
 }
@@ -8569,32 +7192,6 @@ describe('test-web', () => {
 });
 ",
       "file": "/integration/app.spec.ts",
-    },
-    Object {
-      "content": "// ***********************************************************
-// This example plugins/index.js can be used to load plugins
-//
-// You can change the location of this file or turn off loading
-// the plugins file with the 'pluginsFile' configuration option.
-//
-// You can read more here:
-// https://on.cypress.io/plugins-guide
-// ***********************************************************
-
-// This function is called when a project is opened or re-opened (e.g. due to
-// the project's config changing)
-
-const { preprocessTypescript } = require('@nrwl/cypress/plugins/preprocessor');
-
-module.exports = (on, config) => {
-  // \`on\` is used to hook into various events Cypress emits
-  // \`config\` is the resolved Cypress config
-
-  // Preprocess Typescript file using Nx helper
-  on('file:preprocessor', preprocessTypescript(config));
-};
-",
-      "file": "/plugins/index.js",
     },
     Object {
       "content": "export const getGreeting = () => cy.get('h1');
