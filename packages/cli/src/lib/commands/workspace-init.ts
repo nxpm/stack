@@ -27,7 +27,7 @@ export async function workspaceInit({
 }: {
   allowExisting: boolean
   dryRun: boolean
-  tag: boolean
+  tag: string
   name: string
   cli: string
   webStyleLibrary: WebStyleLibrary

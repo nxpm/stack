@@ -38,7 +38,7 @@ yargs
       await workspaceInit({
         allowExisting: !!args.allowExisting,
         dryRun: !!args.dryRun,
-        tag: !!args.tag,
+        tag: args.tag,
         name: args.name,
         cli: args.cli,
         webStyleLibrary: args.webStyleLibrary as WebStyleLibrary,
