@@ -1,6 +1,11 @@
 {
   "name": "@nxpm/stack",
-  "version": "0.0.1",
+  "version": "4.21.0",
   "main": "src/index.js",
-  "generators": "./generators.json"
+  "generators": "./generators.json",
+  "homepage": "https://github.com/nxpm/stack",
+  "bugs": {
+    "url": "https://github.com/nxpm/stack/issues"
+  },
+  "license": "MIT"
 }

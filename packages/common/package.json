@@ -1,5 +1,10 @@
 {
   "name": "@nxpm/common",
   "version": "0.0.1",
-  "main": "src/index.js"
+  "main": "src/index.js",
+  "homepage": "https://github.com/nxpm/stack",
+  "bugs": {
+    "url": "https://github.com/nxpm/stack/issues"
+  },
+  "license": "MIT"
 }

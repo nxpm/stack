@@ -90,7 +90,7 @@
             "passWithNoTests": true
           }
         },
-        "build": {
+        "build-base": {
           "executor": "@nrwl/node:package",
           "outputs": ["{options.outputPath}"],
           "options": {
@@ -101,26 +101,43 @@
             "assets": [
               "packages/cli/*.md",
               {
-                "input": "./packages/cli/src",
-                "glob": "**/!(*.ts)",
-                "output": "./src"
+                "input": "packages/cli",
+                "glob": "**/files/**",
+                "output": "/"
               },
               {
-                "input": "./packages/cli/src",
-                "glob": "**/*.d.ts",
-                "output": "./src"
+                "input": "packages/cli",
+                "glob": "**/files/**/.gitkeep",
+                "output": "/"
               },
               {
-                "input": "./packages/cli",
-                "glob": "generators.json",
-                "output": "."
+                "input": "packages/cli",
+                "glob": "**/*.json",
+                "output": "/"
               },
               {
-                "input": "./packages/cli",
-                "glob": "executors.json",
-                "output": "."
-              }
+                "input": "packages/cli",
+                "glob": "**/*.js",
+                "output": "/"
+              },
+              "LICENSE"
             ]
+          }
+        },
+        "build": {
+          "executor": "@nrwl/workspace:run-commands",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/packages/cli",
+            "commands": [
+              {
+                "command": "nx build-base cli"
+              },
+              {
+                "command": "chmod +x dist/packages/cli/bin/*.js"
+              }
+            ],
+            "parallel": false
           }
         }
       }
