@@ -20,12 +20,14 @@ function info(message: string) {
 export async function workspaceInit({
   allowExisting,
   dryRun,
+  tag,
   name,
   cli,
   webStyleLibrary,
 }: {
   allowExisting: boolean
   dryRun: boolean
+  tag: boolean
   name: string
   cli: string
   webStyleLibrary: WebStyleLibrary
@@ -41,13 +43,14 @@ export async function workspaceInit({
     '--preset=empty',
     '--skip-install',
     '--package-manager=yarn',
+    '--default-base=main',
     dryRun ? ' --dry-run ' : '',
   ]
   const createCommand = `yarn create nx-workspace ${name} ${params.join(' ')}`
   runCommand(createCommand)
 
   log('Install dependencies')
-  const deps = ['@nxpm/stack', '@nrwl/angular', '@nrwl/nest', '@nxtend/ionic-angular', '@nxtend/capacitor']
+  const deps = [`@nxpm/stack@${tag}`, '@nrwl/angular', '@nrwl/nest', '@nxtend/ionic-angular', '@nxtend/capacitor']
 
   const installDeps = `yarn add -D ${deps.join(' ')}`
   runCommand(installDeps, target)
