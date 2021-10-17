@@ -1,7 +1,6 @@
 import { formatFiles, Tree } from '@nrwl/devkit'
 import { applicationGenerator as nestApplicationGenerator } from '@nrwl/nest'
-import { uniq } from '@nrwl/nx-plugin/testing'
-import { addFiles, addRunScript, createDotEnv, normalizeOptions, removeFiles } from '@nxpm/common'
+import { addFiles, addRunScript, createDotEnv, normalizeOptions, removeFiles, uniq } from '@nxpm/common'
 import { join } from 'path'
 import { ApiGeneratorSchema } from './schema'
 
