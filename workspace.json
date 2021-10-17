@@ -70,6 +70,61 @@
         }
       }
     },
+    "cli": {
+      "root": "packages/cli",
+      "sourceRoot": "packages/cli/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["packages/cli/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/packages/cli"],
+          "options": {
+            "jestConfig": "packages/cli/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "build": {
+          "executor": "@nrwl/node:package",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/packages/cli",
+            "tsConfig": "packages/cli/tsconfig.lib.json",
+            "packageJson": "packages/cli/package.json",
+            "main": "packages/cli/src/index.ts",
+            "assets": [
+              "packages/cli/*.md",
+              {
+                "input": "./packages/cli/src",
+                "glob": "**/!(*.ts)",
+                "output": "./src"
+              },
+              {
+                "input": "./packages/cli/src",
+                "glob": "**/*.d.ts",
+                "output": "./src"
+              },
+              {
+                "input": "./packages/cli",
+                "glob": "generators.json",
+                "output": "."
+              },
+              {
+                "input": "./packages/cli",
+                "glob": "executors.json",
+                "output": "."
+              }
+            ]
+          }
+        }
+      }
+    },
     "common": {
       "root": "packages/common",
       "sourceRoot": "packages/common/src",

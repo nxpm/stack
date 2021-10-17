@@ -35,6 +35,9 @@
       "tags": [],
       "implicitDependencies": ["api"]
     },
+    "cli": {
+      "tags": []
+    },
     "common": {
       "tags": []
     },

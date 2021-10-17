@@ -16,6 +16,7 @@
     "baseUrl": ".",
     "paths": {
       "@nxpm/api": ["packages/api/src/index.ts"],
+      "@nxpm/cli": ["packages/cli/src/index.ts"],
       "@nxpm/common": ["packages/common/src/index.ts"],
       "@nxpm/mobile": ["packages/mobile/src/index.ts"],
       "@nxpm/stack": ["packages/stack/src/index.ts"],
