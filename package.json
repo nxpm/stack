@@ -29,6 +29,7 @@
   },
   "private": true,
   "dependencies": {
+    "nxpm": "^1.18.0",
     "tslib": "^2.0.0"
   },
   "devDependencies": {
