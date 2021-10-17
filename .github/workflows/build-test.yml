@@ -39,5 +39,5 @@ jobs:
       - run: yarn install --frozen-lockfile
       - run: yarn build
       - run: yarn format:check --base=remotes/origin/main
-      - run: yarn affected:test --base=remotes/origin/main
+      #      - run: yarn affected:test --base=remotes/origin/main
       - run: yarn affected:e2e --base=remotes/origin/main

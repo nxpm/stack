@@ -243,6 +243,7 @@ exports[`init generator should run successfully with default options 4`] = `
   },
   \\"devDependencies\\": {
     \\"@angular-devkit/build-angular\\": \\"~12.2.0\\",
+    \\"@angular-devkit/core\\": \\"12.2.10\\",
     \\"@angular-eslint/eslint-plugin\\": \\"~12.3.0\\",
     \\"@angular-eslint/eslint-plugin-template\\": \\"~12.3.0\\",
     \\"@angular-eslint/template-parser\\": \\"~12.3.0\\",

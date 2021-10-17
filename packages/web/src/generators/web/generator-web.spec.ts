@@ -33,5 +33,5 @@ describe('web generator', () => {
 
     const appRoot = getProjectContentRoot(appTree, options.name)
     expect(appRoot).toMatchSnapshot()
-  }, 30000)
+  }, 60000)
 })

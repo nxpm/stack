@@ -1,5 +1,6 @@
 export const versions = {
   angularCdk: '12.1.2',
+  angularDevkitCore: '12.2.10',
   apolloAngular: '2.6.0',
   apolloClient: '3.3.21',
   apolloServerExpress: '2.18.0',

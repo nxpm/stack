@@ -65,8 +65,6 @@
           "executor": "@nrwl/nx-plugin:e2e",
           "options": {
             "target": "api:build",
-            "npmPackageName": "@nxpm/api",
-            "pluginOutputPath": "dist/packages/api",
             "jestConfig": "e2e/api-e2e/jest.config.js"
           }
         }
@@ -191,8 +189,6 @@
           "executor": "@nrwl/nx-plugin:e2e",
           "options": {
             "target": "mobile:build",
-            "npmPackageName": "@nxpm/mobile",
-            "pluginOutputPath": "dist/packages/mobile",
             "jestConfig": "e2e/mobile-e2e/jest.config.js"
           }
         }
@@ -262,8 +258,6 @@
           "executor": "@nrwl/nx-plugin:e2e",
           "options": {
             "target": "stack:build",
-            "npmPackageName": "@nxpm/stack",
-            "pluginOutputPath": "dist/packages/stack",
             "jestConfig": "e2e/stack-e2e/jest.config.js"
           }
         }
@@ -333,8 +327,6 @@
           "executor": "@nrwl/nx-plugin:e2e",
           "options": {
             "target": "web:build",
-            "npmPackageName": "@nxpm/web",
-            "pluginOutputPath": "dist/packages/web",
             "jestConfig": "e2e/web-e2e/jest.config.js"
           }
         }

@@ -122,6 +122,7 @@ export async function generatorWeb(host: Tree, options: WebGeneratorSchema) {
       'apollo-angular': versions.apolloAngular,
     },
     {
+      '@angular-devkit/core': versions.angularDevkitCore,
       '@graphql-codegen/cli': versions.graphqlCodegenCli,
       '@graphql-codegen/introspection': versions.graphqlCodegenIntrospection,
       '@graphql-codegen/typescript': versions.graphqlCodegenTypescript,

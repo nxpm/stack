@@ -28,5 +28,5 @@ describe('api generator', () => {
       const content = getProjectContent(appTree, project)
       expect(content).toMatchSnapshot()
     }
-  }, 30000)
+  }, 60000)
 })
