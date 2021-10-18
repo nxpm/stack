@@ -1,0 +1,24 @@
+{
+  "cli": "nx",
+  "id": "crud",
+  "type": "object",
+  "properties": {
+    "model": {
+      "type": "string",
+      "description": "Name of the model (in kebab-case), for example: company-address",
+      "$default": {
+        "$source": "argv",
+        "index": 0
+      }
+    },
+    "plural": {
+      "type": "string",
+      "description": "Name of the model (in kebab-case), for example: company-addresses",
+      "$default": {
+        "$source": "argv",
+        "index": 1
+      }
+    }
+  },
+  "required": ["model", "plural"]
+}

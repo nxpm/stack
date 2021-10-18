@@ -1,0 +1,7 @@
+{
+  "cli": "nx",
+  "id": "workspace-setup",
+  "type": "object",
+  "properties": {},
+  "required": []
+}

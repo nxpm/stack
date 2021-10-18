@@ -11,10 +11,6 @@ export const GIT_IGNORE = '.gitignore'
 export function appendGitIgnore(host: Tree, lines: string | string[]) {
   const content = Array.isArray(lines) ? lines : [lines]
 
-  const gitIgnore = host.read(GIT_IGNORE)
-  createOrOverwrite(
-    host,
-    GIT_IGNORE,
-    content.filter((line) => !gitIgnore?.includes(line)),
-  )
+  const gitIgnore = host.read(GIT_IGNORE)?.toString() || ''
+  createOrOverwrite(host, GIT_IGNORE, [...gitIgnore?.split('\n'), ...content])
 }

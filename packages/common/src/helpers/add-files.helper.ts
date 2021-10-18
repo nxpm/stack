@@ -1,7 +1,12 @@
 import { generateFiles, names, offsetFromRoot, Tree } from '@nrwl/devkit'
 import { NormalizedSchema } from '../interfaces'
 
-export function addFiles(host: Tree, options: NormalizedSchema, srcFolder: string) {
+export function addFiles(
+  host: Tree,
+  options: NormalizedSchema,
+  srcFolder: string,
+  extraOptions: Record<string, string> = {},
+) {
   const api = names(options.appNameApi)
   const mobile = names(options.appNameMobile)
   const web = names(options.appNameWeb)
@@ -17,6 +22,7 @@ export function addFiles(host: Tree, options: NormalizedSchema, srcFolder: strin
     offsetFromRoot: offsetFromRoot(root),
     template: '',
     tmpl: '',
+    ...extraOptions,
   }
   generateFiles(host, srcFolder, root, templateOptions)
 }

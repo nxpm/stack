@@ -1,0 +1,11 @@
+import { CommonModule } from '@angular/common'
+import { NgModule } from '@angular/core'
+import { RouterModule } from '@angular/router'
+import { <%= tmplStart %> className <%= tmplEnd %>Component } from './<%= tmplStart %> fileName <%= tmplEnd %>.component'
+
+@NgModule({
+  declarations: [<%= tmplStart %> className <%= tmplEnd %>Component],
+  exports: [<%= tmplStart %> className <%= tmplEnd %>Component],
+  imports: [CommonModule, RouterModule],
+})
+export class <%= tmplStart %> className <%= tmplEnd %>Module {}

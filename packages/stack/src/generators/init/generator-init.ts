@@ -6,6 +6,7 @@ import { join } from 'path'
 
 import { InitGeneratorSchema } from './schema'
 import { generatorSharedUtils } from '../shared-utils/generator-shared-utils'
+import { generatorWorkspaceGenerators } from '../workspace-generators/generator-workspace-generators'
 
 export async function generatorInit(host: Tree, options: InitGeneratorSchema) {
   // Prepare options
@@ -42,6 +43,7 @@ export async function generatorInit(host: Tree, options: InitGeneratorSchema) {
     })
   }
 
+  await generatorWorkspaceGenerators(host, normalizedOptions)
   workspaceConfig(host, normalizedOptions, join(__dirname, 'files'))
   await formatFiles(host)
 }

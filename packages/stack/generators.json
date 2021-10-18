@@ -9,9 +9,14 @@
       "description": "init generator"
     },
     "shared-utils": {
-      "factory": "./src/generators/shared-utils/generator",
+      "factory": "./src/generators/shared-utils/generator-shared-utils#generatorSharedUtils",
       "schema": "./src/generators/shared-utils/schema.json",
       "description": "shared-utils generator"
+    },
+    "workspace-generators": {
+      "factory": "./src/generators/workspace-generators/generator-workspace-generators#generatorWorkspaceGenerators",
+      "schema": "./src/generators/workspace-generators/schema.json",
+      "description": "workspace-generators generator"
     }
   }
 }
