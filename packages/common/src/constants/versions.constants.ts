@@ -3,7 +3,7 @@ export const versions = {
   angularDevkitCore: '12.2.10',
   apolloAngular: '2.6.0',
   apolloClient: '3.4.16',
-  apolloServerExpress: '3.4.0',
+  apolloServerExpress: '2.25.2',
   bcryptjs: '2.4.3',
   classTransformer: '0.4.0',
   classValidator: '0.13.1',
