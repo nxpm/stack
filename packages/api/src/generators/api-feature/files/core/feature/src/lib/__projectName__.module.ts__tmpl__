@@ -1,7 +1,6 @@
 import { GraphQLIntercomModule } from '@kikstart-playground/graphql-intercom'
 import { Module } from '@nestjs/common'
 import { GraphQLModule } from '@nestjs/graphql'
-import { ApolloServerPluginLandingPageGraphQLPlayground } from 'apollo-server-core';
 import { PubSub } from 'graphql-subscriptions'
 import { join } from 'path'
 import { <%= api.className %>AccountFeatureModule } from '@<%= npmScope %>/<%= api.name %>/account/feature'
@@ -18,13 +17,11 @@ import { <%= project.className %>Service } from './<%= project.name %>.service'
       autoSchemaFile: join(process.cwd(), '<%= api.name %>-schema.graphql'),
       context: ({ req, res }) => ({ req, res }),
       installSubscriptionHandlers: true,
-      plugins: [
-        ApolloServerPluginLandingPageGraphQLPlayground({
-          settings: {
-            'request.credentials': 'include',
-          },
-        }),
-      ],
+      playground: {
+        settings: {
+          'request.credentials': 'include',
+        },
+      },
       sortSchema: true,
     }),
     GraphQLIntercomModule.forRoot({ pubSub: new PubSub() }),
