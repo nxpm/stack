@@ -1,6 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`shared-util-libs schematic should run successfully 1`] = `
-"export * from './generated/graphql'
-"
-`;

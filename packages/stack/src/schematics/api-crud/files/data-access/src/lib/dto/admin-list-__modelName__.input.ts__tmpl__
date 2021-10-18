@@ -1,9 +1,0 @@
-import { Field, InputType } from '@nestjs/graphql'
-import { CorePagingInput } from '@<%= npmScope %>/<%= apiAppName %>/core/data-access'
-
-@InputType()
-export class AdminList<%= classify(modelName) %>Input extends CorePagingInput {
-  @Field({ nullable: true })
-  <%= nameField %>?: string
-}
-

@@ -1,8 +1,0 @@
-import { Field, InputType } from '@nestjs/graphql'
-
-@InputType()
-export class AdminUpdate<%= classify(modelName) %>Input {
-  @Field({ nullable: true })
-  <%= nameField %>?: string
-}
-

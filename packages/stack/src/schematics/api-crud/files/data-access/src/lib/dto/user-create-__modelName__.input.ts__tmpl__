@@ -1,8 +1,0 @@
-import { Field, InputType } from '@nestjs/graphql'
-
-@InputType()
-export class UserCreate<%= classify(modelName) %>Input {
-  @Field()
-  <%= nameField %>: string
-}
-
