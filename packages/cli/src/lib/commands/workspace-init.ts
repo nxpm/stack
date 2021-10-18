@@ -79,6 +79,6 @@ export async function workspaceInit({
   info(`To get started         : ${gray(`cd ${name}`)}`)
   info(`Run setup              : ${gray(`yarn setup`)}`)
   info(`Start API              : ${gray(`yarn dev:api`)}`)
-  info(`Start Mobile           : ${gray(`yarn dev:api`)}`)
+  info(`Start Mobile           : ${gray(`yarn dev:mobile`)}`)
   info(`Start Web              : ${gray(`yarn dev:web`)}`)
 }
