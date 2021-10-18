@@ -1,5 +1,5 @@
-export interface MobileGeneratorSchema {
-  name: string
-  tags?: string
-  directory?: string
+import { AppTypeMobile, BaseSchema } from '@nxpm/common'
+
+export interface MobileGeneratorSchema extends BaseSchema {
+  type?: AppTypeMobile
 }

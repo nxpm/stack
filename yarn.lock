@@ -1347,7 +1347,7 @@
     mkdirp "^1.0.4"
     rimraf "^3.0.2"
 
-"@nrwl/angular@12.10.0":
+"@nrwl/angular@12.10.0", "@nrwl/angular@^12.0.0":
   version "12.10.0"
   resolved "https://registry.yarnpkg.com/@nrwl/angular/-/angular-12.10.0.tgz#244fa8d9fb718ae749a0b25c6d1d60d1f1c23d33"
   integrity sha512-7MVaTU132cdVBAdZw2eaa8PMVZweKyMTjEgg6mIoEns9G/WDB8lzugh0Fq+TwakxGOecZX5tZbN12f/fC2/UGQ==
@@ -1395,7 +1395,7 @@
     webpack-node-externals "1.7.2"
     yargs-parser "20.0.0"
 
-"@nrwl/devkit@12.10.0":
+"@nrwl/devkit@12.10.0", "@nrwl/devkit@^12.0.0":
   version "12.10.0"
   resolved "https://registry.yarnpkg.com/@nrwl/devkit/-/devkit-12.10.0.tgz#cf4a1dfb1036212185548d68296ac26e498a41c4"
   integrity sha512-we0K5Hn48BXh77SV5GVSPfRJeIHNCVFSn+feLbnKz3G60Tk3wFEEFhDABA8cCfTKDxMESSjZoWBy4ZcVg0EX0g==
@@ -1542,7 +1542,7 @@
     tslib "^2.0.0"
     yargs-parser "20.0.0"
 
-"@nrwl/workspace@12.10.0":
+"@nrwl/workspace@12.10.0", "@nrwl/workspace@^12.0.0":
   version "12.10.0"
   resolved "https://registry.yarnpkg.com/@nrwl/workspace/-/workspace-12.10.0.tgz#7e26256a5f3187f6e60eb3ac177a00768633baa4"
   integrity sha512-3efkh/0DEOmQXnA2SlBcEk21QiM0vPaJt73CiYnocm1oy7/ngZDyhxYFxOJkVtsfRvR69Etj2JLonbIWa4Za5w==
@@ -1572,6 +1572,22 @@
     tslib "^2.0.0"
     yargs "15.4.1"
     yargs-parser "20.0.0"
+
+"@nxtend/capacitor@^12.0.0-beta.0", "@nxtend/capacitor@^12.0.0-beta.1":
+  version "12.0.0-beta.1"
+  resolved "https://registry.yarnpkg.com/@nxtend/capacitor/-/capacitor-12.0.0-beta.1.tgz#07d6b228ace7d0692d8e57964b4570cce1751a28"
+  integrity sha512-NOaUlJZSWUiEJh6eJbpM8IHmKhEoAmtI+Aw4+oKEL4JZRIsQRTDzzLnuOYZr+RumeNm5BY9sLkJxQcUnwttOLA==
+  dependencies:
+    "@nrwl/devkit" "^12.0.0"
+    "@nrwl/workspace" "^12.0.0"
+
+"@nxtend/ionic-angular@^12.0.0-beta.1":
+  version "12.0.0-beta.1"
+  resolved "https://registry.yarnpkg.com/@nxtend/ionic-angular/-/ionic-angular-12.0.0-beta.1.tgz#06f767cc6320c847f7643dc444c5549cbfbdf391"
+  integrity sha512-XWFL65f5kYK5uuIe0qGBS64Fshe46fgYcGMwnnipe8aLCAM6AsXQhabOPmQ5JBjp9SMxbo7fOrTH0dtYy+eO4g==
+  dependencies:
+    "@nrwl/angular" "^12.0.0"
+    "@nxtend/capacitor" "^12.0.0-beta.0"
 
 "@oclif/command@^1.5.20", "@oclif/command@^1.6.0", "@oclif/command@^1.6.1":
   version "1.8.0"

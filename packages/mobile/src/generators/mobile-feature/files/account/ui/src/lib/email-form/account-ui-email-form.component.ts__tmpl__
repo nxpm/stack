@@ -1,0 +1,23 @@
+import { Component, EventEmitter, Output } from '@angular/core'
+import { FormGroup } from '@angular/forms'
+import { <%= mobile.className %>UiFormField } from '@<%= npmScope %>/<%= mobile.name %>/ui/form'
+
+@Component({
+  selector: 'account-email-form',
+  template: `
+    <ui-form (submitForm)="submit($event.payload)" [model]="model" [fields]="fields" [form]="form"></ui-form>
+    <div class="">
+      <ui-button (handler)="submit(model)" [disabled]="!form.valid" label="Save"></ui-button>
+    </div>
+  `,
+})
+export class AccountUiEmailFormComponent {
+  @Output() send = new EventEmitter()
+  model = {}
+  form = new FormGroup({})
+  fields = [<%= mobile.className %>UiFormField.input('email', { required: true })]
+
+  submit(payload: any) {
+    this.send.emit(payload)
+  }
+}

@@ -1,6 +1,7 @@
 import { formatFiles, Tree } from '@nrwl/devkit'
 import { generatorApi } from '@nxpm/api'
 import { normalizeOptions, workspaceConfig } from '@nxpm/common'
+import { generatorMobile } from '@nxpm/mobile'
 import { generatorWeb } from '@nxpm/web'
 import { join } from 'path'
 
@@ -23,7 +24,11 @@ export async function generatorInit(host: Tree, options: InitGeneratorSchema) {
 
   if (!normalizedOptions.skipMobile) {
     // Run Mobile
-    // await generatorMobile(host, { name: options.mobileName, type: options.mobileType })
+    await generatorMobile(host, {
+      ...normalizedOptions,
+      name: options.mobileName,
+      type: options.mobileType,
+    })
   }
 
   if (!normalizedOptions.skipWeb) {

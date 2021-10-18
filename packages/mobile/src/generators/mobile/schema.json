@@ -23,6 +23,12 @@
       "type": "string",
       "description": "A directory where the project is placed",
       "alias": "d"
+    },
+    "type": {
+      "type": "string",
+      "enum": ["mobile"],
+      "description": "Type of Mobile project",
+      "default": "mobile"
     }
   },
   "required": ["name"]

@@ -1,0 +1,23 @@
+import { Injectable } from '@angular/core'
+import { <%= mobile.className %>CoreDataAccessService, LoginInput, RegisterInput } from '@<%= npmScope %>/<%= mobile.name %>/core/data-access'
+
+@Injectable()
+export class <%= project.className %>Service {
+  constructor(public readonly data: <%= mobile.className %>CoreDataAccessService) {}
+
+  me() {
+    return this.data.me()
+  }
+
+  login(input: LoginInput) {
+    return this.data.login({ input })
+  }
+
+  logout() {
+    return this.data.logout()
+  }
+
+  register(input: RegisterInput) {
+    return this.data.register({ input })
+  }
+}

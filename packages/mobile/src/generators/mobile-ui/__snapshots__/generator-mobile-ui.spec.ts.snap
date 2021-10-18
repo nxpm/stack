@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`mobile-ui generator should run successfully 1`] = `
+Object {
+  "affected": Object {
+    "defaultBase": "master",
+  },
+  "npmScope": "proj",
+  "projects": Object {
+    "test": Object {
+      "tags": Array [],
+    },
+    "test-e2e": Object {
+      "implicitDependencies": Array [
+        "test",
+      ],
+      "tags": Array [],
+    },
+    "test-ui-button": Object {
+      "tags": Array [],
+    },
+    "test-ui-form": Object {
+      "tags": Array [],
+    },
+    "test-ui-icon": Object {
+      "tags": Array [],
+    },
+    "test-ui-loader": Object {
+      "tags": Array [],
+    },
+    "test-ui-page": Object {
+      "tags": Array [],
+    },
+    "test-ui-page-header": Object {
+      "tags": Array [],
+    },
+    "test-ui-sidebar-page": Object {
+      "tags": Array [],
+    },
+    "test-ui-table": Object {
+      "tags": Array [],
+    },
+    "test-ui-toast": Object {
+      "tags": Array [],
+    },
+  },
+  "tasksRunnerOptions": Object {
+    "default": Object {
+      "options": Object {
+        "cacheableOperations": Array [
+          "build",
+          "lint",
+          "test",
+          "e2e",
+        ],
+      },
+      "runner": "@nrwl/workspace/tasks-runners/default",
+    },
+  },
+}
+`;

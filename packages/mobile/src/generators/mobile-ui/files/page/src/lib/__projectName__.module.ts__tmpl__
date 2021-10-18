@@ -1,0 +1,12 @@
+import { NgModule } from '@angular/core'
+import { CommonModule } from '@angular/common'
+import { RouterModule } from '@angular/router'
+import { IonicModule } from '@ionic/angular'
+import { <%= project.className %>Component } from './<%= projectName %>.component'
+
+@NgModule({
+  declarations: [<%= project.className %>Component],
+  exports: [<%= project.className %>Component],
+  imports: [CommonModule, IonicModule, RouterModule],
+})
+export class <%= project.className %>Module {}

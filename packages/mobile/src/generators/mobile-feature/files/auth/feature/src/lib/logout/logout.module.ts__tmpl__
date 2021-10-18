@@ -1,0 +1,15 @@
+import { NgModule } from '@angular/core'
+import { CommonModule } from '@angular/common'
+import { Routes, RouterModule } from '@angular/router'
+import { <%= mobile.className %>AuthDataAccessModule } from '@<%= npmScope %>/<%= mobile.name %>/auth/data-access'
+import { <%= mobile.className %>UiFormModule } from '@<%= npmScope %>/<%= mobile.name %>/ui/form'
+import { AuthPageModule } from '@<%= npmScope %>/<%= mobile.name %>/auth/ui'
+import { LogoutComponent } from './logout.component'
+
+const routes: Routes = [{ path: '', component: LogoutComponent }]
+
+@NgModule({
+  declarations: [LogoutComponent],
+  imports: [CommonModule, RouterModule.forChild(routes), <%= mobile.className %>UiFormModule, AuthPageModule, <%= mobile.className %>AuthDataAccessModule],
+})
+export class LogoutModule {}

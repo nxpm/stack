@@ -1,0 +1,14 @@
+import { NgModule } from '@angular/core'
+import { CommonModule } from '@angular/common'
+import { Routes, RouterModule } from '@angular/router'
+import { <%= mobile.className %>AuthDataAccessModule } from '@<%= npmScope %>/<%= mobile.name %>/auth/data-access'
+import { AuthPageModule } from '@<%= npmScope %>/<%= mobile.name %>/auth/ui'
+import { RegisterComponent } from './register.component'
+
+const routes: Routes = [{ path: '', component: RegisterComponent }]
+
+@NgModule({
+  declarations: [RegisterComponent],
+  imports: [CommonModule, RouterModule.forChild(routes), AuthPageModule, <%= mobile.className %>AuthDataAccessModule],
+})
+export class RegisterModule {}

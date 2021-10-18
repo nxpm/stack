@@ -1,0 +1,28 @@
+import { CommonModule } from '@angular/common'
+import { NgModule } from '@angular/core'
+import { RouterModule } from '@angular/router'
+import {
+  AccountUiEmailFormModule,
+  AccountUiEmailListModule,
+  AccountUiEmailPrimaryFormModule,
+} from '@<%= npmScope %>/<%= mobile.name %>/account/ui'
+import { <%= mobile.className %>UiLoaderModule } from '@<%= npmScope %>/<%= mobile.name %>/ui/loader'
+import { AccountEmailComponent } from './account-email.component'
+
+@NgModule({
+  declarations: [AccountEmailComponent],
+  imports: [
+    CommonModule,
+    RouterModule.forChild([
+      {
+        path: '',
+        component: AccountEmailComponent,
+      },
+    ]),
+    AccountUiEmailListModule,
+    AccountUiEmailPrimaryFormModule,
+    AccountUiEmailFormModule,
+    <%= mobile.className %>UiLoaderModule,
+  ],
+})
+export class AccountEmailModule {}

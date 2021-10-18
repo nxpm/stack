@@ -1,0 +1,59 @@
+import { Injectable } from '@angular/core'
+import { <%= mobile.className %>AuthStore } from '@<%= npmScope %>/<%= mobile.name %>/auth/data-access'
+import { Role } from '@<%= npmScope %>/<%= mobile.name %>/core/data-access'
+import { ComponentStore } from '@ngrx/component-store'
+
+export interface <%= project.className %>Link {
+  label?: string
+  route?: string
+  icon?: string
+  divider?: boolean
+  role?: Role
+}
+
+export interface <%= project.className %>State {
+  theme: 'dark' | 'light'
+  logo: string
+  title: string
+  subTitle: string
+  footerHtml: string
+  links: <%= project.className %>Link[]
+}
+
+@Injectable()
+export class <%= project.className %>Store extends ComponentStore<<%= project.className %>State> {
+  constructor(private readonly authStore: <%= mobile.className %>AuthStore) {
+    super({
+      theme: 'dark',
+      logo: '/assets/images/logo.png',
+      title: 'NXPM',
+      subTitle: 'Ionic / Angular',
+      footerHtml: `Copyright &copy; ${new Date().getFullYear()}`,
+      links: [
+        { label: 'Dashboard', icon: 'grid', route: '/dashboard' },
+        { divider: true },
+        { label: 'Your Account', icon: 'person', route: '/account' },
+        { label: 'About', icon: 'information-circle', route: '/about' },
+        { label: 'Logout', icon: 'log-out', route: '/logout' },
+      ],
+    })
+  }
+
+  readonly user$ = this.authStore.user$
+  readonly links$ = this.select(this.authStore.user$, this.state$, (user, state) => ({
+    main: state.links.filter((l) => (l.role ? l.role === user?.role : l)),
+  }))
+
+  readonly layout$ = this.select(({ logo, footerHtml, theme, subTitle, title }) => ({
+    logo,
+    footerHtml,
+    theme,
+    subTitle,
+    title,
+  }))
+  readonly vm$ = this.select(this.user$, this.links$, this.layout$, (user, links, layout) => ({
+    user,
+    links,
+    layout,
+  }))
+}

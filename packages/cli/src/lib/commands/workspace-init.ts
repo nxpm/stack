@@ -50,7 +50,13 @@ export async function workspaceInit({
   runCommand(createCommand)
 
   log('Install dependencies')
-  const deps = [`@nxpm/stack@${tag}`, '@nrwl/angular', '@nrwl/nest', '@nxtend/ionic-angular', '@nxtend/capacitor']
+  const deps = [
+    `@nxpm/stack@${tag}`,
+    '@nrwl/angular',
+    '@nrwl/nest',
+    '@nxtend/ionic-angular@beta',
+    '@nxtend/capacitor@beta',
+  ]
 
   const installDeps = `yarn add -D ${deps.join(' ')}`
   runCommand(installDeps, target)

@@ -1,0 +1,19 @@
+import { NgModule } from '@angular/core'
+import { ReactiveFormsModule } from '@angular/forms'
+import { FormlyModule } from '@ngx-formly/core'
+import { FormlyIonicModule } from '@ngx-formly/ionic'
+
+import { <%= project.className %>Component } from './<%= projectName %>.component'
+import { UiFormValidatorsModule } from './validators/ui-form-validators.module'
+
+@NgModule({
+  declarations: [<%= project.className %>Component],
+  exports: [<%= project.className %>Component],
+  imports: [
+    ReactiveFormsModule,
+    FormlyModule.forRoot(),
+    FormlyIonicModule,
+    UiFormValidatorsModule,
+  ],
+})
+export class <%= project.className %>Module {}

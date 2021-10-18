@@ -1,0 +1,195 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`mobile-base generator should run successfully 1`] = `
+Object {
+  "affected": Object {
+    "defaultBase": "master",
+  },
+  "npmScope": "proj",
+  "projects": Object {
+    "mobile-test": Object {
+      "tags": Array [],
+    },
+    "mobile-test-assets": Object {
+      "tags": Array [],
+    },
+    "mobile-test-e2e": Object {
+      "implicitDependencies": Array [
+        "mobile-test",
+      ],
+      "tags": Array [],
+    },
+    "mobile-test-environments": Object {
+      "tags": Array [],
+    },
+    "mobile-test-style": Object {
+      "tags": Array [],
+    },
+  },
+  "tasksRunnerOptions": Object {
+    "default": Object {
+      "options": Object {
+        "cacheableOperations": Array [
+          "build",
+          "lint",
+          "test",
+          "e2e",
+        ],
+      },
+      "runner": "@nrwl/workspace/tasks-runners/default",
+    },
+  },
+}
+`;
+
+exports[`mobile-base generator should run successfully 2`] = `
+Object {
+  "prefix": "proj",
+  "projectType": "application",
+  "root": "apps/mobile-test",
+  "sourceRoot": "apps/mobile-test/src",
+  "tags": Array [],
+  "targets": Object {
+    "build": Object {
+      "configurations": Object {
+        "development": Object {
+          "buildOptimizer": false,
+          "extractLicenses": false,
+          "namedChunks": true,
+          "optimization": false,
+          "sourceMap": true,
+          "vendorChunk": true,
+        },
+        "production": Object {
+          "budgets": Array [
+            Object {
+              "maximumError": "1mb",
+              "maximumWarning": "500kb",
+              "type": "initial",
+            },
+            Object {
+              "maximumError": "4kb",
+              "maximumWarning": "2kb",
+              "type": "anyComponentStyle",
+            },
+          ],
+          "fileReplacements": Array [
+            Object {
+              "replace": "libs/mobile-test/environments/src/environments/environment.ts",
+              "with": "libs/mobile-test/environments/src/environments/environment.prod.ts",
+            },
+          ],
+          "outputHashing": "all",
+        },
+      },
+      "defaultConfiguration": "production",
+      "executor": "@angular-devkit/build-angular:browser",
+      "options": Object {
+        "assets": Array [
+          Object {
+            "glob": "favicon.ico",
+            "input": "libs/mobile-test/assets/src",
+            "output": "./",
+          },
+          Object {
+            "glob": "**/*",
+            "input": "libs/mobile-test/assets/src/assets",
+            "output": "assets",
+          },
+        ],
+        "index": "apps/mobile-test/src/index.html",
+        "main": "apps/mobile-test/src/main.ts",
+        "outputPath": "dist/apps/mobile-test",
+        "polyfills": "apps/mobile-test/src/polyfills.ts",
+        "scripts": Array [],
+        "styles": Array [
+          "apps/mobile-test/src/styles.css",
+        ],
+        "tsConfig": "apps/mobile-test/tsconfig.app.json",
+      },
+      "outputs": Array [
+        "{options.outputPath}",
+      ],
+    },
+    "extract-i18n": Object {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": Object {
+        "browserTarget": "mobile-test:build",
+      },
+    },
+    "lint": Object {
+      "executor": "@nrwl/linter:eslint",
+      "options": Object {
+        "lintFilePatterns": Array [
+          "apps/mobile-test/src/**/*.ts",
+          "apps/mobile-test/src/**/*.html",
+        ],
+      },
+    },
+    "serve": Object {
+      "configurations": Object {
+        "development": Object {
+          "browserTarget": "mobile-test:build:development",
+        },
+        "production": Object {
+          "browserTarget": "mobile-test:build:production",
+        },
+      },
+      "defaultConfiguration": "development",
+      "executor": "@angular-devkit/build-angular:dev-server",
+    },
+    "test": Object {
+      "executor": "@nrwl/jest:jest",
+      "options": Object {
+        "jestConfig": "apps/mobile-test/jest.config.js",
+        "passWithNoTests": true,
+      },
+      "outputs": Array [
+        "coverage/apps/mobile-test",
+      ],
+    },
+  },
+}
+`;
+
+exports[`mobile-base generator should run successfully 3`] = `
+Object {
+  "prefix": "proj",
+  "projectType": "library",
+  "root": "libs/mobile-test/assets",
+  "sourceRoot": "libs/mobile-test/assets/src",
+  "tags": Array [],
+  "targets": Object {},
+}
+`;
+
+exports[`mobile-base generator should run successfully 4`] = `
+Object {
+  "prefix": "proj",
+  "projectType": "library",
+  "root": "libs/mobile-test/environments",
+  "sourceRoot": "libs/mobile-test/environments/src",
+  "tags": Array [],
+  "targets": Object {
+    "lint": Object {
+      "executor": "@nrwl/linter:eslint",
+      "options": Object {
+        "lintFilePatterns": Array [
+          "libs/mobile-test/environments/src/**/*.ts",
+          "libs/mobile-test/environments/src/**/*.html",
+        ],
+      },
+    },
+    "test": Object {
+      "executor": "@nrwl/jest:jest",
+      "options": Object {
+        "jestConfig": "libs/mobile-test/environments/jest.config.js",
+        "passWithNoTests": true,
+      },
+      "outputs": Array [
+        "coverage/libs/mobile-test/environments",
+      ],
+    },
+  },
+}
+`;

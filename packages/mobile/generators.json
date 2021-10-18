@@ -7,6 +7,31 @@
       "factory": "./src/generators/mobile/generator-mobile#generatorMobile",
       "schema": "./src/generators/mobile/schema.json",
       "description": "mobile generator"
+    },
+    "mobile-base": {
+      "factory": "./src/generators/mobile-base/generator-mobile-base#generatorMobileBase",
+      "schema": "./src/generators/mobile-base/schema.json",
+      "description": "mobile-base generator"
+    },
+    "mobile-feature": {
+      "factory": "./src/generators/mobile-feature/generator-mobile-feature#generatorMobileFeature",
+      "schema": "./src/generators/mobile-feature/schema.json",
+      "description": "mobile-feature generator"
+    },
+    "mobile-lib": {
+      "factory": "./src/generators/mobile-lib/generator-mobile-lib#generatorMobileLib",
+      "schema": "./src/generators/mobile-lib/schema.json",
+      "description": "mobile-lib generator"
+    },
+    "mobile-ui": {
+      "factory": "./src/generators/mobile-ui/generator-mobile-ui#generatorMobileUi",
+      "schema": "./src/generators/mobile-ui/schema.json",
+      "description": "mobile-ui generator"
+    },
+    "mobile-ui-lib": {
+      "factory": "./src/generators/mobile-ui-lib/generator-mobile-ui-lib#generatorMobileUiLib",
+      "schema": "./src/generators/mobile-ui-lib/schema.json",
+      "description": "mobile-ui-lib generator"
     }
   }
 }

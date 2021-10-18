@@ -1,0 +1,33 @@
+import { Component } from '@angular/core'
+import { LoginInput } from '@<%= npmScope %>/<%= mobile.name %>/core/data-access'
+import { <%= mobile.className %>AuthStore } from '@<%= npmScope %>/<%= mobile.name %>/auth/data-access'
+import { <%= mobile.className %>UiFormField } from '@<%= npmScope %>/<%= mobile.name %>/ui/form'
+
+@Component({
+  template: `
+    <ng-container *ngIf="vm$ | async as vm">
+      <auth-page
+        (submitForm)="submit($event)"
+        [errors]="vm.errors"
+        [fields]="fields"
+        buttonTitle="Log in"
+        linkPath="/register"
+        linkTitle="Register"
+        pageTitle="Login"
+      >
+      </auth-page>
+    </ng-container>
+  `,
+})
+export class LoginComponent {
+  readonly vm$ = this.store.vm$
+  readonly fields: <%= mobile.className %>UiFormField[] = [
+    <%= mobile.className %>UiFormField.input('email', { label: 'Email', required: true }),
+    <%= mobile.className %>UiFormField.password('password', { label: 'Password', required: true }),
+  ]
+  constructor(private readonly store: <%= mobile.className %>AuthStore) {}
+
+  submit(input: LoginInput) {
+    this.store.loginEffect(input)
+  }
+}

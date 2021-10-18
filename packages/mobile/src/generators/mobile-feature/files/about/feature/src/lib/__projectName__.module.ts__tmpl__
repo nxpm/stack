@@ -1,0 +1,17 @@
+import { NgModule } from '@angular/core'
+import { CommonModule } from '@angular/common'
+import { RouterModule } from '@angular/router'
+import { IonicModule } from '@ionic/angular'
+import { <%= mobile.className %>UiPageModule } from '@<%= npmScope %>/<%= mobile.name %>/ui/page'
+import { <%= project.className %>Component } from './<%= projectName %>.component'
+
+@NgModule({
+  declarations: [<%= project.className %>Component],
+  imports: [
+    CommonModule,
+    RouterModule.forChild([{ path: '', pathMatch: 'full', component: <%= project.className %>Component }]),
+    <%= mobile.className %>UiPageModule,
+    IonicModule,
+  ],
+})
+export class <%= project.className %>Module {}

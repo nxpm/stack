@@ -1,0 +1,31 @@
+import { Component, EventEmitter, Input, Output } from '@angular/core'
+import { FormGroup } from '@angular/forms'
+import { AccountUpdateProfileInput, User } from '@<%= npmScope %>/<%= mobile.name %>/core/data-access'
+import { <%= mobile.className %>UiFormField } from '@<%= npmScope %>/<%= mobile.name %>/ui/form'
+
+@Component({
+  selector: 'account-profile-form',
+  template: `
+    <ui-form (submitForm)="submit($event.payload)" [model]="user" [fields]="fields" [form]="form"></ui-form>
+    <div class="">
+      <ui-button (handler)="submit($any(user))" [disabled]="!form.valid" label="Save"></ui-button>
+    </div>
+  `,
+})
+export class AccountUiProfileFormComponent {
+  @Input() user: User = {}
+  @Output() send = new EventEmitter()
+  form = new FormGroup({})
+  fields = [
+    <%= mobile.className %>UiFormField.input('firstName', { label: 'First name' }),
+    <%= mobile.className %>UiFormField.input('lastName', { label: 'Last name' }),
+    <%= mobile.className %>UiFormField.input('avatarUrl', { label: 'Avatar Url' }),
+    <%= mobile.className %>UiFormField.input('phone', { label: 'Phone' }),
+    <%= mobile.className %>UiFormField.input('location', { label: 'Location' }),
+    <%= mobile.className %>UiFormField.textarea('bio', { label: 'Biography' }),
+  ]
+
+  submit({ avatarUrl, bio, firstName, lastName, location, phone }: AccountUpdateProfileInput) {
+    this.send.emit({ avatarUrl, bio, firstName, lastName, location, phone })
+  }
+}

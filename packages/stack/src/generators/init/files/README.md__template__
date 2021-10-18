@@ -14,12 +14,28 @@ Make sure to have Docker running, the setup will use `docker-compose` to start t
 yarn setup
 ```
 
+# Start Services
+
+The services are defined in the `docker-compose.yml` file in the project root.
+
+Tou can start them with this command:
+
+```shell
+yarn dev:services
+```
+
 # Development server
 
 Start <%= api.className %>
 
 ```shell
 yarn dev:<%= api.name %>
+```
+
+Start <%= mobile.className %>
+
+```shell
+yarn dev:<%= mobile.name %>
 ```
 
 Start <%= web.className %>
@@ -46,7 +62,7 @@ yarn dev:sdk
 
 # Building the project
 
-You can build both apps into a production build:
+You can build all apps into a production build:
 
 ```shell
 yarn build
@@ -64,6 +80,12 @@ Build <%= api.className %>
 yarn build:<%= api.name %>
 ```
 
+Build <%= mobile.className %>
+
+```shell
+yarn build:<%= mobile.name %>
+```
+
 Build <%= web.className %>
 
 ```shell
@@ -74,5 +96,6 @@ yarn build:<%= web.name %>
 
 ```markdown
 Api: <%= api.name %>
+Mobile: <%= mobile.name %>
 Web: <%= web.name %>
 ```

@@ -45,6 +45,8 @@
     "@nrwl/nx-plugin": "12.10.0",
     "@nrwl/tao": "12.10.0",
     "@nrwl/workspace": "12.10.0",
+    "@nxtend/capacitor": "^12.0.0-beta.1",
+    "@nxtend/ionic-angular": "^12.0.0-beta.1",
     "@types/jest": "27.0.2",
     "@types/node": "14.14.33",
     "@typescript-eslint/eslint-plugin": "4.31.2",

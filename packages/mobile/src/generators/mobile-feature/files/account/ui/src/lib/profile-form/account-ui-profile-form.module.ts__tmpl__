@@ -1,0 +1,13 @@
+import { CommonModule } from '@angular/common'
+import { NgModule } from '@angular/core'
+import { RouterModule } from '@angular/router'
+import { <%= mobile.className %>UiButtonModule } from '@<%= npmScope %>/<%= mobile.name %>/ui/button'
+import { <%= mobile.className %>UiFormModule } from '@<%= npmScope %>/<%= mobile.name %>/ui/form'
+import { AccountUiProfileFormComponent } from './account-ui-profile-form.component'
+
+@NgModule({
+  exports: [AccountUiProfileFormComponent],
+  declarations: [AccountUiProfileFormComponent],
+  imports: [CommonModule, RouterModule, <%= mobile.className %>UiFormModule, <%= mobile.className %>UiButtonModule],
+})
+export class AccountUiProfileFormModule {}

@@ -1,0 +1,15 @@
+import { CommonModule } from '@angular/common'
+import { NgModule } from '@angular/core'
+import { RouterModule } from '@angular/router'
+import { IonicModule } from '@ionic/angular'
+import { <%= mobile.className %>UiFormModule } from '@<%= npmScope %>/<%= mobile.name %>/ui/form'
+import { <%= mobile.className %>UiPageModule } from '@<%= npmScope %>/<%= mobile.name %>/ui/page'
+import { AuthPageComponent } from './auth-page.component'
+
+@NgModule({
+  declarations: [AuthPageComponent],
+  imports: [CommonModule, IonicModule, RouterModule, <%= mobile.className %>UiFormModule, <%= mobile.className %>UiPageModule],
+  exports: [AuthPageComponent],
+})
+export class AuthPageModule {}
+

@@ -1,0 +1,49 @@
+import { NgModule } from '@angular/core'
+import { PreloadAllModules, RouteReuseStrategy, RouterModule, Routes } from '@angular/router'
+import { SplashScreen } from '@ionic-native/splash-screen/ngx'
+import { StatusBar } from '@ionic-native/status-bar/ngx'
+import { IonicModule, IonicRouteStrategy } from '@ionic/angular'
+import { <%= mobile.className %>AuthDataAccessModule, IsLoggedInGuard } from '@<%= npmScope %>/<%= mobile.name %>/auth/data-access'
+import { <%= mobile.className %>CoreFeatureModule } from '@<%= npmScope %>/<%= mobile.name %>/core/feature'
+import { <%= mobile.className %>LayoutFeatureComponent } from '@<%= npmScope %>/<%= mobile.name %>/layout/feature'
+
+const routes: Routes = [
+  {
+    path: '',
+    component: <%= mobile.className %>LayoutFeatureComponent,
+    canActivate: [IsLoggedInGuard],
+    children: [
+      // Application routes here
+      { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
+      {
+        path: 'about',
+        loadChildren: () => import('@<%= npmScope %>/<%= mobile.name %>/about/feature').then((m) => m.<%= mobile.className %>AboutFeatureModule),
+      },
+      {
+        path: 'account',
+        loadChildren: () => import('@<%= npmScope %>/<%= mobile.name %>/account/feature').then((m) => m.<%= mobile.className %>AccountFeatureModule),
+      },
+      {
+        path: 'dashboard',
+        loadChildren: () => import('@<%= npmScope %>/<%= mobile.name %>/dashboard/feature').then((m) => m.<%= mobile.className %>DashboardFeatureModule),
+      },
+      { path: 'not-found', loadChildren: () => import('./not-found/not-found.module').then((m) => m.NotFoundModule) },
+    ],
+  },
+  {
+    path: '',
+    loadChildren: () => import('@<%= npmScope %>/<%= mobile.name %>/auth/feature').then((m) => m.<%= mobile.className %>AuthFeatureModule),
+  },
+  { path: '**', redirectTo: '/not-found' },
+]
+
+@NgModule({
+  providers: [StatusBar, SplashScreen, { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  imports: [
+    IonicModule.forRoot(),
+    RouterModule.forRoot(routes, { paramsInheritanceStrategy: 'always', preloadingStrategy: PreloadAllModules }),
+    <%= mobile.className %>AuthDataAccessModule,
+    <%= mobile.className %>CoreFeatureModule,
+  ],
+})
+export class <%= project.className %>Module {}

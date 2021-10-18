@@ -1,0 +1,41 @@
+import { Component } from '@angular/core'
+import { <%= project.className %>Store } from './<%= projectName %>.store'
+
+@Component({
+  template: `
+    <ng-container *ngIf="vm$ | async as vm">
+      <ion-split-pane contentId="main-content">
+        <ion-menu contentId="main-content" type="overlay">
+          <ion-content>
+            <ion-list id="inbox-list">
+              <ion-list-header>{{ vm.layout?.title }}</ion-list-header>
+              <ion-note>{{ vm.layout?.subTitle }}</ion-note>
+              <ion-menu-toggle auto-hide="false" *ngFor="let p of vm.links.main">
+                <ion-item-divider *ngIf="p.divider"></ion-item-divider>
+                <ion-item
+                  *ngIf="!p.divider"
+                  routerDirection="root"
+                  routerLinkActive="selected"
+                  [routerLink]="[p.route]"
+                  lines="none"
+                  detail="false"
+                >
+                  <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
+                  <ion-label>{{ p.label }}</ion-label>
+                </ion-item>
+              </ion-menu-toggle>
+            </ion-list>
+          </ion-content>
+        </ion-menu>
+        <ion-router-outlet id="main-content"></ion-router-outlet>
+      </ion-split-pane>
+    </ng-container>
+  `,
+  styleUrls: ['./<%= project.fileName %>.component.css'],
+  providers: [<%= project.className %>Store],
+})
+export class <%= project.className %>Component {
+  vm$ = this.layoutStore.vm$
+
+  constructor(private readonly layoutStore: <%= project.className %>Store) {}
+}

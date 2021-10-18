@@ -1,0 +1,32 @@
+import { Component, Input } from '@angular/core'
+
+export interface <%= project.className %>Link {
+  label: string
+  icon: string
+  path: string
+}
+
+@Component({
+  selector: 'ui-sidebar-page',
+  template: `
+    <ui-page [pageTitle]="headerTitle">
+      <div>
+        <aside>
+          <nav>
+            <ng-container *ngFor="let link of links">
+              <ion-button [routerLink]="link.path" fill="outline" slot="end">{{link.label}}</ion-button>
+            </ng-container>
+          </nav>
+        </aside>
+
+        <div>
+          <ng-content></ng-content>
+        </div>
+      </div>
+    </ui-page>
+  `,
+})
+export class <%= project.className %>Component {
+  @Input() headerTitle: string | undefined;
+  @Input() links: <%= project.className %>Link[] = []
+}

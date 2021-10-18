@@ -1,3 +1,4 @@
+import { NgModule } from '@angular/core'
 import { BrowserModule } from '@angular/platform-browser'
 import { RouterModule } from '@angular/router'
 import { <%= web.className %>ShellFeatureModule } from '@<%= npmScope %>/<%= web.name %>/shell/feature'

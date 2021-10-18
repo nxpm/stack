@@ -1,0 +1,22 @@
+import { Component, OnInit } from '@angular/core'
+import { <%= mobile.className %>AuthStore } from '@<%= npmScope %>/<%= mobile.name %>/auth/data-access'
+
+@Component({
+  template: `
+    <ng-container *ngIf="vm$ | async as vm">
+      <auth-page pageTitle="Logging out">
+        <div class="" *ngIf="vm.errors">
+          {{ vm.errors }}
+        </div>
+      </auth-page>
+    </ng-container>
+  `,
+})
+export class LogoutComponent implements OnInit {
+  readonly vm$ = this.store.vm$
+  constructor(private readonly store: <%= mobile.className %>AuthStore) {}
+
+  ngOnInit(): void {
+    this.store.logoutEffect()
+  }
+}

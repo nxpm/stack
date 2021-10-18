@@ -4,7 +4,6 @@ import { ensureNxProjects } from '../lib/testing'
 describe('stack e2e', () => {
   const nameApi = uniq('api')
   const nameMobile = uniq('mobile')
-  const nameStack = uniq('stack')
   const nameWeb = uniq('web')
 
   beforeAll(async () => {
@@ -17,7 +16,7 @@ describe('stack e2e', () => {
       { package: '@nxpm/stack', path: 'dist/packages/stack' },
       { package: '@nxpm/web', path: 'dist/packages/web' },
     ])
-    const params = [nameStack, '--api-name', nameApi, '--mobile-name', nameMobile, '--web-name', nameWeb].join(' ')
+    const params = ['--api-name', nameApi, '--mobile-name', nameMobile, '--web-name', nameWeb].join(' ')
     const command = `generate @nxpm/stack:init ${params}`
     console.log(`Generate project: nx ${command}`)
     await runNxCommandAsync(command)
@@ -46,5 +45,11 @@ describe('stack e2e', () => {
     console.log('Build Web')
     const buildWebResult = await runCommandAsync(`yarn build:${nameWeb}`)
     expect(buildWebResult.stdout).toContain('Build at:')
+  }, 90000)
+
+  it('should build mobile', async () => {
+    console.log('Build Mobile')
+    const buildMobileResult = await runCommandAsync(`yarn build:${nameMobile}`)
+    expect(buildMobileResult.stdout).toContain('Build at:')
   }, 90000)
 })

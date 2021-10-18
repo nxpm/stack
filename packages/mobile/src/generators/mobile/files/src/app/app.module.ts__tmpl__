@@ -1,0 +1,17 @@
+import { BrowserModule } from '@angular/platform-browser'
+import { NgModule } from '@angular/core'
+import { IonicModule } from '@ionic/angular'
+import { <%= mobile.className %>ShellFeatureModule } from '@<%= npmScope %>/<%= name %>/shell/feature'
+
+import { AppComponent } from './app.component'
+
+@NgModule({
+  bootstrap: [AppComponent],
+  declarations: [AppComponent],
+  imports: [
+    BrowserModule,
+    IonicModule,
+    <%= mobile.className %>ShellFeatureModule,
+  ],
+})
+export class AppModule {}

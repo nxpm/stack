@@ -20,7 +20,7 @@ export function workspaceConfig(host: Tree, options: NormalizedSchema, srcFolder
   addRunScript(
     host,
     'build',
-    `yarn build:${options.appNameWeb} && yarn prisma:generate && yarn build:${options.appNameApi}`,
+    `yarn build:${options.appNameWeb} && yarn build:${options.appNameMobile} && yarn prisma:generate && yarn build:${options.appNameApi}`,
     true,
   )
   addRunScript(host, 'dev:services', `docker-compose up`, true)

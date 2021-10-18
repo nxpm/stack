@@ -1,4 +1,4 @@
-import { normalizeOptions } from '@nxpm/common'
+import { normalizeOptions, versions } from '@nxpm/common'
 import { join } from 'path'
 import { generateWebUiLib } from './generate-web-ui-lib'
 import { WebUiGeneratorSchema } from './schema'
@@ -13,7 +13,7 @@ export async function generateWebUiLibForm(host, options: WebUiGeneratorSchema) 
     name,
     join(__dirname, 'files', name),
     {
-      '@ngx-formly/core': '5.10.13',
+      '@ngx-formly/core': versions.ngxFormlyCore,
     },
     normalizedOptions,
   )
