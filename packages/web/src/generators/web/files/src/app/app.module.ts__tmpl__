@@ -1,5 +1,4 @@
 import { BrowserModule } from '@angular/platform-browser'
-import { NgModule } from '@angular/core'
 import { RouterModule } from '@angular/router'
 import { <%= web.className %>ShellFeatureModule } from '@<%= npmScope %>/<%= web.name %>/shell/feature'
 
@@ -7,11 +6,7 @@ import { AppComponent } from './app.component'
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [
-    BrowserModule,
-    <%= web.className %>ShellFeatureModule,
-  ],
-  providers: [],
+  imports: [ BrowserModule, <%= web.className %>ShellFeatureModule ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
