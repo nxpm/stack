@@ -1,6 +1,6 @@
 {
   "name": "@nxpm/common",
-  "version": "5.0.0-beta.10",
+  "version": "5.0.0-beta.11",
   "main": "src/index.js",
   "homepage": "https://github.com/nxpm/stack",
   "bugs": {

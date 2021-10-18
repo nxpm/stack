@@ -1,7 +1,7 @@
 {
   "name": "@nxpm/cli",
   "description": "CLI for @nxpm/stack",
-  "version": "5.0.0-beta.10",
+  "version": "5.0.0-beta.11",
   "license": "MIT",
   "bin": {
     "nxpm-stack": "bin/nxpm-stack.js"
