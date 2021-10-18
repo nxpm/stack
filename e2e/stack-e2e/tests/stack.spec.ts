@@ -23,14 +23,14 @@ describe('stack e2e', () => {
     console.log('Install packages second run')
     await runPackageManagerInstall()
     console.log('Test project created')
-  }, 600000)
+  }, 2000000)
 
   it('should push prisma schema', async () => {
     console.log('run prisma:db-push')
     const prismaResult = await runCommandAsync(`yarn prisma:db-push`)
     expect(prismaResult.stderr).toBe('')
     expect(prismaResult.stdout).toContain('Your database is now in sync with your schema.')
-  }, 60000)
+  })
 
   it('should build api', async () => {
     console.log('Build API')
@@ -39,17 +39,17 @@ describe('stack e2e', () => {
     expect(buildApiResult.stderr).toContain('Found an outdated version of webpack-merge')
     expect(buildApiResult.stdout).toContain('[entry]')
     expect(buildApiResult.stdout).toContain('[rendered]')
-  }, 60000)
+  })
 
   it('should build web', async () => {
     console.log('Build Web')
     const buildWebResult = await runCommandAsync(`yarn build:${nameWeb}`)
     expect(buildWebResult.stdout).toContain('Build at:')
-  }, 90000)
+  })
 
   it('should build mobile', async () => {
     console.log('Build Mobile')
     const buildMobileResult = await runCommandAsync(`yarn build:${nameMobile}`)
     expect(buildMobileResult.stdout).toContain('Build at:')
-  }, 90000)
+  })
 })
