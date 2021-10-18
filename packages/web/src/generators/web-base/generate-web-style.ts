@@ -4,6 +4,7 @@ import {
   addTailwindConfig,
   normalizeOptions,
   removeFiles,
+  updateAppStyles,
   updateProjectTargets,
   versions,
 } from '@nxpm/common'
@@ -30,6 +31,7 @@ export async function generateWebStyle(host: Tree, options: WebBaseGeneratorSche
   await generatorWebLib(host, { directory, name, type: 'none' })
   addTailwindConfig(host, normalizedOptions.appNameWeb)
   addFiles(host, normalizedOptions, join(__dirname, 'files/style'))
+  updateAppStyles(host, appName, [`libs/${normalizedOptions.appNameWeb}/${name}/src/index.css`])
   updateProjectTargets(host, projectName)
   removeFiles(
     host,
@@ -46,5 +48,21 @@ export async function generateWebStyle(host: Tree, options: WebBaseGeneratorSche
       `README.md`,
     ],
     `libs/${appName}/${name}/`,
+  )
+  removeFiles(
+    host,
+    [
+      `app/app.component.css`,
+      `app/app.component.html`,
+      `app/app.component.spec.ts`,
+      `environments/environment.ts`,
+      `environments/environment.prod.ts`,
+      `environments`,
+      `assets/.gitkeep`,
+      `assets/`,
+      `favicon.ico`,
+      `styles.css`,
+    ],
+    `apps/${appName}/src/`,
   )
 }

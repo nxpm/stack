@@ -8,6 +8,10 @@ export function updateAppAssets(
   return updateProjectExecutorOptions(host, projectName, 'build', 'options', 'assets', assets)
 }
 
+export function updateAppStyles(host: Tree, projectName: string, styles: string[] = []) {
+  return updateProjectExecutorOptions(host, projectName, 'build', 'options', 'styles', styles)
+}
+
 export function updateAppFileReplacements(
   host: Tree,
   projectName: string,
