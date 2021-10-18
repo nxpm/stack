@@ -62,6 +62,9 @@ export async function workspaceInit({
   log('Finalize package installation')
   runCommand('yarn', target)
 
+  log('Formatting files')
+  runCommand(`yarn nx format:write --all`, target)
+
   log('Rewrite git history')
   const rewriteGitHistory = `git checkout -B main && git add . && git commit -am "Initial commit of @nxpm/stack"`
   runCommand(rewriteGitHistory, target)
