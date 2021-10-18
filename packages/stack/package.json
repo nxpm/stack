@@ -1,6 +1,6 @@
 {
   "name": "@nxpm/stack",
-  "version": "5.0.0-beta.5",
+  "version": "5.0.0-beta.6",
   "main": "src/index.js",
   "generators": "./generators.json",
   "homepage": "https://github.com/nxpm/stack",
