@@ -29,6 +29,18 @@
       "type": "string",
       "description": "A directory where the project is placed",
       "alias": "d"
+    },
+    "skipApi": {
+      "type": "boolean",
+      "description": "Skip generating the 'api' app"
+    },
+    "skipMobile": {
+      "type": "boolean",
+      "description": "Skip generating the 'mobile' app"
+    },
+    "skipWeb": {
+      "type": "boolean",
+      "description": "Skip generating the 'web' app"
     }
   },
   "required": []
