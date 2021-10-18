@@ -5,15 +5,6 @@
   "title": "",
   "type": "object",
   "properties": {
-    "name": {
-      "type": "string",
-      "description": "",
-      "$default": {
-        "$source": "argv",
-        "index": 0
-      },
-      "x-prompt": "What name would you like to use?"
-    },
     "apiName": {
       "type": "string",
       "description": "Name of the API project",
