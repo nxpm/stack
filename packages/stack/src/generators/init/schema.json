@@ -31,5 +31,5 @@
       "alias": "d"
     }
   },
-  "required": ["name"]
+  "required": []
 }
