@@ -2,7 +2,7 @@ import { bold, cyanBright, gray, inverse, magentaBright, white } from 'chalk'
 import { execSync } from 'child_process'
 import { existsSync } from 'fs-extra'
 import { join } from 'path'
-import { WebStyleLibrary } from '../interfaces'
+import { WorkspaceInitOptions } from './workspace-init-options'
 
 function log(...msg) {
   console.log(magentaBright('>'), inverse(magentaBright(bold(` NXPM `))), ...msg)
@@ -23,15 +23,11 @@ export async function workspaceInit({
   tag,
   name,
   cli,
+  skipApi,
+  skipMobile,
+  skipWeb,
   webStyleLibrary,
-}: {
-  allowExisting: boolean
-  dryRun: boolean
-  tag: string
-  name: string
-  cli: string
-  webStyleLibrary: WebStyleLibrary
-}) {
+}: WorkspaceInitOptions) {
   const target = join(process.cwd(), name)
   if (existsSync(target) && !allowExisting) {
     throw new Error(`Path ${target} already exists`)
@@ -44,7 +40,10 @@ export async function workspaceInit({
     '--skip-install',
     '--package-manager=yarn',
     '--default-base=main',
-    dryRun ? ' --dry-run ' : '',
+    skipApi ? '--skip-api' : '',
+    skipMobile ? '--skip-mobile' : '',
+    skipWeb ? '--skip-web' : '',
+    dryRun ? '--dry-run ' : '',
   ]
   const createCommand = `yarn create nx-workspace ${name} ${params.join(' ')}`
   runCommand(createCommand)

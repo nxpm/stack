@@ -28,6 +28,18 @@ yargs
         demandOption: false,
         default: 'nx',
       },
+      skipApi: {
+        type: 'boolean',
+        demandOption: false,
+      },
+      skipMobile: {
+        type: 'boolean',
+        demandOption: false,
+      },
+      skipWeb: {
+        type: 'boolean',
+        demandOption: false,
+      },
       webStyleLibrary: {
         type: 'string',
         demandOption: false,
@@ -41,6 +53,9 @@ yargs
         tag: args.tag,
         name: args.name,
         cli: args.cli,
+        skipApi: !!args.skipApi,
+        skipMobile: !!args.skipMobile,
+        skipWeb: !!args.skipWeb,
         webStyleLibrary: args.webStyleLibrary as WebStyleLibrary,
       })
     },
