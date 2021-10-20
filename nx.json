@@ -27,44 +27,11 @@
       }
     ]
   },
-  "projects": {
-    "api": {
-      "tags": []
-    },
-    "api-e2e": {
-      "tags": [],
-      "implicitDependencies": ["api"]
-    },
-    "cli": {
-      "tags": []
-    },
-    "common": {
-      "tags": []
-    },
-    "mobile": {
-      "tags": []
-    },
-    "mobile-e2e": {
-      "tags": [],
-      "implicitDependencies": ["mobile"]
-    },
-    "stack": {
-      "tags": []
-    },
-    "stack-e2e": {
-      "tags": [],
-      "implicitDependencies": ["stack"]
-    },
-    "web": {
-      "tags": []
-    },
-    "web-e2e": {
-      "tags": [],
-      "implicitDependencies": ["web"]
-    }
-  },
   "workspaceLayout": {
     "appsDir": "e2e",
     "libsDir": "packages"
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/workspace"
   }
 }

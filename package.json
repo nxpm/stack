@@ -33,18 +33,18 @@
     "tslib": "^2.0.0"
   },
   "devDependencies": {
-    "@nrwl/angular": "12.10.0",
-    "@nrwl/cli": "12.10.0",
-    "@nrwl/devkit": "12.10.0",
-    "@nrwl/eslint-plugin-nx": "12.10.0",
-    "@nrwl/jest": "12.10.0",
-    "@nrwl/linter": "12.10.0",
-    "@nrwl/nest": "12.10.0",
-    "@nrwl/node": "12.10.0",
-    "@nrwl/nx-cloud": "^12.3.14",
-    "@nrwl/nx-plugin": "12.10.0",
-    "@nrwl/tao": "12.10.0",
-    "@nrwl/workspace": "12.10.0",
+    "@nrwl/angular": "13.0.1",
+    "@nrwl/cli": "13.0.1",
+    "@nrwl/devkit": "13.0.1",
+    "@nrwl/eslint-plugin-nx": "13.0.1",
+    "@nrwl/jest": "13.0.1",
+    "@nrwl/linter": "13.0.1",
+    "@nrwl/nest": "13.0.1",
+    "@nrwl/node": "13.0.1",
+    "@nrwl/nx-cloud": "12.5.0",
+    "@nrwl/nx-plugin": "13.0.1",
+    "@nrwl/tao": "13.0.1",
+    "@nrwl/workspace": "13.0.1",
     "@nxtend/capacitor": "^12.0.0-beta.1",
     "@nxtend/ionic-angular": "^12.0.0-beta.1",
     "@types/jest": "27.0.2",
@@ -64,3 +64,4 @@
     "typescript": "4.3.5"
   }
 }
+

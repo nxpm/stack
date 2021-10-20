@@ -35,8 +35,7 @@ describe('stack e2e', () => {
   it('should build api', async () => {
     console.log('Build API')
     const buildApiResult = await runCommandAsync(`yarn build:${nameApi}`)
-    // Webpack 5
-    expect(buildApiResult.stderr).toContain('Found an outdated version of webpack-merge')
+    expect(buildApiResult.stderr).toContain('')
     expect(buildApiResult.stdout).toContain('[entry]')
     expect(buildApiResult.stdout).toContain('[rendered]')
   })

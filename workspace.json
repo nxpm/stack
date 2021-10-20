@@ -54,7 +54,8 @@
             ]
           }
         }
-      }
+      },
+      "tags": []
     },
     "api-e2e": {
       "root": "e2e/api-e2e",
@@ -68,7 +69,9 @@
             "jestConfig": "e2e/api-e2e/jest.config.js"
           }
         }
-      }
+      },
+      "tags": [],
+      "implicitDependencies": ["api"]
     },
     "cli": {
       "root": "packages/cli",
@@ -140,7 +143,8 @@
             "parallel": false
           }
         }
-      }
+      },
+      "tags": []
     },
     "common": {
       "root": "packages/common",
@@ -195,7 +199,8 @@
             ]
           }
         }
-      }
+      },
+      "tags": []
     },
     "mobile": {
       "root": "packages/mobile",
@@ -250,7 +255,8 @@
             ]
           }
         }
-      }
+      },
+      "tags": []
     },
     "mobile-e2e": {
       "root": "e2e/mobile-e2e",
@@ -264,7 +270,9 @@
             "jestConfig": "e2e/mobile-e2e/jest.config.js"
           }
         }
-      }
+      },
+      "tags": [],
+      "implicitDependencies": ["mobile"]
     },
     "stack": {
       "root": "packages/stack",
@@ -319,7 +327,8 @@
             ]
           }
         }
-      }
+      },
+      "tags": []
     },
     "stack-e2e": {
       "root": "e2e/stack-e2e",
@@ -333,7 +342,9 @@
             "jestConfig": "e2e/stack-e2e/jest.config.js"
           }
         }
-      }
+      },
+      "tags": [],
+      "implicitDependencies": ["stack"]
     },
     "web": {
       "root": "packages/web",
@@ -388,7 +399,8 @@
             ]
           }
         }
-      }
+      },
+      "tags": []
     },
     "web-e2e": {
       "root": "e2e/web-e2e",
@@ -402,10 +414,9 @@
             "jestConfig": "e2e/web-e2e/jest.config.js"
           }
         }
-      }
+      },
+      "tags": [],
+      "implicitDependencies": ["web"]
     }
-  },
-  "cli": {
-    "defaultCollection": "@nrwl/workspace"
   }
 }
