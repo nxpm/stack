@@ -1,6 +1,6 @@
 {
   "name": "nxpm",
-  "version": "5.0.0-beta.12",
+  "version": "5.0.0-beta.13",
   "license": "MIT",
   "scripts": {
     "nx": "nx",
@@ -64,4 +64,3 @@
     "typescript": "4.3.5"
   }
 }
-
