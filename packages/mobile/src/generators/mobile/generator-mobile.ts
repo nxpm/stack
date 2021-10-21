@@ -1,7 +1,7 @@
 import { addDependenciesToPackageJson, formatFiles, Tree } from '@nrwl/devkit'
 import { MobileGeneratorSchema } from './schema'
 import { addFiles, addProxyConfig, addRunScript, normalizeOptions, setServePort, versions } from '@nxpm/common'
-import { applicationGenerator as angularApplicationGenerator } from '@nrwl/angular/generators'
+import { applicationGenerator } from '@nxtend/ionic-angular/src/generators/application/generator'
 import { join } from 'path'
 import { generatorMobileBase } from '../mobile-base/generator-mobile-base'
 import {
@@ -21,13 +21,14 @@ export async function generatorMobile(host: Tree, options: MobileGeneratorSchema
   const name = normalizedOptions.name || 'mobile'
 
   // api application
-  await angularApplicationGenerator(host, {
+  await applicationGenerator(host, {
     // ...normalizedOptions,
     name,
-    backendProject: normalizedOptions.appNameApi,
-    inlineStyle: true,
-    inlineTemplate: true,
+    capacitor: false,
+    e2eTestRunner: 'jest',
     skipFormat: true,
+    template: 'blank',
+    unitTestRunner: 'jest',
   })
 
   // api application files
