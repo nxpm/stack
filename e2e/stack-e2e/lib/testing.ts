@@ -29,9 +29,9 @@ function runNxNewCommand(args?: string, silent?: boolean) {
  *
  * @param paths
  */
-export function newNxProject(paths: ProjectDistPath[]): void {
+export function newNxProject(paths: ProjectDistPath[], packageManager: string): void {
   cleanup()
-  runNxNewCommand('--package-manager=yarn', true)
+  runNxNewCommand(`--package-manager=${packageManager}`, true)
   patchDistProjects(paths)
   for (const path of paths) {
     patchPackageJsonForPlugin(path.package, path.path)
@@ -69,7 +69,7 @@ export function patchDistProjects(paths: ProjectDistPath[]): void {
  * Ensures that a project has been setup in the e2e directory
  * It will also copy `@nrwl` packages to the e2e directory
  */
-export function ensureNxProjects(paths: ProjectDistPath[]): void {
+export function ensureNxProjects(paths: ProjectDistPath[], packageManager: string): void {
   ensureDirSync(tmpProjPath())
-  newNxProject(paths)
+  newNxProject(paths, packageManager)
 }

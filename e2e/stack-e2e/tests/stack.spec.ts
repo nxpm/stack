@@ -5,17 +5,21 @@ describe('stack e2e', () => {
   const nameApi = uniq('api')
   const nameMobile = uniq('mobile')
   const nameWeb = uniq('web')
+  const packageManager = 'pnpm'
 
   beforeAll(async () => {
     process.env.HUSKY_SKIP_INSTALL = 'true'
     console.log('Create workspace')
-    ensureNxProjects([
-      { package: '@nxpm/api', path: 'dist/packages/api' },
-      { package: '@nxpm/common', path: 'dist/packages/common' },
-      { package: '@nxpm/mobile', path: 'dist/packages/mobile' },
-      { package: '@nxpm/stack', path: 'dist/packages/stack' },
-      { package: '@nxpm/web', path: 'dist/packages/web' },
-    ])
+    ensureNxProjects(
+      [
+        { package: '@nxpm/api', path: 'dist/packages/api' },
+        { package: '@nxpm/common', path: 'dist/packages/common' },
+        { package: '@nxpm/mobile', path: 'dist/packages/mobile' },
+        { package: '@nxpm/stack', path: 'dist/packages/stack' },
+        { package: '@nxpm/web', path: 'dist/packages/web' },
+      ],
+      packageManager,
+    )
     const params = ['--api-name', nameApi, '--mobile-name', nameMobile, '--web-name', nameWeb].join(' ')
     const command = `generate @nxpm/stack:init ${params}`
     console.log(`Generate project: nx ${command}`)
