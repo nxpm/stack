@@ -41,7 +41,6 @@ export async function workspaceInit({
     '--package-manager=yarn',
     '--default-base=main',
     skipApi ? '--skip-api' : '',
-    skipMobile ? '--skip-mobile' : '',
     skipWeb ? '--skip-web' : '',
     dryRun ? '--dry-run ' : '',
   ]
@@ -49,19 +48,17 @@ export async function workspaceInit({
   runCommand(createCommand)
 
   log('Install dependencies')
-  const deps = [
-    `@nxpm/stack@${tag}`,
-    '@nrwl/angular',
-    '@nrwl/nest',
-    '@nxtend/ionic-angular@beta',
-    '@nxtend/capacitor@beta',
-  ]
+  const deps = [`@nxpm/stack@${tag}`, '@nrwl/angular', '@nrwl/nest']
+
+  if (!skipMobile) {
+    deps.push('@nxtend/ionic-angular@beta', '@nxtend/capacitor@beta')
+  }
 
   const installDeps = `yarn add -D ${deps.join(' ')}`
   runCommand(installDeps, target)
 
   log('Initialize @nxpm/stack')
-  const initProject = `yarn nx g @nxpm/stack:init`
+  const initProject = `yarn nx g @nxpm/stack:init ${skipMobile ? '--skip-mobile' : ''}`
   runCommand(initProject, target)
 
   log('Finalize package installation')
