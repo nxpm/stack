@@ -1,6 +1,5 @@
 import { BaseSchema } from '@nxpm/common'
-
-export type WebLibType = 'data-access' | 'feature' | 'none' | 'util' | 'ui'
+import { WebLibType } from '../../helpers'
 
 export interface WebLibGeneratorSchema extends BaseSchema {
   name: string

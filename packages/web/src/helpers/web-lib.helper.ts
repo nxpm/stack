@@ -2,7 +2,7 @@ import { addFiles, NormalizedSchema, removeFiles } from '@nxpm/common'
 import { addDependenciesToPackageJson, Tree } from '@nrwl/devkit'
 import { generatorWebLib } from '../generators/web-lib/generator-web-lib'
 
-export type WebLibType = 'data-access' | 'feature' | 'util' | 'ui'
+export type WebLibType = 'data-access' | 'feature' | 'none' | 'util' | 'ui'
 
 export type DepsMap = Record<string, string>
 
