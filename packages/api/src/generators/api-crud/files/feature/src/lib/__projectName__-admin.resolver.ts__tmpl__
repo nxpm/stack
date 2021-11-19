@@ -1,0 +1,61 @@
+import { Args, Mutation, Query, Resolver } from '@nestjs/graphql'
+import { UseGuards } from '@nestjs/common'
+import {
+  AdminCreate<%= model.className %>Input,
+  AdminList<%= model.className %>Input,
+  AdminUpdate<%= model.className %>Input,
+  <%= api.className %><%= model.className %>DataAccessAdminService,
+  <%= model.className %>,
+} from '@<%= npmScope %>/<%= api.name %>/<%= model.fileName %>/data-access'
+import { CorePaging } from '@<%= npmScope %>/<%= api.name %>/core/data-access'
+import {
+  CtxUser,
+  GqlAuthAdminGuard,
+} from '@<%= npmScope %>/<%= api.name %>/auth/util'
+import { User } from '@<%= npmScope %>/<%= api.name %>/user/data-access'
+
+@Resolver()
+@UseGuards(GqlAuthAdminGuard)
+export class <%= project.className %>AdminResolver {
+  constructor(private readonly service: <%= api.className %><%= model.className %>DataAccessAdminService) {}
+
+  @Query(() => [<%= model.className %>], { nullable: true })
+  admin<%= plural.className %>(
+    @CtxUser() admin: User,
+    @Args({ name: 'input', type: () => AdminList<%= model.className %>Input, nullable: true }) input?: AdminList<%= model.className %>Input,
+  ) {
+    return this.service.admin<%= plural.className %>(admin.id, input)
+  }
+
+  @Query(() => CorePaging, { nullable: true })
+  adminCount<%= plural.className %>(
+    @CtxUser() admin: User,
+    @Args({ name: 'input', type: () => AdminList<%= model.className %>Input, nullable: true }) input?: AdminList<%= model.className %>Input,
+  ) {
+    return this.service.adminCount<%= plural.className %>(admin.id, input)
+  }
+
+  @Query(() => <%= model.className %>, { nullable: true })
+  admin<%= model.className %>(@CtxUser() admin: User, @Args('<%= model.propertyName %>Id') <%= model.propertyName %>Id: string) {
+    return this.service.admin<%= model.className %>(admin.id, <%= model.propertyName %>Id)
+  }
+
+  @Mutation(() => <%= model.className %>, { nullable: true })
+  adminCreate<%= model.className %>(@CtxUser() admin: User,@Args('input') input: AdminCreate<%= model.className %>Input,) {
+    return this.service.adminCreate<%= model.className %>(admin.id, input)
+  }
+
+  @Mutation(() => <%= model.className %>, { nullable: true })
+  adminUpdate<%= model.className %>(
+    @CtxUser() admin: User,
+    @Args('<%= model.propertyName %>Id') <%= model.propertyName %>Id: string,
+    @Args('input') input: AdminUpdate<%= model.className %>Input,
+  ) {
+    return this.service.adminUpdate<%= model.className %>(admin.id, <%= model.propertyName %>Id, input)
+  }
+
+  @Mutation(() => <%= model.className %>, { nullable: true })
+  adminDelete<%= model.className %>(@CtxUser() admin: User, @Args('<%= model.propertyName %>Id') <%= model.propertyName %>Id: string) {
+    return this.service.adminDelete<%= model.className %>(admin.id, <%= model.propertyName %>Id)
+  }
+}

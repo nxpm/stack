@@ -11,12 +11,12 @@ export default async function (
   host: Tree,
   { model, nameField, plural }: { model: string; nameField: string; plural: string },
 ) {
-  run(`nx g @nxpm/stack:api-crud ${model} --plural ${plural} --nameField ${nameField}`)
+  run(`nx g @nxpm/api:api-crud ${model} --plural ${plural} --nameField ${nameField}`)
   run(`yarn prisma:apply`)
 
-  console.log('Please restart the API, will continue in 10 seconds...')
-  await sleep(10)
+  // console.log('Please restart the API, will continue in 10 seconds...')
+  // await sleep(10)
 
-  run(`nx g @nxpm/stack:web-crud ${model} --plural ${plural} --nameField ${nameField}`)
-  run(`yarn build:sdk`)
+  // run(`nx g @nxpm/api:web-crud ${model} --plural ${plural} --nameField ${nameField}`)
+  // run(`yarn build:sdk`)
 }

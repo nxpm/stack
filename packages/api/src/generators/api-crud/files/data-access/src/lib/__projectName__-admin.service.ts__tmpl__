@@ -1,0 +1,48 @@
+import { Injectable } from '@nestjs/common'
+import { <%= api.className %>CoreDataAccessService, CorePaging, CorePagingInput } from '@<%= npmScope %>/<%= api.name %>/core/data-access'
+
+import { AdminCreate<%= model.className %>Input } from './dto/admin-create-<%= model.fileName %>.input'
+import { AdminList<%= model.className %>Input } from './dto/admin-list-<%= model.fileName %>.input'
+import { AdminUpdate<%= model.className %>Input } from './dto/admin-update-<%= model.fileName %>.input'
+
+@Injectable()
+export class <%= project.className %>AdminService {
+  constructor(private readonly data: <%= api.className %>CoreDataAccessService) {}
+
+  admin<%= plural.className %>(adminId: string, input?: AdminList<%= model.className %>Input) {
+    return this.data.<%= model.propertyName %>.findMany({
+      take: input?.limit,
+      skip: input?.skip,
+    })
+  }
+
+  async adminCount<%= plural.className %>(adminId: string, input?: AdminList<%= model.className %>Input): Promise<CorePaging> {
+    const total = await this.data.<%= model.propertyName %>.count()
+    return {
+      limit: input?.limit,
+      skip: input?.skip,
+      total,
+    }
+  }
+
+  admin<%= model.className %>(adminId: string, <%= model.propertyName %>Id) {
+    return this.data.<%= model.propertyName %>.findUnique({ where: { id: <%= model.propertyName %>Id } })
+  }
+
+  adminCreate<%= model.className %>(adminId: string, input: AdminCreate<%= model.className %>Input) {
+    return this.data.<%= model.propertyName %>.create({
+      data: { <%= nameField %>: input.<%= nameField %> },
+    })
+  }
+
+  adminUpdate<%= model.className %>(adminId: string, <%= model.propertyName %>Id, input: AdminUpdate<%= model.className %>Input) {
+    return this.data.<%= model.propertyName %>.update({
+      where: { id: <%= model.propertyName %>Id },
+      data: { <%= nameField %>: input.<%= nameField %> },
+    })
+  }
+
+  adminDelete<%= model.className %>(adminId: string, <%= model.propertyName %>Id) {
+    return this.data.<%= model.propertyName %>.delete({ where: { id: <%= model.propertyName %>Id } })
+  }
+}

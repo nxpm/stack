@@ -22,6 +22,11 @@
       "factory": "./src/generators/api-lib/generator-api-lib#generatorApiLib",
       "schema": "./src/generators/api-lib/schema.json",
       "description": "api-lib generator"
+    },
+    "api-crud": {
+      "factory": "./src/generators/api-crud/generator-api-crud#generatorApiCrud",
+      "schema": "./src/generators/api-crud/schema.json",
+      "description": "api-crud generator"
     }
   }
 }

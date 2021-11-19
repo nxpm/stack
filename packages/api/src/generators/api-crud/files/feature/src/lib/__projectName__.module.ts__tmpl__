@@ -1,0 +1,12 @@
+import { Module } from '@nestjs/common'
+import { <%= api.className %><%= model.className %>DataAccessModule } from '@<%= npmScope %>/<%= api.name %>/<%= model.fileName %>/data-access'
+
+import { <%= project.className %>AdminResolver } from './<%= projectName %>-admin.resolver'
+import { <%= project.className %>PublicResolver } from './<%= projectName %>-public.resolver'
+import { <%= project.className %>UserResolver } from './<%= projectName %>-user.resolver'
+
+@Module({
+  imports: [<%= api.className %><%= model.className %>DataAccessModule],
+  providers: [<%= project.className %>AdminResolver, <%= project.className %>PublicResolver, <%= project.className %>UserResolver],
+})
+export class <%= project.className %>Module {}

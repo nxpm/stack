@@ -1,0 +1,17 @@
+import { Field, ObjectType } from '@nestjs/graphql'
+
+@ObjectType()
+export class <%= model.className %> {
+  @Field({ nullable: true })
+  id?: string
+
+  @Field({ nullable: true })
+  createdAt?: Date
+
+  @Field({ nullable: true })
+  updatedAt?: Date
+
+  @Field({ nullable: true })
+  <%= nameField %>?: string
+}
+

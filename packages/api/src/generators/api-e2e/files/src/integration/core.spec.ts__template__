@@ -1,4 +1,4 @@
-import { AppModule } from '@<%= npmScope %>/<%= appNameApi %>-app-module'
+import { AppModule } from '@<%= npmScope %>/<%= api.name %>-app-module'
 import { Test, TestingModule } from '@nestjs/testing'
 import { INestApplication } from '@nestjs/common'
 import * as request from 'supertest'

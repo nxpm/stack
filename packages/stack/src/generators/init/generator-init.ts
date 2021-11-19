@@ -15,6 +15,7 @@ export async function generatorInit(host: Tree, options: InitGeneratorSchema) {
 
   if (!normalizedOptions.skipApi) {
     // Run API
+    console.log(`Generate API`)
     await generatorApi(host, {
       ...normalizedOptions,
       name: normalizedOptions.appNameApi,
@@ -24,6 +25,7 @@ export async function generatorInit(host: Tree, options: InitGeneratorSchema) {
 
   if (!normalizedOptions.skipMobile) {
     // Run Mobile
+    console.log(`Generate Mobile`)
     await generatorMobile(host, {
       ...normalizedOptions,
       name: options.mobileName,
@@ -33,6 +35,7 @@ export async function generatorInit(host: Tree, options: InitGeneratorSchema) {
 
   if (!normalizedOptions.skipWeb) {
     // Run Web
+    console.log(`Generate Web`)
     await generatorWeb(host, {
       ...normalizedOptions,
       name: options.webName,
@@ -42,13 +45,17 @@ export async function generatorInit(host: Tree, options: InitGeneratorSchema) {
 
   if (!normalizedOptions.skipMobile || !normalizedOptions.skipWeb) {
     // Run Shared Utils
+    console.log(`Generate Shared Utils`)
     await generatorSharedUtils(host, {
       ...normalizedOptions,
       directory: 'shared',
     })
   }
 
+  console.log(`Generate Workspace`)
   await generatorWorkspaceGenerators(host, normalizedOptions)
   workspaceConfig(host, normalizedOptions, join(__dirname, 'files'))
+
+  console.log(`Formatting`)
   await formatFiles(host)
 }

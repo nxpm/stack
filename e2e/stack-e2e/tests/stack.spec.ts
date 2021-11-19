@@ -1,4 +1,5 @@
 import { runCommandAsync, runNxCommandAsync, runPackageManagerInstall, uniq } from '@nrwl/nx-plugin/testing'
+import { log } from 'nxpm'
 import { ensureNxProjects } from '../lib/testing'
 
 describe('stack e2e', () => {
@@ -6,6 +7,24 @@ describe('stack e2e', () => {
   const nameMobile = uniq('mobile')
   const nameWeb = uniq('web')
   const packageManager = 'pnpm'
+
+  async function addCrud(model: string, plural: string) {
+    log(`Create CRUD for ${model}/${plural}`)
+    // Create the API crud
+    await runNxCommandAsync(`generate @nxpm/api:api-crud ${model} --plural ${plural}`)
+    // Apply changes to Prisma
+    await runCommandAsync(`yarn prisma:db-push`)
+    // Build the API
+    await runNxCommandAsync(`build ${nameWeb}`)
+    // Run the e2e test to that api-schema.graphql gets re-generated (needed for running yarn build:sdk )
+    await runNxCommandAsync(`e2e ${nameApi}-e2e`)
+    // Create the Web crud
+    // await runNxCommandAsync(`generate @nxpm/web:web-crud ${model} --plural ${plural}`)
+    // Generate SDK
+    // await runCommandAsync(`yarn build:sdk`)
+    // Build the Web
+    // await runNxCommandAsync(`build ${nameWeb}`)
+  }
 
   beforeAll(async () => {
     process.env.HUSKY_SKIP_INSTALL = 'true'
@@ -55,4 +74,17 @@ describe('stack e2e', () => {
     const buildMobileResult = await runCommandAsync(`yarn build:${nameMobile}`)
     expect(buildMobileResult.stdout).toContain('Build at:')
   }, 900000)
+
+  it('should be true', () => {
+    console.log('hja')
+  })
+  it(`should add a api-crud and still build`, async (done) => {
+    await addCrud('company', 'companies')
+    done()
+  })
+
+  it(`should add a api-crud dashed name and still build`, async (done) => {
+    await addCrud('company-address', 'company-addresses')
+    done()
+  })
 })

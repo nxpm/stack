@@ -1,0 +1,48 @@
+import { Injectable } from '@nestjs/common'
+import { <%= api.className %>CoreDataAccessService, CorePaging, CorePagingInput } from '@<%= npmScope %>/<%= api.name %>/core/data-access'
+
+import { UserCreate<%= model.className %>Input } from './dto/user-create-<%= model.fileName %>.input'
+import { UserList<%= model.className %>Input } from './dto/user-list-<%= model.fileName %>.input'
+import { UserUpdate<%= model.className %>Input } from './dto/user-update-<%= model.fileName %>.input'
+
+@Injectable()
+export class <%= project.className %>UserService {
+  constructor(private readonly data: <%= api.className %>CoreDataAccessService) {}
+
+  user<%= plural.className %>(userId: string, input?: UserList<%= model.className %>Input) {
+    return this.data.<%= model.propertyName %>.findMany({
+      take: input?.limit,
+      skip: input?.skip,
+    })
+  }
+
+  async userCount<%= plural.className %>(userId: string, input?: UserList<%= model.className %>Input): Promise<CorePaging> {
+    const total = await this.data.<%= model.propertyName %>.count()
+    return {
+      limit: input?.limit,
+      skip: input?.skip,
+      total,
+    }
+  }
+
+  user<%= model.className %>(userId: string, <%= model.propertyName %>Id) {
+    return this.data.<%= model.propertyName %>.findUnique({ where: { id: <%= model.propertyName %>Id } })
+  }
+
+  userCreate<%= model.className %>(userId: string, input: UserCreate<%= model.className %>Input) {
+    return this.data.<%= model.propertyName %>.create({
+      data: { <%= nameField %>: input.<%= nameField %> },
+    })
+  }
+
+  userUpdate<%= model.className %>(userId: string, <%= model.propertyName %>Id, input: UserUpdate<%= model.className %>Input) {
+    return this.data.<%= model.propertyName %>.update({
+      where: { id: <%= model.propertyName %>Id },
+      data: { <%= nameField %>: input.<%= nameField %> },
+    })
+  }
+
+  userDelete<%= model.className %>(userId: string, <%= model.propertyName %>Id) {
+    return this.data.<%= model.propertyName %>.delete({ where: { id: <%= model.propertyName %>Id } })
+  }
+}

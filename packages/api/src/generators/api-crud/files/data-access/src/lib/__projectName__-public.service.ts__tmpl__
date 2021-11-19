@@ -1,0 +1,7 @@
+import { Injectable } from '@nestjs/common'
+import { <%= api.className %>CoreDataAccessService } from '@<%= npmScope %>/<%= api.name %>/core/data-access'
+
+@Injectable()
+export class <%= project.className %>PublicService {
+  constructor(private readonly data: <%= api.className %>CoreDataAccessService) {}
+}

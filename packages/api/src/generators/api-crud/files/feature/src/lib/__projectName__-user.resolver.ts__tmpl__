@@ -1,0 +1,61 @@
+import { Args, Mutation, Query, Resolver } from '@nestjs/graphql'
+import { UseGuards } from '@nestjs/common'
+import {
+  UserCreate<%= model.className %>Input,
+  UserList<%= model.className %>Input,
+  UserUpdate<%= model.className %>Input,
+  <%= api.className %><%= model.className %>DataAccessUserService,
+  <%= model.className %>,
+} from '@<%= npmScope %>/<%= api.name %>/<%= model.fileName %>/data-access'
+import { CorePaging } from '@<%= npmScope %>/<%= api.name %>/core/data-access'
+import {
+  CtxUser,
+  GqlAuthGuard,
+} from '@<%= npmScope %>/<%= api.name %>/auth/util'
+import { User } from '@<%= npmScope %>/<%= api.name %>/user/data-access'
+
+@Resolver()
+@UseGuards(GqlAuthGuard)
+export class <%= project.className %>UserResolver {
+  constructor(private readonly service: <%= api.className %><%= model.className %>DataAccessUserService) {}
+
+  @Query(() => [<%= model.className %>], { nullable: true })
+  user<%= plural.className %>(
+    @CtxUser() user: User,
+    @Args({ name: 'input', type: () => UserList<%= model.className %>Input, nullable: true }) input?: UserList<%= model.className %>Input,
+  ) {
+    return this.service.user<%= plural.className %>(user.id, input)
+  }
+
+  @Query(() => CorePaging, { nullable: true })
+  userCount<%= plural.className %>(
+    @CtxUser() user: User,
+    @Args({ name: 'input', type: () => UserList<%= model.className %>Input, nullable: true }) input?: UserList<%= model.className %>Input,
+  ) {
+    return this.service.userCount<%= plural.className %>(user.id, input)
+  }
+
+  @Query(() => <%= model.className %>, { nullable: true })
+  user<%= model.className %>(@CtxUser() user: User, @Args('<%= model.propertyName %>Id') <%= model.propertyName %>Id: string) {
+    return this.service.user<%= model.className %>(user.id, <%= model.propertyName %>Id)
+  }
+
+  @Mutation(() => <%= model.className %>, { nullable: true })
+  userCreate<%= model.className %>(@CtxUser() user: User,@Args('input') input: UserCreate<%= model.className %>Input,) {
+    return this.service.userCreate<%= model.className %>(user.id, input)
+  }
+
+  @Mutation(() => <%= model.className %>, { nullable: true })
+  userUpdate<%= model.className %>(
+    @CtxUser() user: User,
+    @Args('<%= model.propertyName %>Id') <%= model.propertyName %>Id: string,
+    @Args('input') input: UserUpdate<%= model.className %>Input,
+  ) {
+    return this.service.userUpdate<%= model.className %>(user.id, <%= model.propertyName %>Id, input)
+  }
+
+  @Mutation(() => <%= model.className %>, { nullable: true })
+  userDelete<%= model.className %>(@CtxUser() user: User, @Args('<%= model.propertyName %>Id') <%= model.propertyName %>Id: string) {
+    return this.service.userDelete<%= model.className %>(user.id, <%= model.propertyName %>Id)
+  }
+}

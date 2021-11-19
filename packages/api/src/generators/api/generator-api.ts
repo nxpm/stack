@@ -27,37 +27,36 @@ export async function generatorApi(host: Tree, options: ApiGeneratorSchema) {
   // api application files
   addFiles(host, normalizedOptions, join(__dirname, 'files'))
 
-  // api feature account
-  await generateApiFeatureAccount(host, {
-    ...normalizedOptions,
-    directory: name,
-    name: 'account',
-    type: 'account',
-  })
-
-  // api feature auth
-  await generateApiFeatureAuth(host, {
-    ...normalizedOptions,
-    directory: name,
-    name: 'auth',
-    type: 'auth',
-  })
-
-  // api feature core
-  await generateApiFeatureCore(host, {
-    ...normalizedOptions,
-    directory: name,
-    name: 'core',
-    type: 'core',
-  })
-
-  // api feature user
-  await generateApiFeatureUser(host, {
-    ...normalizedOptions,
-    directory: name,
-    name: 'user',
-    type: 'user',
-  })
+  await Promise.all([
+    // api feature account
+    generateApiFeatureAccount(host, {
+      ...normalizedOptions,
+      directory: name,
+      name: 'account',
+      type: 'account',
+    }),
+    // api feature auth
+    generateApiFeatureAuth(host, {
+      ...normalizedOptions,
+      directory: name,
+      name: 'auth',
+      type: 'auth',
+    }),
+    // api feature core
+    generateApiFeatureCore(host, {
+      ...normalizedOptions,
+      directory: name,
+      name: 'core',
+      type: 'core',
+    }),
+    // api feature user
+    generateApiFeatureUser(host, {
+      ...normalizedOptions,
+      directory: name,
+      name: 'user',
+      type: 'user',
+    }),
+  ])
 
   // api e2e
   await generatorApiE2e(host, {

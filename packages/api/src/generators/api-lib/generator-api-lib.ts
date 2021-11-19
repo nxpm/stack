@@ -13,6 +13,7 @@ export async function generatorApiLib(
   await libraryGenerator(host, {
     ...options,
     name: options.name,
+    tags: `scope:${normalizedOptions.directory},type:${options.type}`,
   })
   if (files) {
     addFiles(host, normalizedOptions, files, extraOptions)
