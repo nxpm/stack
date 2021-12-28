@@ -1,13 +1,13 @@
-import { ProjectType, readJson, Tree } from '@nrwl/devkit'
+import { names, ProjectType, readJson, Tree } from '@nrwl/devkit'
 import { AppTypeApi, AppTypeMobile, AppTypeWeb, BaseSchema, NormalizedSchema } from '../interfaces'
-import { projectRootDir, toFileName } from '@nrwl/workspace'
+import { projectRootDir } from '@nrwl/workspace'
 
 export function normalizeOptions<T extends BaseSchema>(
   host: Tree,
   options: T,
   projectType?: ProjectType,
 ): NormalizedSchema {
-  const name = toFileName(options?.name || '')
+  const name = names(options?.name || '').fileName
   const nxJson = readJson(host, 'nx.json')
 
   const appNameApi = options.apiName || 'api'
@@ -39,7 +39,7 @@ export function normalizeOptions<T extends BaseSchema>(
     return baseResult
   }
 
-  const projectDirectory = options.directory ? `${toFileName(options.directory)}/${name}` : name
+  const projectDirectory = options.directory ? `${names(options.directory).fileName}/${name}` : name
   const projectName = projectDirectory?.replace(new RegExp('/', 'g'), '-')
   const projectRoot = `${projectRootDir(projectType as any)}/${projectDirectory}`
   const parsedTags: string[] = options.tags ? options.tags?.split(',').map((s) => s.trim()) : []
