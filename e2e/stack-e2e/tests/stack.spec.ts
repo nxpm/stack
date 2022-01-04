@@ -31,14 +31,14 @@ describe('stack e2e', () => {
 
   it('should push prisma schema', async () => {
     console.log('run prisma:db-push')
-    const prismaResult = await runCommandAsync(`yarn prisma:db-push`)
+    const prismaResult = await runCommandAsync(`pnpm run prisma:db-push`)
     expect(prismaResult.stderr).toBe('')
     expect(prismaResult.stdout).toContain('Your database is now in sync with your schema.')
   }, 900000)
 
   it('should build api', async () => {
     console.log('Build API')
-    const buildApiResult = await runCommandAsync(`yarn build:${nameApi}`)
+    const buildApiResult = await runCommandAsync(`pnpm run build:${nameApi}`)
     expect(buildApiResult.stderr).toContain('')
     expect(buildApiResult.stdout).toContain('[entry]')
     expect(buildApiResult.stdout).toContain('[rendered]')
@@ -46,13 +46,13 @@ describe('stack e2e', () => {
 
   it('should build web', async () => {
     console.log('Build Web')
-    const buildWebResult = await runCommandAsync(`yarn build:${nameWeb}`)
+    const buildWebResult = await runCommandAsync(`pnpm run build:${nameWeb}`)
     expect(buildWebResult.stdout).toContain('Build at:')
   }, 900000)
 
   it('should build mobile', async () => {
     console.log('Build Mobile')
-    const buildMobileResult = await runCommandAsync(`yarn build:${nameMobile}`)
+    const buildMobileResult = await runCommandAsync(`pnpm run build:${nameMobile}`)
     expect(buildMobileResult.stdout).toContain('Build at:')
   }, 900000)
 })

@@ -15,8 +15,8 @@ specifiers:
   '@nrwl/nx-plugin': 13.4.1
   '@nrwl/tao': 13.4.1
   '@nrwl/workspace': 13.4.1
-  '@nxtend/capacitor': ^12.0.0-beta.1
-  '@nxtend/ionic-angular': ^12.0.0-beta.1
+  '@nxtend/capacitor': 12.1.0
+  '@nxtend/ionic-angular': 12.1.0
   '@schematics/angular': ^12.2.13
   '@types/jest': 27.0.2
   '@types/node': 14.14.33

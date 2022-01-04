@@ -10,6 +10,8 @@ generates:
       - "typescript"
       - "typescript-operations"
       - "typescript-apollo-angular"
+      - add:
+          content: '// @ts-nocheck'
   ./graphql.schema.json:
     plugins:
       - "introspection"

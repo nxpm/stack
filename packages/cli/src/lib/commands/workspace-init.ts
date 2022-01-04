@@ -51,7 +51,7 @@ export async function workspaceInit({
   const deps = [`@nxpm/stack@${tag}`, '@nrwl/angular', '@nrwl/nest']
 
   if (!skipMobile) {
-    deps.push('@nxtend/ionic-angular@beta', '@nxtend/capacitor@beta')
+    deps.push('@nxtend/ionic-angular@12.1.0', '@nxtend/capacitor@12.1.0')
   }
 
   const installDeps = `yarn add -D ${deps.join(' ')}`

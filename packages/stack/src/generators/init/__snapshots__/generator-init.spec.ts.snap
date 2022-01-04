@@ -1814,7 +1814,7 @@ mutation AdminDeleteUser($userId: String!) {
       "content": "
         import { NgModule } from '@angular/core';
         import { CommonModule } from '@angular/common';
-        
+
         @NgModule({
           imports: [
             CommonModule
@@ -4274,7 +4274,7 @@ export class AccountUiProfileFormModule {}
       "content": "
         import { NgModule } from '@angular/core';
         import { CommonModule } from '@angular/common';
-        
+
         @NgModule({
           imports: [
             CommonModule
@@ -5359,7 +5359,7 @@ export class AdminUserTableModule {}
       "content": "
         import { NgModule } from '@angular/core';
         import { CommonModule } from '@angular/common';
-        
+
         @NgModule({
           imports: [
             CommonModule
@@ -8498,8 +8498,8 @@ import { FieldType } from '@ngx-formly/core'
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UiFormCheckboxComponent extends FieldType {
-  formControl!: FormControl
-  defaultOptions = {
+  override formControl!: FormControl
+  override defaultOptions = {
     templateOptions: {
       indeterminate: true,
       hideLabel: true,
@@ -8573,7 +8573,7 @@ import { FieldType } from '@ngx-formly/core'
   \`,
 })
 export class UiFormInputComponent extends FieldType {
-  formControl!: FormControl
+  override formControl!: FormControl
 
   get type(): string {
     return this.to.type || 'text'
@@ -8682,8 +8682,8 @@ import { FieldType } from '@ngx-formly/core'
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UiFormMulticheckboxComponent extends FieldType {
-  formControl!: FormControl
-  defaultOptions = {
+  override formControl!: FormControl
+  override defaultOptions = {
     templateOptions: {
       options: [],
     },
@@ -8775,8 +8775,8 @@ import { FieldType } from '@ngx-formly/core'
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UiFormRadioComponent extends FieldType {
-  formControl!: FormControl
-  defaultOptions = {
+  override formControl!: FormControl
+  override defaultOptions = {
     templateOptions: {
       options: [],
     },
@@ -8898,8 +8898,8 @@ import { take } from 'rxjs/operators'
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UiFormSelectComponent extends FieldType {
-  formControl!: FormControl
-  defaultOptions = {
+  override formControl!: FormControl
+  override defaultOptions = {
     templateOptions: {
       options: [],
       compareWith(o1: any, o2: any): any {
@@ -9003,8 +9003,8 @@ import { FieldType } from '@ngx-formly/core'
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UiFormTextareaComponent extends FieldType {
-  formControl!: FormControl
-  defaultOptions = {
+  override formControl!: FormControl
+  override defaultOptions = {
     templateOptions: {
       cols: 1,
       rows: 1,
@@ -10264,7 +10264,7 @@ Object {
       "content": "
         import { NgModule } from '@angular/core';
         import { CommonModule } from '@angular/common';
-        
+
         @NgModule({
           imports: [
             CommonModule

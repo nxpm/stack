@@ -1,8 +1,7 @@
 import { formatFiles, Tree } from '@nrwl/devkit'
 import { applicationGenerator as nestApplicationGenerator } from '@nrwl/nest'
-import { addFiles, addRunScript, createDotEnv, normalizeOptions, removeFiles, uniq } from '@nxpm/common'
+import { addFiles, addRunScript, createDotEnv, logEntry, normalizeOptions, removeFiles, uniq } from '@nxpm/common'
 import { join } from 'path'
-import { ApiGeneratorSchema } from './schema'
 
 import { generatorApiE2e } from '../api-e2e/generator-api-e2e'
 
@@ -12,22 +11,26 @@ import {
   generateApiFeatureCore,
   generateApiFeatureUser,
 } from '../api-feature'
+import { ApiGeneratorSchema } from './schema'
 
 export async function generatorApi(host: Tree, options: ApiGeneratorSchema) {
   const normalizedOptions = normalizeOptions(host, options, 'application')
   const name = normalizedOptions.name
   const schemaName = uniq(`${normalizedOptions.npmScope}-${name}`)
-
+  const startTime = new Date()
   // api application
+  logEntry(`  -> api application`, startTime)
   await nestApplicationGenerator(host, {
     ...normalizedOptions,
     name,
   })
 
   // api application files
+  logEntry(`  -> api application files`, startTime)
   addFiles(host, normalizedOptions, join(__dirname, 'files'))
 
   // api feature account
+  logEntry(`  -> api feature account`, startTime)
   await generateApiFeatureAccount(host, {
     ...normalizedOptions,
     directory: name,
@@ -36,6 +39,7 @@ export async function generatorApi(host: Tree, options: ApiGeneratorSchema) {
   })
 
   // api feature auth
+  logEntry(`  -> api feature auth`, startTime)
   await generateApiFeatureAuth(host, {
     ...normalizedOptions,
     directory: name,
@@ -44,6 +48,7 @@ export async function generatorApi(host: Tree, options: ApiGeneratorSchema) {
   })
 
   // api feature core
+  logEntry(`  -> api feature core`, startTime)
   await generateApiFeatureCore(host, {
     ...normalizedOptions,
     directory: name,
@@ -52,6 +57,7 @@ export async function generatorApi(host: Tree, options: ApiGeneratorSchema) {
   })
 
   // api feature user
+  logEntry(`  -> api feature user`, startTime)
   await generateApiFeatureUser(host, {
     ...normalizedOptions,
     directory: name,
@@ -60,12 +66,14 @@ export async function generatorApi(host: Tree, options: ApiGeneratorSchema) {
   })
 
   // api e2e
+  logEntry(`  -> api e2e`, startTime)
   await generatorApiE2e(host, {
     ...normalizedOptions,
     name: `${name}-e2e`,
   })
 
   // api run-scripts
+  logEntry(`  -> api run-scripts`, startTime)
   addRunScript(host, `build:${name}`, `nx build ${name} --prod`)
   addRunScript(host, `dev:${name}`, `nx serve ${name}`)
 

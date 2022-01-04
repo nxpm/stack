@@ -1,7 +1,6 @@
-import { addDependenciesToPackageJson, formatFiles, Tree } from '@nrwl/devkit'
-import { WebGeneratorSchema } from './schema'
-import { addFiles, addProxyConfig, addRunScript, normalizeOptions, versions } from '@nxpm/common'
 import { applicationGenerator as angularApplicationGenerator } from '@nrwl/angular/generators'
+import { addDependenciesToPackageJson, formatFiles, Tree } from '@nrwl/devkit'
+import { addFiles, addProxyConfig, addRunScript, logEntry, normalizeOptions, versions } from '@nxpm/common'
 import { join } from 'path'
 import { generatorWebBase } from '../web-base/generator-web-base'
 import {
@@ -15,13 +14,15 @@ import {
   generateWebFeatureShell,
 } from '../web-feature'
 import { generatorWebUi } from '../web-ui/generator-web-ui'
+import { WebGeneratorSchema } from './schema'
 
 export async function generatorWeb(host: Tree, options: WebGeneratorSchema) {
   const normalizedOptions = normalizeOptions(host, options, 'application')
   // console.log({ normalizedOptions })
   const name = normalizedOptions.name || 'web'
-
-  // api application
+  const startTime = new Date()
+  // web application
+  logEntry(`  -> web application`, startTime)
   await angularApplicationGenerator(host, {
     // ...normalizedOptions,
     name,
@@ -31,21 +32,25 @@ export async function generatorWeb(host: Tree, options: WebGeneratorSchema) {
     skipFormat: true,
   })
 
-  // api application files
+  // web application files
+  logEntry(`  -> web application files`, startTime)
   addFiles(host, normalizedOptions, join(__dirname, 'files'))
 
+  logEntry(`  -> web base`, startTime)
   await generatorWebBase(host, {
     ...normalizedOptions,
     webName: name,
   })
 
+  logEntry(`  -> web ui`, startTime)
   await generatorWebUi(host, {
     ...normalizedOptions,
     webName: name,
     library: 'tailwind',
   })
 
-  // api feature about
+  // web feature about
+  logEntry(`  -> web feature about`, startTime)
   await generateWebFeatureAbout(host, {
     ...normalizedOptions,
     directory: name,
@@ -53,7 +58,8 @@ export async function generatorWeb(host: Tree, options: WebGeneratorSchema) {
     type: 'about',
   })
 
-  // api feature account
+  // web feature account
+  logEntry(`  -> web feature account`, startTime)
   await generateWebFeatureAccount(host, {
     ...normalizedOptions,
     directory: name,
@@ -61,7 +67,8 @@ export async function generatorWeb(host: Tree, options: WebGeneratorSchema) {
     type: 'account',
   })
 
-  // api feature admin
+  // web feature admin
+  logEntry(`  -> web feature admin`, startTime)
   await generateWebFeatureAdmin(host, {
     ...normalizedOptions,
     directory: name,
@@ -69,7 +76,8 @@ export async function generatorWeb(host: Tree, options: WebGeneratorSchema) {
     type: 'admin',
   })
 
-  // api feature auth
+  // web feature auth
+  logEntry(`  -> web feature auth`, startTime)
   await generateWebFeatureAuth(host, {
     ...normalizedOptions,
     directory: name,
@@ -77,7 +85,8 @@ export async function generatorWeb(host: Tree, options: WebGeneratorSchema) {
     type: 'auth',
   })
 
-  // api feature core
+  // web feature core
+  logEntry(`  -> web feature core`, startTime)
   await generateWebFeatureCore(host, {
     ...normalizedOptions,
     directory: name,
@@ -85,7 +94,8 @@ export async function generatorWeb(host: Tree, options: WebGeneratorSchema) {
     type: 'core',
   })
 
-  // api feature dashboard
+  // web feature dashboard
+  logEntry(`  -> web feature dashboard`, startTime)
   await generateWebFeatureDashboard(host, {
     ...normalizedOptions,
     directory: name,
@@ -93,7 +103,8 @@ export async function generatorWeb(host: Tree, options: WebGeneratorSchema) {
     type: 'dashboard',
   })
 
-  // api feature layout
+  // web feature layout
+  logEntry(`  -> web feature layout`, startTime)
   await generateWebFeatureLayout(host, {
     ...normalizedOptions,
     directory: name,
@@ -101,7 +112,8 @@ export async function generatorWeb(host: Tree, options: WebGeneratorSchema) {
     type: 'layout',
   })
 
-  // api feature shell
+  // web feature shell
+  logEntry(`  -> web feature shell`, startTime)
   await generateWebFeatureShell(host, {
     ...normalizedOptions,
     directory: name,

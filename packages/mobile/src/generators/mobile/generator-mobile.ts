@@ -1,6 +1,14 @@
 import { addDependenciesToPackageJson, formatFiles, Tree } from '@nrwl/devkit'
 import { MobileGeneratorSchema } from './schema'
-import { addFiles, addProxyConfig, addRunScript, normalizeOptions, setServePort, versions } from '@nxpm/common'
+import {
+  addFiles,
+  addProxyConfig,
+  addRunScript,
+  logEntry,
+  normalizeOptions,
+  setServePort,
+  versions,
+} from '@nxpm/common'
 import { applicationGenerator as angularApplicationGenerator } from '@nrwl/angular/generators'
 import { join } from 'path'
 import { generatorMobileBase } from '../mobile-base/generator-mobile-base'
@@ -19,8 +27,9 @@ export async function generatorMobile(host: Tree, options: MobileGeneratorSchema
   const normalizedOptions = normalizeOptions(host, options, 'application')
   // console.log({ normalizedOptions })
   const name = normalizedOptions.name || 'mobile'
-
-  // api application
+  const startTime = new Date()
+  // mobile application
+  logEntry(`  -> mobile application`, startTime)
   await angularApplicationGenerator(host, {
     // ...normalizedOptions,
     name,
@@ -30,21 +39,27 @@ export async function generatorMobile(host: Tree, options: MobileGeneratorSchema
     skipFormat: true,
   })
 
-  // api application files
+  // mobile application files
+  logEntry(`  -> mobile application files`, startTime)
   addFiles(host, normalizedOptions, join(__dirname, 'files'))
 
+  // mobile base
+  logEntry(`  -> mobile base`, startTime)
   await generatorMobileBase(host, {
     ...normalizedOptions,
     mobileName: name,
   })
 
+  // mobile files
+  logEntry(`  -> mobile ui`, startTime)
   await generatorMobileUi(host, {
     ...normalizedOptions,
     mobileName: name,
     library: 'tailwind',
   })
 
-  // api feature about
+  // mobile feature about
+  logEntry(`  -> mobile feature about`, startTime)
   await generateMobileFeatureAbout(host, {
     ...normalizedOptions,
     directory: name,
@@ -52,7 +67,8 @@ export async function generatorMobile(host: Tree, options: MobileGeneratorSchema
     type: 'about',
   })
 
-  // api feature account
+  // mobile feature account
+  logEntry(`  -> mobile feature account`, startTime)
   await generateMobileFeatureAccount(host, {
     ...normalizedOptions,
     directory: name,
@@ -60,7 +76,8 @@ export async function generatorMobile(host: Tree, options: MobileGeneratorSchema
     type: 'account',
   })
 
-  // api feature auth
+  // mobile feature auth
+  logEntry(`  -> mobile feature auth`, startTime)
   await generateMobileFeatureAuth(host, {
     ...normalizedOptions,
     directory: name,
@@ -68,7 +85,8 @@ export async function generatorMobile(host: Tree, options: MobileGeneratorSchema
     type: 'auth',
   })
 
-  // api feature core
+  // mobile feature core
+  logEntry(`  -> mobile feature core`, startTime)
   await generateMobileFeatureCore(host, {
     ...normalizedOptions,
     directory: name,
@@ -76,7 +94,8 @@ export async function generatorMobile(host: Tree, options: MobileGeneratorSchema
     type: 'core',
   })
 
-  // api feature dashboard
+  // mobile feature dashboard
+  logEntry(`  -> mobile feature dashboard`, startTime)
   await generateMobileFeatureDashboard(host, {
     ...normalizedOptions,
     directory: name,
@@ -84,7 +103,8 @@ export async function generatorMobile(host: Tree, options: MobileGeneratorSchema
     type: 'dashboard',
   })
 
-  // api feature layout
+  // mobile feature layout
+  logEntry(`  -> mobile feature layout`, startTime)
   await generateMobileFeatureLayout(host, {
     ...normalizedOptions,
     directory: name,
@@ -92,7 +112,8 @@ export async function generatorMobile(host: Tree, options: MobileGeneratorSchema
     type: 'layout',
   })
 
-  // api feature shell
+  // mobile feature shell
+  logEntry(`  -> mobile feature shell`, startTime)
   await generateMobileFeatureShell(host, {
     ...normalizedOptions,
     directory: name,
@@ -119,6 +140,7 @@ export async function generatorMobile(host: Tree, options: MobileGeneratorSchema
     },
     {
       '@angular-devkit/core': versions.angularDevkitCore,
+      '@graphql-codegen/add': versions.graphqlCodegenAdd,
       '@graphql-codegen/cli': versions.graphqlCodegenCli,
       '@graphql-codegen/introspection': versions.graphqlCodegenIntrospection,
       '@graphql-codegen/typescript': versions.graphqlCodegenTypescript,
