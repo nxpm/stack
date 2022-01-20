@@ -32,8 +32,8 @@ import { FieldType } from '@ngx-formly/core'
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UiFormMulticheckboxComponent extends FieldType {
-  formControl!: FormControl
-  defaultOptions = {
+  override formControl!: FormControl
+  override defaultOptions = {
     templateOptions: {
       options: [],
     },

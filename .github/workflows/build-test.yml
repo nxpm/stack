@@ -34,15 +34,17 @@ jobs:
           key: ${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
             ${{ runner.os }}-
-      - uses: pnpm/action-setup@v2.0.1
-        with:
-          version: 6.18.0
       - name: Setup node ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - run: yarn install --frozen-lockfile
-      - run: yarn build
-      - run: yarn format:check --base=remotes/origin/main
+      - name: Install dependencies
+        uses: pnpm/action-setup@v2.0.1
+        with:
+          version: 6.24.3
+          run_install: |
+            - args: [--frozen-lockfile, --strict-peer-dependencies]
+      - run: pnpm run build
+      - run: pnpm run format:check -- --base=remotes/origin/main
       #      - run: yarn affected:test --base=remotes/origin/main
-      - run: yarn affected:e2e --base=remotes/origin/main
+      - run: pnpm run affected:e2e -- --base=remotes/origin/main

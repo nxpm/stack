@@ -5,7 +5,7 @@ export function addonsExtension(field: FormlyFieldConfig): any {
     return
   }
 
-  if (field.templateOptions.addonLeft || field.templateOptions.addonRight) {
+  if (field.templateOptions['addonLeft'] || field.templateOptions['addonRight']) {
     field.wrappers = [...(field.wrappers || []), 'addons']
     field.templateOptions.attributes = {
       ...(field.templateOptions?.attributes || {}),

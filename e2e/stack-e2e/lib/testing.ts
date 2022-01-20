@@ -57,7 +57,7 @@ export function patchDistProjects(paths: ProjectDistPath[]): void {
     for (const pkg of paths) {
       const absDistPath = `file:/${getAbsPath(pkg.path)}`
       if (packageDeps[pkg.package] && packageDeps[pkg.package] !== absDistPath) {
-        // console.log(` In ${path.package} => Update ${pkg.package} => ${absDistPath}`)
+        console.log(` In ${path.package} => Update ${pkg.package} => ${absDistPath}`)
         packageDeps[pkg.package] = absDistPath
       }
     }

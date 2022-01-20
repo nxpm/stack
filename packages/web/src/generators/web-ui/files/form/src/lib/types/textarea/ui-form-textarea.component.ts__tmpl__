@@ -17,8 +17,8 @@ import { FieldType } from '@ngx-formly/core'
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UiFormTextareaComponent extends FieldType {
-  formControl!: FormControl
-  defaultOptions = {
+  override formControl!: FormControl
+  override defaultOptions = {
     templateOptions: {
       cols: 1,
       rows: 1,

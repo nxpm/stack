@@ -4,3 +4,4 @@ coverage
 tmp
 /libs/sdk/src/generated/g libs/themes/src/vendor
 .github/*.md
+.pnpm-store

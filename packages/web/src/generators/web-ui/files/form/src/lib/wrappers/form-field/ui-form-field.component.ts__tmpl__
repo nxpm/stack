@@ -5,12 +5,12 @@ import { FieldWrapper } from '@ngx-formly/core'
   template: `
     <div [class.has-error]="showError" class="mb-3">
       <label
-        *ngIf="to.label && to.hideLabel !== true"
+        *ngIf="to.label && to['hideLabel'] !== true"
         [attr.for]="id"
         class="block text-sm font-medium text-gray-700 dark:text-gray-300"
       >
         {{ to.label }}
-        <span *ngIf="to.required && to.hideRequiredMarker !== true">*</span>
+        <span *ngIf="to.required && to['hideRequiredMarker'] !== true">*</span>
       </label>
 
       <div class="mt-1 relative">

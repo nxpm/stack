@@ -13,9 +13,10 @@ export async function generatorWebLib(
   await libraryGenerator(host, {
     ...options,
     name: options.name,
+    skipFormat: true,
   })
   if (files) {
     addFiles(host, normalizedOptions, files, extraOptions)
   }
-  await formatFiles(host)
+  // await formatFiles(host)
 }
