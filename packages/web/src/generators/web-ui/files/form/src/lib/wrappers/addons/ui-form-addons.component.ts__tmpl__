@@ -8,14 +8,14 @@ import { FieldWrapper } from '@ngx-formly/core'
 })
 export class UiFormAddonsComponent extends FieldWrapper {
   addonRightClick($event: any): void {
-    if (this.to.addonRight.onClick) {
-      this.to.addonRight.onClick(this.to, this, $event)
+    if (this.to['addonRight'].onClick) {
+      this.to['addonRight'].onClick(this.to, this, $event)
     }
   }
 
   addonLeftClick($event: any): void {
-    if (this.to.addonLeft.onClick) {
-      this.to.addonLeft.onClick(this.to, this, $event)
+    if (this.to['addonLeft'].onClick) {
+      this.to['addonLeft'].onClick(this.to, this, $event)
     }
   }
 }

@@ -10,16 +10,16 @@ import { FieldType } from '@ngx-formly/core'
           type="checkbox"
           class="focus:ring-pink-500 h-4 w-4 text-pink-600 border-gray-300 dark:bg-gray-800 dark:border-gray-600 rounded"
           [class.is-invalid]="showError"
-          [class.static]="to.formCheck === 'nolabel'"
-          [indeterminate]="to.indeterminate && formControl.value == null"
+          [class.static]="to['formCheck'] === 'nolabel'"
+          [indeterminate]="to['indeterminate'] && formControl.value == null"
           [formControl]="formControl"
           [formlyAttributes]="field"
         />
       </div>
       <div class="ml-3 text-sm">
-        <label *ngIf="to.formCheck !== 'nolabel'" class="font-medium text-gray-700 dark:text-gray-300" [for]="id">
+        <label *ngIf="to['formCheck'] !== 'nolabel'" class="font-medium text-gray-700 dark:text-gray-300" [for]="id">
           {{ to.label }}
-          <span *ngIf="to.required && to.hideRequiredMarker !== true">*</span>
+          <span *ngIf="to.required && to['hideRequiredMarker'] !== true">*</span>
         </label>
       </div>
     </div>
@@ -27,8 +27,8 @@ import { FieldType } from '@ngx-formly/core'
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UiFormCheckboxComponent extends FieldType {
-  formControl!: FormControl
-  defaultOptions = {
+  override formControl!: FormControl
+  override defaultOptions = {
     templateOptions: {
       indeterminate: true,
       hideLabel: true,

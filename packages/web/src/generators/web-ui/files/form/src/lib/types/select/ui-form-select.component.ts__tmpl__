@@ -6,17 +6,17 @@ import { take } from 'rxjs/operators'
 @Component({
   template: `
     <select
-      *ngIf="to.multiple; else singleSelect"
+      *ngIf="to['multiple']; else singleSelect"
       [class]="classNames"
       multiple
-      [class.custom-select]="to.customSelect"
+      [class.custom-select]="to['customSelect']"
       [formControl]="formControl"
-      [compareWith]="to.compareWith"
+      [compareWith]="to['compareWith']"
       [class.is-invalid]="showError"
       [formlyAttributes]="field"
     >
       <ng-container *ngIf="to.options | formlySelectOptions: field | async as opts">
-        <ng-container *ngIf="to._flatOptions; else grouplist">
+        <ng-container *ngIf="to['_flatOptions']; else grouplist">
           <ng-container *ngFor="let opt of opts">
             <option [ngValue]="opt.value" [disabled]="opt.disabled">{{ opt.label }}</option>
           </ng-container>
@@ -44,14 +44,14 @@ import { take } from 'rxjs/operators'
         class="pr-10"
         [class]="classNames"
         [formControl]="formControl"
-        [compareWith]="to.compareWith"
-        [class.custom-select]="to.customSelect"
+        [compareWith]="to['compareWith']"
+        [class.custom-select]="to['customSelect']"
         [class.is-invalid]="showError"
         [formlyAttributes]="field"
       >
         <option *ngIf="to.placeholder" [ngValue]="undefined">{{ to.placeholder }}</option>
         <ng-container *ngIf="to.options | formlySelectOptions: field | async as opts">
-          <ng-container *ngIf="to._flatOptions; else grouplist">
+          <ng-container *ngIf="to['_flatOptions']; else grouplist">
             <ng-container *ngFor="let opt of opts">
               <option [ngValue]="opt.value" [disabled]="opt.disabled">{{ opt.label }}</option>
             </ng-container>
@@ -78,8 +78,8 @@ import { take } from 'rxjs/operators'
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UiFormSelectComponent extends FieldType {
-  formControl!: FormControl
-  defaultOptions = {
+  override formControl!: FormControl;
+  override defaultOptions = {
     templateOptions: {
       options: [],
       compareWith(o1: any, o2: any): any {
